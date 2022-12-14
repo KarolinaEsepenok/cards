@@ -1,0 +1,29 @@
+.label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  .checkbox {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    vertical-align: middle;
+    margin-right: 8px;
+    border-radius: 3px;
+    border: 2px solid #06c;
+    cursor: pointer;
+    &:checked {
+      appearance: none;
+      background-image: url('checked.svg');
+    }
+    &:focus {
+      border-color: #0059b3;
+    }
+  }
+  .spanClassName {
+    font-family: 'Montserrat', sans-serif;
+    color: #06c;
+  }
+}
+

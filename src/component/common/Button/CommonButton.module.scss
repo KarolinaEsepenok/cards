@@ -1,0 +1,40 @@
+.button {
+  background-color: #0066cc;
+  width: 132px;
+  height: 30px;
+  border-radius: 3px;
+  color: #FFFFFF;
+  padding: 5px 24px;
+  font-family: 'Montserrat';
+  border: none;
+  &:disabled {
+    background-color:  #004D99;
+    opacity: 0.5;
+  }
+}
+.default {
+  background-color: #0066cc;
+  &:hover {
+    opacity: 0.8;
+    color: #FFFFFF;
+  }
+}
+.red {
+  background-color: #CC1439;
+  &:hover {
+    background-color: #B21232;
+  }
+}
+.disabled {
+  background-color:  #004D99;
+  opacity: 0.5;
+}
+.secondary {
+  background-color: #FFFFFF;
+  color:#0066CC ;
+  border: 1px solid #0066cc;
+  &:hover {
+    background-color: #c9e5ff;
+  }
+}
+

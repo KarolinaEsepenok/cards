@@ -1,0 +1,24 @@
+.inputWrapper{
+  display: flex;
+  flex-direction: column-reverse;
+  min-height: 60px;
+  .input {
+    width: 372px;
+    height: 36px;
+    &:focus {
+
+    }
+  }
+  .errorInput {
+    border:1px solid #CC1439;
+    &:focus {
+    }
+  }
+  .superInput {
+  }
+  .error {
+    color: #CC1439;
+  }
+}
+
+
