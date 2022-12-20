@@ -8,6 +8,8 @@ import ErrorPage from "../features/errorPage/ErrorPage";
 import PasswordRecovery from "../features/auth/passwordRecovery/PasswordRecovery";
 import NewPassword from "../features/auth/newPassword/NewPassword";
 import "../App.css";
+import SignUp from "../features/auth/signUp/signUp";
+import SignIn from "../features/auth/signIn/signIn";
 
 export const App = () => {
     return (
@@ -16,8 +18,8 @@ export const App = () => {
 
                 <Routes>
                     <Route path={'/'} element={<Navigate to={"/auth"}/>}/>
-                    <Route path='/auth' element={<Auth/>}/>
-                    <Route path='/registration' element={<Registration/>}/>
+                    <Route path='/signIn' element={<SignIn/>}/>
+                    <Route path='/signUp' element={<SignUp/>}/>
                     <Route path='/profile/:userId' element={<Profile/>}/>
                     <Route path='/error404' element={<ErrorPage/>}/>
                     <Route path='/passwordRecovery' element={<PasswordRecovery/>}/>
