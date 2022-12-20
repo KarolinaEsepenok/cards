@@ -5,7 +5,7 @@ const initialState: InitialStateType = {
     password: ''
 }
 
-export const profileReducer = (state: InitialStateType = initialState, action: any): InitialStateType => {
+export const passwordRecoveryReducer = (state: InitialStateType = initialState, action: any): InitialStateType => {
     switch (action.type) {
         default:
             return {...state}
