@@ -17,7 +17,7 @@ export const App = () => {
                     <Routes>
                         <Route path={'/'} element={<Navigate to={"/login"}/>}/>
                         <Route path='/login' element={<Login/>}/>
-                        <Route path='/registration' element={<Auth/>}/>
+                        <Route path='/auth' element={<Auth/>}/>
                         <Route path='/profile/:userId' element={<Profile/>}/>
                         <Route path='/error404' element={<ErrorPage/>}/>
                         <Route path='/passwordRecovery' element={<PasswordRecovery/>}/>
