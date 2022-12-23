@@ -22,14 +22,15 @@ export const App = () => {
                             <NavLink to={"/signIn"} >SignIn</NavLink></li>
                            <li> <NavLink to={"/signUp'"} >signUp'</NavLink></li>
                         <li className={s.item}>
+                            <NavLink to={"/passwordRecovery"}>passwordRecovery</NavLink></li>
+                        <li className={s.item}>
+                            <NavLink to={"/newPassword"} >newPassword</NavLink></li>
+                        <li className={s.item}>
+
                             <NavLink to={"/profile/:userId"} >profile/:userId</NavLink></li>
                         <li className={s.item}>
                             <NavLink to={"/error404"} >error404</NavLink></li>
 
-                        <li className={s.item}>
-                            <NavLink to={"/passwordRecovery"}>passwordRecovery</NavLink></li>
-                        <li className={s.item}>
-                            <NavLink to={"/newPassword"} >newPassword</NavLink></li>
                         <li className={s.item}>
                             <NavLink to={"/testCommon"} >testCommon</NavLink></li>
 
@@ -38,13 +39,14 @@ export const App = () => {
                 <div>
                 <Routes>
 
-                    <Route path={'/'} element={<Navigate to={"/auth"}/>}/>
+                    <Route  path={'/'} element={<Navigate to={"/signIn"}/>}/>
                    <Route path='/signIn' element={<SignIn/>}/>
                         <Route path='/signUp' element={<SignUp/>}/>
-                    <Route path='/profile/:userId' element={<Profile/>}/>
-                    <Route path='/error404' element={<ErrorPage/>}/>
                     <Route path='/passwordRecovery' element={<PasswordRecovery/>}/>
                     <Route path='/newPassword' element={<NewPassword/>}/>
+                    <Route path='/profile/:userId' element={<Profile/>}/>
+                    <Route path='/error404' element={<ErrorPage/>}/>
+
                     <Route path='/testCommon' element={<Common/>}/>
 
                 </Routes>
