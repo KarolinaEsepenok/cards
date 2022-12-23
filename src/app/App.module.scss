@@ -7,5 +7,14 @@
   .centerApp{
     max-width: 1008px;
     margin: 0 auto;
+    .nav ul{
+display: flex;
+      list-style-type: none;
+      justify-content: space-between;
+      .item{
+          text-decoration: none;
+
+      }
+    }
   }
 }
