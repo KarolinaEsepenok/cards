@@ -13,8 +13,9 @@ import {Header} from "../common/component/Header/Header";
 export const App = () => {
     return (
         <div className={s.app}>
+            <Header/>
             <div className={s.centerApp}>
-                <Header/>
+
                 <div>
                 <Routes>
                     <Route path={'/'} element={<Navigate to={"/auth"}/>}/>

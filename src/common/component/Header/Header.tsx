@@ -9,11 +9,11 @@ export const Header = () => {
             <div className={s.headerLogo}>
                 <img src={logoCards}/>
             </div>
-            <div className={s.headerBtn}>
-                <button>
+
+                <button className={s.headerBtn}>
                     Sign in
                 </button>
-            </div>
+
         </div>
     );
 };
