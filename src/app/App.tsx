@@ -1,21 +1,21 @@
 import React from 'react';
 import Common from "../common/component/generalComponents/Common";
-import {HashRouter, Route, Routes, Navigate} from "react-router-dom";
-import Registration from "../features/registration/Registration";
-import Auth from "../features/auth/Auth";
+import { Route, Routes, Navigate} from "react-router-dom";
 import Profile from "../features/profile/Profile";
 import ErrorPage from "../features/errorPage/ErrorPage";
 import PasswordRecovery from "../features/auth/passwordRecovery/PasswordRecovery";
 import NewPassword from "../features/auth/newPassword/NewPassword";
-import "../App.css";
+import s from "./App.module.scss";
 import SignUp from "../features/auth/signUp/signUp";
 import SignIn from "../features/auth/signIn/signIn";
+import {Header} from "../common/component/Header/Header";
 
 export const App = () => {
     return (
-        <HashRouter>
-            <div className={'App'}>
-
+        <div className={s.app}>
+            <div className={s.centerApp}>
+                <Header/>
+                <div>
                 <Routes>
                     <Route path={'/'} element={<Navigate to={"/auth"}/>}/>
                     <Route path='/signIn' element={<SignIn/>}/>
@@ -25,9 +25,9 @@ export const App = () => {
                     <Route path='/passwordRecovery' element={<PasswordRecovery/>}/>
                     <Route path='/newPassword' element={<NewPassword/>}/>
                     <Route path='/testCommon' element={<Common/>}/>
-                </Routes>
+                </Routes></div>
 
-            </div>
-        </HashRouter>
+
+         </div></div>
     )
 }

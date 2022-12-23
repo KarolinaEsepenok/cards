@@ -1,4 +1,12 @@
-.App {
+.app {
+  height: 100%;
+  max-width: 1280px;
+  background-color: #ffffff;
   margin: 0 auto;
-  width: 1960px;
+
+  .centerApp{
+max-width: 1008px;
+    margin: 0 auto;
+
+  }
 }
