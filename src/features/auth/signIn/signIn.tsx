@@ -12,7 +12,8 @@ interface Values {
     rememberMe: boolean
 }
 
-const SignIn = () => {
+const SignIn =() => {
+    console.log('render')
     {/*} const dispatch = useDispatch()
 
     const isLoggedIn = useSelector<RootStateType>(state => state.signIn);

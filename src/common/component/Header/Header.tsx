@@ -5,7 +5,9 @@ import {NavLink} from "react-router-dom";
 
 
 export const Header = () => {
+    console.log('header')
     return (
+
         <div className={s.headerContainer}>
             <div className={s.headerLogo}>
                 <img src={logoCards}/>
