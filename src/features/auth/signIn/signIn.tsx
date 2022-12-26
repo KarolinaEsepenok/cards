@@ -71,7 +71,7 @@ const SignIn = () => {
                                    name="email"
                             />
                             <label className={s.loginLabel}>Password</label>
-                            <Field className={s.inputEmail}
+                            <Field className={s.inputEmail} type="password"
                                    name="password"/>
 
                             <label className={s.rememberMeLable}>Remember Me
@@ -79,7 +79,8 @@ const SignIn = () => {
 
                             </label>
                             <div className={s.forgotPassword}><NavLink to={'/passwordRecovery'}>Forgot password?</NavLink></div>
-                            <Button type={'submit'} variant={'contained'} color={'primary'}>Sign In</Button>
+                            <Button className={s.loginBtn} type={'submit'} variant={'contained'} color={'primary'}>Sign In</Button>
+                            <div className={s.singInQuestion}>Already have an account?</div>
                             <div><NavLink to={'/signUp'}>Sign Up!</NavLink></div>
 
                         </FormGroup>
@@ -88,15 +89,6 @@ const SignIn = () => {
             </Formik>
 
 
-            <h2> SignIn</h2>
-            <div><input/></div>
-            <div><input/></div>
-            <label><input type={"checkbox"}/> remember me</label>
-            <div><NavLink to={'/passwordRecovery'}>Forgot?</NavLink></div>
-            <div>
-                <button>Sign In</button>
-            </div>
-            <div><NavLink to={'/signUp'}>Sign Up!</NavLink></div>
         </div>
     );
 }
