@@ -5,12 +5,14 @@ import {newPasswordReducer} from "../features/auth/newPassword/newPassword-reduc
 import {passwordRecoveryReducer} from "../features/auth/passwordRecovery/passwordRecovery-reducer";
 import {profileReducer} from "../features/profile/profile-reducer";
 import {appReducer} from "./app-reducer";
+import {signInReducer} from "../features/auth/signIn/signIn-reducer";
 
 
 // объединяя reducer-ы с помощью combineReducers,
 // мы задаём структуру нашего единственного объекта-состояния
 const rootReducer = combineReducers({
     app:appReducer,
+    signIn:signInReducer,
     newPassword:newPasswordReducer,
     passwordRecovery: passwordRecoveryReducer,
     profile:profileReducer
