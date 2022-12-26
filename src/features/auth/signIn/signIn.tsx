@@ -45,7 +45,7 @@ const SignIn = () => {
 
 
     return (
-        <div>
+        <div className={s.loginContainer}>
             <h1>Sign In</h1>
             <Formik
                 initialValues={{
@@ -63,21 +63,22 @@ const SignIn = () => {
                     }, 500);
                 }}
             >
-                <form>
+                <form className={s.formContainer}>
                     <FormControl>
-                        <FormGroup><label>Email</label>
+                        <FormGroup>
+                            <label className={s.loginLabel}>Email</label>
                             <Field className={s.inputEmail}
                                    name="email"
                             />
-                            <label>Password</label>
+                            <label className={s.loginLabel}>Password</label>
                             <Field className={s.inputEmail}
                                    name="password"/>
 
-                            <label>Remember Me
+                            <label className={s.rememberMeLable}>Remember Me
                                 <Field type="checkbox" name="rememberMe"/>
 
                             </label>
-                            <div><NavLink to={'/passwordRecovery'}>Forgot?</NavLink></div>
+                            <div className={s.forgotPassword}><NavLink to={'/passwordRecovery'}>Forgot password?</NavLink></div>
                             <Button type={'submit'} variant={'contained'} color={'primary'}>Sign In</Button>
                             <div><NavLink to={'/signUp'}>Sign Up!</NavLink></div>
 
