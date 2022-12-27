@@ -4,17 +4,58 @@
   height: 528px;
   display: flex;
   flex-direction: column;
-  justify-self: flex-end;
   margin: 0 auto;
   text-align: center;
   background-color: #FFF;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-
-  .loginLabel{
+  .label{
+    position: relative;
+    display: flex;
+    flex-direction: column;
     text-align: start;
-
-
+    justify-content: center;
+    align-items: end;
+    .inputLabel{
+      border: 0;
+      width: 293px;
+      outline: none;
+      border: none;
+      border-bottom: 1px solid #7F7F7F;
+      height: 28px;
+      margin-bottom: 24px;
+      &:-webkit-autofill{
+        -webkit-text-fill-color: #000;
+        -webkit-box-shadow: 0 0 0 100px #FFF inset;
+        transition: background-color 5000s ease-in-out 0s;
+      }
     }
+    .loginNameLabel{
+      align-self: start;
+    }
+    .eysPasswordBtn{
+      position: absolute;
+      right: 5px;
+      &::after{
+        content: '';
+        position: absolute;
+        top: 11px;
+        right: 0;
+        width: 23px;
+        height: 2px;
+        background: #000000;
+        transform: rotate(45deg);
+        transition: .3s all ease;
+        opacity: 1;
+      }
+    }
+    .eysPasswordBtnActive{
+      position: absolute;
+      right: 5px;
+      &::after{
+        opacity: 0;
+      }
+    }
+  }
   .rememberMeLable{
     display: flex;
     flex-direction: row-reverse;
@@ -36,20 +77,4 @@
 
 
 
-  .inputEmail{
-    border: 0;
-    width: 293px;
-    outline: none;
-    border: none;
-    border-bottom: 1px solid #7F7F7F;
-    height: 28px;
-    marging-right: 33px;
-    marging-left: 33px;
-    margin-bottom: 24px;
-    &:-webkit-autofill{
-      -webkit-text-fill-color: #000;
-      -webkit-box-shadow: 0 0 0 100px #FFF inset;
-      transition: background-color 5000s ease-in-out 0s;
-    }
-  }
 }

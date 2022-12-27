@@ -8,7 +8,7 @@ import NewPassword from "../features/auth/newPassword/NewPassword";
 import s from "./App.module.scss";
 import SignUp from "../features/auth/signUp/signUp";
 import SignIn from "../features/auth/signIn/signIn";
-import {Header} from "../common/component/Header/Header";
+import {Header} from "../features/Header/Header";
 import {NavLink} from "react-router-dom";
 
 export const App = () => {

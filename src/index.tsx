@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import {HashRouter} from "react-router-dom";
 
 import {Provider} from "react-redux";
+import {store} from "./app/store";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -14,7 +15,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
 
-      <HashRouter> <App /></HashRouter>
+      <HashRouter>
+          <Provider store={store}><App /></Provider></HashRouter>
 
   </React.StrictMode>
 );

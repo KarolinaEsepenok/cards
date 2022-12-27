@@ -1,6 +1,6 @@
 import {Dispatch} from 'redux'
 
-
+//настройка темы. то что нужно для всего приложения
 const initialState: InitialStateType = {
     password: ''
 }
