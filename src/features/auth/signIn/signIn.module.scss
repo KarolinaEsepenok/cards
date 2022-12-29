@@ -1,4 +1,5 @@
-
+@import "../../../common/style/mixins";
+@import "../../../common/style/variables";
 .loginContainer{
   width: 413px;
   height: 528px;
@@ -8,6 +9,9 @@
   text-align: center;
   background-color: #FFF;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  .loginNameContainer{
+    margin-bottom: 50px;
+  }
   .label{
     position: relative;
     display: flex;
@@ -15,23 +19,6 @@
     text-align: start;
     justify-content: center;
     align-items: end;
-    .inputLabel{
-      border: 0;
-      width: 293px;
-      outline: none;
-      border: none;
-      border-bottom: 1px solid #7F7F7F;
-      height: 28px;
-      margin-bottom: 24px;
-      &:-webkit-autofill{
-        -webkit-text-fill-color: #000;
-        -webkit-box-shadow: 0 0 0 100px #FFF inset;
-        transition: background-color 5000s ease-in-out 0s;
-      }
-    }
-    .loginNameLabel{
-      align-self: start;
-    }
     .eysPasswordBtn{
       position: absolute;
       right: 5px;
@@ -48,12 +35,32 @@
         opacity: 1;
       }
     }
+    }
+    .loginNameLabel{
+      align-self: start;
+      @include text(13px,400,120%,0.5);
+    }
+
     .eysPasswordBtnActive{
       position: absolute;
       right: 5px;
       &::after{
         opacity: 0;
       }
+    }
+  }
+  .loginInputLabel{
+    border: 0;
+    width: 293px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #7F7F7F;
+    height: 28px;
+    margin-bottom: 24px;
+    &:-webkit-autofill{
+      -webkit-text-fill-color: #000;
+      -webkit-box-shadow: 0 0 0 100px #FFF inset;
+      transition: background-color 5000s ease-in-out 0s;
     }
   }
   .rememberMeLable{
@@ -65,16 +72,22 @@
   .forgotPassword{
     text-align: end;
     height: 36px;
-    margin-bottom: 60px;
+    text-decoration: none;
+    color:#000000;
+    @include text(14px,500, 105%,1);
+
   }
   .loginBtn{
     margin-bottom: 31px;
     border-radius: 15px;
+    margin-top: 60px;
   }
-  .singInQuestion{
-    margin-bottom: 7px;
+  .loginQuestion{
+    margin-bottom: 13px;
+    @include text(14px,600, 141%,0.5);
+  }
+  .loginLink{
+    color:#366EFF;
+    @include text(16px,600, 110%,1);
   }
 
-
-
-}

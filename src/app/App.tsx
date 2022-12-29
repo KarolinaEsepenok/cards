@@ -3,10 +3,10 @@ import Common from "../common/component/generalComponents/Common";
 import { Route, Routes, Navigate} from "react-router-dom";
 import Profile from "../features/profile/Profile";
 import ErrorPage from "../features/errorPage/ErrorPage";
-import PasswordRecovery from "../features/auth/passwordRecovery/PasswordRecovery";
+import Password from "../features/auth/common/password/Password";
 import NewPassword from "../features/auth/newPassword/NewPassword";
 import s from "./App.module.scss";
-import SignUp from "../features/auth/signUp/signUp";
+import SignUp from "../../src/features/auth/signUp/signUp"
 import SignIn from "../features/auth/signIn/signIn";
 import {Header} from "../features/Header/Header";
 import {NavLink} from "react-router-dom";
@@ -20,9 +20,9 @@ export const App = () => {
                     <ul className={s.items}>
                         <li className={s.item}>
                             <NavLink to={"/signIn"} >SignIn</NavLink></li>
-                           <li> <NavLink to={"/signUp'"} >signUp'</NavLink></li>
+                           <li> <NavLink to={"/signUp'"} >SignUp</NavLink></li>
                         <li className={s.item}>
-                            <NavLink to={"/passwordRecovery"}>passwordRecovery</NavLink></li>
+                            <NavLink to={"/password"}>passwordRecovery</NavLink></li>
                         <li className={s.item}>
                             <NavLink to={"/newPassword"} >newPassword</NavLink></li>
                         <li className={s.item}>
@@ -38,11 +38,10 @@ export const App = () => {
                 </nav>
                 <div>
                 <Routes>
-
                     <Route  path={'/'} element={<Navigate to={"/signIn"}/>}/>
                    <Route path='/signIn' element={<SignIn/>}/>
-                        <Route path='/signUp' element={<SignUp/>}/>
-                    <Route path='/passwordRecovery' element={<PasswordRecovery/>}/>
+                    <Route path='/signUp' element={<SignUp/>}/>
+                    <Route path='/passwordRecovery' element={<Password namePassword={'Password'}/>}/>
                     <Route path='/newPassword' element={<NewPassword/>}/>
                     <Route path='/profile/:userId' element={<Profile/>}/>
                     <Route path='/error404' element={<ErrorPage/>}/>

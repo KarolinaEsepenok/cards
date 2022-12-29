@@ -46,8 +46,8 @@ export const getSignInTC=():ThunkSignInType=>{
                 }
             })
     }}
-export const login=(email:string,password:string, rememberMe:boolean)=>(dispatch:Dispatch<any>)=>{
-    authAPI.login(email,password, rememberMe)
+export const signIn=(email:string,password:string, rememberMe:boolean)=>(dispatch:Dispatch<ActionsType>)=>{
+    authAPI.signIn(email,password, rememberMe)
         .then(response => {
             if(response){
                 dispatch(setSignInAC(response.data.password, response.data.email,response.data.rememberMe,true))
