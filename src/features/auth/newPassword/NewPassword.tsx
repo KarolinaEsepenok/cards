@@ -1,5 +1,5 @@
 import React from 'react';
-import {getSignInTC} from "../signIn/signIn-reducer";
+import {getSignInTC, signInTC} from "../signIn/signIn-reducer";
 import {useFormik} from "formik";
 import {useDispatch, useSelector} from 'react-redux';
 import s from "../signIn/signIn.module.scss";
@@ -18,7 +18,7 @@ const NewPassword = () => {
         },
         onSubmit: (values) => {
             // @ts-ignore
-            dispatch(getSignInTC(values))
+            dispatch(signInTC(values))
         },
     })
 
@@ -29,7 +29,7 @@ const NewPassword = () => {
                 <form onSubmit={formik.handleSubmit}>
                     <h2>Sign in</h2>
 
-                    <div>
+                    <div className={s.label}>
                         <label className={s.loginNameLabel} htmlFor={'email'}>Email</label>
 
                         <CommonInput

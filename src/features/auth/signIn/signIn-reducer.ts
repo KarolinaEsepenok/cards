@@ -1,6 +1,7 @@
 import {Dispatch} from 'redux'
 import {ThunkAction} from "redux-thunk";
 import {authAPI} from "../auth-api";
+import {RootStateType} from "../../../app/store";
 
 export type InitialStateType = {
     password:string|null
@@ -36,7 +37,7 @@ export const setSignInAC = (email:string|null,password:string|null,rememberMe:bo
     } as const
 }
 
-export type ThunkSignInType= ThunkAction<void, ActionsType, unknown, any>
+export type ThunkSignInType= ThunkAction<void, RootStateType, unknown, ActionsType>
 export const getSignInTC=():ThunkSignInType=>{
     return  (dispatch:Dispatch)=>{
         authAPI.me()
@@ -46,20 +47,14 @@ export const getSignInTC=():ThunkSignInType=>{
                 }
             })
     }}
-export const signIn=(email:string,password:string, rememberMe:boolean)=>(dispatch:Dispatch<ActionsType>)=>{
-    authAPI.signIn(email,password, rememberMe)
-        .then(response => {
-            if(response){
-                dispatch(setSignInAC(response.data.password, response.data.email,response.data.rememberMe,true))
+export const signInTC=(values:any):ThunkSignInType=>
+    async (dispatch:Dispatch<ActionsType>)=>{
+    try{
+        const res = await authAPI.signIn(values)
+        }catch (e){
 
-                //let {id, email,login} = response.data.data
-                //dispatch(setAuthUserData(id, email, login, true))
+    }
 
-            }else{
-                {/*}     let message = response.data.message.length > 0 ? response.data.message[0]: "Some Error"
-                dispatch(getSignInTC())*/}
-            }
-        })
 }
 
 

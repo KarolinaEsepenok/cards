@@ -2,7 +2,10 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  display: flex;
+  padding-left: 60px;
   .checkbox {
+
     appearance: none;
     width: 18px;
     height: 18px;
@@ -11,7 +14,7 @@
     vertical-align: middle;
     margin-right: 8px;
     border-radius: 3px;
-    border: 2px solid #06c;
+    border: 2px solid #0059b3;
     cursor: pointer;
     &:checked {
       appearance: none;

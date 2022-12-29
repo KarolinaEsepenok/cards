@@ -9,11 +9,42 @@ export const authAPI = {
     me() {
         return instance.post(`auth/me`)
     },
-    signIn(email: string, password: string, rememberMe: boolean) {
-        return instance.post(`auth/login`, {email, password, rememberMe})
+    signIn(loginData:LoginDataType) {
+        return instance.post<UserDataType>(`auth/login`, loginData)
     },
     logout() {
         return instance.delete(`auth/me`)
     }
 
 };
+
+export type LoginDataType = {
+    email: string
+    password: string
+    rememberMe: boolean
+    // rememberMe: false - куки умрут через 3 часа
+    // rememberMe: false: true - куки умрут через 7 часов
+}
+export type UserDataType = {
+    _id: string
+    email: string
+    rememberMe: boolean
+    isAdmin: boolean
+    name: string
+    verified: boolean
+    publicCardPacksCount: number
+    created: Date
+    updated: Date
+    __v: number
+    token: string
+    tokenDeathTime: number
+    avatar?: string
+    error?: string
+    deviceTokens: DeviceTokenType[]
+}
+type DeviceTokenType = {
+    _id: string
+    device: string
+    token: string
+    tokenDeathTime: number
+}

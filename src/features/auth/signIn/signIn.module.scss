@@ -16,9 +16,6 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    text-align: start;
-    justify-content: center;
-    align-items: end;
     .eysPasswordBtn{
       position: absolute;
       right: 5px;
@@ -34,13 +31,13 @@
         transition: .3s all ease;
         opacity: 1;
       }
+    }.loginNameLabel{
+       marging-left: 60px;
+       align-self: start;
+       @include text(13px,400,120%,0.5);
+     }
     }
-    }
-    .loginNameLabel{
-      align-self: start;
-      padding-left: 60px;
-      @include text(13px,400,120%,0.5);
-    }
+
 
     .eysPasswordBtnActive{
       position: absolute;
@@ -51,8 +48,9 @@
     }
   }
   .loginInputLabel{
+
     border: 0;
-    width: 293px;
+    width: 347px;
     outline: none;
     border: none;
     border-bottom: 1px solid #7F7F7F;
