@@ -6,6 +6,7 @@ import s from "../signIn/signIn.module.scss";
 import {CommonInput} from "../../../common/component/generalComponents/Input/CommonInput";
 import {CommonButton} from "../../../common/component/generalComponents/Button/CommonButton";
 import {NavLink} from "react-router-dom";
+import {CommonCheckbox} from "../../../common/component/generalComponents/Checkbox/CommonCheckbox";
 
 const NewPassword = () => {
     const dispatch = useDispatch()
@@ -29,7 +30,7 @@ const NewPassword = () => {
                     <h2>Sign in</h2>
 
                     <div>
-                        <label htmlFor={'email'}>Email</label>
+                        <label className={s.loginNameLabel} htmlFor={'email'}>Email</label>
 
                         <CommonInput
                             type="email"
@@ -38,7 +39,7 @@ const NewPassword = () => {
                             value={formik.values.email}
                         />
 
-                        <label htmlFor={'password'}>Password</label>
+                        <label  className={s.loginNameLabel}  htmlFor={'password'}>Password</label>
 
                         <CommonInput
                             type="password"
@@ -49,7 +50,7 @@ const NewPassword = () => {
                     </div>
 
                     <div className={s.remember}>
-                        <CommonInput
+                        <CommonCheckbox
                             id="rememberMe"
                             onChange={formik.handleChange}
                             checked={formik.values.rememberMe}
