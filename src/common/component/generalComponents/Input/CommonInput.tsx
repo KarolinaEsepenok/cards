@@ -4,7 +4,7 @@ import React, {
     DetailedHTMLProps,
     InputHTMLAttributes,
     KeyboardEvent,
-    ReactNode,
+    ReactNode, useState,
 } from 'react'
 import s from './CommonInput.module.scss'
 
@@ -18,10 +18,13 @@ type SuperInputTextPropsType = Omit<DefaultInputPropsType, 'type'> & {
     onEnter?: () => void
     error?: ReactNode
     spanClassName?: string
+    showEye?: boolean
+    type?: string
 }
 
 export const CommonInput: React.FC<SuperInputTextPropsType> = (
     {
+        type,
         onChange,
         onChangeText,
         onKeyPress,
@@ -29,8 +32,8 @@ export const CommonInput: React.FC<SuperInputTextPropsType> = (
         error,
         className,
         spanClassName,
-        id,
 
+        showEye,
         ...restProps // все остальные пропсы попадут в объект restProps
     }
 ) => {
@@ -51,23 +54,21 @@ export const CommonInput: React.FC<SuperInputTextPropsType> = (
     const finalInputClassName = s.input
         + (error ? ' ' + s.errorInput : ' ' + s.superInput)
         + (className ? ' ' + s.className : '') // задача на смешивание классов
-
+    const [show, setShow] = useState(false)
+    const toggleShow = () => setShow(!show)
     return (
-        <div className={s.inputWrapper}>
+        <div className={s.inputBox}>
+            {type === 'password' && <div className={show ? s.eyeSlash : s.eye} onClick={toggleShow} />}
             <input
-                id={id}
-                type={'text'}
+
+                type={type === 'password' && !show ? 'password' : 'text'}
                 onChange={onChangeCallback}
                 onKeyPress={onKeyPressCallback}
                 className={finalInputClassName}
                 {...restProps} // отдаём инпуту остальные пропсы если они есть (value например там внутри)
             />
-            <span
-                id={id ? id + '-span' : undefined}
-                className={finalSpanClassName}
-            >
-                {error}
-            </span>
+           {error && <span className={finalSpanClassName}>{error}</span>}
+
         </div>
     )
 }

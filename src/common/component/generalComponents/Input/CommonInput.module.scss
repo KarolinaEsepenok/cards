@@ -1,24 +1,81 @@
-.inputWrapper{
+.inputBox{
   display: flex;
   flex-direction: column-reverse;
   min-height: 60px;
-  .input {
-    width: 372px;
-    height: 36px;
-    &:focus {
+  position: relative;
 
+
+  .input {
+    height: 36px;
+    width: 293px;
+    outline: none;
+    border: none;
+    margin-bottom: 24px;
+    border: 0;
+    border: none;
+    border-bottom: 1px solid #7F7F7F;
+    &:-webkit-autofill{
+      -webkit-text-fill-color: #000;
+      -webkit-box-shadow: 0 0 0 100px #FFF inset;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+    &:focus {
+      border-bottom: 1px solid #000;
     }
   }
+
+  }
   .errorInput {
-    border:1px solid #CC1439;
+    border-bottom:2px solid #CC1439;
     &:focus {
+      border-bottom:2px solid #CC1439;
     }
+
   }
   .superInput {
   }
   .error {
+    margin-top: -21px;
     color: #CC1439;
   }
-}
+  .eye {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    opacity: 0.5;
+    background: url('../../../../assets/img/icons/eysPassword.svg') 0 0 no-repeat;
+
+    &:focus{
+      cursor: pointer;
+      opacity: 0.7;
+    }
+  }
+  .eyeSlash{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    opacity: 0.5;
+    background: url('../../../../assets/img/icons/eysPassword.svg') 0 0 no-repeat;
+    &::after{
+      content: '';
+      position: absolute;
+      top: 10px;
+      right: -3px;
+      width: 23px;
+      height: 2px;
+      background: #000000;
+      transform: rotate(45deg);
+      transition: .3s all ease;
+    }
+    &:hover{
+      cursor: pointer;
+      opacity: 0.7;
+    }
+  }
+
 
 
