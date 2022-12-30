@@ -6,6 +6,7 @@ import {passwordRecoveryReducer} from "../features/auth/passwordRecovery/passwor
 import {profileReducer} from "../features/profile/profile-reducer";
 import {appReducer} from "./app-reducer";
 import {signInReducer} from "../features/auth/signIn/signIn-reducer";
+import {signUpReducer} from "../features/auth/signUp/signUp-reducer";
 
 
 // объединяя reducer-ы с помощью combineReducers,
@@ -13,6 +14,7 @@ import {signInReducer} from "../features/auth/signIn/signIn-reducer";
 const rootReducer = combineReducers({
     app:appReducer,
     signIn:signInReducer,
+    signUp:signUpReducer,
     newPassword:newPasswordReducer,
     passwordRecovery: passwordRecoveryReducer,
     profile:profileReducer
@@ -20,7 +22,7 @@ const rootReducer = combineReducers({
 // непосредственно создаём store
 export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
-export type RootStateType = ReturnType<typeof rootReducer>
+export type RootStateType = ReturnType<typeof store.getState>
 
 
 // @ts-ignore

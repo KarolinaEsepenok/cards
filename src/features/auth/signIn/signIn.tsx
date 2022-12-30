@@ -16,16 +16,17 @@ import Password from "../common/password/Password"
     rememberMe: boolean,
     isAuth:boolean
 
-
+email: '',
+    password: '',
+    rememberMe: false,
 
 }*/}
 const initialValues = {
-    email: '',
-    password: '',
-    rememberMe: false,
     isAuth:false
 }
 const SignIn = () => {
+    const dispatch = useDispatch()
+    const isAuth = useSelector<RootStateType, boolean>(state => state.signIn.isAuth);
 
     const onSubmit = (values:any) => {
         setTimeout(() => {
