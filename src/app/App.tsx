@@ -20,7 +20,7 @@ export const App = () => {
                     <ul className={s.items}>
                         <li className={s.item}>
                             <NavLink to={"/signIn"} >SignIn</NavLink></li>
-                           <li> <NavLink to={"/signUp'"} >SignUp</NavLink></li>
+                           <li> <NavLink to={"/signUp'"} >SignUp!!!</NavLink></li>
                         <li className={s.item}>
                             <NavLink to={"/password"}>passwordRecovery</NavLink></li>
                         <li className={s.item}>
@@ -33,7 +33,6 @@ export const App = () => {
 
                         <li className={s.item}>
                             <NavLink to={"/testCommon"} >testCommon</NavLink></li>
-
                     </ul>
                 </nav>
                 <div>
