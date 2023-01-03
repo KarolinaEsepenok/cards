@@ -47,10 +47,10 @@ export const getSignInTC=(data:LoginDataType):ThunkSignInType=>{
                 }
             })
     }}
-export const signInTC=(values:any):ThunkSignInType=>
+export const signInTC=(data:LoginDataType):ThunkSignInType=>
     async (dispatch:Dispatch<ActionsType>)=>{
     try{
-        const res = await authAPI.signIn(values)
+        const res = await authAPI.signIn(data)
         }catch (e){
 
     }
