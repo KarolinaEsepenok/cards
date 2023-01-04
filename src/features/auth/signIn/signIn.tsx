@@ -5,10 +5,10 @@ import {Field, Formik, useFormik} from "formik";
 import {FormControl, FormGroup, Button} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../../app/store";
-
 import {CommonInput} from "../../../common/component/generalComponents/Input/CommonInput";
 import {CommonCheckbox} from "../../../common/component/generalComponents/Checkbox/CommonCheckbox";
 import {signInTC} from "./signIn-reducer";
+{/*}
 type FormikErrorType = {
     email?: string
     password?: string
@@ -17,7 +17,7 @@ type FormikErrorType = {
 
 const initialValues = {
     isAuth:false
-}
+}*/}
 const SignIn = () => {
 
     const dispatch = useDispatch()
@@ -42,14 +42,14 @@ const SignIn = () => {
             }
         },
         onSubmit: values => {
-            dispatch(signInTC(values))
+           // dispatch(signInTC(values))
         },
     })
 
     return (
         <div className={s.loginContainer}>
             <h1 className={s.loginNameContainer}>Sign In</h1>
-                <form onSubmit={formik.handleSubmit} >
+            <form onSubmit={formik.handleSubmit} >
                     <FormControl>
                         <FormGroup>
                             <div className={s.label}>

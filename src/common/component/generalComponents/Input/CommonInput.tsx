@@ -60,7 +60,6 @@ export const CommonInput: React.FC<SuperInputTextPropsType> = (
         <div className={s.inputBox}>
             {type === 'password' && <div className={show ? s.eyeSlash : s.eye} onClick={toggleShow} />}
             <input
-
                 type={type === 'password' && !show ? 'password' : 'text'}
                 onChange={onChangeCallback}
                 onKeyPress={onKeyPressCallback}

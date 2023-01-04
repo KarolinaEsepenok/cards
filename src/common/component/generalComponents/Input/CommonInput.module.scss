@@ -1,10 +1,9 @@
 .inputBox{
   min-height: 60px;
   position: relative;
-
   .input {
-    height: 36px;
-    width: 293px;
+    height: 30px;
+    width: 347px;
     outline: none;
     border: none;
     margin-bottom: 24px;
@@ -37,11 +36,10 @@
   }
   .eye {
     position: absolute;
-    top: 10px;
-    right: 56px;
+    top: 4px;
+    left: 327px;
     width: 24px;
     height: 24px;
-
     background: url('../../../../assets/img/icons/eysPassword.svg') 0 0 no-repeat;
 
     &:focus{
@@ -51,8 +49,8 @@
   }
   .eyeSlash{
     position: absolute;
-    top: 10px;
-    right: 56px;
+    top: 4px;
+    left: 327px;
     width: 24px;
     height: 24px;
     background: url('../../../../assets/img/icons/eysPassword.svg') 0 0 no-repeat;

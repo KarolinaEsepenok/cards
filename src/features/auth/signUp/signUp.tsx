@@ -1,7 +1,5 @@
 import React from 'react';
-
 import 'react-app-polyfill/ie11';
-
 import {Formik, Field, FormikHelpers} from 'formik';
 import Password from "../common/password/Password";
 import s from "../signIn/signIn.module.scss";
@@ -43,11 +41,8 @@ const SignUp = () => {
             password: Yup.string().required("Please enter password"),
             confirmPassword: Yup.string().required("Please enter confirm password"),
         })}>
-
             <form>
-
                 <FormControl>
-
                     <FormGroup>
                         <label className={s.label}>
                             <div className={s.loginNameLabel}>Email</div>

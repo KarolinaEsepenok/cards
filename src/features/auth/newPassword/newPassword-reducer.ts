@@ -1,4 +1,3 @@
-import {Dispatch} from 'redux'
 
 
 const initialState: InitialStateType = {

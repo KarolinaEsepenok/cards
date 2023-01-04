@@ -1,12 +1,19 @@
-import {InitialStateType} from "../signIn/signIn-reducer";
+export type InitialStateType = {
+    password:string|null
+    email:string|null,
+    rememberMe:boolean,
+    // isAuth:boolean
 
-export const signUpReducer = (state: any, action: any):any => {
+}
+const initialState: InitialStateType = {
+    email:'',
+    password: '',
+    rememberMe: true,
+    // isAuth:false
+}
+
+export const signUpReducer = (state: any = initialState, action: any):any => {
     switch (action.type) {
-        case '/SignUp/SET_SIGN_UP':
-            return {
-                state
-
-            }
         default:
             return state;
     }

@@ -18,20 +18,13 @@ export const App = () => {
             <div className={s.centerApp}>
                 <nav className={s.nav}>
                     <ul className={s.items}>
-                        <li className={s.item}>
-                            <NavLink to={"/signIn"} >SignIn</NavLink></li>
-                           <li> <NavLink to={"/signUp'"} >SignUp!!!</NavLink></li>
-                        <li className={s.item}>
-                            <NavLink to={"/password"}>passwordRecovery</NavLink></li>
-                        <li className={s.item}>
-                            <NavLink to={"/newPassword"} >newPassword</NavLink></li>
-                        <li className={s.item}>
-                            <NavLink to={"/profile/:userId"} >profile/:userId</NavLink></li>
-                        <li className={s.item}>
-                            <NavLink to={"/error404"} >error404</NavLink></li>
-
-                        <li className={s.item}>
-                            <NavLink to={"/testCommon"} >testCommon</NavLink></li>
+                        <li className={s.item}><NavLink to={"/signIn"} >SignIn</NavLink></li>
+                        <li className={s.item}><NavLink to={"/signUp"} >SignUp</NavLink></li>
+                        <li className={s.item}><NavLink to={"/password"}>passwordRecovery</NavLink></li>
+                        <li className={s.item}><NavLink to={"/newPassword"} >newPassword</NavLink></li>
+                        <li className={s.item}><NavLink to={"/profile/:userId"} >profile/:userId</NavLink></li>
+                        <li className={s.item}><NavLink to={"/error404"} >error404</NavLink></li>
+                        <li className={s.item}><NavLink to={"/testCommon"} >testCommon</NavLink></li>
                     </ul>
                 </nav>
                 <div>
@@ -46,7 +39,6 @@ export const App = () => {
                     <Route path='/testCommon' element={<Common/>}/>
                 </Routes>
                 </div>
-
 
          </div></div>
     )
