@@ -26,7 +26,6 @@ export const App = () => {
                         <li className={s.item}>
                             <NavLink to={"/newPassword"} >newPassword</NavLink></li>
                         <li className={s.item}>
-
                             <NavLink to={"/profile/:userId"} >profile/:userId</NavLink></li>
                         <li className={s.item}>
                             <NavLink to={"/error404"} >error404</NavLink></li>
@@ -37,16 +36,14 @@ export const App = () => {
                 </nav>
                 <div>
                 <Routes>
-                    <Route  path={'/'} element={<Navigate to={"/signIn"}/>}/>
+                    <Route path={'/'} element={<Navigate to={"/signIn"}/>}/>
                    <Route path='/signIn' element={<SignIn/>}/>
                     <Route path='/signUp' element={<SignUp/>}/>
                     <Route path='/passwordRecovery' element={<Password namePassword={'Password'}/>}/>
                     <Route path='/newPassword' element={<NewPassword/>}/>
                     <Route path='/profile/:userId' element={<Profile/>}/>
                     <Route path='/error404' element={<ErrorPage/>}/>
-
                     <Route path='/testCommon' element={<Common/>}/>
-
                 </Routes>
                 </div>
 

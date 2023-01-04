@@ -30,7 +30,7 @@ export const Header = () => {
   const userData = useAppSelector((state) => state.profile.user)
   const loading = useAppSelector((state) => state.app.status) === 'loading'
 
-  const onClickLoginHandler = () => {
+  const onClickLoginHandler = () => d{
     if (isLogin) {
       setSelect(!select)
     }

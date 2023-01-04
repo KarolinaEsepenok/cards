@@ -1,16 +1,14 @@
 
-import {applyMiddleware, combineReducers, createStore} from 'redux'
-import thunkMiddleware from 'redux-thunk'
+import {AnyAction, applyMiddleware, combineReducers, createStore} from 'redux'
+import thunkMiddleware, {ThunkAction, ThunkDispatch} from 'redux-thunk'
 import {newPasswordReducer} from "../features/auth/newPassword/newPassword-reducer";
 import {passwordRecoveryReducer} from "../features/auth/passwordRecovery/passwordRecovery-reducer";
 import {profileReducer} from "../features/profile/profile-reducer";
 import {appReducer} from "./app-reducer";
-import {signInReducer} from "../features/auth/signIn/signIn-reducer";
+import {SignInAT, signInReducer} from "../features/auth/signIn/signIn-reducer";
 import {signUpReducer} from "../features/auth/signUp/signUp-reducer";
 
 
-// объединяя reducer-ы с помощью combineReducers,
-// мы задаём структуру нашего единственного объекта-состояния
 const rootReducer = combineReducers({
     app:appReducer,
     signIn:signInReducer,
@@ -19,10 +17,13 @@ const rootReducer = combineReducers({
     passwordRecovery: passwordRecoveryReducer,
     profile:profileReducer
 })
-// непосредственно создаём store
+
 export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 export type RootStateType = ReturnType<typeof store.getState>
+export type ActionsType= SignInAT
+export type AppDispatch = ThunkDispatch<RootStateType, unknown, ActionsType>
+export type AppThunk= ThunkAction<void, RootStateType, unknown, ActionsType>
 
 
 // @ts-ignore

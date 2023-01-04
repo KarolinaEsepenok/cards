@@ -8,7 +8,7 @@ const initialState: InitialStateType = {
 export const newPasswordReducer = (state: InitialStateType = initialState, action: any): InitialStateType => {
     switch (action.type) {
         default:
-            return {...state}
+            return state
     }
 }
 

@@ -1,47 +1,34 @@
 import React, {useState} from 'react';
 import {NavLink} from "react-router-dom";
 import s from './signIn.module.scss'
-import {Field, Formik} from "formik";
+import {Field, Formik, useFormik} from "formik";
 import {FormControl, FormGroup, Button} from "@mui/material";
-import eysPassword from '../../../assets/img/icons/eysPassword.svg'
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../../app/store";
-import {getSignInTC} from "./signIn-reducer";
-import Password from "../common/password/Password"
 
+import {CommonInput} from "../../../common/component/generalComponents/Input/CommonInput";
+import {CommonCheckbox} from "../../../common/component/generalComponents/Checkbox/CommonCheckbox";
+import {signInTC} from "./signIn-reducer";
+type FormikErrorType = {
+    email?: string
+    password?: string
+    rememberMe?: boolean
+}
 
-{/*interface Values {
-    email: string,
-    password: string,
-    rememberMe: boolean,
-    isAuth:boolean
-
-email: '',
-    password: '',
-    rememberMe: false,
-
-}*/}
 const initialValues = {
     isAuth:false
 }
 const SignIn = () => {
+
     const dispatch = useDispatch()
     const isAuth = useSelector<RootStateType, boolean>(state => state.signIn.isAuth);
 
-    const onSubmit = (values:any) => {
-        setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-        }, 500)
-   // @ts-ignore
-   // dispatch(getSignInTC(values))
-}
-    {/*} const onSubmit = (values: Values,
-                      {setSubmitting}: FormikHelpers<Values>) => {
-        setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-        }, 500);*/}
-    {/*} const formik = useFormik({
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: '',
+            rememberMe: false
+        },
         validate: (values) => {
             if (!values.email) {
                 return {
@@ -54,41 +41,40 @@ const SignIn = () => {
                 }
             }
         },
-        initialValues: {
-            email: "",
-            password: "",
-            rememberMe:false
-        }
-
-    })*/}
-
-    {/*}   if (isAuth) {
-        return <Redirect to={"/"} />
-    }
-     onSubmit: any => {
-            // @ts-ignore
-            dispatch(getSignInTC(values));
-        }
-    */}
-
+        onSubmit: values => {
+            dispatch(signInTC(values))
+        },
+    })
 
     return (
         <div className={s.loginContainer}>
             <h1 className={s.loginNameContainer}>Sign In</h1>
-            <Formik onSubmit={onSubmit} initialValues={initialValues}
-               >
-                <form>
+                <form onSubmit={formik.handleSubmit} >
                     <FormControl>
                         <FormGroup>
-                            <label className={s.label}>
-                                <div className={s.loginNameLabel}>Email</div>
-                                <Field className={s.loginInputLabel} name="email"  /></label>
+                            <div className={s.label}>
+                                <label className={s.loginNameLabel} htmlFor={'email'}>Email</label>
+                                <CommonInput
+                                    type="email"
+                                    id="email"
+                                    {...formik.getFieldProps("email")}
+                                /> {formik.errors.email ? <div>{formik.errors.email}</div> : null}
+                                <label  className={s.loginNameLabel}  htmlFor={'password'}>Password</label>
+                                <CommonInput
+                                    type="password"
+                                    id={'password'}
+                                    {...formik.getFieldProps("password")}
+                                />{formik.errors.password ? <div>{formik.errors.password}</div> : null}
+                            </div>
+                            <div className={s.remember}>
+                                <label htmlFor={'rememberMe'}>Remember me</label>
+                                <CommonCheckbox
+                                    id="rememberMe"
+                                    {...formik.getFieldProps("rememberMe")}
+                                    checked={formik.values.rememberMe}
+                                />
 
-                            <Password namePassword={'Password'}/>
-
-                            <label className={s.rememberMeLable}>Remember Me
-                                <Field type="checkbox" name="rememberMe"/>
-                            </label>
+                            </div>
                             <NavLink className={s.forgotPassword} to={'/password'}>Forgot
                                 password?</NavLink>
                             <Button className={s.loginBtn} type={'submit'}  variant={'contained'} color={'primary'}>Sign
@@ -98,9 +84,6 @@ const SignIn = () => {
                         </FormGroup>
                     </FormControl>
                 </form>
-            </Formik>
-
-
         </div>
     );
 }

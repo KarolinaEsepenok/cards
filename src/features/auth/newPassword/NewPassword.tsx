@@ -1,5 +1,5 @@
 import React from 'react';
-import {getSignInTC, signInTC} from "../signIn/signIn-reducer";
+import { signInTC} from "../signIn/signIn-reducer";
 import {useFormik} from "formik";
 import {useDispatch, useSelector} from 'react-redux';
 import s from "../signIn/signIn.module.scss";
