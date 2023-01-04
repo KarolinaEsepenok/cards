@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {NavLink} from "react-router-dom";
 import s from './signIn.module.scss'
-import {Field, Formik, useFormik} from "formik";
+import { useFormik} from "formik";
 import {FormControl, FormGroup, Button} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../../app/store";
@@ -42,7 +42,9 @@ const SignIn = () => {
             }
         },
         onSubmit: values => {
-           // dispatch(signInTC(values))
+
+            // @ts-ignore
+            dispatch(signInTC(values))
         },
     })
 
