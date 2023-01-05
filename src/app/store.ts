@@ -1,12 +1,13 @@
 
-import { applyMiddleware, combineReducers, createStore} from 'redux'
-import thunkMiddleware from 'redux-thunk'
+import {AnyAction, applyMiddleware, combineReducers, createStore} from 'redux'
+import thunkMiddleware, {ThunkDispatch} from 'redux-thunk'
 import {newPasswordReducer} from "../features/auth/newPassword/newPassword-reducer";
 import {passwordRecoveryReducer} from "../features/auth/passwordRecovery/passwordRecovery-reducer";
 import {profileReducer} from "../features/profile/profile-reducer";
 import {appReducer} from "./app-reducer";
-import { signInReducer} from "../features/auth/signIn/signIn-reducer";
-import {signUpReducer} from "../features/auth/signUp/signUp-reducer";
+import {SignInAT, signInReducer} from "../features/auth/signIn/signIn-reducer";
+import {SignUpAT, signUpReducer} from "../features/auth/signUp/signUp-reducer";
+import SignUp from "../features/auth/signUp/signUp";
 
 
 const rootReducer = combineReducers({
@@ -33,6 +34,6 @@ window.store = store;
 
 
 
-//export type ActionsType= SignInAT
-//export type AppDispatch = ThunkDispatch<RootStateType, unknown, AnyAction>
+export type ActionsType= SignInAT |SignUpAT
+export type AppDispatch = ThunkDispatch<RootStateType, unknown, ActionsType>
 //export type AppThunk= ThunkAction<void, RootStateType, unknown, AnyAction>

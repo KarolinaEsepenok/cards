@@ -8,20 +8,12 @@ import {RootStateType} from "../../../app/store";
 import {CommonInput} from "../../../common/component/generalComponents/Input/CommonInput";
 import {CommonCheckbox} from "../../../common/component/generalComponents/Checkbox/CommonCheckbox";
 import {signInTC} from "./signIn-reducer";
-{/*}
-type FormikErrorType = {
-    email?: string
-    password?: string
-    rememberMe?: boolean
-}
+import {CommonButton} from "../../../common/component/generalComponents/Button/CommonButton";
 
-const initialValues = {
-    isAuth:false
-}*/}
 const SignIn = () => {
 
     const dispatch = useDispatch()
-    const isAuth = useSelector<RootStateType, boolean>(state => state.signIn.isAuth);
+
 
     const formik = useFormik({
         initialValues: {
@@ -40,11 +32,17 @@ const SignIn = () => {
                     password: 'Password is required'
                 }
             }
+            if(values.password.length<=7){
+                return {
+                    password:'Password should be longer then 7 symbols!'
+                }
+            }
         },
-        onSubmit: values => {
-
+        onSubmit:  values => {
             // @ts-ignore
             dispatch(signInTC(values))
+
+
         },
     })
 
@@ -79,8 +77,8 @@ const SignIn = () => {
                             </div>
                             <NavLink className={s.forgotPassword} to={'/password'}>Forgot
                                 password?</NavLink>
-                            <Button className={s.loginBtn} type={'submit'}  variant={'contained'} color={'primary'}>Sign
-                                In</Button>
+                          <Button  type={'submit'}  variant={'contained'} color={'primary'}>Sign In</Button>
+
                             <div className={s.loginQuestion}>Don't have an account?</div>
                             <NavLink className={s.loginLink} to={'/signUp'}>Sign Up</NavLink>
                         </FormGroup>

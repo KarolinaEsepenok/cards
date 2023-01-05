@@ -8,21 +8,48 @@ import {Button, FormControl, FormGroup} from "@mui/material";
 import * as Yup from 'yup';
 import {CommonInput} from "../../../common/component/generalComponents/Input/CommonInput";
 import {useDispatch} from "react-redux";
-
 import {signUpTC} from "./signUp-reducer";
+import {useSelector} from "react-redux";
 
+
+export type FormikErrorType = {
+    email?: string|null
+    password?: string|null
+    confirmPassword?: string|null
+}
 
 
 const SignUp = () => {
    const dispatch = useDispatch()
+
+
     const formik = useFormik({
         initialValues: {
             email: '',
             password: '',
+            confirmPassword:''
+        },
+        validate: (values) => {
+            const errors: FormikErrorType = {}
+            if (!values.email) {
+                errors.email = 'Required'
+            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+                errors.email = 'Invalid email'
+            }
+            if (!values.password) {
+                errors.password = 'Required'
+            } else if (values.password.length <= 5)
+                errors.password = 'Password should be longer then 5 simbols!'
+            if (values.password !== values.confirmPassword)
+                errors.confirmPassword = "Passwords don't match"
+
+            return errors
         },
         onSubmit: values => {
+            const data = { email: values.email, password: values.password,confirmPassword:values.confirmPassword }
+
             // @ts-ignore
-            dispatch(signUpTC(values))
+            dispatch(signUpTC(data))
         },
     })
     return (
@@ -50,10 +77,10 @@ const SignUp = () => {
                             <label  className={s.loginNameLabel}  htmlFor={'password'}>Confirm password</label>
                             <CommonInput
                                 type="password"
-                                id='confirmPassword'
-                                name='password' onChange={formik.handleChange} value={formik.values.password}
+                                id='confirm_Password'
+                                name='confirm_password' onChange={formik.handleChange} value={formik.values.confirmPassword}
                             />
-                           {formik.errors.password ? <div>{formik.errors.password}</div> : null}
+                           {formik.errors.confirmPassword ? <div>{formik.errors.confirmPassword}</div> : null}
                         </div>
                         <Button className={s.loginBtn} type={'submit'} variant={'contained'} color={'primary'}>Sign
                             Up</Button>
@@ -69,6 +96,7 @@ const SignUp = () => {
     ;
 };
 export default SignUp;
+
 {/*  onSubmit={(
                     values: Values,
                     {setSubmitting}: FormikHelpers<Values>

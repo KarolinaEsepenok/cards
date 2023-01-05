@@ -10,13 +10,17 @@ import SignUp from "../../src/features/auth/signUp/signUp"
 import SignIn from "../features/auth/signIn/signIn";
 import {Header} from "../features/Header/Header";
 import {NavLink} from "react-router-dom";
+import {LinearProgress} from "@mui/material";
+import {ErrorSnackbar} from "../common/component/ErrorSnackbar/ErrorSnackbar";
 
 export const App = () => {
     return (
         <div className={s.app}>
+            <ErrorSnackbar/>
             <Header/>
             <div className={s.centerApp}>
                 <nav className={s.nav}>
+                    <LinearProgress />
                     <ul className={s.items}>
                         <li className={s.item}><NavLink to={"/signIn"} >SignIn</NavLink></li>
                         <li className={s.item}><NavLink to={"/signUp"} >SignUp</NavLink></li>
