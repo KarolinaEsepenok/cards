@@ -11,6 +11,9 @@
 display: flex;
       list-style-type: none;
       justify-content: space-between;
+      .linearProgress{
+        position: absolute;
+      }
       .item{
           text-decoration: none;
 

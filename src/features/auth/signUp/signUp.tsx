@@ -47,7 +47,6 @@ const SignUp = () => {
         },
         onSubmit: values => {
             const data = { email: values.email, password: values.password,confirmPassword:values.confirmPassword }
-
             // @ts-ignore
             dispatch(signUpTC(data))
         },

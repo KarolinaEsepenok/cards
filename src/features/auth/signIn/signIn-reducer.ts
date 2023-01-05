@@ -2,7 +2,7 @@ import {AnyAction, Dispatch} from 'redux'
 
 import {authAPI, LoginDataType} from "../auth-api";
 import {AppDispatch} from "../../../app/store";
-import {setAppErrorAC, SetAppErrorAT} from "../../../app/app-reducer";
+import {setAppErrorAC, SetAppErrorAT, setAppStatusAC} from "../../../app/app-reducer";
 
 
  type InitialStateType = typeof initialState
@@ -35,11 +35,13 @@ export const setSignInAC = (email:string,password:string,rememberMe:boolean) => 
 
 export const signInTC = (values: LoginDataType) => {
     return (dispatch: Dispatch) => {
+        dispatch(setAppStatusAC(true))
         console.log(process.env)
         authAPI.signIn(values)
             .then(response => {
                 if (response) {
                     dispatch(setSignInAC(response.data.email, response.data.password,response.data.rememberMe))
+                    dispatch(setAppStatusAC(false))
                 }
             })
             .catch(error=>{

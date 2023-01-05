@@ -23,7 +23,7 @@ export const App = () => {
             <Header/>
             <div className={s.centerApp}>
                 <nav className={s.nav}>
-                    {isLoading && <LinearProgress /> }
+                    {isLoading && <LinearProgress className={s.linearProgress} /> }
                     <ul className={s.items}>
                         <li className={s.item}><NavLink to={"/signIn"} >SignIn</NavLink></li>
                         <li className={s.item}><NavLink to={"/signUp"} >SignUp</NavLink></li>

@@ -1,6 +1,7 @@
 import {AnyAction, Dispatch} from 'redux'
 
 import {authAPI, LoginDataType, SignUpDataType} from "../auth-api";
+import {setAppErrorAC, setAppStatusAC} from "../../../app/app-reducer";
 
 
  type InitialStateType = {
@@ -41,16 +42,19 @@ export const signUpReducer = (state: InitialStateType = initialState, action: an
 
     export const signUpTC = (data: SignUpDataType) => {
         return (dispatch: Dispatch) => {
+            dispatch(setAppStatusAC(true))
             console.log(process.env)
             authAPI.signUp(data)
                 .then(response => {
                     if (response) {
-                        dispatch(setSignUpAC(response.data.email, response.data.password,response.data.confirmPassword))
-
+                        dispatch(setSignUpAC(response.data.email, response.data.password, response.data.confirmPassword))
+                        dispatch(setAppStatusAC(false))
                     }
                 })
+                .catch(error => {
+                    dispatch(setAppErrorAC("not valid email/password /ᐠ-ꞈ-ᐟ\\"))
+                })
         }
+
+
     }
-
-
-
