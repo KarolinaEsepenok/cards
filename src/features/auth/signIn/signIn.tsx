@@ -3,12 +3,11 @@ import {NavLink} from "react-router-dom";
 import s from './signIn.module.scss'
 import { useFormik} from "formik";
 import {FormControl, FormGroup, Button} from "@mui/material";
-import {useDispatch, useSelector} from "react-redux";
-import {RootStateType} from "../../../app/store";
+import {useDispatch} from "react-redux";
 import {CommonInput} from "../../../common/component/generalComponents/Input/CommonInput";
 import {CommonCheckbox} from "../../../common/component/generalComponents/Checkbox/CommonCheckbox";
 import {signInTC} from "./signIn-reducer";
-import {CommonButton} from "../../../common/component/generalComponents/Button/CommonButton";
+
 
 const SignIn = () => {
 
@@ -41,8 +40,6 @@ const SignIn = () => {
         onSubmit:  values => {
             // @ts-ignore
             dispatch(signInTC(values))
-
-
         },
     })
 

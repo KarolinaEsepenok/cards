@@ -2,6 +2,7 @@ import {AnyAction, Dispatch} from 'redux'
 
 import {authAPI, LoginDataType} from "../auth-api";
 import {AppDispatch} from "../../../app/store";
+import {setAppErrorAC, SetAppErrorAT} from "../../../app/app-reducer";
 
 
  type InitialStateType = typeof initialState
@@ -33,15 +34,21 @@ export const setSignInAC = (email:string,password:string,rememberMe:boolean) => 
 //export type ThunkSignInType= ThunkAction<void, RootStateType, unknown, ActionsType>
 
 export const signInTC = (values: LoginDataType) => {
-    return (dispatch: Dispatch<any>) => {
+    return (dispatch: Dispatch) => {
         console.log(process.env)
         authAPI.signIn(values)
             .then(response => {
                 if (response) {
                     dispatch(setSignInAC(response.data.email, response.data.password,response.data.rememberMe))
-
                 }
             })
+            .catch(error=>{
+                dispatch(setAppErrorAC("not valid email/password /ᐠ-ꞈ-ᐟ\\"))
+            }
+
+
+
+            )
     }
 }
 

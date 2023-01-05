@@ -12,15 +12,18 @@ import {Header} from "../features/Header/Header";
 import {NavLink} from "react-router-dom";
 import {LinearProgress} from "@mui/material";
 import {ErrorSnackbar} from "../common/component/ErrorSnackbar/ErrorSnackbar";
+import {useSelector} from "react-redux";
+import {RootStateType} from "./store";
 
 export const App = () => {
+    const isLoading = useSelector<RootStateType,boolean>((state)=>state.app.isLoading)
     return (
         <div className={s.app}>
             <ErrorSnackbar/>
             <Header/>
             <div className={s.centerApp}>
                 <nav className={s.nav}>
-                    <LinearProgress />
+                    {isLoading && <LinearProgress /> }
                     <ul className={s.items}>
                         <li className={s.item}><NavLink to={"/signIn"} >SignIn</NavLink></li>
                         <li className={s.item}><NavLink to={"/signUp"} >SignUp</NavLink></li>
