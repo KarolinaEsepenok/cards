@@ -1,7 +1,7 @@
 .inputBox{
   min-height: 60px;
   position: relative;
-  .input {
+  .superInput {
     height: 30px;
     width: 347px;
     outline: none;
@@ -18,17 +18,17 @@
     &:focus {
       border-bottom: 1px solid #0059b3;
     }
-  }
+    &:hover{
+      border-bottom: 1px solid #0059b3;
 
+    }
+  }
   }
   .errorInput {
-    border-bottom:2px solid #CC1439;
+    background-color: #CC1439;
     &:focus {
       border-bottom:2px solid #CC1439;
     }
-
-  }
-  .superInput {
   }
   .error {
     margin-top: -21px;

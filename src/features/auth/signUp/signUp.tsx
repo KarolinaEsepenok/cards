@@ -75,22 +75,22 @@ const SignUp = () => {
                                 id="email"
                                 name='email' onChange={formik.handleChange} value={formik.values.email}
 
-                            /> {formik.errors.email ? <div>{formik.errors.email}</div> : null}
+                            /> {formik.errors.email ? <div className={s.loginError}>{formik.errors.email}</div> : null}
                             <label  className={s.loginNameLabel}  htmlFor={'password'}>Password</label>
                             <CommonInput
                                 type="password"
                                 id='password'
                                 name='password' onChange={formik.handleChange} value={formik.values.password}
-                            />{formik.errors.password ? <div>{formik.errors.password}</div> : null}
+                            />{formik.errors.password ? <div className={s.passwordError}>{formik.errors.password}</div> : null}
                             <label  className={s.loginNameLabel}  htmlFor={'password'}>Confirm password</label>
                             <CommonInput
                                 type="password"
                                 id='confirm_Password'
                                 name='confirm_password' onChange={formik.handleChange} value={formik.values.confirmPassword}
                             />
-                           {formik.errors.confirmPassword ? <div>{formik.errors.confirmPassword}</div> : null}
+                           {formik.errors.confirmPassword ? <div className={s.confPasswordError}>{formik.errors.confirmPassword}</div> : null}
                         </div>
-                        <Button className={s.loginBtn} type={'submit'} variant={'contained'} color={'primary'}>Sign
+                        <Button className={s.loginBtn} type={'submit'} variant={'contained'} color={'primary'} sx={{marginTop:3 , fontFamily: 'Montserrat'}}>Sign
                             Up</Button>
                         <div className={s.loginQuestion}>Already have an account?</div>
                         <NavLink className={s.loginLink} to={'/signIn'}>Sign In</NavLink>

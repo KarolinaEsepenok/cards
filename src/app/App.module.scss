@@ -4,6 +4,9 @@
   background-color: #FCFCFC;
   margin: 0 auto;
   font-family: Montserrat;
+  .linearProgress{
+    position: absolute;
+  }
   .centerApp{
     max-width: 1008px;
     margin: 0 auto;
@@ -11,9 +14,7 @@
 display: flex;
       list-style-type: none;
       justify-content: space-between;
-      .linearProgress{
-        position: absolute;
-      }
+
       .item{
           text-decoration: none;
 

@@ -39,13 +39,32 @@
         transition: .3s all ease;
         opacity: 1;
       }
-    }.loginNameLabel{
+    }
+    .loginNameLabel{
        marging-left: 60px;
        align-self: start;
        @include text(13px,400,120%,0.5);
      }
-    }
 
+    }
+  .loginError{
+    color: #B21232;
+    position: absolute;
+    padding-top: 50px;
+    font-size: 14px;
+  }
+  .passwordError{
+    color: #B21232;
+    position: absolute;
+    padding-top: 125px;
+    font-size: 14px;
+  }
+  .confPasswordError{
+    color: #B21232;
+    position: absolute;
+    padding-top: 200px;
+    font-size: 14px;
+  }
 
     .eysPasswordBtnActive{
       position: absolute;
@@ -82,11 +101,13 @@
     text-decoration: none;
     color:#000000;
     @include text(14px,500, 105%,1);
+    margin-bottom: 15px;
     &:hover{
       opacity: 0.8;
     }
   }
   .loginBtn{
+    margin-top: 30px;
     margin-bottom: 31px;
     border-radius: 30px;
     margin-top: 60px;
