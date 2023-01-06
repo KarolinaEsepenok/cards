@@ -5,10 +5,13 @@ import {NavLink} from "react-router-dom";
 import { LinearProgress} from "@mui/material";
 import {Simulate} from "react-dom/test-utils";
 import progress = Simulate.progress;
+import {useSelector} from "react-redux";
+import {RootStateType} from "../../app/store";
 
 
 
 export const Header = () => {
+
 
     return (
 

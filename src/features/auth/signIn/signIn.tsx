@@ -1,17 +1,20 @@
 import React from 'react';
-import {NavLink} from "react-router-dom";
+import {Navigate, NavLink, useNavigate} from "react-router-dom";
 import s from './signIn.module.scss'
 import { useFormik} from "formik";
 import {FormControl, FormGroup, Button} from "@mui/material";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {CommonInput} from "../../../common/component/generalComponents/Input/CommonInput";
 import {CommonCheckbox} from "../../../common/component/generalComponents/Checkbox/CommonCheckbox";
 import {signInTC} from "./signIn-reducer";
+import {RootStateType} from "../../../app/store";
 
 
 const SignIn = () => {
-
+    const navigate = useNavigate();
     const dispatch = useDispatch()
+    const isAppInitialized = useSelector<RootStateType>(state => state.app.isAppInitialized)
+    const signIn = useSelector<RootStateType>(state=> state.signIn)
 
 
     const formik = useFormik({
@@ -42,6 +45,12 @@ const SignIn = () => {
             dispatch(signInTC(values))
         },
     })
+    if (signIn) {
+        return <Navigate to={"/profile"} />
+    }
+    {/*}  if (!signIn) {
+        return <Navigate to={"/signUp"} />
+    }*/}
 
     return (
         <div className={s.loginContainer}>

@@ -37,9 +37,7 @@ export const signUpReducer = (state: InitialStateType = initialState, action: an
             type: '/SignUp/SET_SIGN_UP', email, password,confirmPassword
         } as const
     }
-
 //export type ThunkSignInType= ThunkAction<void, RootStateType, unknown, ActionsType>
-
     export const signUpTC = (data: SignUpDataType) => {
         return (dispatch: Dispatch) => {
             dispatch(setAppStatusAC(true))

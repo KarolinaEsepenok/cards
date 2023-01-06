@@ -3,13 +3,15 @@ import 'react-app-polyfill/ie11';
 import {FormikProvider, useFormik} from 'formik';
 import Password from "../common/password/Password";
 import s from "../signIn/signIn.module.scss";
-import {NavLink} from "react-router-dom";
+import {Navigate, NavLink, useNavigate} from "react-router-dom";
+
 import {Button, FormControl, FormGroup} from "@mui/material";
 import * as Yup from 'yup';
 import {CommonInput} from "../../../common/component/generalComponents/Input/CommonInput";
 import {useDispatch} from "react-redux";
 import {signUpTC} from "./signUp-reducer";
 import {useSelector} from "react-redux";
+import {RootStateType} from "../../../app/store";
 
 
 export type FormikErrorType = {
@@ -20,7 +22,9 @@ export type FormikErrorType = {
 
 
 const SignUp = () => {
+    const navigate = useNavigate();
    const dispatch = useDispatch()
+    const isAppInitialized = useSelector<RootStateType>(state => state.app.isAppInitialized)
 
 
     const formik = useFormik({
@@ -50,7 +54,12 @@ const SignUp = () => {
             // @ts-ignore
             dispatch(signUpTC(data))
         },
+
     })
+    {/*if (!isAppInitialized) {
+        return<Navigate to={'signIn'}/>
+    }*/}
+
     return (
         <div className={s.loginContainer}>
             <h1 className={s.loginNameContainer}>Signup</h1>
