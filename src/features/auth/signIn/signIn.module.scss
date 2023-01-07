@@ -98,7 +98,6 @@
   .forgotPassword{
     text-align: end;
     height: 36px;
-    text-decoration: none;
     color:#000000;
     @include text(14px,500, 105%,1);
     margin-bottom: 15px;
@@ -123,7 +122,7 @@
   }
   .loginLink{
     color:#1976d2;
-    text-decoration: none;
+
     @include text(16px,600, 110%,1);
     &:hover{
       color: black;

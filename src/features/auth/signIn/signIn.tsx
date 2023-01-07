@@ -60,32 +60,22 @@ const SignIn = () => {
                         <FormGroup>
                             <div className={s.label}>
                                 <label className={s.loginNameLabel} htmlFor={'email'}>Email</label>
-                                <CommonInput
-                                    type="email"
-                                    id="email"
-                                    {...formik.getFieldProps("email")}
+                                <CommonInput type="email" id="email"{...formik.getFieldProps("email")}
                                 /> {formik.errors.email ? <div className={s.loginError}>{formik.errors.email}</div> : null}
                                 <label  className={s.loginNameLabel}  htmlFor={'password'}>Password</label>
-                                <CommonInput
-                                    type="password"
-                                    id={'password'}
+                                <CommonInput type="password" id={'password'}
                                     {...formik.getFieldProps("password")}
                                 />{formik.errors.password ?
                                 <div className={s.passwordError}>{formik.errors.password}</div> : null}
                             </div>
                             <div className={s.remember}>
                                 <label htmlFor={'rememberMe'}>Remember me</label>
-                                <CommonCheckbox
-                                    id="rememberMe"
-                                    {...formik.getFieldProps("rememberMe")}
-                                    checked={formik.values.rememberMe}
-                                />
-
+                                <CommonCheckbox id="rememberMe"{...formik.getFieldProps("rememberMe")}
+                                                checked={formik.values.rememberMe}/>
                             </div>
                             <NavLink className={s.forgotPassword} to={'/password'}>Forgot
                                 password?</NavLink>
                           <Button  type={'submit'}  variant={'contained'} color={'primary'} sx={{marginTop:3,fontFamily: 'Montserrat'}}>Sign In</Button>
-
                             <div className={s.loginQuestion}>Don't have an account?</div>
                             <NavLink className={s.loginLink} to={'/signUp'}>Sign Up</NavLink>
                         </FormGroup>

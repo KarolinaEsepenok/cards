@@ -1,10 +1,5 @@
-import React, {useState} from 'react';
+import React from 'react'
 
-const PasswordRecovery = () => {
-
-    return (
-        <div>
-           PasswordRecovery
-        </div>
-    )}
-export default PasswordRecovery
+export const PasswordRecovery = () => {
+  return <div>PasswordRecovery</div>
+}

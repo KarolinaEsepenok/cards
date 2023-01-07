@@ -47,9 +47,6 @@ export const signInTC = (values: LoginDataType) => {
             .catch(error=>{
                 dispatch(setAppErrorAC("not valid email/password /ᐠ-ꞈ-ᐟ\\"))
             }
-
-
-
             )
     }
 }

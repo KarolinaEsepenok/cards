@@ -1,15 +1,5 @@
-import React from 'react';
+import React from 'react'
 
-
-const NewPassword = () => {
-
-
-
-    return (
-        <div>
-
-        </div>
-    );
-};
-
-export default NewPassword;
+export const NewPassword = () => {
+  return <div></div>
+}

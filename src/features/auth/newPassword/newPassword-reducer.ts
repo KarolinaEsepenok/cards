@@ -1,19 +1,17 @@
-
-
 const initialState: InitialStateType = {
-    password: ''
+  password: '',
 }
 
-export const newPasswordReducer = (state: InitialStateType = initialState, action: any): InitialStateType => {
-    switch (action.type) {
-        default:
-            return state
-    }
+export const newPasswordReducer = (
+  state: InitialStateType = initialState,
+  action: any
+): InitialStateType => {
+  switch (action.type) {
+    default:
+      return state
+  }
 }
 
 export type InitialStateType = {
-    password:string
-
+  password: string
 }
-
-
