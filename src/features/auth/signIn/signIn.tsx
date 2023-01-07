@@ -97,7 +97,7 @@ const SignIn = () => {
             >
               Sign In
             </Button>
-            <div className={s.loginQuestion}>Don't have an account?</div>
+            <div className={s.loginQuestion}>Don{'`'}t have an account?</div>
             <NavLink className={s.loginLink} to={'/signUp'}>
               Sign Up
             </NavLink>

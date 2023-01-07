@@ -9,7 +9,21 @@
   color:$colorBtnText ;
   background-color:$colorBtn;
   border-radius: $borderRadiusBtn;
+}
 
-;
+@mixin width($maxWidth) {
+  max-width: $maxWidth;
+  width: 100%;
+}
+@mixin after($position, $top, $left) {
+  content: $position;
+  position: absolute;
+  top: $top;
+  left: $left;
+}
 
+@mixin fontSize($size, $lineH, $fontW) {
+  font-size: $size;
+  line-height: 24$lineH;
+  font-weight: $fontW;
 }

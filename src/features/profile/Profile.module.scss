@@ -1,0 +1,122 @@
+@import "../../common/style/mixins.scss";
+@import "../../common/style/variables.scss";
+
+.profile {
+
+  //.profile_wrapper
+  &_wrapper {
+    @include width(413px);
+    margin: 12px auto 0;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    padding: 27px 15px 36px;
+    text-align: center;
+    background-color: #ffffff;
+  }
+
+  //profile_title
+  &_title {
+    @include fontSize(22px, 27px, 600);
+    margin-bottom: 30px;
+  }
+
+  //profile_img
+  &_img {
+    margin-bottom: 17px;
+
+    & img {
+      border-radius: 50%;
+      width: 96px;
+      height: 96px;
+      object-fit: cover;
+    }
+  }
+
+  //profile_name
+  &_name {
+    margin-bottom: 14px;
+    @include fontSize(20px, 24px, 500);
+    display: flex;
+    justify-content: center;
+
+    //profile_name_edit
+    &_edit {
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+  }
+
+  //profile_email
+  &_email {
+    @include fontSize(14px, 24px, 400);
+    margin-bottom: 30px;
+    color: rgba(0, 0, 0, 0.5);
+    display: block;
+
+  }
+
+  //profile_file
+  &_file {
+    position: relative;
+    cursor: pointer;
+
+    //.profile_file input[type='file']
+    & input[type='file'] {
+      display: none;
+    }
+
+    &::after {
+      //@include after($profileEdit, 0, 0)
+      content: url('/assets/img/icons/profil_edit.png');
+      position: absolute;
+      top: -2px;
+      left: -27px;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      left: -35px;
+      width: 32px;
+      height: 32px;
+      background-color: #808080;
+      border-radius: 50%;
+      border: 1px solid #FFFFFF;
+    }
+  }
+
+  //profile_btn
+  &_btn {
+    display: block;
+    @include width(127px);
+    @include fontSize(16px, 20px, 500);
+    color: rgba(0, 0, 0, 0.8);
+    padding: 8px 5px;
+    border-radius: 30px;
+    background-color: #FCFCFC;
+    border: none;
+    box-shadow: 0 0 10px rgba(109, 109, 109, 0.4), 0 0 0 rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+
+    //profile_btn_box
+    &_box {
+      @include width(127px);
+      position: relative;
+      margin: 0 auto;
+
+      &::after {
+        content: url('/assets/img/icons/profile_logout.png');
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        top: 50%;
+        left: 13px;
+        transform: translateY(-50%);
+      }
+    }
+  }
+
+
+}
