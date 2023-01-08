@@ -1,133 +1,184 @@
 @import "../../../common/style/mixins";
+
 @import "../../../common/style/variables";
-.loginContainer{
-  width: 413px;
-  height: 528px;
+
+.loginContainer {
   display: flex;
   flex-direction: column;
+
+  width: 413px;
+  height: 528px;
   margin: 0 auto;
+  margin-top: 100px;
+
   text-align: center;
+
   background-color: #FFF;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-  .loginNameContainer{
+
+  .loginNameContainer {
     margin-bottom: 41px;
   }
-  .remember{
+
+  .remember {
     display: flex;
     flex-direction: row-reverse;
-    justify-content: start;
-    margin-left: -59px;
     align-items: center;
+    justify-content: start;
+
+    margin-left: -59px;
 
   }
-  .label{
+
+  .label {
     position: relative;
+
     display: flex;
     flex-direction: column;
-    .eysPasswordBtn{
+
+    .eysPasswordBtn {
       position: absolute;
       right: 5px;
-      &::after{
+
+      &::after {
         content: '';
+
         position: absolute;
         top: 11px;
         right: 0;
+        transform: rotate(45deg);
+
         width: 23px;
         height: 2px;
-        background: #000000;
-        transform: rotate(45deg);
-        transition: .3s all ease;
+
         opacity: 1;
+        background: #000000;
+
+        transition: .3s all ease;
       }
     }
-    .loginNameLabel{
-       marging-left: 60px;
-       align-self: start;
-       @include text(13px,400,120%,0.5);
-     }
 
+    .loginNameLabel {
+
+      @include text(13px, 400, 120%, 0.5);
+
+      align-self: start;
+
+      marging-left: 60px;
     }
-  .loginError{
-    color: #B21232;
+
+  }
+
+  .loginError {
     position: absolute;
+
     padding-top: 50px;
+
     font-size: 14px;
-  }
-  .passwordError{
     color: #B21232;
+  }
+
+  .passwordError {
     position: absolute;
+
     padding-top: 125px;
+
     font-size: 14px;
-  }
-  .confPasswordError{
     color: #B21232;
+  }
+
+  .confPasswordError {
     position: absolute;
+
     padding-top: 200px;
+
     font-size: 14px;
+    color: #B21232;
   }
 
-    .eysPasswordBtnActive{
-      position: absolute;
-      right: 5px;
-      &::after{
-        opacity: 0;
-      }
+  .eysPasswordBtnActive {
+    position: absolute;
+    right: 5px;
+
+    &::after {
+      opacity: 0;
     }
   }
-  .loginInputLabel{
+}
 
-    border: 0;
-    width: 347px;
-    outline: none;
-    border: none;
-    border-bottom: 1px solid #7F7F7F;
-    height: 28px;
-    margin-bottom: 24px;
-    &:-webkit-autofill{
-      -webkit-text-fill-color: #000;
-      -webkit-box-shadow: 0 0 0 100px #FFF inset;
-      transition: background-color 5000s ease-in-out 0s;
-    }
-  }
-  .rememberMeLable{
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: start;
-    margin-bottom: 19px;
-  }
-  .forgotPassword{
-    text-align: end;
-    height: 36px;
-    color:#000000;
-    @include text(14px,500, 105%,1);
-    margin-bottom: 15px;
-    &:hover{
-      opacity: 0.8;
-    }
-  }
-  .loginBtn{
-    margin-top: 30px;
-    margin-bottom: 31px;
-    border-radius: 30px;
-    margin-top: 60px;
-    background-color:#1976d2;
-    border: 1px solid #1976d2;
-    color: #FFFFFF;
-  }
+.loginInputLabel {
+  width: 347px;
+  height: 28px;
+  margin-bottom: 24px;
 
-  .loginQuestion{
-    margin-top: 31px;
-    margin-bottom: 13px;
-    @include text(14px,600, 141%,0.5);
-  }
-  .loginLink{
-    color:#1976d2;
+  border: 0;
+  border: none;
+  border-bottom: 1px solid #7F7F7F;
+  outline: none;
 
-    @include text(16px,600, 110%,1);
-    &:hover{
-      color: black;
-      opacity: 0.7;
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 100px #FFF inset;
 
-    }
+    transition: background-color 5000s ease-in-out 0s;
+
+    -webkit-text-fill-color: #000;
   }
+}
+
+.rememberMeLable {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: start;
+
+  margin-bottom: 19px;
+}
+
+.forgotPassword {
+
+  @include text(14px, 500, 105%, 1);
+
+  height: 36px;
+  margin-bottom: 15px;
+
+  color: #000000;
+  text-align: end;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.loginBtn {
+  margin-top: 30px;
+  margin-top: 60px;
+  margin-bottom: 31px;
+
+  color: #FFFFFF;
+
+  background-color: #1976d2;
+  border: 1px solid #1976d2;
+  border-radius: 30px;
+}
+
+.loginQuestion {
+
+  @include text(14px, 600, 141%, 0.5);
+
+  margin-top: 31px;
+  margin-bottom: 13px;
+}
+
+.loginLink {
+
+  @include text(16px, 600, 110%, 1);
+
+  color: #1976d2;
+
+  &:hover {
+    color: black;
+
+    opacity: 0.7;
+
+  }
+}
 

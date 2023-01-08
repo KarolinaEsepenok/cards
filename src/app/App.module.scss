@@ -1,22 +1,29 @@
 .app {
-  height: 100%;
   max-width: 1280px;
-  background-color: #FCFCFC;
+  height: 100%;
   margin: 0 auto;
+
   font-family: Montserrat;
-  .linearProgress{
+
+  background-color: #FCFCFC;
+
+  .linearProgress {
     position: absolute;
+
   }
-  .centerApp{
+
+  .centerApp {
     max-width: 1008px;
     margin: 0 auto;
-    .nav ul{
-display: flex;
-      list-style-type: none;
+
+    .nav ul {
+      display: flex;
       justify-content: space-between;
 
-      .item{
-          text-decoration: none;
+      list-style-type: none;
+
+      .item {
+        text-decoration: none;
 
       }
     }

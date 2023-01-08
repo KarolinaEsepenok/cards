@@ -1,22 +1,21 @@
 import React from 'react'
 
-import { FormControl, FormGroup, Button } from '@mui/material'
+import { Button, FormControl, FormGroup } from '@mui/material'
 import { useFormik } from 'formik'
-import { useDispatch, useSelector } from 'react-redux'
-import { Navigate, NavLink, useNavigate } from 'react-router-dom'
+import { Navigate, NavLink } from 'react-router-dom'
 
-import { RootStateType } from '../../../app/store'
 import { CommonCheckbox } from '../../../common/component/generalComponents/Checkbox/CommonCheckbox'
 import { CommonInput } from '../../../common/component/generalComponents/Input/CommonInput'
+import { useAppDispatch } from '../../../common/hooks/useDispatch'
+import { useAppSelector } from '../../../common/hooks/useSelector'
 
 import { signInTC } from './signIn-reducer'
 import s from './signIn.module.scss'
 
 const SignIn = () => {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const isAppInitialized = useSelector<RootStateType>(state => state.app.isAppInitialized)
-  const signIn = useSelector<RootStateType>(state => state.signIn)
+  const dispatch = useAppDispatch()
+  // const isAppInitialized = useSelector<RootStateType>(state => state.app.isAppInitialized)
+  const signIn = useAppSelector(state => state.signIn)
 
   const formik = useFormik({
     initialValues: {
@@ -42,18 +41,17 @@ const SignIn = () => {
       }
     },
     onSubmit: values => {
-      // @ts-ignore
-      dispatch(signInTC(values))
+      dispatch(signInTC(values)).then()
     },
   })
 
   {
-    /*   if (signIn) {
-        return <Navigate to={"/profile"} />
-    }
-     if (!signIn) {
-        return <Navigate to={"/signUp"} />
-    }*/
+    /*} if (signIn) {
+                return <Navigate to={'/profile'} />
+              }*/
+  }
+  if (!signIn) {
+    return <Navigate to={'/signUp'} />
   }
 
   return (
@@ -97,7 +95,7 @@ const SignIn = () => {
             >
               Sign In
             </Button>
-            <div className={s.loginQuestion}>Don't have an account?</div>
+            <div className={s.loginQuestion}>Don`t have an account?</div>
             <NavLink className={s.loginLink} to={'/signUp'}>
               Sign Up
             </NavLink>

@@ -1,12 +1,16 @@
 @import "variables";
+
 @mixin text($fontSize,$fontWeight, $lineHeight,$opacity){
   font-size: $fontSize;
   font-weight:$fontWeight;
   line-height: $lineHeight;
+
   opacity: $opacity;
 }
+
 @mixin button($colorBtnText, $colorBtn,$borderRadiusBtn){
   color:$colorBtnText ;
+
   background-color:$colorBtn;
   border-radius: $borderRadiusBtn;
 

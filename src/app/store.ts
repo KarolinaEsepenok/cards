@@ -1,8 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit'
 import { combineReducers } from 'redux'
-import thunkMiddleware, { ThunkDispatch } from 'redux-thunk'
+import thunkMiddleware from 'redux-thunk'
 
-import { SignInAT, signInReducer } from '../features/auth/signIn/signIn-reducer'
+import { signInReducer } from '../features/auth/signIn/signIn-reducer'
 
 import { appReducer } from './app-reducer'
 
@@ -17,11 +17,15 @@ export const store = configureStore({
 })
 
 //export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
-export type RootStateType = ReturnType<typeof rootReducer>
+export type RootStateType = ReturnType<typeof store.getState>
 
 // @ts-ignore
 window.store = store
 
-export type ActionsType = SignInAT
-export type AppDispatch = ThunkDispatch<RootStateType, unknown, ActionsType>
-//export type AppThunk= ThunkAction<void, RootStateType, unknown, AnyAction>
+export type AppDispatch = ReturnType<typeof store.dispatch>
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootStateType,
+  unknown,
+  Action<string>
+>

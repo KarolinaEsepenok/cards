@@ -1,13 +1,16 @@
 @import "../../common/style/mixins";
+
 @import "../../common/style/variables";
 
 .headerContainer {
-  height: 60px;
-  background-color: #FCFCFC;
   display: flex;
   justify-content: space-between;
+
+  height: 60px;
   padding-right: 136px;
   padding-left: 136px;
+
+  background-color: #FCFCFC;
   box-shadow: 0 10px 4px -4px rgba(109, 109, 109, 0.25);
 
   .headerLogo {
@@ -16,24 +19,31 @@
 
   .headerBtn {
     align-self: center;
+
     width: 113px;
     height: 36px;
-    border-radius: 4px;
-    border: 1px solid #1976d2;
-    background-color:#1976d2;
-  box-shadow: 0px 4px 18px rgba(54, 110, 255, 0.35);
+
     font-family: Montserrat;
+
+    background-color:#1976d2;
+    border: 1px solid #1976d2;
+    border-radius: 4px;
+  box-shadow: 0px 4px 18px rgba(54, 110, 255, 0.35);
     &:hover{
       background-color: #0059b3;
     }
 
     .headerBtnLink {
+
       @include text(16px, 500, 105%, 1);
+
+      display: inline-block;
+
+      width: 100%;
+
+      color: #FFF;
       text-align: center;
       text-decoration: none;
-      color: #FFF;
-      width: 100%;
-      display: inline-block;
     }
 
   }
