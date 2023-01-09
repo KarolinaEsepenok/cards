@@ -1,15 +1,59 @@
-@import "variables";
-@mixin text($fontSize,$fontWeight, $lineHeight,$opacity){
-  font-size: $fontSize;
+//fonts mixins
+//ddd
+@mixin headline1(){
+  font-size: 26px;
+  font-weight:600;
+  line-height: 32px;
+}
+
+@mixin headline2(){
+  font-size: 22px;
+  font-weight:600;
+  line-height: 27px;
+}
+
+@mixin headline3(){
+  font-size: 18px;
+  font-weight:500;
+  line-height:22px;
+}
+
+@mixin title($fontWeight:400, $lineHeight: 24px, $opacity: 1){
+  font-size: 16px;
   font-weight:$fontWeight;
   line-height: $lineHeight;
+
   opacity: $opacity;
 }
-@mixin button($colorBtnText, $colorBtn,$borderRadiusBtn){
-  color:$colorBtnText ;
-  background-color:$colorBtn;
-  border-radius: $borderRadiusBtn;
 
-;
+@mixin subtitle($fontWeight:400, $lineHeight: 24px, $opacity: 1){
+  font-size: 14px;
+  font-weight:$fontWeight;
+  line-height: $lineHeight;
 
+  opacity: $opacity;
+}
+
+@mixin body(){
+  font-size: 13px;
+  font-weight:400;
+  line-height: 16px;
+}
+
+@mixin label1(){
+  font-size: 13px;
+  font-weight:400;
+  line-height: 20px;
+}
+
+@mixin label2(){
+  font-size: 12px;
+  font-weight:400;
+  line-height: 15px;
+}
+
+@mixin label2(){
+  font-size: 16px;
+  font-weight:500;
+  line-height: 20px;
 }
