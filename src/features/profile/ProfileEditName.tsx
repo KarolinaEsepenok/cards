@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 
 import { useFormik } from 'formik'
 
-import { useAppDispatch } from '../../app/store'
-import { CommonButton } from '../../common/component/generalComponents/Button/CommonButton'
-import { CommonInput } from '../../common/component/generalComponents/Input/CommonInput'
+import { Button } from '../../common/component/Button/Button'
+import { Input } from '../../common/component/Input/Input'
+import { useAppDispatch } from '../../common/hooks/useDispatch'
 import edit from '../profile/Profile.module.scss'
 
 type ProfileEditNamePropsType = {
@@ -36,10 +36,10 @@ export const ProfileEditName: React.FC<ProfileEditNamePropsType> = ({ setEditMod
       <label className={edit.profile_edit} htmlFor={'name'}>
         Nickname
       </label>
-      <CommonInput type="text" id="name" {...formik.getFieldProps('name')} />
+      <Input type="text" id="name" {...formik.getFieldProps('name')} />
 
       <div className={edit.profile_btn_box_save}>
-        <CommonButton className={edit.profile_btn_save} text={'save'} />
+        <Button className={edit.profile_btn_save} text={'save'} />
       </div>
     </form>
   )

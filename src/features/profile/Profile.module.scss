@@ -5,19 +5,24 @@
 
   //.profile_wrapper
   &_wrapper {
-    @include width(413px);
+    max-width: 413px;
+    width: 100%;
     margin: 12px auto 0;
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
     border-radius: 2px;
     padding: 27px 15px 36px;
-    text-align: center;
+    //text-align: center;
     background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   //profile_title
   &_title {
-    @include fontSize(22px, 27px, 600);
+    @include headline2;
     margin-bottom: 30px;
+    color: #000;
   }
 
   //profile_img
@@ -35,9 +40,10 @@
   //profile_name
   &_name {
     margin-bottom: 14px;
-    @include fontSize(20px, 24px, 500);
+    @include headline3;
     display: flex;
     justify-content: center;
+    color: #000;
 
     //profile_name_edit
     &_edit {
@@ -49,7 +55,7 @@
 
   //profile_email
   &_email {
-    @include fontSize(14px, 24px, 400);
+    @include subtitle;
     margin-bottom: 30px;
     color: rgba(0, 0, 0, 0.5);
     display: block;
@@ -70,8 +76,9 @@
       //@include after($profileEdit, 0, 0)
       content: url('/assets/img/icons/profil_edit.png');
       position: absolute;
-      top: -2px;
-      left: -27px;
+      left: -26px;
+      top: 50%;
+      transform: translateY(-50%);
     }
 
     &::before {
@@ -90,8 +97,9 @@
   //profile_btn
   &_btn {
     display: block;
-    @include width(127px);
-    @include fontSize(16px, 20px, 500);
+    max-width: 127px;
+    width: 100%;
+    @include label2;
     color: rgba(0, 0, 0, 0.8);
     padding: 8px 5px;
     border-radius: 30px;
@@ -102,7 +110,8 @@
 
     //profile_btn_box
     &_box {
-      @include width(127px);
+      max-width: 127px;
+      width: 100%;
       position: relative;
       margin: 0 auto;
 
@@ -118,5 +127,27 @@
     }
   }
 
+  //profile_form
+  &_form {
+    position: relative;
+  }
 
+  //profile_edit
+  &_edit {
+    color: #000;
+    font-size: 13px;
+    line-height: 20px;
+  }
+}
+.profile_form .profile_btn_save {
+  max-width: 52px;
+  height: 24px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  border-radius: 2px;
+  padding: 0;
+  position: absolute;
+  top: 25px;
+  right: 0;
 }
