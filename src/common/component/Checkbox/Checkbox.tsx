@@ -1,6 +1,6 @@
 import React, { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes } from 'react'
 
-import s from './CommonCheckbox.module.scss'
+import s from './Checkbox.module.scss'
 
 type DefaultInputPropsType = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,
@@ -12,7 +12,7 @@ type SuperCheckboxPropsType = Omit<DefaultInputPropsType, 'type'> & {
   spanClassName?: string
 }
 
-export const CommonCheckbox: React.FC<SuperCheckboxPropsType> = ({
+export const Checkbox: React.FC<SuperCheckboxPropsType> = ({
   onChange,
   onChangeChecked,
   className,
