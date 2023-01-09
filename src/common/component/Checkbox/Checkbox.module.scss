@@ -18,7 +18,7 @@
     cursor: pointer;
     &:checked {
       appearance: none;
-      background-image: url('../../../../assets/img/icons/checked.svg');
+      background-image: url('../../../assets/img/icons/checked.svg');
     }
     &:focus {
       border-color: #0059b3;
