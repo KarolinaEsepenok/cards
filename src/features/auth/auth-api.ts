@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 
 export const instance = axios.create({
   // baseURL: process.env.REACT_APP_BACK_URL || 'http://localhost:7542/2.0/' ,
@@ -13,10 +13,39 @@ export const authAPI = {
   signIn(loginData: LoginDataType) {
     return instance.post(`auth/login`, loginData)
   },
+  updateProfileName(data: UpdateProfileName) {
+    return instance.put<'', AxiosResponse<ResponseProfileUserType>, UpdateProfileName>(
+      '/auth/me',
+      data
+    )
+  },
 }
 
 export type LoginDataType = {
   email: string
   password: string
   rememberMe: boolean
+}
+export type ResponseUserType = {
+  _id: string
+  email: string
+  name: string
+  avatar?: string
+  publicCardPacksCount: number // количество колод
+  created: Date
+  updated: Date
+  isAdmin: boolean
+  verified: boolean // подтвердил ли почту
+  rememberMe: boolean
+  error?: string
+}
+
+export type UpdateProfileName = {
+  name?: string
+  avatar?: string
+}
+
+export type ResponseProfileUserType = {
+  updatedUser: ResponseUserType
+  error?: ''
 }
