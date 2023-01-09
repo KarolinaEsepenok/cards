@@ -45,6 +45,7 @@ export type UpdateProfileName = {
   avatar?: string
 }
 
+//answer from server
 export type ResponseProfileUserType = {
   updatedUser: ResponseUserType
   error?: ''
