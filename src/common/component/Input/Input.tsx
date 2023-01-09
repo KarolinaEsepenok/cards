@@ -7,7 +7,7 @@ import React, {
   useState,
 } from 'react'
 
-import s from './CommonInput.module.scss'
+import s from './Input.module.scss'
 
 type DefaultInputPropsType = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,
@@ -22,7 +22,7 @@ type SuperInputTextPropsType = Omit<DefaultInputPropsType, 'type'> & {
   showEye?: boolean
   type?: string
 }
-export const CommonInput: React.FC<SuperInputTextPropsType> = ({
+export const Input: React.FC<SuperInputTextPropsType> = ({
   type,
   onChange,
   onChangeText,

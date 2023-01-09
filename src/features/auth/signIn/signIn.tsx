@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Navigate, NavLink, useNavigate } from 'react-router-dom'
 
 import { RootStateType } from '../../../app/store'
-import { CommonCheckbox } from '../../../common/component/generalComponents/Checkbox/CommonCheckbox'
-import { CommonInput } from '../../../common/component/generalComponents/Input/CommonInput'
+import { Checkbox } from '../../../common/component/Checkbox/Checkbox'
+import { Input } from '../../../common/component/Input/Input'
 
 import { signInTC } from './signIn-reducer'
 import s from './signIn.module.scss'
@@ -66,21 +66,21 @@ const SignIn = () => {
               <label className={s.loginNameLabel} htmlFor={'email'}>
                 Email
               </label>
-              <CommonInput type="email" id="email" {...formik.getFieldProps('email')} />{' '}
+              <Input type="email" id="email" {...formik.getFieldProps('email')} />{' '}
               {formik.errors.email ? (
                 <div className={s.loginError}>{formik.errors.email}</div>
               ) : null}
               <label className={s.loginNameLabel} htmlFor={'password'}>
                 Password
               </label>
-              <CommonInput type="password" id={'password'} {...formik.getFieldProps('password')} />
+              <Input type="password" id={'password'} {...formik.getFieldProps('password')} />
               {formik.errors.password ? (
                 <div className={s.passwordError}>{formik.errors.password}</div>
               ) : null}
             </div>
             <div className={s.remember}>
               <label htmlFor={'rememberMe'}>Remember me</label>
-              <CommonCheckbox
+              <Checkbox
                 id="rememberMe"
                 {...formik.getFieldProps('rememberMe')}
                 checked={formik.values.rememberMe}

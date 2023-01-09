@@ -1,6 +1,6 @@
 import React, { ButtonHTMLAttributes, DetailedHTMLProps } from 'react'
 
-import s from './CommonButton.module.scss'
+import s from './Button.module.scss'
 
 type DefaultButtonPropsType = DetailedHTMLProps<
   ButtonHTMLAttributes<HTMLButtonElement>,
@@ -10,7 +10,7 @@ type DefaultButtonPropsType = DetailedHTMLProps<
 type SuperButtonPropsType = DefaultButtonPropsType & {
   xType?: string
 }
-export const CommonButton: React.FC<SuperButtonPropsType> = ({
+export const Button: React.FC<SuperButtonPropsType> = ({
   xType,
   className,
   disabled,
