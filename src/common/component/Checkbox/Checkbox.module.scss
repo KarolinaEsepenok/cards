@@ -1,30 +1,24 @@
 .label {
-  cursor: pointer;
-
-  display: flex;
   display: flex;
   align-items: center;
-
+  cursor: pointer;
+  display: flex;
   padding-left: 60px;
   .checkbox {
-    cursor: pointer;
-
-    width: 18px;
-    height: 18px;
-    margin-right: 8px;
-
-    vertical-align: middle;
-
-    background-repeat: no-repeat;
-    background-position: center center;
-    border: 2px solid #0059b3;
-    border-radius: 3px;
 
     appearance: none;
+    width: 18px;
+    height: 18px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    vertical-align: middle;
+    margin-right: 8px;
+    border-radius: 3px;
+    border: 2px solid #0059b3;
+    cursor: pointer;
     &:checked {
-      background-image: url('../../../../assets/img/icons/checked.svg');
-
       appearance: none;
+      background-image: url('../../../assets/img/icons/checked.svg');
     }
     &:focus {
       border-color: #0059b3;

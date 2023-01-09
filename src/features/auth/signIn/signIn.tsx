@@ -1,21 +1,22 @@
 import React from 'react'
 
-import { Button, FormControl, FormGroup } from '@mui/material'
+import { FormControl, FormGroup, Button } from '@mui/material'
 import { useFormik } from 'formik'
-import { Navigate, NavLink } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { Navigate, NavLink, useNavigate } from 'react-router-dom'
 
-import { CommonCheckbox } from '../../../common/component/generalComponents/Checkbox/CommonCheckbox'
-import { CommonInput } from '../../../common/component/generalComponents/Input/CommonInput'
-import { useAppDispatch } from '../../../common/hooks/useDispatch'
-import { useAppSelector } from '../../../common/hooks/useSelector'
+import { RootStateType } from '../../../app/store'
+import { Checkbox } from '../../../common/component/Checkbox/Checkbox'
+import { Input } from '../../../common/component/Input/Input'
 
 import { signInTC } from './signIn-reducer'
 import s from './signIn.module.scss'
 
 const SignIn = () => {
-  const dispatch = useAppDispatch()
-  // const isAppInitialized = useSelector<RootStateType>(state => state.app.isAppInitialized)
-  const signIn = useAppSelector(state => state.signIn)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const isAppInitialized = useSelector<RootStateType>(state => state.app.isAppInitialized)
+  const signIn = useSelector<RootStateType>(state => state.signIn)
 
   const formik = useFormik({
     initialValues: {
@@ -41,17 +42,18 @@ const SignIn = () => {
       }
     },
     onSubmit: values => {
-      dispatch(signInTC(values)).then()
+      // @ts-ignore
+      dispatch(signInTC(values))
     },
   })
 
   {
-    /*} if (signIn) {
-                return <Navigate to={'/profile'} />
-              }*/
-  }
-  if (!signIn) {
-    return <Navigate to={'/signUp'} />
+    /*   if (signIn) {
+        return <Navigate to={"/profile"} />
+    }
+     if (!signIn) {
+        return <Navigate to={"/signUp"} />
+    }*/
   }
 
   return (
@@ -64,21 +66,21 @@ const SignIn = () => {
               <label className={s.loginNameLabel} htmlFor={'email'}>
                 Email
               </label>
-              <CommonInput type="email" id="email" {...formik.getFieldProps('email')} />{' '}
+              <Input type="email" id="email" {...formik.getFieldProps('email')} />{' '}
               {formik.errors.email ? (
                 <div className={s.loginError}>{formik.errors.email}</div>
               ) : null}
               <label className={s.loginNameLabel} htmlFor={'password'}>
                 Password
               </label>
-              <CommonInput type="password" id={'password'} {...formik.getFieldProps('password')} />
+              <Input type="password" id={'password'} {...formik.getFieldProps('password')} />
               {formik.errors.password ? (
                 <div className={s.passwordError}>{formik.errors.password}</div>
               ) : null}
             </div>
             <div className={s.remember}>
               <label htmlFor={'rememberMe'}>Remember me</label>
-              <CommonCheckbox
+              <Checkbox
                 id="rememberMe"
                 {...formik.getFieldProps('rememberMe')}
                 checked={formik.values.rememberMe}
@@ -95,7 +97,7 @@ const SignIn = () => {
             >
               Sign In
             </Button>
-            <div className={s.loginQuestion}>Don`t have an account?</div>
+            <div className={s.loginQuestion}>Don't have an account?</div>
             <NavLink className={s.loginLink} to={'/signUp'}>
               Sign Up
             </NavLink>
