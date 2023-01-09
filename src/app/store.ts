@@ -1,17 +1,14 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
+import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit'
 import { combineReducers } from 'redux'
-import thunkMiddleware, { ThunkDispatch } from 'redux-thunk'
+import thunkMiddleware from 'redux-thunk'
 
-import { SignInAT, signInReducer } from '../features/auth/signIn/signIn-reducer'
-import { profileReducer } from '../features/profile/Profile-reducer'
+import { signInReducer } from '../features/auth/signIn/signIn-reducer'
 
 import { appReducer } from './app-reducer'
 
 const rootReducer = combineReducers({
   app: appReducer,
   signIn: signInReducer,
-  profile: profileReducer,
 })
 
 export const store = configureStore({
@@ -19,21 +16,16 @@ export const store = configureStore({
   middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(thunkMiddleware),
 })
 
-// //export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
-// export type RootStateType = ReturnType<typeof rootReducer>
-//
-// // @ts-ignore
-// window.store = store
-//
-// export type ActionsType = SignInAT
-// export type AppDispatch = ThunkDispatch<RootStateType, unknown, ActionsType>
-// //export type AppThunk= ThunkAction<void, RootStateType, unknown, AnyAction>
-
-//я закоментила выше и это по доке внизу
+//export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 export type RootStateType = ReturnType<typeof store.getState>
 
-export type AppDispatch = typeof store.dispatch
+// @ts-ignore
+window.store = store
 
-//for Toolkit
-export const useAppDispatch: () => AppDispatch = useDispatch
-export const useAppSelector: TypedUseSelectorHook<RootStateType> = useSelector
+export type AppDispatch = ReturnType<typeof store.dispatch>
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootStateType,
+  unknown,
+  Action<string>
+>
