@@ -13,6 +13,9 @@ export const authAPI = {
   signIn(loginData: LoginDataType) {
     return instance.post(`auth/login`, loginData)
   },
+  me() {
+    return instance.post('auth/me')
+  },
 }
 
 export type LoginDataType = {

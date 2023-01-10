@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { FormControl, FormGroup, Button } from '@mui/material'
+import { Button, FormControl, FormGroup } from '@mui/material'
 import { useFormik } from 'formik'
 import { useDispatch, useSelector } from 'react-redux'
-import { Navigate, NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 import { RootStateType } from '../../../app/store'
 import { Checkbox } from '../../../common/component/Checkbox/Checkbox'
@@ -49,11 +49,11 @@ const SignIn = () => {
 
   {
     /*   if (signIn) {
-        return <Navigate to={"/profile"} />
-    }
-     if (!signIn) {
-        return <Navigate to={"/signUp"} />
-    }*/
+            return <Navigate to={"/profile"} />
+        }
+         if (!signIn) {
+            return <Navigate to={"/signUp"} />
+        }*/
   }
 
   return (
@@ -97,7 +97,7 @@ const SignIn = () => {
             >
               Sign In
             </Button>
-            <div className={s.loginQuestion}>Don't have an account?</div>
+            <div className={s.loginQuestion}>Do have an account?</div>
             <NavLink className={s.loginLink} to={'/signUp'}>
               Sign Up
             </NavLink>
