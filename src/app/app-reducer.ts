@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Dispatch } from 'redux'
 
 import { authAPI } from '../features/auth/auth-api'
 
@@ -30,6 +29,7 @@ export const slice = createSlice({
 export const appReducer = slice.reducer
 export const { setAppInitialized, setAppError, setAppStatus } = slice.actions
 
+// @ts-ignore
 export const isAppInitializeTC = () => async (dispatch: Dispatch) => {
   try {
     const response = await authAPI.me()
@@ -44,32 +44,32 @@ export const isAppInitializeTC = () => async (dispatch: Dispatch) => {
 
 {
   /*export const appReducer = (
-              state: InitialStateType = initialState,
-              action: ActionsType
-            ): InitialStateType => {
-              switch (action.type) {
-                case 'app/SET-APP-INITIALIZED':
-                  return { ...state, isAppInitialized: action.value }
-                case 'app/SET-ERROR':
-                  return { ...state, error: action.error }
-                case 'app/SET-IS-LOADING':
-                  return { ...state, isLoading: action.isLoading }
-                default:
-                  return state
-              }
-            }
-            export const setAppInitializedAC = (value: boolean) =>
-              ({ type: 'app/SET-APP-INITIALIZED', value } as const)
-            export const setAppErrorAC = (error: string | null) => ({ type: 'app/SET-ERROR', error } as const)
-            export const setAppStatusAC = (isLoading: boolean) =>
-              ({ type: 'app/SET-IS-LOADING', isLoading } as const)
-              export type SetAppInitializedAT = ReturnType<typeof setAppInitializedAC>
-            export type SetAppErrorAT = ReturnType<typeof setAppErrorAC>
-            export type SetAppStatusAT = ReturnType<typeof setAppStatusAC>
-    
-            type ActionsType = SetAppInitializedAT | SetAppErrorAT | SetAppStatusAT
-    
-    
-    
-                */
+                  state: InitialStateType = initialState,
+                  action: ActionsType
+                ): InitialStateType => {
+                  switch (action.type) {
+                    case 'app/SET-APP-INITIALIZED':
+                      return { ...state, isAppInitialized: action.value }
+                    case 'app/SET-ERROR':
+                      return { ...state, error: action.error }
+                    case 'app/SET-IS-LOADING':
+                      return { ...state, isLoading: action.isLoading }
+                    default:
+                      return state
+                  }
+                }
+                export const setAppInitializedAC = (value: boolean) =>
+                  ({ type: 'app/SET-APP-INITIALIZED', value } as const)
+                export const setAppErrorAC = (error: string | null) => ({ type: 'app/SET-ERROR', error } as const)
+                export const setAppStatusAC = (isLoading: boolean) =>
+                  ({ type: 'app/SET-IS-LOADING', isLoading } as const)
+                  export type SetAppInitializedAT = ReturnType<typeof setAppInitializedAC>
+                export type SetAppErrorAT = ReturnType<typeof setAppErrorAC>
+                export type SetAppStatusAT = ReturnType<typeof setAppStatusAC>
+        
+                type ActionsType = SetAppInitializedAT | SetAppErrorAT | SetAppStatusAT
+        
+        
+        
+                    */
 }

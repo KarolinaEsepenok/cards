@@ -9,7 +9,7 @@ import { RootStateType } from '../../../app/store'
 import { Checkbox } from '../../../common/component/Checkbox/Checkbox'
 import { Input } from '../../../common/component/Input/Input'
 
-import { signInTC } from './signIn-reducer'
+import { signInThunk } from './signIn-reducer'
 import s from './signIn.module.scss'
 
 const SignIn = () => {
@@ -43,17 +43,17 @@ const SignIn = () => {
     },
     onSubmit: values => {
       // @ts-ignore
-      dispatch(signInTC(values))
+      dispatch(signInThunk(values))
     },
   })
 
   {
     /*   if (signIn) {
-            return <Navigate to={"/profile"} />
-        }
-         if (!signIn) {
-            return <Navigate to={"/signUp"} />
-        }*/
+                                                                            return <Navigate to={"/profile"} />
+                                                                        }
+                                                                         if (!signIn) {
+                                                                            return <Navigate to={"/signUp"} />
+                                                                        }*/
   }
 
   return (
