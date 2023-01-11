@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
 import { ErrorSnackbar } from '../common/component/ErrorSnackbar/ErrorSnackbar'
-import SignIn from '../features/auth/signIn/signIn'
+import SignIn from '../features/auth/signIn/SignIn'
 import { Header } from '../features/Header/Header'
 
 import s from './App.module.scss'
