@@ -4,8 +4,12 @@ import { LinearProgress } from '@mui/material'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
 import { ErrorSnackbar } from '../common/component/ErrorSnackbar/ErrorSnackbar'
+import { CheckEmail } from '../features/auth/fogotPassword/CheckEmail'
+import { ForgotPassword } from '../features/auth/fogotPassword/ForgotPassword'
+import { SetNewPassword } from '../features/auth/fogotPassword/SetNewPassword'
 import SignIn from '../features/auth/signIn/signIn'
-import { Header } from '../features/Header/Header'
+import { Header } from '../features/header/Header'
+import { Profile } from '../features/profile/Profile'
 import { useAppDispatch } from '../hooks/useAppDispatch'
 import { useAppSelector } from '../hooks/useAppSelector'
 
@@ -26,6 +30,10 @@ export const App = () => {
           <Routes>
             <Route path={'/'} element={<Navigate to={'/signIn'} />} />
             <Route path="/signIn" element={<SignIn />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/password" element={<ForgotPassword />} />
+            <Route path="/checkEmail" element={<CheckEmail />} />
+            <Route path="/set-new-password/:token" element={<SetNewPassword />} />
           </Routes>
         </div>
       </div>
