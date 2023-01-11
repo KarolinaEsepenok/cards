@@ -6,8 +6,8 @@ import { NavLink, useNavigate } from 'react-router-dom'
 
 import { Checkbox } from '../../../common/component/Checkbox/Checkbox'
 import { Input } from '../../../common/component/Input/Input'
-import { useAppDispatch } from '../../../common/hooks/useDispatch'
-import { useAppSelector } from '../../../common/hooks/useSelector'
+import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
+import { useAppSelector } from '../../../common/hooks/useAppSelector'
 
 import { signInThunk } from './signIn-reducer'
 import s from './signIn.module.scss'
@@ -49,11 +49,11 @@ const SignIn: React.FC = () => {
 
   {
     /*   if (signIn) {
-                                                                                    return <Navigate to={"/profile"} />
-                                                                                }
-                                                                                 if (!signIn) {
-                                                                                    return <Navigate to={"/signUp"} />
-                                                                                }*/
+                                                                                        return <Navigate to={"/profile"} />
+                                                                                    }
+                                                                                     if (!signIn) {
+                                                                                        return <Navigate to={"/signUp"} />
+                                                                                    }*/
   }
 
   return (

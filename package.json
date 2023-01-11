@@ -6,6 +6,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@material-ui/icons": "^4.11.3",
     "@mui/material": "^5.11.0",
     "@mui/icons-material": "^5.11.0",
     "@reduxjs/toolkit": "^1.9.1",
@@ -60,11 +61,12 @@
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.33.1",
-    "eslint-import-resolver-typescript": "^3.5.0",
     "@typescript-eslint/parser": "^5.33.1",
     "eslint": "8.22.0",
     "eslint-config-it-incubator": "^1.0.10",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-node": "^0.3.6",
+    "eslint-import-resolver-typescript": "^3.5.0",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.30.1",
@@ -73,7 +75,6 @@
     "prettier-stylelint": "^0.4.2",
     "stylelint": "^14.10.0",
     "stylelint-config-clean-order": "^0.9.0",
-    "stylelint-prettier": "^2.0.0",
-    "eslint-import-resolver-node": "^0.3.6"
+    "stylelint-prettier": "^2.0.0"
   }
 }

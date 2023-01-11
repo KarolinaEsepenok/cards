@@ -10,7 +10,7 @@ export const store = configureStore({
     app: appReducer,
     signIn: signInReducer, // @ts-ignore
     profile: profileReducer, // @ts-ignore
-    password: passwordReducer,
+    // password: passwordReducer,
   },
 })
 
