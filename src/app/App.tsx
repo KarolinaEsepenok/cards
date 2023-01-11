@@ -1,18 +1,19 @@
 import React from 'react'
 
 import { LinearProgress } from '@mui/material'
-import { useSelector } from 'react-redux'
-import { Route, Routes, Navigate } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 
 import { ErrorSnackbar } from '../common/component/ErrorSnackbar/ErrorSnackbar'
 import SignIn from '../features/auth/signIn/signIn'
 import { Header } from '../features/Header/Header'
+import { useAppDispatch } from '../hooks/useAppDispatch'
+import { useAppSelector } from '../hooks/useAppSelector'
 
 import s from './App.module.scss'
-import { RootStateType } from './store'
 
 export const App = () => {
-  const isLoading = useSelector<RootStateType, boolean>(state => state.app.isLoading)
+  const isLoading = useAppSelector(state => state.app.isLoading)
+  const dispatch = useAppDispatch()
 
   return (
     <div className={s.app}>
