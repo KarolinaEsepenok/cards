@@ -1,44 +1,72 @@
-.button {
-  width: 132px;
-  height: 30px;
-  padding: 5px 24px;
+@import "../../style/variables";
 
-  font-family: 'Montserrat';
-  color: #FFFFFF;
-
-  background-color: #0066cc;
-  border: none;
-  border-radius: 30px;
-  &:disabled {
-    opacity: 0.5;
-    background-color:  #004D99;
-  }
-}
 .default {
-  background-color: #0066cc;
-  &:hover {
-    color: #FFFFFF;
+  cursor: pointer;
 
-    opacity: 0.8;
-  }
+  padding: 8px 20px;
+
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 1px;
+
+  border: 1px solid transparent;
+  border-radius: 30px;
+
+  transition: all 0.4s ease;
 }
-.red {
-  background-color: #CC1439;
-  &:hover {
-    background-color: #B21232;
-  }
+
+.primary {
+  color: $background-100-color;
+
+  background: $primary-color;
+  box-shadow: 0 4px 18px rgba(54, 110, 255, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
-.disabled {
-  opacity: 0.5;
-  background-color:  #004D99;
+.primary:hover {
+  background:$primary-100-color;
 }
+.primary:active {
+  background: $background-300-color;
+}
+
 .secondary {
-  color:#0066CC ;
+  color: $on-primary;
 
-  background-color: #FFFFFF;
-  border: 1px solid #0066cc;
-  &:hover {
-    background-color: #c9e5ff;
-  }
+  background: $background-base-color;
+  box-shadow: 0 2px 10px rgba(109, 109, 109, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
+.secondary:hover {
+  background: $background-100-color;
+}
+.secondary:active {
+  background: $background-200-color;
+}
+
+.warn {
+  color: $background-base-color;
+
+  background: $warn-color;
+  box-shadow: 0 4px 18px rgba(255, 54, 54, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+.warn:hover {
+  background: $warn-100-color;
+}
+.warn:active {
+  background: $background-base-color;
+}
+
+.disabled {
+  pointer-events: none;
+  cursor: default;
+
+  opacity: 0.5;
+}
+.default:disabled {
+  pointer-events: none;
+  cursor: default;
+
+  opacity: 0.5;
+}
+
+
 
