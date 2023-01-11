@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-// eslint-disable-next-line import/namespace
 import { setAppError, setAppStatus } from '../../../app/app-reducer'
 import { authAPI, LoginDataType } from '../auth-api'
 
@@ -13,7 +12,7 @@ const initialState = {
 
 const slice = createSlice({
   name: 'signIn',
-  initialState: initialState,
+  initialState,
   reducers: {
     setSignIn(state, action: PayloadAction<InitialStateType>) {
       ;(state.email = action.payload.email),
@@ -22,80 +21,84 @@ const slice = createSlice({
     },
   },
   extraReducers: builder => {
-    builder.addCase(setSignIn, (state, action) => {})
+    builder.addCase(signInThunk.fulfilled, (state, action) => {})
+    builder.addCase(signInThunk.rejected, (state, error) => {
+      setAppError({ error: 'not valid email/password /ᐠ-ꞈ-ᐟ\\' })
+    })
   },
 })
 
 export const signInReducer = slice.reducer
 export const { setSignIn } = slice.actions
-export const signInThunk = createAsyncThunk(
-  'signIn/signInAsyncThunk',
-  async function (values: LoginDataType, { rejectWithValue, dispatch }) {
-    setAppStatus({ isLoading: true })
-    try {
-      const response = await authAPI.signIn(values)
+export const signInThunk = createAsyncThunk<
+  InitialStateType,
+  LoginDataType,
+  { rejectValue: string }
+>('signIn/signInThunk', async function (values: LoginDataType, { rejectWithValue, dispatch }) {
+  setAppStatus({ isLoading: true })
+  try {
+    const response = await authAPI.signIn(values)
 
-      if (response) {
-        return setSignIn({
-          email: response.data.email,
-          password: response.data.password,
-          rememberMe: response.data.rememberMe,
-        })
-      }
-      dispatch(setAppStatus({ isLoading: false }))
-    } catch (error) {
-      dispatch(setAppError({ error: 'not valid email/password /ᐠ-ꞈ-ᐟ\\' }))
-
-      return rejectWithValue(error)
-      //setAppError({ error: 'not valid email/password /ᐠ-ꞈ-ᐟ\\' })
+    if (response) {
+      return setSignIn({
+        email: response.data.email,
+        password: response.data.password,
+        rememberMe: response.data.rememberMe,
+      })
     }
+    dispatch(setAppStatus({ isLoading: false }))
+  } catch (error) {
+    dispatch(setAppError({ error: 'not valid email/password /ᐠ-ꞈ-ᐟ\\' }))
+
+    return rejectWithValue('not valid email/password /ᐠ-ꞈ-ᐟ\\')
+    //setAppError({ error: 'not valid email/password /ᐠ-ꞈ-ᐟ\\' })
   }
-)
+})
 {
   /*
-      export const signInTC = (values: LoginDataType) => async (dispatch: Dispatch) => {
-        dispatch(setAppStatus({ isLoading: true }))
-        try {
-          const response = await authAPI.signIn(values)
-      
-          if (response) {
-            dispatch(
-              setSignIn({
-                email: response.data.email,
-                password: response.data.password,
-                rememberMe: response.data.rememberMe,
-              })
-            )
-            dispatch(setAppStatus({ isLoading: false }))
-          }
-        } catch (error) {
-          dispatch(setAppError({ error: 'not valid email/password /ᐠ-ꞈ-ᐟ\\' }))
-        }
-      }
-      
-      {
-        /*export const signInTC = (values: LoginDataType) => {
-                                                                                return (dispatch: Dispatch) => {
-                                                                                  dispatch(setAppStatusAC(true))
-                                                                                  authAPI
-                                                                                    .signIn(values)
-                                                                                    .then(response => {
-                                                                                      if (response) {
-                                                                                        dispatch(
-                                                                                          setSignIn({
-                                                                                            email: response.data.email,
-                                                                                            password: response.data.password,
-                                                                                            rememberMe: response.data.rememberMe,
-                                                                                          })
-                                                                                        )
-                                                                                        dispatch(setAppStatusAC(false))
-                                                                                      }
-                                                                                    })
-                                                                                    .catch(error => {
-                                                                                      dispatch(setAppErrorAC('not valid email/password /ᐠ-ꞈ-ᐟ\\'))
-                                                                                    })
-                                                                                }
-                                                                              }*/
+                    export const signInTC = (values: LoginDataType) => async (dispatch: Dispatch) => {
+                      dispatch(setAppStatus({ isLoading: true }))
+                      try {
+                        const response = await authAPI.signIn(values)
+                    
+                        if (response) {
+                          dispatch(
+                            setSignIn({
+                              email: response.data.email,
+                              password: response.data.password,
+                              rememberMe: response.data.rememberMe,
+                            })
+                          )
+                          dispatch(setAppStatus({ isLoading: false }))
+                        }
+                      } catch (error) {
+                        dispatch(setAppError({ error: 'not valid email/password /ᐠ-ꞈ-ᐟ\\' }))
+                      }
+                    }
+                    
+                    {
+                      /*export const signInTC = (values: LoginDataType) => {
+                                                                                              return (dispatch: Dispatch) => {
+                                                                                                dispatch(setAppStatusAC(true))
+                                                                                                authAPI
+                                                                                                  .signIn(values)
+                                                                                                  .then(response => {
+                                                                                                    if (response) {
+                                                                                                      dispatch(
+                                                                                                        setSignIn({
+                                                                                                          email: response.data.email,
+                                                                                                          password: response.data.password,
+                                                                                                          rememberMe: response.data.rememberMe,
+                                                                                                        })
+                                                                                                      )
+                                                                                                      dispatch(setAppStatusAC(false))
+                                                                                                    }
+                                                                                                  })
+                                                                                                  .catch(error => {
+                                                                                                    dispatch(setAppErrorAC('not valid email/password /ᐠ-ꞈ-ᐟ\\'))
+                                                                                                  })
+                                                                                              }
+                                                                                            }*/
 }
 
 //export type SignInAT = ReturnType<typeof setSignInAC>
@@ -103,32 +106,32 @@ export const signInThunk = createAsyncThunk(
 
 {
   /*(
-                                                                                                        state: InitialStateType = initialState,
-                                                                                                        action: SignInAT
-                                                                                                      ): InitialStateType => {
-                                                                                                        switch (action.type) {
-                                                                                                          case '/SignIn/SET_SIGN_IN':
-                                                                                                            return {
-                                                                                                              ...state,
-                                                                                                              email: action.email,
-                                                                                                              password: action.password,
-                                                                                                              rememberMe: action.rememberMe,
-                                                                                                            }
-                                                                                                          default:
-                                                                                                            return state
-                                                                                                        }
-                                                                                                      }
-                                                                                                      export const setSignInAC = (email: string, password: string, rememberMe: boolean) => {
-                                                                                                        return {
-                                                                                                          type: '/SignIn/SET_SIGN_IN',
-                                                                                                          email,
-                                                                                                          password,
-                                                                                                          rememberMe,
-                                                                                                        } as const
-                                                                                                      }
-                                                                      
-                                                                      
-                                                                                                      */
+                                                                                                                      state: InitialStateType = initialState,
+                                                                                                                      action: SignInAT
+                                                                                                                    ): InitialStateType => {
+                                                                                                                      switch (action.type) {
+                                                                                                                        case '/SignIn/SET_SIGN_IN':
+                                                                                                                          return {
+                                                                                                                            ...state,
+                                                                                                                            email: action.email,
+                                                                                                                            password: action.password,
+                                                                                                                            rememberMe: action.rememberMe,
+                                                                                                                          }
+                                                                                                                        default:
+                                                                                                                          return state
+                                                                                                                      }
+                                                                                                                    }
+                                                                                                                    export const setSignInAC = (email: string, password: string, rememberMe: boolean) => {
+                                                                                                                      return {
+                                                                                                                        type: '/SignIn/SET_SIGN_IN',
+                                                                                                                        email,
+                                                                                                                        password,
+                                                                                                                        rememberMe,
+                                                                                                                      } as const
+                                                                                                                    }
+                                                                                    
+                                                                                    
+                                                                                                                    */
 }
 
 //export type ThunkSignInType= ThunkAction<void, RootStateType, unknown, ActionsType>

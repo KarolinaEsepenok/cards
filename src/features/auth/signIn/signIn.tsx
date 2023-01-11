@@ -2,21 +2,21 @@ import React from 'react'
 
 import { Button, FormControl, FormGroup } from '@mui/material'
 import { useFormik } from 'formik'
-import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useNavigate } from 'react-router-dom'
 
-import { RootStateType } from '../../../app/store'
 import { Checkbox } from '../../../common/component/Checkbox/Checkbox'
 import { Input } from '../../../common/component/Input/Input'
+import { useAppDispatch } from '../../../common/hooks/useDispatch'
+import { useAppSelector } from '../../../common/hooks/useSelector'
 
 import { signInThunk } from './signIn-reducer'
 import s from './signIn.module.scss'
 
-const SignIn = () => {
+const SignIn: React.FC = () => {
   const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const isAppInitialized = useSelector<RootStateType>(state => state.app.isAppInitialized)
-  const signIn = useSelector<RootStateType>(state => state.signIn)
+  const dispatch = useAppDispatch()
+  const isAppInitialized = useAppSelector(state => state.app.isAppInitialized)
+  const signIn = useAppSelector(state => state.signIn)
 
   const formik = useFormik({
     initialValues: {
@@ -49,11 +49,11 @@ const SignIn = () => {
 
   {
     /*   if (signIn) {
-                                                                            return <Navigate to={"/profile"} />
-                                                                        }
-                                                                         if (!signIn) {
-                                                                            return <Navigate to={"/signUp"} />
-                                                                        }*/
+                                                                                    return <Navigate to={"/profile"} />
+                                                                                }
+                                                                                 if (!signIn) {
+                                                                                    return <Navigate to={"/signUp"} />
+                                                                                }*/
   }
 
   return (

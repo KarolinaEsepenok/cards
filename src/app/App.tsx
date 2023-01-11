@@ -2,7 +2,7 @@ import React from 'react'
 
 import { LinearProgress } from '@mui/material'
 import { useSelector } from 'react-redux'
-import { Route, Routes, Navigate } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 
 import { ErrorSnackbar } from '../common/component/ErrorSnackbar/ErrorSnackbar'
 import SignIn from '../features/auth/signIn/signIn'
@@ -11,7 +11,7 @@ import { Header } from '../features/Header/Header'
 import s from './App.module.scss'
 import { RootStateType } from './store'
 
-export const App = () => {
+export const App: React.FC = () => {
   const isLoading = useSelector<RootStateType, boolean>(state => state.app.isLoading)
 
   return (

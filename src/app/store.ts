@@ -22,7 +22,7 @@ export type RootStateType = ReturnType<typeof store.getState>
 // @ts-ignore
 window.store = store
 
-export type AppDispatch = ReturnType<typeof store.dispatch>
+export type AppDispatch = typeof store.dispatch
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
   RootStateType,
