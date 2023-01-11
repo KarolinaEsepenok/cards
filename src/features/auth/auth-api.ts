@@ -19,6 +19,23 @@ export const authAPI = {
       data
     )
   },
+  registration(data: RegisterType) {
+    return instance.post('/auth/register', data)
+  },
+  logout() {
+    return instance.delete<ResponseType>('auth/login')
+  },
+}
+// {
+//   addedUser: {
+//   ... // не важные данные, просто для проверки
+//   } // чтобы посмотреть как выглядит созданный юзер
+//
+//   error?: string;
+// }
+export type RegisterType = {
+  email: string
+  password: string
 }
 
 export type LoginDataType = {
