@@ -1,12 +1,18 @@
-import React, { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes, KeyboardEvent } from 'react'
+import React, {
+  ChangeEvent,
+  DetailedHTMLProps,
+  FocusEvent,
+  InputHTMLAttributes,
+  KeyboardEvent,
+} from 'react'
 
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import FormControl from '@mui/material/FormControl'
 import IconButton from '@mui/material/IconButton'
+import Input from '@mui/material/Input'
 import InputAdornment from '@mui/material/InputAdornment'
 import InputLabel from '@mui/material/InputLabel'
-import OutlinedInput from '@mui/material/OutlinedInput'
 
 type DefaultInputPropsType = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,
@@ -16,7 +22,7 @@ type InputType = Omit<DefaultInputPropsType, 'type'> & {
   id: string
   label: string
   callBack?: () => void
-  error: string | undefined
+  error?: string | undefined
   onChangeText?: (value: string) => void
   touchedEmail?: boolean
   touchedPassword?: boolean
@@ -24,20 +30,16 @@ type InputType = Omit<DefaultInputPropsType, 'type'> & {
 export const InputM: React.FC<InputType> = ({
   label,
   callBack,
-  error,
   id,
   onChange,
   onChangeText,
-  touchedPassword,
-  touchedEmail,
+  onBlur,
 }) => {
   const [showPassword, setShowPassword] = React.useState(false)
   const handleClickShowPassword = () => setShowPassword(show => !show)
   const passwordLabel = label === 'Password'
   const password = showPassword ? 'text' : 'password'
   const visibility = showPassword ? <VisibilityOff /> : <Visibility />
-  const emailError = touchedEmail && error !== undefined ? error : ''
-  const passwordError = touchedPassword && error !== undefined ? error : ''
 
   const adornment = (
     <InputAdornment position="end">
@@ -56,21 +58,21 @@ export const InputM: React.FC<InputType> = ({
     onChange?.(e)
     onChangeText?.(e.currentTarget.value)
   }
+  const onBlurCallback = (e: FocusEvent<HTMLInputElement>) => {
+    onBlur?.(e)
+  }
 
   return (
-    <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-      <InputLabel htmlFor={error ? error : label}>
-        {error ? <span style={{ color: 'red' }}>{error}</span> : label}
-      </InputLabel>
-      <OutlinedInput
+    <FormControl sx={{ m: 1, width: '25ch' }} variant="standard">
+      <InputLabel htmlFor="standard-adornment-password">{label}</InputLabel>
+      <Input
         id={id}
         type={passwordLabel ? password : 'text'}
         endAdornment={passwordLabel ? adornment : ''}
-        label={error ? error : label}
         onKeyPress={onKeyPressHandler}
-        error={!!error}
         onChange={onChangeCallback}
-      ></OutlinedInput>
+        onBlur={onBlurCallback}
+      ></Input>
     </FormControl>
   )
 }
