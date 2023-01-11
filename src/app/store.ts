@@ -1,27 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { combineReducers } from 'redux'
-import thunkMiddleware, { ThunkDispatch } from 'redux-thunk'
-
-import { SignInAT, signInReducer } from '../features/auth/signIn/signIn-reducer'
 
 import { appReducer } from './app-reducer'
 
-const rootReducer = combineReducers({
-  app: appReducer,
-  signIn: signInReducer,
-})
-
 export const store = configureStore({
-  reducer: rootReducer,
-  middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(thunkMiddleware),
+  reducer: {
+    app: appReducer,
+    ignIn: signInReducer,
+  },
 })
 
-//export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
-export type RootStateType = ReturnType<typeof rootReducer>
-
-// @ts-ignore
-window.store = store
-
-export type ActionsType = SignInAT
-export type AppDispatch = ThunkDispatch<RootStateType, unknown, ActionsType>
-//export type AppThunk= ThunkAction<void, RootStateType, unknown, AnyAction>
+export type RootStateType = ReturnType<typeof store.getState>
