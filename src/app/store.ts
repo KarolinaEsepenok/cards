@@ -5,7 +5,7 @@ import { appReducer } from './app-reducer'
 export const store = configureStore({
   reducer: {
     app: appReducer,
-    ignIn: signInReducer,
+    signIn: signInReducer,
   },
 })
 
