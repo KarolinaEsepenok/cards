@@ -57,7 +57,7 @@
     .loginNameLabel{
        marging-left: 60px;
        align-self: start;
-       @include text(13px,400,120%,0.5);
+       //@include text(13px,400,120%,0.5);
      }
 
     }
@@ -122,7 +122,7 @@
 
 .forgotPassword {
 
-  @include text(14px, 500, 105%, 1);
+  //@include text(14px, 500, 105%, 1);
 
   height: 36px;
   margin-bottom: 15px;
@@ -150,12 +150,12 @@
   .loginQuestion{
     margin-top: 31px;
     margin-bottom: 13px;
-    @include text(14px,600, 141%,0.5);
+    //@include text(14px,600, 141%,0.5);
   }
   .loginLink{
     color:#1976d2;
 
-    @include text(16px,600, 110%,1);
+    //@include text(16px,600, 110%,1);
     &:hover{
       color: black;
       opacity: 0.7;
