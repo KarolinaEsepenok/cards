@@ -1,31 +1,8 @@
+@import "../common/style/variables";
+
 .app {
-  max-width: 1280px;
   height: 100%;
   margin: 0 auto;
 
-  font-family: Montserrat;
-
-  background-color: #FCFCFC;
-
-  .linearProgress {
-    position: absolute;
-
-  }
-
-  .centerApp {
-    max-width: 1008px;
-    margin: 0 auto;
-
-    .nav ul {
-      display: flex;
-      justify-content: space-between;
-
-      list-style-type: none;
-
-      .item {
-        text-decoration: none;
-
-      }
-    }
-  }
+  background-color: $background-200-color;
 }
