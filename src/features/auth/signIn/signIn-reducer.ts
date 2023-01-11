@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { setAppError, setAppStatus } from '../../../app/app-reducer'
+import { setAppStatus } from '../../../app/app-reducer'
 import { authAPI, LoginDataType } from '../auth-api'
 
 type InitialStateType = typeof initialState
@@ -20,14 +20,6 @@ const slice = createSlice({
         (state.rememberMe = action.payload.rememberMe)
     },
   },
-  extraReducers: builder => {
-    builder.addCase(signInThunk.fulfilled, (state, action) => {
-      setAppStatus({ isLoading: false })
-    })
-    builder.addCase(signInThunk.rejected, (state, error) => {
-      setAppError({ error: 'not valid email/password /ᐠ-ꞈ-ᐟ\\' })
-    })
-  },
 })
 
 export const signInReducer = slice.reducer
@@ -40,6 +32,7 @@ export const signInThunk = createAsyncThunk<
 >('signIn/signInThunk', async function (values: LoginDataType, { rejectWithValue, dispatch }) {
   setAppStatus({ isLoading: true })
   try {
+    dispatch(setAppStatus({ isLoading: true }))
     const response = await authAPI.signIn(values)
 
     if (response) {
@@ -109,32 +102,32 @@ export const signInThunk = createAsyncThunk<
 
 {
   /*(
-                                                                                                                                            state: InitialStateType = initialState,
-                                                                                                                                            action: SignInAT
-                                                                                                                                          ): InitialStateType => {
-                                                                                                                                            switch (action.type) {
-                                                                                                                                              case '/SignIn/SET_SIGN_IN':
-                                                                                                                                                return {
-                                                                                                                                                  ...state,
-                                                                                                                                                  email: action.email,
-                                                                                                                                                  password: action.password,
-                                                                                                                                                  rememberMe: action.rememberMe,
-                                                                                                                                                }
-                                                                                                                                              default:
-                                                                                                                                                return state
-                                                                                                                                            }
-                                                                                                                                          }
-                                                                                                                                          export const setSignInAC = (email: string, password: string, rememberMe: boolean) => {
-                                                                                                                                            return {
-                                                                                                                                              type: '/SignIn/SET_SIGN_IN',
-                                                                                                                                              email,
-                                                                                                                                              password,
-                                                                                                                                              rememberMe,
-                                                                                                                                            } as const
-                                                                                                                                          }
-                                                                                                          
-                                                                                                          
-                                                                                                                                          */
+                                      state: InitialStateType = initialState,
+                                      action: SignInAT
+                                    ): InitialStateType => {
+                                      switch (action.type) {
+                                        case '/SignIn/SET_SIGN_IN':
+                                          return {
+                                            ...state,
+                                            email: action.email,
+                                            password: action.password,
+                                            rememberMe: action.rememberMe,
+                                          }
+                                        default:
+                                          return state
+                                      }
+                                    }
+                                    export const setSignInAC = (email: string, password: string, rememberMe: boolean) => {
+                                      return {
+                                        type: '/SignIn/SET_SIGN_IN',
+                                        email,
+                                        password,
+                                        rememberMe,
+                                      } as const
+                                    }
+    
+    
+                                    */
 }
 
 //export type ThunkSignInType= ThunkAction<void, RootStateType, unknown, ActionsType>
