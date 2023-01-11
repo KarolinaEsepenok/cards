@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Dispatch } from 'redux'
 
-import { setAppError, setAppStatus } from '../../../app/app-reducer'
 import { authAPI, LoginDataType } from '../auth-api'
 
 type InitialStateType = typeof initialState
@@ -28,7 +27,7 @@ export const { setSignIn } = slice.actions
 
 export const signInTC = (values: LoginDataType) => async (dispatch: Dispatch) => {
   try {
-    dispatch(setAppStatus({ isLoading: true }))
+    // dispatch(setAppStatus({ isLoading: true }))
     const response = await authAPI.signIn(values)
 
     if (response) {
@@ -39,10 +38,10 @@ export const signInTC = (values: LoginDataType) => async (dispatch: Dispatch) =>
           rememberMe: response.data.rememberMe,
         })
       )
-      dispatch(setAppStatus({ isLoading: false }))
+      // dispatch(setAppStatus({ isLoading: false }))
     }
   } catch (error) {
-    dispatch(setAppError({ error: 'not valid email/password /ᐠ-ꞈ-ᐟ\\' }))
+    // dispatch(setAppError({ error: 'not valid email/password /ᐠ-ꞈ-ᐟ\\' }))
   }
 }
 

@@ -4,3 +4,4 @@ import { store } from '../../app/store'
 
 export type AppDispatchType = typeof store.dispatch
 export const useAppDispatch = () => useDispatch<AppDispatchType>()
+// export const useAppDispatch: () => AppDispatchType = useDispatch

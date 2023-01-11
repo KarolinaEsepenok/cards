@@ -4,11 +4,11 @@ import { useFormik } from 'formik'
 
 import { Button } from '../../common/component/Button/Button'
 import { Input } from '../../common/component/Input/Input'
-import { useAppDispatch } from '../../common/hooks/useDispatch'
-import { useAppSelector } from '../../common/hooks/useSelector'
+import { useAppDispatch } from '../../common/hooks/useAppDispatch'
+import { useAppSelector } from '../../common/hooks/useAppSelector'
 import edit from '../profile/Profile.module.scss'
 
-import { updateProfileNameTC } from './Profile-reducer'
+import { updateProfileNameTC } from './profileReducer'
 
 type ProfileEditNamePropsType = {
   setEditMode: (value: boolean) => void
