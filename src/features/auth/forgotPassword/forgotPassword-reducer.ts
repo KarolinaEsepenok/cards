@@ -41,7 +41,7 @@ export const forgotPasswordTC = (forgotPass: boolean, email: string) => {
       if (axios.isAxiosError<{ error: string }>(e)) {
         const error = e.response ? e.response.data.error : 'Something wrong'
 
-        dispatch(setError({ error }))
+        dispatch(setError(error))
       }
     }
   }

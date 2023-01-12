@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { Button, FormControl, FormGroup } from '@mui/material'
 import { useFormik } from 'formik'
@@ -15,7 +15,7 @@ import s from './signIn.module.scss'
 const SignIn: React.FC = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
-  const isAppInitialized = useAppSelector(state => state.app.isAppInitialized)
+  const isLoggedIn = useAppSelector(state => state.app.isLoggedIn)
   const signIn = useAppSelector(state => state.signIn)
 
   const formik = useFormik({
@@ -46,14 +46,11 @@ const SignIn: React.FC = () => {
     },
   })
 
-  {
-    if (isAppInitialized) {
+  useEffect(() => {
+    if (isLoggedIn) {
       navigate('/profile')
     }
-    // if (!isAppInitialized) {
-    //   navigate('/signUp')
-    // }
-  }
+  }, [isLoggedIn])
 
   return (
     <div className={s.loginContainer}>

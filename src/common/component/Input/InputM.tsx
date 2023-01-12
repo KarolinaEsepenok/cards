@@ -15,7 +15,7 @@ type InputType = Omit<DefaultInputPropsType, 'type'> & {
   id: string
   label: string
   callBack?: () => void
-  error: string | undefined
+  error?: string | undefined
   onChangeText?: (value: string) => void
   touchedEmail?: boolean
   touchedPassword?: boolean

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { setAppInitialized, setIsLoading } from '../../../app/app-reducer'
+import { setAppInitialized, setIsLoading, setIsLoggedIn } from '../../../app/app-reducer'
 import { authAPI, LoginDataType } from '../auth-api'
 
 type InitialStateType = typeof initialState
@@ -18,19 +18,18 @@ export const signInThunk = createAsyncThunk<
 >('signIn/signInThunk', async function (values: LoginDataType, { rejectWithValue, dispatch }) {
   dispatch(setIsLoading(true))
   try {
-    dispatch(setIsLoading({ isLoading: true }))
     const response = await authAPI.signIn(values)
 
     if (response) {
-      dispatch(setAppInitialized(true))
-
-      return setSignIn({
-        email: response.data.email,
-        password: response.data.password,
-        rememberMe: response.data.rememberMe,
-      })
+      dispatch(
+        setSignIn({
+          email: response.data.email,
+          password: response.data.password,
+          rememberMe: response.data.rememberMe,
+        })
+      )
+      dispatch(setIsLoggedIn(true))
     }
-    dispatch(setIsLoading({ isLoading: false }))
   } catch (error) {
     // dispatch(setAppError({ error: 'not valid email/password /ᐠ-ꞈ-ᐟ\\' }))
 
