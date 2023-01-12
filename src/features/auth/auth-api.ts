@@ -8,6 +8,14 @@ export const instance = axios.create({
       : 'https://neko-back.herokuapp.com/2.0/',
   withCredentials: true,
 })
+const payload = {
+  form: 'test-front-admin <ai73a@yandex.by>',
+  message: `<div style="background-color: lime; padding: 15px">
+password recovery link: 
+<a href='http://localhost:3000/#/setNewPassword/$token$'>
+link</a>
+</div>`,
+}
 
 export const authAPI = {
   signIn(loginData: LoginDataType) {
@@ -25,6 +33,24 @@ export const authAPI = {
   logout() {
     return instance.delete<ResponseType>('auth/login')
   },
+  forgotPassword(email: string) {
+    return axios.post<'', CommonForgotPasswordType>(
+      'https://neko-back.herokuapp.com/2.0/auth/forgot',
+      { email, ...payload }
+    )
+  },
+  setNewPassword(password: string, resetPasswordToken: string) {
+    return instance.post<'', CommonForgotPasswordType>(
+      'https://neko-back.herokuapp.com/2.0/auth/set-new-password',
+      {
+        password,
+        resetPasswordToken,
+      }
+    )
+  },
+  me() {
+    return instance.post('auth/me')
+  },
 }
 
 export type RegisterType = {
@@ -32,6 +58,10 @@ export type RegisterType = {
   password: string
 }
 
+type CommonForgotPasswordType = {
+  info: string
+  error: string
+}
 export type LoginDataType = {
   email: string
   password: string

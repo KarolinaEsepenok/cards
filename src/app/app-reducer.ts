@@ -1,4 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
+import axios from 'axios'
+import { Dispatch } from 'redux'
+
+import { authAPI } from '../features/auth/auth-api'
 
 type initialStateType = {
   isAppInitialized: boolean
@@ -11,6 +15,19 @@ const initialState: initialStateType = {
   isLoading: false,
 }
 
+export const initializeAppTC = () => async (dispatch: Dispatch) => {
+  try {
+    await authAPI.me()
+    dispatch(setAppInitialized(true))
+  } catch (e) {
+    if (axios.isAxiosError<{ error: string }>(e)) {
+      const error = e.response ? e.response.data.error : 'Something wrong'
+
+      dispatch(setError({ error }))
+      dispatch(setAppInitialized(true))
+    }
+  }
+}
 const appSlice = createSlice({
   name: 'app',
   initialState,
