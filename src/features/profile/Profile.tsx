@@ -48,6 +48,7 @@ export const Profile = () => {
           </button>
         </div>
       </div>
+
       <Register />
     </>
   )

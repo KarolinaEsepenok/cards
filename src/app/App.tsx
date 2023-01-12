@@ -27,7 +27,8 @@ export const App = () => {
         <nav className={s.nav}></nav>
         <div>
           <Routes>
-            <Route path={'/'} element={<Navigate to={'/signIn'} />} />
+            {/*<Route path={'/'} element={<Navigate to={'/signIn'} />} />*/}
+            <Route path={'/'} element={<Navigate to={'/profile'} />} />
             {/*<Route path="/signIn" element={<SignIn />} />*/}
             <Route path="/profile" element={<Profile />} />
             <Route path="/password" element={<ForgotPassword />} />

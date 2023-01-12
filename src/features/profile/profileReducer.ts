@@ -29,9 +29,10 @@ const slice = createSlice({
   name: 'profile',
   initialState: initialState,
   reducers: {
-    // updateProfileNameAC(state, action: PayloadAction<{ data: UpdateProfileName }>) {
     updateProfileNameAC(state, action: PayloadAction<{ data: ResponseProfileUserType }>) {
       // state = action.payload.data
+      debugger
+      state.name = action.payload.data.updatedUser.name //?????????
     },
   },
 })
@@ -52,9 +53,9 @@ export const updateProfileNameTC =
       }
       const res = await authAPI.updateProfileName(apiModel)
 
-      console.log(res)
+      debugger
 
-      // dispatch(updateProfileNameAC(res.data.updatedUser))
+      dispatch(updateProfileNameAC({ data: res.data }))
       console.log(res.data.updatedUser)
     } catch (error) {
       if (axios.isAxiosError(error)) {
