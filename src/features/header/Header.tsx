@@ -18,7 +18,7 @@ export const Header = () => {
       <div className={s.headerContent}>
         <img src={logoCards} alt="logo" />
 
-        <Button xType="primary" onClick={openSignIn}>
+        <Button styleType="primary" onClick={openSignIn}>
           Sign in
         </Button>
       </div>

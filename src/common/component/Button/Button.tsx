@@ -8,15 +8,15 @@ type DefaultButtonType = DetailedHTMLProps<
 >
 
 type ButtonType = DefaultButtonType & {
-  xType?: string
+  styleType?: 'primary' | 'secondary' | 'warn'
 }
 export const Button: React.FC<ButtonType> = ({
-  xType,
+  styleType,
   className,
   disabled,
   ...restProps // все остальные пропсы попадут в объект restProps, там же будет children
 }) => {
-  const finalClassName = `${s.default} ${xType && s[xType]} ${className && className} ${
+  const finalClassName = `${s.default} ${styleType && s[styleType]} ${className && className} ${
     disabled ? disabled : ''
   }`.trim()
 
