@@ -50,8 +50,11 @@ const slice = createSlice({
       state.password = action.payload.password
       state.rememberMe = action.payload.rememberMe
     },
+    setNewPassword: (state, action) => {
+      state.password = action.payload
+    },
   },
 })
 
 export const signInReducer = slice.reducer
-export const { setSignIn } = slice.actions
+export const { setSignIn, setNewPassword } = slice.actions

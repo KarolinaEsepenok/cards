@@ -23,7 +23,6 @@ export const initializeAppTC = () => async (dispatch: Dispatch) => {
     if (axios.isAxiosError<{ error: string }>(e)) {
       const error = e.response ? e.response.data.error : 'Something wrong'
 
-      dispatch(setError({ error }))
       dispatch(setAppInitialized(true))
     }
   }

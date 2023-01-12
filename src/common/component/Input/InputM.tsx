@@ -15,7 +15,7 @@ type InputType = Omit<DefaultInputPropsType, 'type'> & {
   id: string
   label: string
   callBack?: () => void
-  error: string | undefined
+
   onChangeText?: (value: string) => void
   touchedEmail?: boolean
   touchedPassword?: boolean
@@ -23,7 +23,6 @@ type InputType = Omit<DefaultInputPropsType, 'type'> & {
 export const InputM: React.FC<InputType> = ({
   label,
   callBack,
-  error,
   id,
   onChange,
   onChangeText,
@@ -35,8 +34,6 @@ export const InputM: React.FC<InputType> = ({
   const passwordLabel = label === 'Password'
   const password = showPassword ? 'text' : 'password'
   const visibility = showPassword ? <VisibilityOff /> : <Visibility />
-  const emailError = touchedEmail && error !== undefined ? error : ''
-  const passwordError = touchedPassword && error !== undefined ? error : ''
 
   const adornment = (
     <InputAdornment position="end">
@@ -58,16 +55,13 @@ export const InputM: React.FC<InputType> = ({
 
   return (
     <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-      <InputLabel htmlFor={error ? error : label}>
-        {error ? <span style={{ color: 'red' }}>{error}</span> : label}
-      </InputLabel>
+      <InputLabel htmlFor={label}>{label}</InputLabel>
       <OutlinedInput
         id={id}
         type={passwordLabel ? password : 'text'}
         endAdornment={passwordLabel ? adornment : ''}
-        label={error ? error : label}
+        label={label}
         onKeyPress={onKeyPressHandler}
-        error={!!error}
         onChange={onChangeCallback}
       ></OutlinedInput>
     </FormControl>

@@ -15,6 +15,7 @@ import s from './signIn.module.scss'
 const SignIn: React.FC = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
+
   const isAppInitialized = useAppSelector(state => state.app.isAppInitialized)
   const signIn = useAppSelector(state => state.signIn)
 

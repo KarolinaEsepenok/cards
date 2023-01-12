@@ -5,6 +5,7 @@ import { Dispatch } from 'redux'
 import { setError, setIsLoading } from '../../../app/app-reducer'
 // eslint-disable-next-line import/namespace
 import { authAPI } from '../auth-api'
+import { setNewPassword } from '../signIn/signIn-reducer'
 
 const initialState = {
   forgotPassword: false,
@@ -35,33 +36,36 @@ export const forgotPasswordTC = (forgotPass: boolean, email: string) => {
       dispatch(setIsLoading({ isLoading: true }))
       const response = await authAPI.forgotPassword(email)
 
+      console.log(response)
       dispatch(forgotPassword({ data: forgotPass, email }))
-      dispatch(setIsLoading({ isLoading: false }))
     } catch (e) {
       if (axios.isAxiosError<{ error: string }>(e)) {
         const error = e.response ? e.response.data.error : 'Something wrong'
 
-        dispatch(setError({ error }))
+        dispatch(setError(error))
       }
+    } finally {
+      dispatch(setIsLoading(false))
     }
   }
 }
-export const setNewPassword = (password: string, token: string | undefined) => {
+export const setNewPasswordTC = (password: string, token: string | undefined) => {
   return async (dispatch: Dispatch) => {
+    dispatch(setIsLoading({ isLoading: true }))
     try {
-      dispatch(setIsLoading({ isLoading: true }))
       if (token) {
         const response = await authAPI.setNewPassword(password, token)
       }
+      dispatch(setNewPassword(password))
       dispatch(changePasswordSuccess({ data: true }))
-      dispatch(setIsLoading({ isLoading: false }))
     } catch (e) {
       if (axios.isAxiosError<{ error: string }>(e)) {
         const error = e.response ? e.response.data.error : 'Something wrong'
 
-        dispatch(setError({ error }))
+        dispatch(setError(error))
       }
-      dispatch(setIsLoading({ isLoading: false }))
+    } finally {
+      dispatch(setIsLoading(false))
     }
   }
 }

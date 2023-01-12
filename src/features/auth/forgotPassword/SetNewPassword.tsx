@@ -10,10 +10,10 @@ import { useAppSelector } from '../../../common/hooks/useAppSelector'
 import s from '../signIn/signIn.module.scss'
 
 import { ErrorsType } from './ForgotPassword'
-import { setNewPassword } from './forgotPassword-reducer'
+import { changePasswordSuccess, setNewPasswordTC } from './forgotPassword-reducer'
 
 export const SetNewPassword = () => {
-  const changePasswordSuccess = useAppSelector(state => state.password.changePasswordSuccess)
+  const onChangePasswordSuccess = useAppSelector(state => state.password.changePasswordSuccess)
   const { token } = useParams()
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
@@ -34,11 +34,12 @@ export const SetNewPassword = () => {
     },
 
     onSubmit: values => {
-      dispatch(setNewPassword(values.password, token))
+      dispatch(setNewPasswordTC(values.password, token))
     },
   })
 
-  if (changePasswordSuccess) {
+  if (onChangePasswordSuccess) {
+    dispatch(changePasswordSuccess({ data: false }))
     navigate('/signIn')
   }
 
