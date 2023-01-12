@@ -1,28 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import axios from 'axios'
 
+import { setError } from '../../app/app-reducer'
 import { RootStateType } from '../../app/store'
 import { AppDispatchType } from '../../common/hooks/useAppDispatch'
 import { authAPI, ResponseProfileUserType, UpdateProfileName } from '../auth/auth-api'
 
 const initialState = {
-  name: '',
+  name: 'My name',
   avatar: '',
-  email: '',
-  // updatedUser: {
-  //   _id: '',
-  //   email: '',
-  //   name: '',
-  //   avatar: '',
-  //   publicCardPacksCount: 10, // количество колод
-  //   created: Date,
-  //   updated: Date,
-  //   isAdmin: false,
-  //   verified: false, // подтвердил ли почту
-  //   rememberMe: false,
-  //   error: '',
-  // },
-  // error: '',
+  email: 'My email',
 }
 
 const slice = createSlice({
@@ -30,9 +16,7 @@ const slice = createSlice({
   initialState: initialState,
   reducers: {
     updateProfileNameAC(state, action: PayloadAction<{ data: ResponseProfileUserType }>) {
-      // state = action.payload.data
-      debugger
-      state.name = action.payload.data.updatedUser.name //?????????
+      state.name = action.payload.data.updatedUser.name
     },
   },
 })
@@ -53,13 +37,9 @@ export const updateProfileNameTC =
       }
       const res = await authAPI.updateProfileName(apiModel)
 
-      debugger
-
       dispatch(updateProfileNameAC({ data: res.data }))
       console.log(res.data.updatedUser)
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        console.log(error)
-      }
+      dispatch(setError(error))
     }
   }

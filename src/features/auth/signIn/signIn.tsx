@@ -8,6 +8,7 @@ import { Checkbox } from '../../../common/component/Checkbox/Checkbox'
 import { Input } from '../../../common/component/Input/Input'
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../../common/hooks/useAppSelector'
+import reg from '../../register/registration.module.scss'
 
 import { signInThunk } from './signIn-reducer'
 import s from './signIn.module.scss'
@@ -17,7 +18,6 @@ const SignIn: React.FC = () => {
   const dispatch = useAppDispatch()
 
   const isAppInitialized = useAppSelector(state => state.app.isAppInitialized)
-  const signIn = useAppSelector(state => state.signIn)
 
   const formik = useFormik({
     initialValues: {
@@ -54,6 +54,9 @@ const SignIn: React.FC = () => {
     // if (!isAppInitialized) {
     //   navigate('/signUp')
     // }
+  }
+  const navigatInRegistration = () => {
+    navigate('/register')
   }
 
   return (
@@ -97,13 +100,21 @@ const SignIn: React.FC = () => {
             >
               Sign In
             </Button>
-            <div className={s.loginQuestion}>Do have an account?</div>
-            <NavLink className={s.loginLink} to={'/signUp'}>
-              Sign Up
-            </NavLink>
+            {/*<div className={s.loginQuestion}>Do have an account?</div>*/}
+            {/*<NavLink className={s.loginLink} to={'/register'}>*/}
+            {/*  Sign Up*/}
+            {/*</NavLink>*/}
           </FormGroup>
         </FormControl>
       </form>
+      <div className={s.loginQuestion}>Do have an account?</div>
+      {/*<NavLink className={s.loginLink} to={'/register'}>*/}
+      {/*  Sign Up*/}
+      {/*</NavLink>*/}
+
+      <Button className={reg.btn_signin} onClick={navigatInRegistration}>
+        Sign Up
+      </Button>
     </div>
   )
 }
