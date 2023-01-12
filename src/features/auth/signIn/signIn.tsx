@@ -48,9 +48,9 @@ const SignIn: React.FC = () => {
   })
 
   {
-    if (isAppInitialized) {
-      navigate('/profile')
-    }
+    // if (isAppInitialized) {
+    //   navigate('/profile')
+    // }
     // if (!isAppInitialized) {
     //   navigate('/signUp')
     // }

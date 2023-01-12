@@ -17,7 +17,10 @@ type ProfileType = {}
 export const Profile: React.FC<ProfileType> = () => {
   const isAppInitialized = useAppSelector(state => state.app.isAppInitialized)
   const emailFromState = useAppSelector(state => state.signIn.email)
+  // const nameFromState = useAppSelector(state => state.signIn.name)
   const nameFromState = useAppSelector(state => state.profile.name)
+
+  console.log(nameFromState)
 
   const [name, setName] = useState(nameFromState)
   const [email, setEmail] = useState(emailFromState)
@@ -58,14 +61,14 @@ export const Profile: React.FC<ProfileType> = () => {
           <ProfileEditName setEditMode={setEditMode} />
         ) : (
           <div className={profile.profile_name}>
-            {name}
+            {nameFromState}
             <div onClick={editModeOpen} className={profile.profile_name_edit}>
               <img src={editName} alt={'edit name'} />
             </div>
           </div>
         )}
 
-        <span className={profile.profile_email}>{email}</span>
+        <span className={profile.profile_email}>{emailFromState}</span>
 
         <div className={profile.profile_btn_box}>
           <Button styleType={'secondary'} onClick={logout}>

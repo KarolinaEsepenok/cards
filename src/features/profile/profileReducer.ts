@@ -16,6 +16,7 @@ const slice = createSlice({
   initialState: initialState,
   reducers: {
     updateProfileNameAC(state, action: PayloadAction<{ data: ResponseProfileUserType }>) {
+      // state.name = action.payload.data.updatedUser.name
       state.name = action.payload.data.updatedUser.name
     },
   },
@@ -38,7 +39,6 @@ export const updateProfileNameTC =
       const res = await authAPI.updateProfileName(apiModel)
 
       dispatch(updateProfileNameAC({ data: res.data }))
-      console.log(res.data.updatedUser)
     } catch (error) {
       dispatch(setError(error))
     }

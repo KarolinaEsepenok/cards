@@ -8,6 +8,7 @@ const initialState = {
   email: '' as null | string,
   password: '' as null | string,
   rememberMe: true,
+  // name: '',
 }
 
 export const signInThunk = createAsyncThunk<
@@ -28,6 +29,7 @@ export const signInThunk = createAsyncThunk<
         email: response.data.email,
         password: response.data.password,
         rememberMe: response.data.rememberMe,
+        // name: response.data.name,
       })
     }
     dispatch(setIsLoading({ isLoading: false }))
