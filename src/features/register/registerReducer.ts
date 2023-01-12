@@ -1,5 +1,6 @@
 import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit'
 
+import { setAppInitialized, setError } from '../../app/app-reducer'
 import { authAPI, RegisterType } from '../auth/auth-api'
 
 const initialState = {
@@ -13,15 +14,10 @@ const slice = createSlice({
     registerAC(state, action: PayloadAction<{ data: boolean }>) {
       state.register = action.payload.data
     },
-    loggedInAC(state, action: PayloadAction<{ value: boolean }>) {
-      {
-        // state.isLoggedIn = action.payload.value
-      }
-    },
   },
 })
 
-export const { registerAC, loggedInAC } = slice.actions
+export const { registerAC } = slice.actions
 export const registerReducer = slice.reducer
 
 export const registerTC = (data: RegisterType) => async (dispatch: Dispatch) => {
@@ -32,7 +28,7 @@ export const registerTC = (data: RegisterType) => async (dispatch: Dispatch) => 
       dispatch(registerAC({ data: true }))
     }
   } catch (error) {
-    console.log(error)
+    dispatch(setError(error))
   }
 }
 
@@ -41,9 +37,9 @@ export const logoutTC = () => async (dispatch: Dispatch) => {
     const res = await authAPI.logout()
 
     if (res) {
-      dispatch(loggedInAC({ value: false }))
+      dispatch(setAppInitialized(false))
     }
   } catch (error) {
-    console.log(error)
+    dispatch(setError(error))
   }
 }

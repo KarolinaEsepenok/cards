@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useFormik } from 'formik'
 
@@ -24,8 +24,8 @@ export const ProfileEditName: React.FC<ProfileEditNamePropsType> = ({ setEditMod
       avatar: '',
     },
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2))
-      dispatch(updateProfileNameTC(values)).then()
+      // alert(JSON.stringify(values, null, 2))
+      dispatch(updateProfileNameTC(values))
       setEditMode(false)
       formik.resetForm()
     },
@@ -42,8 +42,7 @@ export const ProfileEditName: React.FC<ProfileEditNamePropsType> = ({ setEditMod
       </label>
       <Input type="text" id="name" {...formik.getFieldProps('name')} />
 
-      <div className={edit.profile_btn_box_save}>
-        {/*<Button className={edit.profile_btn_save} text={'save'} />*/}
+      <div className={edit.profile_btn_save}>
         <Button styleType="primary">Save</Button>
       </div>
     </form>
