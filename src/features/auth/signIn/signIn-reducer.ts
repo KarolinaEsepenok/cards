@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { setIsLoading } from '../../../app/app-reducer'
+import { setAppInitialized, setIsLoading } from '../../../app/app-reducer'
 import { authAPI, LoginDataType } from '../auth-api'
 
 type InitialStateType = typeof initialState
@@ -16,12 +16,14 @@ export const signInThunk = createAsyncThunk<
   LoginDataType,
   { rejectValue: string }
 >('signIn/signInThunk', async function (values: LoginDataType, { rejectWithValue, dispatch }) {
-  setIsLoading({ isLoading: true })
+  dispatch(setIsLoading(true))
   try {
     dispatch(setIsLoading({ isLoading: true }))
     const response = await authAPI.signIn(values)
 
     if (response) {
+      dispatch(setAppInitialized(true))
+
       return setSignIn({
         email: response.data.email,
         password: response.data.password,
@@ -34,6 +36,8 @@ export const signInThunk = createAsyncThunk<
 
     return rejectWithValue('not valid email/password /ᐠ-ꞈ-ᐟ\\')
     //setAppError({ error: 'not valid email/password /ᐠ-ꞈ-ᐟ\\' })
+  } finally {
+    dispatch(setIsLoading(false))
   }
 })
 

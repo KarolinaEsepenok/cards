@@ -1,0 +1,153 @@
+@import "../../common/style/mixins.scss";
+@import "../../common/style/variables.scss";
+
+.profile {
+
+  //.profile_wrapper
+  &_wrapper {
+    max-width: 413px;
+    width: 100%;
+    margin: 12px auto 0;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    padding: 27px 15px 36px;
+    //text-align: center;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  //profile_title
+  &_title {
+    @include headline2;
+    margin-bottom: 30px;
+    color: #000;
+  }
+
+  //profile_img
+  &_img {
+    margin-bottom: 17px;
+
+    & img {
+      border-radius: 50%;
+      width: 96px;
+      height: 96px;
+      object-fit: cover;
+    }
+  }
+
+  //profile_name
+  &_name {
+    margin-bottom: 14px;
+    @include headline3;
+    display: flex;
+    justify-content: center;
+    color: #000;
+
+    //profile_name_edit
+    &_edit {
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+  }
+
+  //profile_email
+  &_email {
+    @include subtitle;
+    margin-bottom: 30px;
+    color: rgba(0, 0, 0, 0.5);
+    display: block;
+
+  }
+
+  //profile_file
+  &_file {
+    position: relative;
+    cursor: pointer;
+
+    //.profile_file input[type='file']
+    & input[type='file'] {
+      display: none;
+    }
+
+    &::after {
+      //@include after($profileEdit, 0, 0)
+      content: url('/assets/img/icons/profil_edit.png');
+      position: absolute;
+      left: -26px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      left: -35px;
+      width: 32px;
+      height: 32px;
+      background-color: #808080;
+      border-radius: 50%;
+      border: 1px solid #FFFFFF;
+    }
+  }
+
+  //profile_btn
+  &_btn {
+    display: block;
+    max-width: 127px;
+    width: 100%;
+    @include label2;
+    color: rgba(0, 0, 0, 0.8);
+    padding: 8px 5px;
+    border-radius: 30px;
+    background-color: #FCFCFC;
+    border: none;
+    box-shadow: 0 0 10px rgba(109, 109, 109, 0.4), 0 0 0 rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+
+    //profile_btn_box
+    &_box {
+      max-width: 127px;
+      width: 100%;
+      position: relative;
+      margin: 0 auto;
+
+      &::after {
+        content: url('/assets/img/icons/profile_logout.png');
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        top: 50%;
+        left: 13px;
+        transform: translateY(-50%);
+      }
+    }
+  }
+
+  //profile_form
+  &_form {
+    position: relative;
+  }
+
+  //profile_edit
+  &_edit {
+    color: #000;
+    font-size: 13px;
+    line-height: 20px;
+  }
+}
+.profile_form .profile_btn_save {
+  max-width: 52px;
+  height: 24px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  border-radius: 2px;
+  padding: 0;
+  position: absolute;
+  top: 25px;
+  right: 0;
+}
