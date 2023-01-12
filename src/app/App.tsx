@@ -4,6 +4,7 @@ import { LinearProgress } from '@mui/material'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
 import { ErrorSnackbar } from '../common/component/ErrorSnackbar/ErrorSnackbar'
+import { Input } from '../common/component/Input/Input'
 import { useAppDispatch } from '../common/hooks/useAppDispatch'
 import { useAppSelector } from '../common/hooks/useAppSelector'
 import { CheckEmail } from '../features/auth/fogotPassword/CheckEmail'
@@ -25,7 +26,12 @@ export const App = () => {
       <Header />
       {isLoading && <LinearProgress className={s.linearProgress} />}
       <div className={s.centerApp}>
-        <nav className={s.nav}></nav>
+        <div style={{ padding: '50px' }}>
+          <Input type="text" label="Email" />
+          <Input type="password" label="Password" />
+          {/*<input type="password" />*/}
+        </div>
+
         <div>
           <Routes>
             <Route path={'/'} element={<Navigate to={'/signIn'} />} />
