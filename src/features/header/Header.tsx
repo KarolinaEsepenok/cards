@@ -1,22 +1,27 @@
 import React from 'react'
 
-import { NavLink } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import logoCards from '../../assets/img/LogoCards.svg'
+import { Button } from '../../common/component/Button/Button'
 
 import s from './Header.module.scss'
 
 export const Header = () => {
+  const navigate = useNavigate()
+  const openSignIn = () => {
+    navigate('/signIn')
+  }
+
   return (
-    <div className={s.headerContainer}>
-      <div className={s.headerLogo}>
-        <img src={logoCards} />
-      </div>
-      <button className={s.headerBtn}>
-        <NavLink className={s.headerBtnLink} to={'/signIn'}>
+    <header className={s.headerContainer}>
+      <div className={s.headerContent}>
+        <img src={logoCards} alt="logo" />
+
+        <Button styleType="primary" onClick={openSignIn}>
           Sign in
-        </NavLink>{' '}
-      </button>
-    </div>
+        </Button>
+      </div>
+    </header>
   )
 }
