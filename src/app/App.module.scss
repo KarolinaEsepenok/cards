@@ -1,37 +1,8 @@
-@import "src/common/style/mixins";
+@import "../common/style/variables";
 
-//.app {
-//height: 100%;
-//max-width: 1280px;
-//background-color: #FCFCFC;  перенесла на боди
-//margin: 0 auto;
-//font-family: Montserrat;
-//font-family: 'Montserrat', sans-serif; перенесла на боди
-
-.linearProgress {
-  position: absolute;
-}
-
-.centerApp {
-  //max-width: 1008px;
-  //margin: 0 auto;
-
-  .nav ul {  //рустой тег
-    display: flex;
-    //list-style-type: none;
-    justify-content: space-between;
-
-    .item {   //не нашла класс
-      text-decoration: none;
-    }
-  }
-}
-
-//}
-
-.container {
-  max-width: 1280px;
-  width: 100%;
+.app {
+  height: 100%;
   margin: 0 auto;
-  padding: 0 10px;
+
+  background-color: $background-200-color;
 }
