@@ -1,20 +1,24 @@
 import React from 'react'
 
-import { FormControl, FormGroup, Button } from '@mui/material'
+import { Button, FormControl, FormGroup } from '@mui/material'
 import { useFormik } from 'formik'
-import { useDispatch, useSelector } from 'react-redux'
-import { Navigate, NavLink, useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 import { RootStateType } from '../../../app/store'
 import { Checkbox } from '../../../common/component/Checkbox/Checkbox'
 import { Input } from '../../../common/component/Input/Input'
+import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
+import { changePasswordSuccess } from '../forgotPassword/forgotPassword-reducer'
 
 import { signInTC } from './signIn-reducer'
 import s from './signIn.module.scss'
 
 const SignIn = () => {
   const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
+
+  dispatch(changePasswordSuccess({ data: false }))
   const isAppInitialized = useSelector<RootStateType>(state => state.app.isAppInitialized)
   const signIn = useSelector<RootStateType>(state => state.signIn)
 
@@ -49,11 +53,11 @@ const SignIn = () => {
 
   {
     /*   if (signIn) {
-        return <Navigate to={"/profile"} />
-    }
-     if (!signIn) {
-        return <Navigate to={"/signUp"} />
-    }*/
+            return <Navigate to={"/profile"} />
+        }
+         if (!signIn) {
+            return <Navigate to={"/signUp"} />
+        }*/
   }
 
   return (
@@ -97,7 +101,7 @@ const SignIn = () => {
             >
               Sign In
             </Button>
-            <div className={s.loginQuestion}>Don't have an account?</div>
+            <div className={s.loginQuestion}>Don`&apos;`t have an account?</div>
             <NavLink className={s.loginLink} to={'/signUp'}>
               Sign Up
             </NavLink>

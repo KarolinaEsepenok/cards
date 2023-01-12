@@ -1,9 +1,9 @@
 import React, {
   ChangeEvent,
   DetailedHTMLProps,
-  FocusEvent,
   InputHTMLAttributes,
   KeyboardEvent,
+  FocusEvent,
 } from 'react'
 
 import Visibility from '@mui/icons-material/Visibility'
@@ -22,11 +22,11 @@ type InputType = Omit<DefaultInputPropsType, 'type'> & {
   id: string
   label: string
   callBack?: () => void
-  error?: string | undefined
   onChangeText?: (value: string) => void
   touchedEmail?: boolean
   touchedPassword?: boolean
 }
+
 export const InputM: React.FC<InputType> = ({
   label,
   callBack,
