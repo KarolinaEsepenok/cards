@@ -1,21 +1,49 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+
+import { useNavigate } from 'react-router-dom'
 
 import editName from '../../assets/img/icons/profile_edit_name.png'
 import ava from '../../assets/img/profile_photo.jpg'
+import { Button } from '../../common/component/Button/Button'
 import { useAppDispatch } from '../../common/hooks/useAppDispatch'
-import { Register } from '../register/Register'
+import { useAppSelector } from '../../common/hooks/useAppSelector'
 import { logoutTC } from '../register/registerReducer'
 
 import profile from './Profile.module.scss'
 import { ProfileEditName } from './ProfileEditName'
 
-export const Profile = () => {
+type ProfileType = {}
+
+export const Profile: React.FC<ProfileType> = () => {
+  const isAppInitialized = useAppSelector(state => state.app.isAppInitialized)
+  const emailFromState = useAppSelector(state => state.signIn.email)
+  // const nameFromState = useAppSelector(state => state.signIn.name)
+  const nameFromState = useAppSelector(state => state.profile.name)
+
+  console.log(nameFromState)
+
+  const [name, setName] = useState(nameFromState)
+  const [email, setEmail] = useState(emailFromState)
   const [editMode, setEditMode] = useState(false)
+
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
 
   const logout = () => {
     dispatch(logoutTC())
   }
+  const editModeOpen = () => {
+    setEditMode(true)
+  }
+
+  if (!isAppInitialized) {
+    navigate('/signIn')
+  }
+  useEffect(() => {
+    //need for render name/email from state in input when first render
+    setName(name)
+    setEmail(email)
+  }, [nameFromState, emailFromState])
 
   return (
     <>
@@ -33,23 +61,21 @@ export const Profile = () => {
           <ProfileEditName setEditMode={setEditMode} />
         ) : (
           <div className={profile.profile_name}>
-            Ivan
-            <div onClick={() => setEditMode(true)} className={profile.profile_name_edit}>
+            {nameFromState}
+            <div onClick={editModeOpen} className={profile.profile_name_edit}>
               <img src={editName} alt={'edit name'} />
             </div>
           </div>
         )}
 
-        <span className={profile.profile_email}>j&johnson@gmail.com</span>
+        <span className={profile.profile_email}>{emailFromState}</span>
 
         <div className={profile.profile_btn_box}>
-          <button className={profile.profile_btn} onClick={logout}>
-            Log Out
-          </button>
+          <Button styleType={'secondary'} onClick={logout}>
+            LogOut
+          </Button>
         </div>
       </div>
-
-      <Register />
     </>
   )
 }

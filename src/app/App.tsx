@@ -12,6 +12,7 @@ import { SetNewPassword } from '../features/auth/forgotPassword/SetNewPassword'
 import SignIn from '../features/auth/signIn/signIn'
 import { Header } from '../features/header/Header'
 import { Profile } from '../features/profile/Profile'
+import { Register } from '../features/register/Register'
 
 import { initializeAppTC } from './app-reducer'
 import s from './App.module.scss'
@@ -40,6 +41,7 @@ export const App = () => {
             <Route path={'/'} element={<Navigate to={'/signIn'} />} />
             <Route path="/signIn" element={<SignIn />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/password" element={<ForgotPassword />} />
             <Route path="/checkEmail" element={<CheckEmail />} />
             <Route path="/set-new-password/:token" element={<SetNewPassword />} />

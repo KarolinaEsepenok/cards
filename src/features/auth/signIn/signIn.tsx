@@ -8,6 +8,7 @@ import { Checkbox } from '../../../common/component/Checkbox/Checkbox'
 import { Input } from '../../../common/component/Input/Input'
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../../common/hooks/useAppSelector'
+import reg from '../../register/registration.module.scss'
 
 import { signInThunk } from './signIn-reducer'
 import s from './signIn.module.scss'
@@ -51,6 +52,10 @@ const SignIn: React.FC = () => {
       navigate('/profile')
     }
   }, [isLoggedIn])
+  
+  const navigatInRegistration = () => {
+    navigate('/register')
+  }
 
   return (
     <div className={s.loginContainer}>
@@ -93,13 +98,18 @@ const SignIn: React.FC = () => {
             >
               Sign In
             </Button>
-            <div className={s.loginQuestion}>Do have an account?</div>
-            <NavLink className={s.loginLink} to={'/signUp'}>
-              Sign Up
-            </NavLink>
+
           </FormGroup>
         </FormControl>
       </form>
+      <div className={s.loginQuestion}>Do have an account?</div>
+      {/*<NavLink className={s.loginLink} to={'/register'}>*/}
+      {/*  Sign Up*/}
+      {/*</NavLink>*/}
+
+      <Button className={reg.btn_signin} onClick={navigatInRegistration}>
+        Sign Up
+      </Button>
     </div>
   )
 }
