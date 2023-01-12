@@ -9,6 +9,7 @@ import { useAppSelector } from '../common/hooks/useAppSelector'
 import { CheckEmail } from '../features/auth/fogotPassword/CheckEmail'
 import { ForgotPassword } from '../features/auth/fogotPassword/ForgotPassword'
 import { SetNewPassword } from '../features/auth/fogotPassword/SetNewPassword'
+import SignIn from '../features/auth/signIn/signIn'
 import { Header } from '../features/header/Header'
 import { Profile } from '../features/profile/Profile'
 
@@ -27,9 +28,8 @@ export const App = () => {
         <nav className={s.nav}></nav>
         <div>
           <Routes>
-            {/*<Route path={'/'} element={<Navigate to={'/signIn'} />} />*/}
-            <Route path={'/'} element={<Navigate to={'/profile'} />} />
-            {/*<Route path="/signIn" element={<SignIn />} />*/}
+            <Route path={'/'} element={<Navigate to={'/signIn'} />} />
+            <Route path="/signIn" element={<SignIn />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/password" element={<ForgotPassword />} />
             <Route path="/checkEmail" element={<CheckEmail />} />

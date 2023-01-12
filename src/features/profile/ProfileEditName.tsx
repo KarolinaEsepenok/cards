@@ -43,7 +43,8 @@ export const ProfileEditName: React.FC<ProfileEditNamePropsType> = ({ setEditMod
       <Input type="text" id="name" {...formik.getFieldProps('name')} />
 
       <div className={edit.profile_btn_box_save}>
-        <Button className={edit.profile_btn_save} text={'save'} />
+        {/*<Button className={edit.profile_btn_save} text={'save'} />*/}
+        <Button styleType="primary">Save</Button>
       </div>
     </form>
   )

@@ -47,12 +47,12 @@ const SignIn: React.FC = () => {
   })
 
   {
-    /*   if (signIn) {
-                                                                                        return <Navigate to={"/profile"} />
-                                                                                    }
-                                                                                     if (!signIn) {
-                                                                                        return <Navigate to={"/signUp"} />
-                                                                                    }*/
+    if (isAppInitialized) {
+      navigate('/profile')
+    }
+    // if (!isAppInitialized) {
+    //   navigate('/signUp')
+    // }
   }
 
   return (
