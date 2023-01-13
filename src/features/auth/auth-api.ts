@@ -28,7 +28,7 @@ export const authAPI = {
     )
   },
   registration(data: RegisterType) {
-    return instance.post('/auth/register', data)
+    return instance.post('https://neko-back.herokuapp.com/2.0/auth/register', data)
   },
   logout() {
     return instance.delete<ResponseType>('auth/me')

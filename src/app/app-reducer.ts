@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Dispatch } from 'redux'
 
 import { authAPI } from '../features/auth/auth-api'
-import { setSignIn } from '../features/auth/signIn/signIn-reducer'
+import { setSignIn } from '../features/auth/authReducer'
 
 type initialStateType = {
   isAppInitialized: boolean
@@ -20,7 +20,11 @@ const initialState: initialStateType = {
 
 export const initializeAppTC = () => async (dispatch: Dispatch) => {
   try {
-    await authAPI.me()
+    const {
+      data: { email, name },
+    } = await authAPI.me()
+
+    dispatch(setSignIn({ email, name }))
     dispatch(setAppInitialized(true))
     dispatch(setIsLoggedIn(true))
   } catch (e) {

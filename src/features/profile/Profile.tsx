@@ -16,9 +16,9 @@ type ProfileType = {}
 
 export const Profile: React.FC<ProfileType> = () => {
   const isAppInitialized = useAppSelector(state => state.app.isAppInitialized)
-  const emailFromState = useAppSelector(state => state.signIn.email)
-  // const nameFromState = useAppSelector(state => state.signIn.name)
-  const nameFromState = useAppSelector(state => state.profile.name)
+  const emailFromState = useAppSelector(state => state.auth.email)
+  const nameFromState = useAppSelector(state => state.auth.name)
+  const isLoggedIn = useAppSelector(state => state.app.isLoggedIn)
 
   console.log(nameFromState)
 
@@ -39,6 +39,10 @@ export const Profile: React.FC<ProfileType> = () => {
   if (!isAppInitialized) {
     navigate('/signIn')
   }
+  if (!isLoggedIn) {
+    navigate('/signIn')
+  }
+
   useEffect(() => {
     //need for render name/email from state in input when first render
     setName(name)

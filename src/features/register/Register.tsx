@@ -14,6 +14,8 @@ import reg from './registration.module.scss'
 interface RegisterErrorType {
   email?: string
   password?: string
+
+  confirmPassword?: string
 }
 
 export const Register = () => {
@@ -25,6 +27,7 @@ export const Register = () => {
     initialValues: {
       email: '',
       password: '',
+      confirmPassword: '',
     },
 
     validate: values => {
@@ -38,8 +41,13 @@ export const Register = () => {
 
       if (!values.password) {
         errors.password = 'Required'
-      } else if (values.password.length < 3) {
-        errors.password = 'must be more 3 characters'
+      } else if (values.password.length <= 7) {
+        errors.password = 'must be more 7 characters'
+      }
+      if (!values.confirmPassword) {
+        errors.confirmPassword = 'Required'
+      } else if (values.password !== values.confirmPassword) {
+        errors.confirmPassword = 'password should be identical'
       }
 
       return errors
@@ -68,6 +76,9 @@ export const Register = () => {
         <form onSubmit={formik.handleSubmit}>
           <div>
             <input type={'text'} placeholder={'email'} {...formik.getFieldProps('email')} />
+            {formik.touched.email && formik.errors.email ? (
+              <div className={reg.error}>{formik.errors.email}</div>
+            ) : null}
           </div>
           <div>
             <input
@@ -75,14 +86,21 @@ export const Register = () => {
               placeholder={'password'}
               {...formik.getFieldProps('password')}
             />
+            {formik.touched.password && formik.errors.password ? (
+              <div className={reg.error}>{formik.errors.password}</div>
+            ) : null}
           </div>
-          <div>
+          <div className={reg.input_box}>
             <input
               type={'password'}
-              placeholder={'password'}
-              {...formik.getFieldProps('password')}
+              placeholder={'confirmPassword'}
+              {...formik.getFieldProps('confirmPassword')}
             />
+            {formik.touched.confirmPassword && formik.errors.confirmPassword && (
+              <div className={reg.error}>{formik.errors.confirmPassword}</div>
+            )}
           </div>
+
           <Button styleType={'primary'} className={reg.btn_signup}>
             Sign Up
           </Button>

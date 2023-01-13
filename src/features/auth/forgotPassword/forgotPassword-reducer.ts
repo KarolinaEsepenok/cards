@@ -3,9 +3,8 @@ import axios from 'axios'
 import { Dispatch } from 'redux'
 
 import { setError, setIsLoading } from '../../../app/app-reducer'
-// eslint-disable-next-line import/namespace
 import { authAPI } from '../auth-api'
-import { setNewPassword } from '../signIn/signIn-reducer'
+import { setNewPassword } from '../authReducer'
 
 const initialState = {
   forgotPassword: false,
@@ -36,7 +35,6 @@ export const forgotPasswordTC = (forgotPass: boolean, email: string) => {
       dispatch(setIsLoading({ isLoading: true }))
       const response = await authAPI.forgotPassword(email)
 
-      console.log(response)
       dispatch(forgotPassword({ data: forgotPass, email }))
     } catch (e) {
       if (axios.isAxiosError<{ error: string }>(e)) {

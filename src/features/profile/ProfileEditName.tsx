@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
 import { useFormik } from 'formik'
 
@@ -6,16 +6,15 @@ import { Button } from '../../common/component/Button/Button'
 import { Input } from '../../common/component/Input/Input'
 import { useAppDispatch } from '../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../common/hooks/useAppSelector'
+import { updateProfileNameTC } from '../auth/authReducer'
 import edit from '../profile/Profile.module.scss'
-
-import { updateProfileNameTC } from './profileReducer'
 
 type ProfileEditNamePropsType = {
   setEditMode: (value: boolean) => void
 }
 
 export const ProfileEditName: React.FC<ProfileEditNamePropsType> = ({ setEditMode }) => {
-  const profile = useAppSelector(state => state.profile)
+  const profileName = useAppSelector(state => state.auth.name)
   const dispatch = useAppDispatch()
 
   const formik = useFormik({
@@ -32,8 +31,8 @@ export const ProfileEditName: React.FC<ProfileEditNamePropsType> = ({ setEditMod
   })
 
   useEffect(() => {
-    formik.setFieldValue('name', profile.name)
-  }, [profile])
+    formik.setFieldValue('name', profileName)
+  }, [profileName])
 
   return (
     <form onSubmit={formik.handleSubmit} className={edit.profile_form}>

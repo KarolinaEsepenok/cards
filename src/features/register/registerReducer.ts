@@ -1,6 +1,6 @@
 import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit'
 
-import { setAppInitialized, setError } from '../../app/app-reducer'
+import { setError, setIsLoggedIn } from '../../app/app-reducer'
 import { authAPI, RegisterType } from '../auth/auth-api'
 
 const initialState = {
@@ -37,7 +37,8 @@ export const logoutTC = () => async (dispatch: Dispatch) => {
     const res = await authAPI.logout()
 
     if (res) {
-      dispatch(setAppInitialized(false))
+      // dispatch(setAppInitialized(false))
+      dispatch(setIsLoggedIn(false))
     }
   } catch (error) {
     dispatch(setError(error))

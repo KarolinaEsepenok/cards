@@ -9,15 +9,20 @@ import { Input } from '../../../common/component/Input/Input'
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../../common/hooks/useAppSelector'
 import reg from '../../register/registration.module.scss'
+import { authTC } from '../authReducer'
 
-import { signInThunk } from './signIn-reducer'
 import s from './signIn.module.scss'
+
+interface FormikErrorType {
+  email?: string
+  password?: string
+  rememberMe?: boolean
+}
 
 const SignIn: React.FC = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const isLoggedIn = useAppSelector(state => state.app.isLoggedIn)
-  const signIn = useAppSelector(state => state.signIn)
 
   const formik = useFormik({
     initialValues: {
@@ -25,25 +30,26 @@ const SignIn: React.FC = () => {
       password: '',
       rememberMe: false,
     },
+
     validate: values => {
+      const errors: FormikErrorType = {}
+
       if (!values.email) {
-        return {
-          email: 'Email is required',
-        }
+        errors.email = 'Email is required'
+      } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        errors.email = 'Invalid email address'
       }
+
       if (!values.password) {
-        return {
-          password: 'Password is required',
-        }
+        errors.password = 'Password is required'
+      } else if (values.password.length <= 7) {
+        errors.password = 'Password should be longer then 7 symbols!'
       }
-      if (values.password.length <= 7) {
-        return {
-          password: 'Password should be longer then 7 symbols!',
-        }
-      }
+
+      return errors
     },
     onSubmit: values => {
-      dispatch(signInThunk(values))
+      dispatch(authTC(values))
     },
   })
 
@@ -52,7 +58,7 @@ const SignIn: React.FC = () => {
       navigate('/profile')
     }
   }, [isLoggedIn])
-  
+
   const navigatInRegistration = () => {
     navigate('/register')
   }
@@ -68,14 +74,14 @@ const SignIn: React.FC = () => {
                 Email
               </label>
               <Input type="email" id="email" {...formik.getFieldProps('email')} />{' '}
-              {formik.errors.email ? (
+              {formik.touched.email && formik.errors.email ? (
                 <div className={s.loginError}>{formik.errors.email}</div>
               ) : null}
               <label className={s.loginNameLabel} htmlFor={'password'}>
                 Password
               </label>
               <Input type="password" id={'password'} {...formik.getFieldProps('password')} />
-              {formik.errors.password ? (
+              {formik.touched.password && formik.errors.password ? (
                 <div className={s.passwordError}>{formik.errors.password}</div>
               ) : null}
             </div>
@@ -98,14 +104,10 @@ const SignIn: React.FC = () => {
             >
               Sign In
             </Button>
-
           </FormGroup>
         </FormControl>
       </form>
-      <div className={s.loginQuestion}>Do have an account?</div>
-      {/*<NavLink className={s.loginLink} to={'/register'}>*/}
-      {/*  Sign Up*/}
-      {/*</NavLink>*/}
+      <div className={s.loginQuestion}>Do not have an account?</div>
 
       <Button className={reg.btn_signin} onClick={navigatInRegistration}>
         Sign Up
