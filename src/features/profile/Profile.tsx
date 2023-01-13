@@ -75,7 +75,7 @@ export const Profile: React.FC<ProfileType> = () => {
         <span className={profile.profile_email}>{emailFromState}</span>
 
         <div>
-          <Button styleType={'secondary'} className={profile.profile_btn_box} onClick={logout}>
+          <Button styleType={'secondary'} className={profile.profile_btn_logout} onClick={logout}>
             LogOut
           </Button>
         </div>

@@ -1,3 +1,5 @@
+@import "../../common/style/variables";
+
 //btn_signup
 .btn {
   &_signup {
@@ -5,20 +7,22 @@
     margin-top: 50px;
     margin-bottom: 30px;
   }
-
-  //btn_signin
-  &_signin {
-    margin-top: 20px;
-  }
 }
-//error
-.error {
-  position: absolute;
 
-  font-size: 11px;
-  color: #ff0032;
-}
 //input_box
 .input_box {
   position: relative;
+}
+
+//have_acc
+.have_acc {
+  margin-bottom: 11px;
+}
+.input {
+  width: $popup-input-width;
+}
+.signin {
+  color: #000000;
+
+  opacity: 0.7;
 }
