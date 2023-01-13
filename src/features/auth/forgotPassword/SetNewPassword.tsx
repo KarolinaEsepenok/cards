@@ -7,10 +7,10 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { Input } from '../../../common/component/Input/Input'
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../../common/hooks/useAppSelector'
-import s from '../signIn/signIn.module.scss'
 
 import { ErrorsType } from './ForgotPassword'
 import { changePasswordSuccess, setNewPasswordTC } from './forgotPassword-reducer'
+import s from './SetNewPassword.module.scss'
 
 export const SetNewPassword = () => {
   const onChangePasswordSuccess = useAppSelector(state => state.password.changePasswordSuccess)
