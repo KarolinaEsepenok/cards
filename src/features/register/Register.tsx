@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useFormik } from 'formik'
-import { Navigate, NavLink, useNavigate } from 'react-router-dom'
+import { Navigate, NavLink } from 'react-router-dom'
 
 import { Button } from '../../common/component/Button/Button'
 import { Input } from '../../common/component/Input/Input'
@@ -10,7 +10,7 @@ import { useAppSelector } from '../../common/hooks/useAppSelector'
 import profile from '../profile/Profile.module.scss'
 
 import { registerTC } from './registerReducer'
-import reg from './registration.module.scss'
+import s from './registration.module.scss'
 
 interface RegisterErrorType {
   email?: string
@@ -22,7 +22,6 @@ interface RegisterErrorType {
 export const Register = () => {
   const register = useAppSelector(state => state.register.register)
   const dispatch = useAppDispatch()
-  const navigate = useNavigate()
 
   const formik = useFormik({
     initialValues: {
@@ -55,7 +54,6 @@ export const Register = () => {
     },
 
     onSubmit: values => {
-      // alert(JSON.stringify(values, null, 2))
       dispatch(registerTC(values))
       formik.resetForm()
     },
@@ -81,13 +79,14 @@ export const Register = () => {
           </div>
           <div>
             <Input
+              className={s.input}
               type="password"
               label="Password"
               error={formik.touched.password ? formik.errors.password : ''}
               {...formik.getFieldProps('password')}
             />
           </div>
-          <div className={reg.input_box}>
+          <div className={s.input_box}>
             <Input
               type="password"
               label="ConfirmPassword"
@@ -96,11 +95,11 @@ export const Register = () => {
             />
           </div>
 
-          <Button styleType={'primary'} className={reg.btn_signup}>
+          <Button styleType={'primary'} className={s.btn_signup}>
             Sign Up
           </Button>
         </form>
-        <div>Already have an account?</div>
+        <div className={s.have_acc}>Already have an account?</div>
 
         <NavLink to="/signIn">Sign In</NavLink>
       </div>

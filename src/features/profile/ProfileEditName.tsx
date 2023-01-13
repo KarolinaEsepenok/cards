@@ -2,12 +2,11 @@ import React, { useEffect } from 'react'
 
 import { useFormik } from 'formik'
 
-import { Button } from '../../common/component/Button/Button'
 import { Input } from '../../common/component/Input/Input'
 import { useAppDispatch } from '../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../common/hooks/useAppSelector'
 import { updateProfileNameTC } from '../auth/authReducer'
-import edit from '../profile/Profile.module.scss'
+import s from '../profile/Profile.module.scss'
 
 type ProfileEditNamePropsType = {
   setEditMode: (value: boolean) => void
@@ -34,7 +33,7 @@ export const ProfileEditName: React.FC<ProfileEditNamePropsType> = ({ setEditMod
   }, [profileName])
 
   return (
-    <form onSubmit={formik.handleSubmit} className={edit.profile_form}>
+    <form onSubmit={formik.handleSubmit} className={s.profile_form}>
       <Input
         type="text"
         textChange={true}

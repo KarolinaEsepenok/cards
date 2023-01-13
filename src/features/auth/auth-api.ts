@@ -23,7 +23,7 @@ export const authAPI = {
   },
   updateProfileName(data: UpdateProfileName) {
     return instance.put<'', AxiosResponse<ResponseProfileUserType>, UpdateProfileName>(
-      '/auth/me',
+      'auth/me',
       data
     )
   },
