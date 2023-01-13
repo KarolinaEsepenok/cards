@@ -50,7 +50,9 @@ export const Input: React.FC<SuperInputTextPropsType> = ({
     passwordVisible ? setTypeLabel('text') : setTypeLabel(type)
   }, [passwordVisible])
 
-  const inputClasses = `${s.input} ${className ? className : ''}`
+  const inputClasses = `${s.input} ${className ? className : ''} ${
+    type === 'password' ? s.inputError : ''
+  }`
 
   return (
     <>
