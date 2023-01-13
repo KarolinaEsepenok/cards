@@ -71,6 +71,7 @@ export const Register = () => {
         <form onSubmit={formik.handleSubmit}>
           <div>
             <Input
+              className={s.input}
               type="email"
               label="Email"
               error={formik.touched.email ? formik.errors.email : ''}
@@ -88,6 +89,7 @@ export const Register = () => {
           </div>
           <div className={s.input_box}>
             <Input
+              className={s.input}
               type="password"
               label="ConfirmPassword"
               error={formik.touched.confirmPassword ? formik.errors.confirmPassword : ''}
@@ -101,7 +103,9 @@ export const Register = () => {
         </form>
         <div className={s.have_acc}>Already have an account?</div>
 
-        <NavLink to="/signIn">Sign In</NavLink>
+        <NavLink to="/signIn" className={s.signin}>
+          Sign In
+        </NavLink>
       </div>
     </div>
   )
