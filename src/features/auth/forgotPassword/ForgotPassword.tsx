@@ -52,9 +52,6 @@ export const ForgotPassword = () => {
         <FormControl>
           <FormGroup>
             <div className={s.label}>
-              {/* <label className={s.loginNameLabel} htmlFor={'email'}>
-                Email
-              </label>*/}
               <Input
                 label="email"
                 type="email"
