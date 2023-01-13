@@ -35,7 +35,7 @@ export const authAPI = {
     return instance.delete<ResponseType>('auth/me')
   },
   forgotPassword(email: string) {
-    return axios.post<'', CommonForgotPasswordType>(
+    return instance.post<'', CommonForgotPasswordType>(
       'auth/forgot',
       { email, ...payload }
       // return axios.post<'', CommonForgotPasswordType>(
