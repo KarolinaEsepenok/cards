@@ -2,68 +2,89 @@ import React, {
   ChangeEvent,
   DetailedHTMLProps,
   InputHTMLAttributes,
-  KeyboardEvent,
-  ReactNode,
+  useEffect,
   useState,
 } from 'react'
 
-import s from './Input.module.scss'
+import visibilityOff from '../../../assets/img/icons/visibility-off.svg'
+import visibilityOn from '../../../assets/img/icons/visibility-on.svg'
+import { Button } from '../Button/Button'
 
+import s from './Input.module.scss'
 type DefaultInputPropsType = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,
   HTMLInputElement
 >
-
 type SuperInputTextPropsType = Omit<DefaultInputPropsType, 'type'> & {
-  onChangeText?: (value: string) => void
-  onEnter?: () => void
-  error?: ReactNode
-  spanClassName?: string
-  showEye?: boolean
-  type?: string
+  type: string
+  label?: string
+  error?: string
+  textChange?: boolean
+  textChangeBtnCallback?: (value: string) => void
 }
 export const Input: React.FC<SuperInputTextPropsType> = ({
   type,
-  onChange,
-  onChangeText,
-  onKeyPress,
-  onEnter,
+  label,
   error,
-  className,
-  spanClassName,
-
-  showEye,
+  textChange,
+  textChangeBtnCallback,
   ...restProps
 }) => {
-  const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
-    onChange?.(e)
-    onChangeText?.(e.currentTarget.value)
+  const [typeLabel, setTypeLabel] = useState(type)
+  const [passwordVisible, setPasswordVisible] = useState(false)
+  const [currentValue, setCurrentValue] = useState('')
+
+  const inputOnChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setCurrentValue(e.currentTarget.value)
   }
-  const onKeyPressCallback = (e: KeyboardEvent<HTMLInputElement>) => {
-    onKeyPress?.(e)
-    onEnter && e.key === 'Enter' && onEnter()
+  const togglePasswordVisible = () => {
+    setPasswordVisible(!passwordVisible)
+  }
+  const textChangeBtnCallbackHandle = () => {
+    textChangeBtnCallback?.(currentValue)
   }
 
-  //  const finalSpanClassName = s.error + (spanClassName ? ' ' + spanClassName : '')
-  // const finalInputClassName = s.input + (error ? ' ' + s.errorInput : ' ' + s.superInput)
-  //   + (className ? ' ' + s.className : '')
-  const finalSpanClassName = `${s.error} ${spanClassName ? spanClassName : ''}`
-  const finalInputClassName = `${s.superInput} ${error ? s.errorInput : className}`
-
-  const [show, setShow] = useState(false)
-  const toggleShow = () => setShow(!show)
+  useEffect(() => {
+    passwordVisible ? setTypeLabel('text') : setTypeLabel(type)
+  }, [passwordVisible])
 
   return (
-    <div className={s.inputBox}>
-      {type === 'password' && <div className={show ? s.eyeSlash : s.eye} onClick={toggleShow} />}
-      <input
-        type={type === 'password' && !show ? 'password' : 'text'}
-        onChange={onChangeCallback}
-        onKeyPress={onKeyPressCallback}
-        className={finalInputClassName}
-        {...restProps} // отдаём инпуту остальные пропсы если они есть (value например там внутри)
-      />
-      {error && <span className={finalSpanClassName}>{error}</span>}
-    </div>
+    <>
+      <div className={s.inputContainer}>
+        {label && (
+          <label htmlFor={label} className={s.label}>
+            {label}
+          </label>
+        )}
+        <input
+          value={currentValue}
+          type={typeLabel}
+          className={s.input}
+          id={label}
+          onChange={inputOnChange}
+          {...restProps}
+        />
+        {type === 'password' && (
+          <span>
+            <img
+              alt="password visibility icon"
+              className={s.visibilityIcon}
+              src={passwordVisible ? visibilityOff : visibilityOn}
+              onClick={togglePasswordVisible}
+            />
+          </span>
+        )}
+        {textChange && (
+          <Button
+            styleType="primary"
+            className={s.saveButton}
+            onClick={textChangeBtnCallbackHandle}
+          >
+            SAVE
+          </Button>
+        )}
+      </div>
+      {error && <p className={s.error}>{error}</p>}
+    </>
   )
 }
