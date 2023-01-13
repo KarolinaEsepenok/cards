@@ -1,15 +1,15 @@
 import React from 'react'
 
-import { Button, FormControl, FormGroup } from '@mui/material'
 import { useFormik } from 'formik'
 import { NavLink, useNavigate } from 'react-router-dom'
 
+import { Button } from '../../../common/component/Button/Button'
 import { Input } from '../../../common/component/Input/Input'
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../../common/hooks/useAppSelector'
-import s from '../signIn/signIn.module.scss'
 
 import { forgotPasswordTC } from './forgotPassword-reducer'
+import s from './ForgotPassword.module.scss'
 
 export type ErrorsType = {
   email?: string
@@ -46,43 +46,31 @@ export const ForgotPassword = () => {
   }
 
   return (
-    <div className={s.loginContainer}>
-      <h1 style={{ color: 'black' }}>Forgot your password?</h1>
-      <form onSubmit={formik.handleSubmit}>
-        <FormControl>
-          <FormGroup>
-            <div className={s.label}>
-              <Input
-                label="email"
-                type="email"
-                error={formik.errors.email}
-                {...formik.getFieldProps('email')}
-              />
-              {/*
-              {formik.touched.email && formik.errors.email ? (
-                <div style={{ color: 'red' }}>{formik.errors.email}</div>
-              ) : null}*/}
-
-              <div style={{ color: 'black', opacity: 0.5 }}>
-                Enter your email address and we will send you further instructions
-              </div>
-              <Button
-                type={'submit'}
-                variant={'contained'}
-                color={'primary'}
-                sx={{ marginTop: 3, fontFamily: 'Montserrat' }}
-                disabled={!!formik.errors.email}
-              >
-                Send instructions
-              </Button>
-              <div style={{ color: 'black', opacity: 0.5 }}>Did your remember your password?</div>
-              <NavLink className={s.loginLink} to={'/signIn'}>
-                Try to logging in
-              </NavLink>
-            </div>
-          </FormGroup>
-        </FormControl>
-      </form>
-    </div>
+    <section className={s.container}>
+      <div className={s.popup}>
+        <form onSubmit={formik.handleSubmit} className={s.formContainer}>
+          <h2 className={s.title}>Forgot your password?</h2>
+          <div className={s.inputContainer}>
+            <Input
+              className={s.input}
+              placeholder="Email"
+              type="email"
+              error={formik.touched.email ? formik.errors.email : ''}
+              {...formik.getFieldProps('email')}
+            />
+          </div>
+          <p className={s.subtitle}>
+            Enter your email address and we will send you further instructions
+          </p>
+          <Button styleType="primary" className={s.button}>
+            Send instructions
+          </Button>
+          <p className={s.label}>Did your remember your password?</p>
+          <NavLink className={s.link} to="/signIn">
+            Try to logging in
+          </NavLink>
+        </form>
+      </div>
+    </section>
   )
 }
