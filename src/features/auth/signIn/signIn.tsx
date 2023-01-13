@@ -69,22 +69,15 @@ const SignIn: React.FC = () => {
               <Input
                 type="email"
                 label="Email"
-                error={formik.errors.email}
+                error={formik.touched.email ? formik.errors.email : ''}
                 {...formik.getFieldProps('email')}
-              />{' '}
-              {/* {formik.touched.email && formik.errors.email ? (
-                <div className={s.loginError}>{formik.errors.email}</div>
-              ) : null}
-             */}
+              />
               <Input
                 type="password"
                 label="Password"
-                error={formik.errors.password}
+                error={formik.touched.password ? formik.errors.password : ''}
                 {...formik.getFieldProps('password')}
               />
-              {/* {formik.touched.password && formik.errors.password ? (
-                <div className={s.passwordError}>{formik.errors.password}</div>
-              ) : null}*/}
             </div>
             <div className={s.remember}>
               <label htmlFor={'rememberMe'}>Remember me</label>

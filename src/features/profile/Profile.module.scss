@@ -110,18 +110,18 @@
 
     //profile_btn_box
     &_box {
-      max-width: 127px;
+      //max-width: 127px;
       width: 100%;
       position: relative;
-      margin: 0 auto;
+      padding-left: 43px;
 
       &::after {
-        content: url('/assets/img/icons/profile_logout.png');
+        content: url('../../assets/img/icons/profile_logout.png');
         position: absolute;
         width: 16px;
         height: 16px;
         top: 50%;
-        left: 2px;
+        left: 20px;
         transform: translateY(-50%);
       }
     }

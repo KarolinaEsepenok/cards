@@ -1,9 +1,10 @@
 import React from 'react'
 
 import { useFormik } from 'formik'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { Navigate, NavLink, useNavigate } from 'react-router-dom'
 
 import { Button } from '../../common/component/Button/Button'
+import { Input } from '../../common/component/Input/Input'
 import { useAppDispatch } from '../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../common/hooks/useAppSelector'
 import profile from '../profile/Profile.module.scss'
@@ -60,10 +61,6 @@ export const Register = () => {
     },
   })
 
-  const navigatInSigin = () => {
-    navigate('/signIn')
-  }
-
   if (register) {
     return <Navigate to={'/signIn'} />
   }
@@ -75,30 +72,28 @@ export const Register = () => {
 
         <form onSubmit={formik.handleSubmit}>
           <div>
-            <input type={'text'} placeholder={'email'} {...formik.getFieldProps('email')} />
-            {formik.touched.email && formik.errors.email ? (
-              <div className={reg.error}>{formik.errors.email}</div>
-            ) : null}
+            <Input
+              type="email"
+              label="Email"
+              error={formik.touched.email ? formik.errors.email : ''}
+              {...formik.getFieldProps('email')}
+            />
           </div>
           <div>
-            <input
-              type={'password'}
-              placeholder={'password'}
+            <Input
+              type="password"
+              label="Password"
+              error={formik.touched.password ? formik.errors.password : ''}
               {...formik.getFieldProps('password')}
             />
-            {formik.touched.password && formik.errors.password ? (
-              <div className={reg.error}>{formik.errors.password}</div>
-            ) : null}
           </div>
           <div className={reg.input_box}>
-            <input
-              type={'password'}
-              placeholder={'confirmPassword'}
+            <Input
+              type="password"
+              label="ConfirmPassword"
+              error={formik.touched.confirmPassword ? formik.errors.confirmPassword : ''}
               {...formik.getFieldProps('confirmPassword')}
             />
-            {formik.touched.confirmPassword && formik.errors.confirmPassword && (
-              <div className={reg.error}>{formik.errors.confirmPassword}</div>
-            )}
           </div>
 
           <Button styleType={'primary'} className={reg.btn_signup}>
@@ -107,9 +102,7 @@ export const Register = () => {
         </form>
         <div>Already have an account?</div>
 
-        <Button className={reg.btn_signin} onClick={navigatInSigin}>
-          Sign In
-        </Button>
+        <NavLink to="/signIn">Sign In</NavLink>
       </div>
     </div>
   )

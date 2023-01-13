@@ -20,7 +20,7 @@ type SuperInputTextPropsType = Omit<DefaultInputPropsType, 'type'> & {
   label?: string
   error?: string
   textChange?: boolean
-  textChangeBtnCallback?: (value: string) => void
+  textChangeBtnCallback?: (e: any) => void
 }
 export const Input: React.FC<SuperInputTextPropsType> = ({
   type,

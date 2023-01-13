@@ -23,7 +23,6 @@ export const ProfileEditName: React.FC<ProfileEditNamePropsType> = ({ setEditMod
       avatar: '',
     },
     onSubmit: values => {
-      // alert(JSON.stringify(values, null, 2))
       dispatch(updateProfileNameTC(values))
       setEditMode(false)
       formik.resetForm()
@@ -36,14 +35,13 @@ export const ProfileEditName: React.FC<ProfileEditNamePropsType> = ({ setEditMod
 
   return (
     <form onSubmit={formik.handleSubmit} className={edit.profile_form}>
-      <label className={edit.profile_edit} htmlFor={'name'}>
-        Nickname
-      </label>
-      <Input type="text" id="name" {...formik.getFieldProps('name')} />
-
-      <div className={edit.profile_btn_save}>
-        <Button styleType="primary">Save</Button>
-      </div>
+      <Input
+        type="text"
+        textChange={true}
+        label="Nickname"
+        {...formik.getFieldProps('name')}
+        textChangeBtnCallback={formik.handleSubmit}
+      />
     </form>
   )
 }
