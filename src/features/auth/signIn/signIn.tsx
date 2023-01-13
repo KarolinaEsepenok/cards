@@ -98,9 +98,11 @@ const SignIn: React.FC = () => {
           </FormGroup>
         </FormControl>
       </form>
-      <div className={s.loginQuestion}>Do not have an account?</div>
+      <div className={s.loginQuestion}>Don`t have an account?</div>
 
-      <NavLink to="/register">Sign Up</NavLink>
+      <NavLink className={s.loginLink} to="/register">
+        Sign Up
+      </NavLink>
     </div>
   )
 }
