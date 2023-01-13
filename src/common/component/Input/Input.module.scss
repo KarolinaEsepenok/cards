@@ -1,85 +1,83 @@
-.inputBox{
+@import "../../style/mixins";
+
+@import "../../style/variables";
+
+.inputContainer {
   position: relative;
 
-  min-height: 60px;
-  .superInput {
-    width: 347px;
-    height: 30px;
-    margin-bottom: 24px;
-
-    border: none;
-    border: 0;
-    border: none;
-    border-bottom: 1px solid #7F7F7F;
-    outline: none;
-    &:-webkit-autofill{
-      -webkit-box-shadow: 0 0 0 100px #FFF inset;
-
-      transition: background-color 5000s ease-in-out 0s;
-
-      -webkit-text-fill-color: #000;
-    }
-    &:focus {
-      border-bottom: 1px solid #0059b3;
-    }
-    &:hover{
-      border-bottom: 1px solid #0059b3;
-
-    }
-  }
+  width:fit-content;
 }
-.errorInput {
-  background-color: #CC1439;
-  &:focus {
-    border-bottom:2px solid #CC1439;
-  }
-}
-.error {
-  margin-top: -21px;
 
-  color: #CC1439;
+.input {
+
+  @include title(500, 24px);
+
+  display: block;
+
+  box-sizing: border-box;
+  min-width: 300px;
+  height: fit-content;
+  min-height: 20px;
+  padding: 5px;
+
+  background: transparent;
+  border:none;
+  border-bottom: 2px solid #aeaeae;
+  outline: none;
 }
-.eye {
+
+.input::placeholder {
+  font-size: 16px;
+  font-weight: 400;
+
+  opacity: 0.5;
+}
+
+.label {
+
+@include label1();
+
+  display: block;
+
+  margin: 0;
+
+  opacity: 0.5;
+}
+
+@mixin positionAbsolute() {
   position: absolute;
-  top: 4px;
-  left: 327px;
+  right: 0;
+  bottom: 8px;
+}
+
+.error{
+
+@include title(600, 100%);
+
+  margin: 6px 5px;
+
+  color: $warn-color;
+}
+
+.visibilityIcon {
+
+  @include positionAbsolute;
+
+  cursor: pointer;
 
   width: 24px;
   height: 24px;
-
-  background: url('../../../assets/img/icons/eysPassword.svg') 0 0 no-repeat;
-
-  &:focus{
-    cursor: pointer;
-
-  }
 }
-.eyeSlash{
-  position: absolute;
-  top: 4px;
-  left: 327px;
 
-  width: 24px;
-  height: 24px;
+.saveButton {
 
-  background: url('../../../assets/img/icons/eysPassword.svg') 0 0 no-repeat;
-  &::after{
-    content: '';
+  @include positionAbsolute;
 
-    position: absolute;
-    top: 10px;
-    right: 0;
-    transform: rotate(45deg);
+  padding: 7px 10px;
 
-    width: 23px;
-    height: 2px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 100%;
 
-    background: #000000;
-
-    transition: .3s all ease;
-  }
-  &:hover{
-    cursor: pointer;
-
-  }
+  border-radius: 2px;
 }
