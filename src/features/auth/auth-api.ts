@@ -23,30 +23,39 @@ export const authAPI = {
   },
   updateProfileName(data: UpdateProfileName) {
     return instance.put<'', AxiosResponse<ResponseProfileUserType>, UpdateProfileName>(
-      '/auth/me',
+      'auth/me',
       data
     )
   },
   registration(data: RegisterType) {
-    return instance.post('https://neko-back.herokuapp.com/2.0/auth/register', data)
+    return instance.post('auth/register', data)
+    // return instance.post('https://neko-back.herokuapp.com/2.0/auth/register', data)
   },
   logout() {
     return instance.delete<ResponseType>('auth/me')
   },
   forgotPassword(email: string) {
     return axios.post<'', CommonForgotPasswordType>(
-      'https://neko-back.herokuapp.com/2.0/auth/forgot',
+      'auth/forgot',
       { email, ...payload }
+      // return axios.post<'', CommonForgotPasswordType>(
+      //  'https://neko-back.herokuapp.com/2.0/auth/forgot',
+      //  { email, ...payload }
     )
   },
   setNewPassword(password: string, resetPasswordToken: string) {
-    return instance.post<'', CommonForgotPasswordType>(
-      'https://neko-back.herokuapp.com/2.0/auth/set-new-password',
-      {
-        password,
-        resetPasswordToken,
-      }
-    )
+    return instance.post<'', CommonForgotPasswordType>('auth/set-new-password', {
+      password,
+      resetPasswordToken,
+    })
+
+    // return instance.post<'', CommonForgotPasswordType>(
+    // 'https://neko-back.herokuapp.com/2.0/auth/set-new-password',
+    // {
+    //  password,
+    //  resetPasswordToken,
+    // }
+    //)
   },
   me() {
     return instance.post('auth/me')
