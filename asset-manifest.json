@@ -1,21 +1,22 @@
 {
   "files": {
-    "main.css": "/cards/static/css/main.45b04c5d.css",
-    "main.js": "/cards/static/js/main.3d5e47c1.js",
+    "main.css": "/cards/static/css/main.524180e6.css",
+    "main.js": "/cards/static/js/main.f3ade14d.js",
     "static/media/profile_photo.jpg": "/cards/static/media/profile_photo.ebc6876edbbd113ce2dd.jpg",
     "static/media/Montserrat-SemiBold.ttf": "/cards/static/media/Montserrat-SemiBold.d5e0cc788cba9ced1fb9.ttf",
     "static/media/Montserrat-Medium.ttf": "/cards/static/media/Montserrat-Medium.c86e3b9010ff63c99166.ttf",
     "static/media/Montserrat-Regular.ttf": "/cards/static/media/Montserrat-Regular.ceb11275ab638627a643.ttf",
+    "static/media/check-email.svg": "/cards/static/media/check-email.cdfba66fde5a43fa07de20848a33be02.svg",
     "static/media/LogoCards.svg": "/cards/static/media/LogoCards.66aa37dd1366aaf98fa95be1206c3b1e.svg",
     "static/media/visibility-off.svg": "/cards/static/media/visibility-off.583e41f16dd351b9c1a6a3b582409bbc.svg",
     "index.html": "/cards/index.html",
     "static/media/checked.svg": "/cards/static/media/checked.b75ca55e8759862b4083.svg",
     "static/media/visibility-on.svg": "/cards/static/media/visibility-on.12e5300f66908a6f62fcbc9e19980293.svg",
-    "main.45b04c5d.css.map": "/cards/static/css/main.45b04c5d.css.map",
-    "main.3d5e47c1.js.map": "/cards/static/js/main.3d5e47c1.js.map"
+    "main.524180e6.css.map": "/cards/static/css/main.524180e6.css.map",
+    "main.f3ade14d.js.map": "/cards/static/js/main.f3ade14d.js.map"
   },
   "entrypoints": [
-    "static/css/main.45b04c5d.css",
-    "static/js/main.3d5e47c1.js"
+    "static/css/main.524180e6.css",
+    "static/js/main.f3ade14d.js"
   ]
 }
