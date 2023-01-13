@@ -44,6 +44,8 @@ export const App = () => {
             <Route path="/password" element={<ForgotPassword />} />
             <Route path="/checkEmail" element={<CheckEmail />} />
             <Route path="/set-new-password/:token" element={<SetNewPassword />} />
+            <Route path="404" element={<div>404: Page not found</div>} />
+            <Route path="*" element={<Navigate to="404" />} />
           </Routes>
         </div>
       </div>
