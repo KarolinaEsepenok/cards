@@ -5,7 +5,7 @@
 .inputContainer {
   position: relative;
 
-  width:fit-content;
+  width: fit-content;
 }
 
 .input {
@@ -21,9 +21,16 @@
   padding: 5px;
 
   background: transparent;
-  border:none;
+  border: none;
   border-bottom: 2px solid #aeaeae;
   outline: none;
+
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 0px transparent;
+
+    transition: background-color 5000s ease-in-out 0s;
+
+  }
 }
 
 .input::placeholder {
@@ -35,11 +42,13 @@
 
 .label {
 
-@include label1();
+  @include label1();
 
   display: block;
 
   margin: 0;
+
+  text-align: start;
 
   opacity: 0.5;
 }
@@ -50,9 +59,9 @@
   bottom: 8px;
 }
 
-.error{
+.error {
 
-@include title(600, 100%);
+  @include title(600, 100%);
 
   margin: 6px 5px;
 

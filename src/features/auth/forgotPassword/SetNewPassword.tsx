@@ -4,7 +4,7 @@ import { Button, FormControl, FormGroup } from '@mui/material'
 import { useFormik } from 'formik'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { InputM } from '../../../common/component/Input/InputM'
+import { Input } from '../../../common/component/Input/Input'
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../../common/hooks/useAppSelector'
 import s from '../signIn/signIn.module.scss'
@@ -50,14 +50,19 @@ export const SetNewPassword = () => {
         <FormControl>
           <FormGroup>
             <div className={s.label}>
-              <label className={s.loginNameLabel} htmlFor={'password'}>
+              {/* <label className={s.loginNameLabel} htmlFor={'password'}>
                 Password
-              </label>
-              <InputM label={'Password'} id={'password'} {...formik.getFieldProps('password')} />
+              </label>*/}
+              <Input
+                type="password"
+                error={formik.errors.password}
+                label="Password"
+                {...formik.getFieldProps('password')}
+              />
               {/*<Input type="password" id="password" {...formik.getFieldProps('password')} />*/}
-              {formik.touched.password && formik.errors.password ? (
+              {/*{formik.touched.password && formik.errors.password ? (
                 <div style={{ color: 'red' }}>{formik.errors.password}</div>
-              ) : null}
+              ) : null}*/}
               <div style={{ color: 'black', opacity: 0.5 }}>
                 Create new password and we will send ypu further instructions to email
               </div>

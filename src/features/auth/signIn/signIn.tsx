@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
 
-import { Button, FormControl, FormGroup } from '@mui/material'
+import { FormControl, FormGroup } from '@mui/material'
 import { useFormik } from 'formik'
 import { NavLink, useNavigate } from 'react-router-dom'
 
+import { Button } from '../../../common/component/Button/Button'
 import { Checkbox } from '../../../common/component/Checkbox/Checkbox'
 import { Input } from '../../../common/component/Input/Input'
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../../common/hooks/useAppSelector'
-import reg from '../../register/registration.module.scss'
 import { authTC } from '../authReducer'
 
 import s from './signIn.module.scss'
@@ -59,10 +59,6 @@ const SignIn: React.FC = () => {
     }
   }, [isLoggedIn])
 
-  const navigatInRegistration = () => {
-    navigate('/register')
-  }
-
   return (
     <div className={s.loginContainer}>
       <h1 className={s.loginNameContainer}>Sign In</h1>
@@ -70,20 +66,25 @@ const SignIn: React.FC = () => {
         <FormControl>
           <FormGroup>
             <div className={s.label}>
-              <label className={s.loginNameLabel} htmlFor={'email'}>
-                Email
-              </label>
-              <Input type="email" id="email" {...formik.getFieldProps('email')} />{' '}
-              {formik.touched.email && formik.errors.email ? (
+              <Input
+                type="email"
+                label="Email"
+                error={formik.errors.email}
+                {...formik.getFieldProps('email')}
+              />{' '}
+              {/* {formik.touched.email && formik.errors.email ? (
                 <div className={s.loginError}>{formik.errors.email}</div>
               ) : null}
-              <label className={s.loginNameLabel} htmlFor={'password'}>
-                Password
-              </label>
-              <Input type="password" id={'password'} {...formik.getFieldProps('password')} />
-              {formik.touched.password && formik.errors.password ? (
+             */}
+              <Input
+                type="password"
+                label="Password"
+                error={formik.errors.password}
+                {...formik.getFieldProps('password')}
+              />
+              {/* {formik.touched.password && formik.errors.password ? (
                 <div className={s.passwordError}>{formik.errors.password}</div>
-              ) : null}
+              ) : null}*/}
             </div>
             <div className={s.remember}>
               <label htmlFor={'rememberMe'}>Remember me</label>
@@ -96,12 +97,7 @@ const SignIn: React.FC = () => {
             <NavLink className={s.forgotPassword} to={'/password'}>
               Forgot password?
             </NavLink>
-            <Button
-              type={'submit'}
-              variant={'contained'}
-              color={'primary'}
-              sx={{ marginTop: 3, fontFamily: 'Montserrat' }}
-            >
+            <Button type={'submit'} styleType="primary">
               Sign In
             </Button>
           </FormGroup>
@@ -109,9 +105,7 @@ const SignIn: React.FC = () => {
       </form>
       <div className={s.loginQuestion}>Do not have an account?</div>
 
-      <Button className={reg.btn_signin} onClick={navigatInRegistration}>
-        Sign Up
-      </Button>
+      <NavLink to="/register">Sign Up</NavLink>
     </div>
   )
 }

@@ -4,7 +4,7 @@ import { Button, FormControl, FormGroup } from '@mui/material'
 import { useFormik } from 'formik'
 import { NavLink, useNavigate } from 'react-router-dom'
 
-import { InputM } from '../../../common/component/Input/InputM'
+import { Input } from '../../../common/component/Input/Input'
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../../common/hooks/useAppSelector'
 import s from '../signIn/signIn.module.scss'
@@ -52,14 +52,19 @@ export const ForgotPassword = () => {
         <FormControl>
           <FormGroup>
             <div className={s.label}>
-              <label className={s.loginNameLabel} htmlFor={'email'}>
+              {/* <label className={s.loginNameLabel} htmlFor={'email'}>
                 Email
-              </label>
-              <InputM label={'email'} id={'email'} {...formik.getFieldProps('email')} />
-              {/*<Input type="email" id="email" {...formik.getFieldProps('email')} />*/}
+              </label>*/}
+              <Input
+                label="email"
+                type="email"
+                error={formik.errors.email}
+                {...formik.getFieldProps('email')}
+              />
+              {/*<Input type="email" id="email" {...formik.getFieldProps('email')} />
               {formik.touched.email && formik.errors.email ? (
                 <div style={{ color: 'red' }}>{formik.errors.email}</div>
-              ) : null}
+              ) : null}*/}
 
               <div style={{ color: 'black', opacity: 0.5 }}>
                 Enter your email address and we will send you further instructions
