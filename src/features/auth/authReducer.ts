@@ -18,7 +18,7 @@ export const authTC = createAsyncThunk<void, LoginDataType, { dispatch: AppDispa
   'auth/authTC',
   async function (values, { dispatch }) {
     dispatch(setIsLoading(true))
-    console.log(values)
+
     try {
       const response = await authAPI.signIn(values)
 
