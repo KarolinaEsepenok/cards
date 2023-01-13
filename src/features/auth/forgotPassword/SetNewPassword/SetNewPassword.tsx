@@ -4,12 +4,12 @@ import { Button, FormControl, FormGroup } from '@mui/material'
 import { useFormik } from 'formik'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { Input } from '../../../common/component/Input/Input'
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
-import { useAppSelector } from '../../../common/hooks/useAppSelector'
+import { Input } from '../../../../common/component/Input/Input'
+import { useAppDispatch } from '../../../../common/hooks/useAppDispatch'
+import { useAppSelector } from '../../../../common/hooks/useAppSelector'
+import { ErrorsType } from '../ForgotPassword'
+import { changePasswordSuccess, setNewPasswordTC } from '../forgotPassword-reducer'
 
-import { ErrorsType } from './ForgotPassword'
-import { changePasswordSuccess, setNewPasswordTC } from './forgotPassword-reducer'
 import s from './SetNewPassword.module.scss'
 
 export const SetNewPassword = () => {

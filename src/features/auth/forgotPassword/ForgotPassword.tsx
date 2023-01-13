@@ -48,8 +48,8 @@ export const ForgotPassword = () => {
   return (
     <section className={s.container}>
       <div className={s.popup}>
-        <form onSubmit={formik.handleSubmit} className={s.formContainer}>
-          <h2 className={s.title}>Forgot your password?</h2>
+        <h2 className={s.title}>Forgot your password?</h2>
+        <form onSubmit={formik.handleSubmit} className={s.form}>
           <div className={s.inputContainer}>
             <Input
               className={s.input}

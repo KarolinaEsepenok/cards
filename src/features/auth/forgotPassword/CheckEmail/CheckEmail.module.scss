@@ -1,0 +1,30 @@
+@import "../../../../common/style/variables";
+
+@import "../../../../common/style/mixins";
+
+.container {
+  display: flex;
+  justify-content: center;
+
+  margin-top: 60px;
+}
+
+.popup {
+
+  @include popup();
+}
+
+.emailImg {
+  margin: 30px 0;
+}
+
+.subtitle {
+
+  @include subtitle($opacity:0.5);
+
+  margin-bottom: 40px;
+}
+
+.button {
+  width: 100%;
+}
