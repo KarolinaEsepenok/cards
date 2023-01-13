@@ -64,49 +64,47 @@ export const Register = () => {
   }
 
   return (
-    <div>
-      <div className={profile.profile_wrapper}>
-        <h2 className={profile.profile_title}>Sign Up</h2>
+    <div className={profile.profile_wrapper}>
+      <h2 className={profile.profile_title}>Sign Up</h2>
 
-        <form onSubmit={formik.handleSubmit}>
-          <div>
-            <Input
-              className={s.input}
-              type="email"
-              label="Email"
-              error={formik.touched.email ? formik.errors.email : ''}
-              {...formik.getFieldProps('email')}
-            />
-          </div>
-          <div>
-            <Input
-              className={s.input}
-              type="password"
-              label="Password"
-              error={formik.touched.password ? formik.errors.password : ''}
-              {...formik.getFieldProps('password')}
-            />
-          </div>
-          <div className={s.input_box}>
-            <Input
-              className={s.input}
-              type="password"
-              label="ConfirmPassword"
-              error={formik.touched.confirmPassword ? formik.errors.confirmPassword : ''}
-              {...formik.getFieldProps('confirmPassword')}
-            />
-          </div>
+      <form onSubmit={formik.handleSubmit}>
+        <div>
+          <Input
+            className={s.input}
+            type="email"
+            label="Email"
+            error={formik.touched.email ? formik.errors.email : ''}
+            {...formik.getFieldProps('email')}
+          />
+        </div>
+        <div>
+          <Input
+            className={s.input}
+            type="password"
+            label="Password"
+            error={formik.touched.password ? formik.errors.password : ''}
+            {...formik.getFieldProps('password')}
+          />
+        </div>
+        <div className={s.input_box}>
+          <Input
+            className={s.input}
+            type="password"
+            label="ConfirmPassword"
+            error={formik.touched.confirmPassword ? formik.errors.confirmPassword : ''}
+            {...formik.getFieldProps('confirmPassword')}
+          />
+        </div>
 
-          <Button styleType={'primary'} className={s.btn_signup}>
-            Sign Up
-          </Button>
-        </form>
-        <div className={s.have_acc}>Already have an account?</div>
+        <Button styleType={'primary'} className={s.btn_signup}>
+          Sign Up
+        </Button>
+      </form>
+      <div className={s.have_acc}>Already have an account?</div>
 
-        <NavLink to="/signIn" className={s.signin}>
-          Sign In
-        </NavLink>
-      </div>
+      <NavLink to="/signIn" className={s.signin}>
+        Sign In
+      </NavLink>
     </div>
   )
 }

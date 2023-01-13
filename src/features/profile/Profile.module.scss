@@ -12,7 +12,7 @@
 
     width: 100%;
     max-width: 413px;
-    margin: 12px auto 0;
+    margin: 100px auto 0;
     padding: 27px 15px 36px;
 
     background-color: #ffffff;
@@ -23,7 +23,7 @@
   //profile_title
   &_title {
 
-    @include headline2;
+    @include headline1();
 
     margin-bottom: 30px;
 
