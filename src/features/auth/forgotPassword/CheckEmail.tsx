@@ -4,14 +4,13 @@ import { Button, FormControl, FormGroup } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppSelector } from '../../../common/hooks/useAppSelector'
-import s from '../signIn/signIn.module.scss'
 
 export const CheckEmail = () => {
   const email = useAppSelector(state => state.password.currenEmail)
   const navigate = useNavigate()
 
   return (
-    <div className={s.loginContainer}>
+    <div>
       <h1 style={{ color: 'black' }}>Check your email</h1>
       <form>
         <FormControl>

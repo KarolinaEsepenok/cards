@@ -21,6 +21,7 @@ type SuperInputTextPropsType = Omit<DefaultInputPropsType, 'type'> & {
   error?: string
   textChange?: boolean
   textChangeBtnCallback?: (e: any) => void
+  className?: string
 }
 export const Input: React.FC<SuperInputTextPropsType> = ({
   type,
@@ -28,6 +29,7 @@ export const Input: React.FC<SuperInputTextPropsType> = ({
   error,
   textChange,
   textChangeBtnCallback,
+  className,
   ...restProps
 }) => {
   const [typeLabel, setTypeLabel] = useState(type)
@@ -48,6 +50,8 @@ export const Input: React.FC<SuperInputTextPropsType> = ({
     passwordVisible ? setTypeLabel('text') : setTypeLabel(type)
   }, [passwordVisible])
 
+  const inputClasses = `${s.input} ${className ? className : ''}`
+
   return (
     <>
       <div className={s.inputContainer}>
@@ -59,21 +63,21 @@ export const Input: React.FC<SuperInputTextPropsType> = ({
         <input
           value={currentValue}
           type={typeLabel}
-          className={s.input}
+          className={inputClasses}
           id={label}
           onChange={inputOnChange}
           {...restProps}
         />
-        {type === 'password' && (
-          <span>
+        <div>
+          {type === 'password' && (
             <img
               alt="password visibility icon"
               className={s.visibilityIcon}
               src={passwordVisible ? visibilityOff : visibilityOn}
               onClick={togglePasswordVisible}
             />
-          </span>
-        )}
+          )}
+        </div>
         {textChange && (
           <Button
             styleType="primary"
@@ -84,7 +88,9 @@ export const Input: React.FC<SuperInputTextPropsType> = ({
           </Button>
         )}
       </div>
-      {error && <p className={s.error}>{error}</p>}
+      {!textChange && (
+        <div className={s.errorContainer}>{error && <p className={s.error}>{error}</p>}</div>
+      )}
     </>
   )
 }

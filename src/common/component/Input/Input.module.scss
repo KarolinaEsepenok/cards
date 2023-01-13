@@ -24,20 +24,18 @@
   border: none;
   border-bottom: 2px solid #aeaeae;
   outline: none;
+  &::placeholder {
+    font-size: 16px;
+    font-weight: 400;
+
+    opacity: 0.5;
+  }
 
   &:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 0px transparent;
+    -webkit-box-shadow: 0 0 0 0 transparent;
 
     transition: background-color 5000s ease-in-out 0s;
-
   }
-}
-
-.input::placeholder {
-  font-size: 16px;
-  font-weight: 400;
-
-  opacity: 0.5;
 }
 
 .label {
@@ -58,14 +56,19 @@
   right: 0;
   bottom: 8px;
 }
-
+.errorContainer {
+  width: 100%;
+  height: 20px;
+}
 .error {
 
-  @include title(600, 100%);
+  @include subtitle(500, 100%);
 
-  margin: 6px 5px;
+  margin: 0;
+  padding: 6px 5px;
 
   color: $warn-color;
+  text-align: start;
 }
 
 .visibilityIcon {
