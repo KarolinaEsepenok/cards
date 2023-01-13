@@ -66,7 +66,8 @@
 
   @include subtitle(500, 100%);
 
-  margin: 6px 5px;
+  margin: 0;
+  padding: 6px 5px;
 
   color: $warn-color;
   text-align: start;
