@@ -67,12 +67,14 @@ const SignIn: React.FC = () => {
           <FormGroup>
             <div className={s.label}>
               <Input
+                className={s.input}
                 type="email"
                 label="Email"
                 error={formik.touched.email ? formik.errors.email : ''}
                 {...formik.getFieldProps('email')}
               />
               <Input
+                className={s.input}
                 type="password"
                 label="Password"
                 error={formik.touched.password ? formik.errors.password : ''}

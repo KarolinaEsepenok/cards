@@ -2,14 +2,16 @@
 
 @import "../../../common/style/variables";
 
+.input {
+  width: $popup-input-width;
+}
 .loginContainer {
   display: flex;
   flex-direction: column;
 
   width: 413px;
   height: 528px;
-  margin: 0 auto;
-  margin-top: 100px;
+  margin: 100px auto 0 auto;
 
   text-align: center;
 
@@ -57,16 +59,6 @@
         transition: .3s all ease;
       }
     }
-
-    .loginNameLabel {
-
-      // @include text(13px, 400, 120%, 0.5);
-
-      align-self: start;
-
-      marging-left: 60px;
-    }
-
   }
 
   .loginError {
@@ -134,9 +126,6 @@
 }
 
 .forgotPassword {
-
-  // @include text(14px, 500, 105%, 1);
-
   height: 36px;
   margin-bottom: 15px;
 
@@ -148,30 +137,13 @@
   }
 }
 
-.loginBtn {
-  margin-top: 30px;
-  margin-top: 60px;
-  margin-bottom: 31px;
-
-  color: #FFFFFF;
-
-  background-color: #1976d2;
-  border: 1px solid #1976d2;
-  border-radius: 30px;
-}
 
 .loginQuestion {
-
-  //  @include text(14px, 600, 141%, 0.5);
-
   margin-top: 31px;
   margin-bottom: 13px;
 }
 
 .loginLink {
-
-  // @include text(16px, 600, 110%, 1);
-
   color: #1976d2;
 
   &:hover {
