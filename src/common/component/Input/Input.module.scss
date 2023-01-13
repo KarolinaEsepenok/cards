@@ -24,20 +24,18 @@
   border: none;
   border-bottom: 2px solid #aeaeae;
   outline: none;
+  &::placeholder {
+    font-size: 16px;
+    font-weight: 400;
+
+    opacity: 0.5;
+  }
 
   &:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 0 transparent;
 
     transition: background-color 5000s ease-in-out 0s;
-
   }
-}
-
-.input::placeholder {
-  font-size: 16px;
-  font-weight: 400;
-
-  opacity: 0.5;
 }
 
 .label {
