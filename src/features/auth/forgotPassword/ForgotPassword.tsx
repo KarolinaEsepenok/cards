@@ -22,7 +22,6 @@ export const ForgotPassword = () => {
   const formik = useFormik({
     initialValues: {
       email: '',
-      password: '',
     },
     validate: values => {
       const errors: ErrorsType = {}

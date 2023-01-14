@@ -1,6 +1,7 @@
 import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit'
+import axios from 'axios'
 
-import { setError, setIsLoggedIn } from '../../app/app-reducer'
+import { setError, setIsLoading, setIsLoggedIn } from '../../app/app-reducer'
 import { authAPI, RegisterType } from '../auth/auth-api'
 
 const initialState = {
@@ -21,18 +22,26 @@ export const { registerAC } = slice.actions
 export const registerReducer = slice.reducer
 
 export const registerTC = (data: RegisterType) => async (dispatch: Dispatch) => {
+  dispatch(setIsLoading(true))
   try {
     const res = await authAPI.registration(data)
 
     if (res) {
       dispatch(registerAC({ data: true }))
     }
-  } catch (error) {
-    dispatch(setError(error))
+  } catch (e) {
+    if (axios.isAxiosError<{ error: string }>(e)) {
+      const error = e.response ? e.response.data.error : 'Something wrong'
+
+      dispatch(setError(error))
+    }
+  } finally {
+    dispatch(setIsLoading(false))
   }
 }
 
 export const logoutTC = () => async (dispatch: Dispatch) => {
+  dispatch(setIsLoading(true))
   try {
     const res = await authAPI.logout()
 
@@ -40,7 +49,13 @@ export const logoutTC = () => async (dispatch: Dispatch) => {
       // dispatch(setAppInitialized(false))
       dispatch(setIsLoggedIn(false))
     }
-  } catch (error) {
-    dispatch(setError(error))
+  } catch (e) {
+    if (axios.isAxiosError<{ error: string }>(e)) {
+      const error = e.response ? e.response.data.error : 'Something wrong'
+
+      dispatch(setError(error))
+    }
+  } finally {
+    dispatch(setIsLoading(false))
   }
 }

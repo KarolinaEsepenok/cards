@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import axios from 'axios'
 
 import { setError, setIsLoading, setIsLoggedIn } from '../../app/app-reducer'
 import { RootStateType } from '../../app/store'
@@ -31,8 +32,12 @@ export const authTC = createAsyncThunk<void, LoginDataType, { dispatch: AppDispa
         )
         dispatch(setIsLoggedIn(true))
       }
-    } catch (error) {
-      dispatch(setError('not valid email/password /ᐠ-ꞈ-ᐟ\\'))
+    } catch (e) {
+      if (axios.isAxiosError<{ error: string }>(e)) {
+        const error = e.response ? e.response.data.error : 'Something wrong'
+
+        dispatch(setError(error))
+      }
     } finally {
       dispatch(setIsLoading(false))
     }
@@ -53,8 +58,12 @@ export const updateProfileNameTC =
       const res = await authAPI.updateProfileName(apiModel)
 
       dispatch(updateProfileNameAC({ data: res.data }))
-    } catch (error) {
-      dispatch(setError(error))
+    } catch (e) {
+      if (axios.isAxiosError<{ error: string }>(e)) {
+        const error = e.response ? e.response.data.error : 'Something wrong'
+
+        dispatch(setError(error))
+      }
     } finally {
       dispatch(setIsLoading(false))
     }
