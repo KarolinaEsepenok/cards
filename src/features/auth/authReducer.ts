@@ -2,10 +2,10 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 import { setError, setIsLoading, setIsLoggedIn } from '../../app/app-reducer'
-import { RootStateType } from '../../app/store'
+import { AppThunk } from '../../common/hooks/AppThunk'
 import { AppDispatchType } from '../../common/hooks/useAppDispatch'
 
-import { authAPI, LoginDataType, ResponseProfileUserType, UpdateProfileName } from './auth-api'
+import { authAPI, RequestLoginType, ResponseProfileUserType, UpdateProfileName } from './auth-api'
 
 const initialState = {
   email: '' as null | string,
@@ -15,7 +15,7 @@ const initialState = {
   avatar: '',
 }
 
-export const authTC = createAsyncThunk<void, LoginDataType, { dispatch: AppDispatchType }>(
+export const authTC = createAsyncThunk<void, RequestLoginType, { dispatch: AppDispatchType }>(
   'auth/authTC',
   async function (values, { dispatch }) {
     dispatch(setIsLoading(true))
@@ -45,7 +45,8 @@ export const authTC = createAsyncThunk<void, LoginDataType, { dispatch: AppDispa
 )
 
 export const updateProfileNameTC =
-  (data: UpdateProfileName) => async (dispatch: AppDispatchType, getState: () => RootStateType) => {
+  (data: UpdateProfileName): AppThunk =>
+  async (dispatch, getState) => {
     dispatch(setIsLoading(true))
     try {
       const profileData = getState()
