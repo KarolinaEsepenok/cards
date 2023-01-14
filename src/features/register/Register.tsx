@@ -7,7 +7,8 @@ import { Button } from '../../common/component/Button/Button'
 import { Input } from '../../common/component/Input/Input'
 import { useAppDispatch } from '../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../common/hooks/useAppSelector'
-import { registerSelector } from '../../common/Selectors/Selectors'
+import { PATH } from '../../common/routes/routes'
+import { registerSelector } from '../../common/selectors/Selectors'
 import profile from '../profile/Profile.module.scss'
 
 import { registerTC } from './registerReducer'
@@ -60,7 +61,7 @@ export const Register = () => {
   })
 
   if (register) {
-    return <Navigate to={'/signIn'} />
+    return <Navigate to={PATH.SIGN_IN} />
   }
 
   return (

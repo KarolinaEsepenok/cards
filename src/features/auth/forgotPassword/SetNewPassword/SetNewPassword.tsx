@@ -7,7 +7,8 @@ import { Button } from '../../../../common/component/Button/Button'
 import { Input } from '../../../../common/component/Input/Input'
 import { useAppDispatch } from '../../../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../../../common/hooks/useAppSelector'
-import { changePasswordSelector } from '../../../../common/Selectors/Selectors'
+import { PATH } from '../../../../common/routes/routes'
+import { changePasswordSelector } from '../../../../common/selectors/Selectors'
 import { ErrorsType } from '../ForgotPassword'
 import { changePasswordSuccess, setNewPasswordTC } from '../forgotPassword-reducer'
 
@@ -40,8 +41,8 @@ export const SetNewPassword = () => {
   })
 
   if (onChangePasswordSuccess) {
-    dispatch(changePasswordSuccess({ data: false }))
-    navigate('/signIn')
+    dispatch(changePasswordSuccess(false))
+    navigate(PATH.SIGN_IN)
   }
 
   return (

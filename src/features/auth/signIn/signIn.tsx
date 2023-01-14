@@ -9,7 +9,8 @@ import { Checkbox } from '../../../common/component/Checkbox/Checkbox'
 import { Input } from '../../../common/component/Input/Input'
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../../common/hooks/useAppSelector'
-import { isLoggedInSelector } from '../../../common/Selectors/Selectors'
+import { PATH } from '../../../common/routes/routes'
+import { isLoggedInSelector } from '../../../common/selectors/Selectors'
 import { authTC } from '../authReducer'
 
 import s from './signIn.module.scss'
@@ -20,7 +21,7 @@ interface FormikErrorType {
   rememberMe?: boolean
 }
 
-const SignIn = () => {
+export const SignIn = () => {
   const isLoggedIn = useAppSelector(isLoggedInSelector)
   const dispatch = useAppDispatch()
 
@@ -54,7 +55,7 @@ const SignIn = () => {
   })
 
   if (isLoggedIn) {
-    return <Navigate to={'/profile'} />
+    return <Navigate to={PATH.PROFILE} />
   }
 
   return (
@@ -103,11 +104,9 @@ const SignIn = () => {
       </form>
       <div className={s.loginQuestion}>Don`t have an account?</div>
 
-      <NavLink className={s.loginLink} to="/register">
+      <NavLink className={s.loginLink} to={PATH.REGISTER}>
         Sign Up
       </NavLink>
     </div>
   )
 }
-
-export default SignIn

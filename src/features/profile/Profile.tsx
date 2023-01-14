@@ -5,7 +5,7 @@ import ava from '../../assets/img/profile_photo.jpg'
 import { Button } from '../../common/component/Button/Button'
 import { useAppDispatch } from '../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../common/hooks/useAppSelector'
-import { emailSelector, nameSelector } from '../../common/Selectors/Selectors'
+import { emailSelector, nameSelector } from '../../common/selectors/Selectors'
 import { logoutTC } from '../register/registerReducer'
 
 import profile from './Profile.module.scss'

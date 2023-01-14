@@ -22,24 +22,26 @@ const slice = createSlice({
 export const { registerAC } = slice.actions
 export const registerReducer = slice.reducer
 
-export const registerTC = (data: RequestRegisterType) => async (dispatch: Dispatch) => {
-  dispatch(setIsLoading(true))
-  try {
-    const res = await authAPI.registration(data)
+export const registerTC =
+  (data: RequestRegisterType): AppThunk =>
+  async dispatch => {
+    dispatch(setIsLoading(true))
+    try {
+      const res = await authAPI.registration(data)
 
-    if (res) {
-      dispatch(registerAC({ data: true }))
-    }
-  } catch (e) {
-    if (axios.isAxiosError<{ error: string }>(e)) {
-      const error = e.response ? e.response.data.error : 'Something wrong'
+      if (res) {
+        dispatch(registerAC({ data: true }))
+      }
+    } catch (e) {
+      if (axios.isAxiosError<{ error: string }>(e)) {
+        const error = e.response ? e.response.data.error : 'Something wrong'
 
-      dispatch(setError(error))
+        dispatch(setError(error))
+      }
+    } finally {
+      dispatch(setIsLoading(false))
     }
-  } finally {
-    dispatch(setIsLoading(false))
   }
-}
 
 export const logoutTC = (): AppThunk => async dispatch => {
   dispatch(setIsLoading(true))
@@ -47,7 +49,6 @@ export const logoutTC = (): AppThunk => async dispatch => {
     const res = await authAPI.logout()
 
     if (res) {
-      // dispatch(setAppInitialized(false))
       dispatch(setIsLoggedIn(false))
     }
   } catch (e) {

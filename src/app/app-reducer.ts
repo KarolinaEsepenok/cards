@@ -22,7 +22,7 @@ export const initializeAppTC = (): AppThunk => async dispatch => {
     dispatch(setIsLoggedIn(true))
   } catch (e) {
     if (axios.isAxiosError<{ error: string }>(e)) {
-      const error = e.response ? e.response.data.error : 'Something wrong'
+      e.response ? e.response.data.error : 'Something wrong'
     }
   } finally {
     dispatch(setAppInitialized(true))

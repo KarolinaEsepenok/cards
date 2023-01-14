@@ -8,3 +8,4 @@ export const forgotPasswordSelector = (state: RootStateType) => state.password.f
 export const changePasswordSelector = (state: RootStateType) => state.password.changePasswordSuccess
 export const currentEmailSelector = (state: RootStateType) => state.password.currentEmail
 export const registerSelector = (state: RootStateType) => state.register.register
+export const isLoadingSelector = (state: RootStateType) => state.app.isLoading

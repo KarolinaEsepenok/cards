@@ -78,7 +78,7 @@ const slice = createSlice({
       state.email = action.payload.email
       state.name = action.payload.name
     },
-    setNewPassword: (state, action) => {
+    setNewPassword: (state, action: PayloadAction<string>) => {
       state.password = action.payload
     },
     updateProfileNameAC(state, action: PayloadAction<{ data: ResponseProfileUserType }>) {

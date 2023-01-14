@@ -20,8 +20,8 @@ const slice = createSlice({
       state.forgotPassword = action.payload.data
       state.currentEmail = action.payload.email
     },
-    changePasswordSuccess(state, action: PayloadAction<{ data: boolean }>) {
-      state.changePasswordSuccess = action.payload.data
+    changePasswordSuccess(state, action: PayloadAction<boolean>) {
+      state.changePasswordSuccess = action.payload
     },
   },
 })
@@ -55,7 +55,7 @@ export const setNewPasswordTC = (password: string, token: string | undefined): A
         await authAPI.setNewPassword(password, token)
       }
       dispatch(setNewPassword(password))
-      dispatch(changePasswordSuccess({ data: true }))
+      dispatch(changePasswordSuccess(true))
     } catch (e) {
       if (axios.isAxiosError<{ error: string }>(e)) {
         const error = e.response ? e.response.data.error : 'Something wrong'

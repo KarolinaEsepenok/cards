@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom'
 import checkEmail from '../../../../assets/img/check-email.svg'
 import { Button } from '../../../../common/component/Button/Button'
 import { useAppSelector } from '../../../../common/hooks/useAppSelector'
-import { currentEmailSelector } from '../../../../common/Selectors/Selectors'
+import { PATH } from '../../../../common/routes/routes'
+import { currentEmailSelector } from '../../../../common/selectors/Selectors'
 
 import s from './CheckEmail.module.scss'
 export const CheckEmail = () => {
@@ -23,7 +24,7 @@ export const CheckEmail = () => {
             className={s.button}
             styleType="primary"
             onClick={() => {
-              navigate('/signIn')
+              navigate(PATH.SIGN_IN)
             }}
           >
             Back to login
