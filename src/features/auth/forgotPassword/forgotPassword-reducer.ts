@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { Dispatch } from 'redux'
 
 import { setError, setIsLoading } from '../../../app/app-reducer'
 import { AppThunk } from '../../../common/hooks/AppThunk'
@@ -34,7 +33,7 @@ export const forgotPasswordTC = (forgotPass: boolean, email: string): AppThunk =
   return async dispatch => {
     try {
       dispatch(setIsLoading(true))
-      const response = await authAPI.forgotPassword(email)
+      await authAPI.forgotPassword(email)
 
       dispatch(forgotPassword({ data: forgotPass, email }))
     } catch (e) {
@@ -53,7 +52,7 @@ export const setNewPasswordTC = (password: string, token: string | undefined): A
     dispatch(setIsLoading(true))
     try {
       if (token) {
-        const response = await authAPI.setNewPassword(password, token)
+        await authAPI.setNewPassword(password, token)
       }
       dispatch(setNewPassword(password))
       dispatch(changePasswordSuccess({ data: true }))

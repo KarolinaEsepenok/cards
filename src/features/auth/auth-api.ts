@@ -3,9 +3,7 @@ import axios, { AxiosResponse } from 'axios'
 export const instance = axios.create({
   // baseURL: process.env.REACT_APP_BACK_URL || 'http://localhost:7542/2.0/' ,
   baseURL:
-    process.env.NODE_ENV === 'development'
-      ? 'http://localhost:7542/2.0/'
-      : 'https://neko-back.herokuapp.com/2.0/',
+    process.env.NODE_ENV === 'development' ? 'http://localhost:7542/2.0/' : 'https://neko-back.herokuapp.com/2.0/',
   withCredentials: true,
 })
 const payload = {
@@ -18,60 +16,58 @@ link</a>
 }
 
 export const authAPI = {
-  signIn(loginData: LoginDataType) {
-    return instance.post(`auth/login`, loginData)
+  signIn(loginData: RequestLoginType) {
+    return instance.post<'', AxiosResponse<ResponseUserType>, RequestLoginType>(`auth/login`, loginData)
   },
   updateProfileName(data: UpdateProfileName) {
-    return instance.put<'', AxiosResponse<ResponseProfileUserType>, UpdateProfileName>(
-      'auth/me',
-      data
-    )
+    return instance.put<'', AxiosResponse<ResponseProfileUserType>, UpdateProfileName>('auth/me', data)
   },
-  registration(data: RegisterType) {
-    return instance.post('auth/register', data)
+  registration(data: RequestRegisterType) {
+    return instance.post<'', AxiosResponse<ResponseRegisterType>, RequestRegisterType>('auth/register', data)
     // return instance.post('https://neko-back.herokuapp.com/2.0/auth/register', data)
   },
   logout() {
-    return instance.delete<ResponseType>('auth/me')
+    return instance.delete<'', CommonType>('auth/me')
   },
   forgotPassword(email: string) {
-    return instance.post<'', CommonForgotPasswordType>(
-      'auth/forgot',
-      { email, ...payload }
-      // return axios.post<'', CommonForgotPasswordType>(
-      //  'https://neko-back.herokuapp.com/2.0/auth/forgot',
-      //  { email, ...payload }
-    )
+    return instance.post<'', AxiosResponse<CommonType>, RequestForgotPasswordType>('auth/forgot', { email, ...payload })
   },
   setNewPassword(password: string, resetPasswordToken: string) {
-    return instance.post<'', CommonForgotPasswordType>('auth/set-new-password', {
+    return instance.post<'', AxiosResponse<CommonType>, RequestSetNewPasswordType>('auth/set-new-password', {
       password,
       resetPasswordToken,
     })
-
-    // return instance.post<'', CommonForgotPasswordType>(
-    // 'https://neko-back.herokuapp.com/2.0/auth/set-new-password',
-    // {
-    //  password,
-    //  resetPasswordToken,
-    // }
-    //)
   },
   me() {
-    return instance.post('auth/me')
+    return instance.post<'', AxiosResponse<ResponseUserType>>('auth/me')
   },
 }
 
-export type RegisterType = {
+//types
+export type ResponseRegisterType = {
+  addedUser: {}
+
+  error?: string
+}
+export type RequestRegisterType = {
   email: string
   password: string
 }
+export type RequestForgotPasswordType = {
+  email: string
+  from?: string
 
-type CommonForgotPasswordType = {
-  info: string
-  error: string
+  message: string
 }
-export type LoginDataType = {
+export type RequestSetNewPasswordType = {
+  password: string
+  resetPasswordToken: string
+}
+export type CommonType = {
+  info: string
+  error?: string
+}
+export type RequestLoginType = {
   email: string
   password: string
   rememberMe: boolean
@@ -89,13 +85,10 @@ export type ResponseUserType = {
   rememberMe: boolean
   error?: string
 }
-
 export type UpdateProfileName = {
   name?: string
   avatar?: string
 }
-
-//answer from server
 export type ResponseProfileUserType = {
   updatedUser: ResponseUserType
   error?: ''
