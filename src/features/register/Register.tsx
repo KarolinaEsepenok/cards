@@ -55,7 +55,6 @@ export const Register = () => {
 
     onSubmit: values => {
       dispatch(registerTC(values))
-      formik.resetForm()
     },
   })
 
