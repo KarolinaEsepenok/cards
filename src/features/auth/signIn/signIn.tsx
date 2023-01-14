@@ -42,8 +42,8 @@ const SignIn: React.FC = () => {
 
       if (!values.password) {
         errors.password = 'Password is required'
-      } else if (values.password.length <= 7) {
-        errors.password = 'Password should be longer then 7 symbols!'
+      } else if (values.password.length <= 8) {
+        errors.password = 'Password should be longer then 8 symbols!'
       }
 
       return errors
@@ -92,7 +92,16 @@ const SignIn: React.FC = () => {
             <NavLink className={s.forgotPassword} to={'/password'}>
               Forgot password?
             </NavLink>
-            <Button type={'submit'} styleType="primary">
+            <Button
+              type={'submit'}
+              styleType="primary"
+              disabled={
+                !!formik.errors.password ||
+                !!formik.errors.email ||
+                formik.values.email === '' ||
+                formik.values.password === ''
+              }
+            >
               Sign In
             </Button>
           </FormGroup>

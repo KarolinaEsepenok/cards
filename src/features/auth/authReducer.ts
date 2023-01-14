@@ -41,6 +41,7 @@ export const authTC = createAsyncThunk<void, LoginDataType, { dispatch: AppDispa
 
 export const updateProfileNameTC =
   (data: UpdateProfileName) => async (dispatch: AppDispatchType, getState: () => RootStateType) => {
+    dispatch(setIsLoading(true))
     try {
       const profileData = getState()
 
@@ -54,6 +55,8 @@ export const updateProfileNameTC =
       dispatch(updateProfileNameAC({ data: res.data }))
     } catch (error) {
       dispatch(setError(error))
+    } finally {
+      dispatch(setIsLoading(false))
     }
   }
 
