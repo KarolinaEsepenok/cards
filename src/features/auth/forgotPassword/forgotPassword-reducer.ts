@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Dispatch } from 'redux'
 
 import { setError, setIsLoading } from '../../../app/app-reducer'
+import { AppThunk } from '../../../common/hooks/AppThunk'
 import { authAPI } from '../auth-api'
 import { setNewPassword } from '../authReducer'
 
@@ -29,10 +30,10 @@ const slice = createSlice({
 export const passwordReducer = slice.reducer
 export const { forgotPassword, changePasswordSuccess } = slice.actions
 
-export const forgotPasswordTC = (forgotPass: boolean, email: string) => {
-  return async (dispatch: Dispatch) => {
+export const forgotPasswordTC = (forgotPass: boolean, email: string): AppThunk => {
+  return async dispatch => {
     try {
-      dispatch(setIsLoading({ isLoading: true }))
+      dispatch(setIsLoading(true))
       const response = await authAPI.forgotPassword(email)
 
       dispatch(forgotPassword({ data: forgotPass, email }))
@@ -47,9 +48,9 @@ export const forgotPasswordTC = (forgotPass: boolean, email: string) => {
     }
   }
 }
-export const setNewPasswordTC = (password: string, token: string | undefined) => {
-  return async (dispatch: Dispatch) => {
-    dispatch(setIsLoading({ isLoading: true }))
+export const setNewPasswordTC = (password: string, token: string | undefined): AppThunk => {
+  return async dispatch => {
+    dispatch(setIsLoading(true))
     try {
       if (token) {
         const response = await authAPI.setNewPassword(password, token)

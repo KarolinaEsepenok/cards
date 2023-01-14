@@ -9,8 +9,6 @@ import { appReducer } from './app-reducer'
 export const store = configureStore({
   reducer: {
     app: appReducer,
-    // signIn: signInReducer,
-    // profile: profileReducer,
     password: passwordReducer,
     register: registerReducer,
     auth: authReducer,
