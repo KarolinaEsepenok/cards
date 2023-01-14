@@ -2,7 +2,8 @@ import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 import { setError, setIsLoading, setIsLoggedIn } from '../../app/app-reducer'
-import { authAPI, RegisterType } from '../auth/auth-api'
+import { AppThunk } from '../../common/hooks/AppThunk'
+import { authAPI, RequestRegisterType } from '../auth/auth-api'
 
 const initialState = {
   register: false,
@@ -21,7 +22,7 @@ const slice = createSlice({
 export const { registerAC } = slice.actions
 export const registerReducer = slice.reducer
 
-export const registerTC = (data: RegisterType) => async (dispatch: Dispatch) => {
+export const registerTC = (data: RequestRegisterType) => async (dispatch: Dispatch) => {
   dispatch(setIsLoading(true))
   try {
     const res = await authAPI.registration(data)
@@ -40,7 +41,7 @@ export const registerTC = (data: RegisterType) => async (dispatch: Dispatch) => 
   }
 }
 
-export const logoutTC = () => async (dispatch: Dispatch) => {
+export const logoutTC = (): AppThunk => async dispatch => {
   dispatch(setIsLoading(true))
   try {
     const res = await authAPI.logout()

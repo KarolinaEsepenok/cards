@@ -8,7 +8,7 @@ import { setNewPassword } from '../authReducer'
 
 const initialState = {
   forgotPassword: false,
-  currenEmail: '',
+  currentEmail: '',
   changePasswordSuccess: false,
 }
 
@@ -18,7 +18,7 @@ const slice = createSlice({
   reducers: {
     forgotPassword(state, action: PayloadAction<{ data: boolean; email: string }>) {
       state.forgotPassword = action.payload.data
-      state.currenEmail = action.payload.email
+      state.currentEmail = action.payload.email
     },
     changePasswordSuccess(state, action: PayloadAction<{ data: boolean }>) {
       state.changePasswordSuccess = action.payload.data

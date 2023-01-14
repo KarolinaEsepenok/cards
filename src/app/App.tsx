@@ -6,6 +6,8 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { ErrorSnackbar } from '../common/component/ErrorSnackbar/ErrorSnackbar'
 import { useAppDispatch } from '../common/hooks/useAppDispatch'
 import { useAppSelector } from '../common/hooks/useAppSelector'
+import { PrivateRoutes } from '../common/PrivateRoutes'
+import { isAppInitialize, isLoggedInSelector } from '../common/Selectors/Selectors'
 import { CheckEmail } from '../features/auth/forgotPassword/CheckEmail/CheckEmail'
 import { ForgotPassword } from '../features/auth/forgotPassword/ForgotPassword'
 import { SetNewPassword } from '../features/auth/forgotPassword/SetNewPassword/SetNewPassword'
@@ -18,8 +20,8 @@ import { initializeAppTC } from './app-reducer'
 import s from './App.module.scss'
 
 export const App = () => {
-  const isLoading = useAppSelector(state => state.app.isLoading)
-  const isAppInitialized = useAppSelector(state => state.app.isAppInitialized)
+  const isLoading = useAppSelector(isLoggedInSelector)
+  const isAppInitialized = useAppSelector(isAppInitialize)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
@@ -37,9 +39,11 @@ export const App = () => {
       <div className={s.centerApp}>
         <div>
           <Routes>
+            <Route element={<PrivateRoutes />}>
+              <Route path="/profile" element={<Profile />} />
+            </Route>
             <Route path={'/'} element={<Navigate to={'/signIn'} />} />
             <Route path="/signIn" element={<SignIn />} />
-            <Route path="/profile" element={<Profile />} />
             <Route path="/register" element={<Register />} />
             <Route path="/password" element={<ForgotPassword />} />
             <Route path="/checkEmail" element={<CheckEmail />} />

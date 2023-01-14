@@ -19,15 +19,13 @@ export const initializeAppTC = (): AppThunk => async dispatch => {
     } = await authAPI.me()
 
     dispatch(setSignIn({ email, name }))
-    dispatch(setAppInitialized(true))
     dispatch(setIsLoggedIn(true))
   } catch (e) {
     if (axios.isAxiosError<{ error: string }>(e)) {
       const error = e.response ? e.response.data.error : 'Something wrong'
-
-      dispatch(setError(error))
-      dispatch(setAppInitialized(true))
     }
+  } finally {
+    dispatch(setAppInitialized(true))
   }
 }
 const appSlice = createSlice({

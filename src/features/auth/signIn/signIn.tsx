@@ -1,14 +1,15 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import { FormControl, FormGroup } from '@mui/material'
 import { useFormik } from 'formik'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { Navigate, NavLink } from 'react-router-dom'
 
 import { Button } from '../../../common/component/Button/Button'
 import { Checkbox } from '../../../common/component/Checkbox/Checkbox'
 import { Input } from '../../../common/component/Input/Input'
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../../common/hooks/useAppSelector'
+import { isLoggedInSelector } from '../../../common/Selectors/Selectors'
 import { authTC } from '../authReducer'
 
 import s from './signIn.module.scss'
@@ -19,10 +20,9 @@ interface FormikErrorType {
   rememberMe?: boolean
 }
 
-const SignIn: React.FC = () => {
-  const navigate = useNavigate()
+const SignIn = () => {
+  const isLoggedIn = useAppSelector(isLoggedInSelector)
   const dispatch = useAppDispatch()
-  const isLoggedIn = useAppSelector(state => state.app.isLoggedIn)
 
   const formik = useFormik({
     initialValues: {
@@ -53,11 +53,9 @@ const SignIn: React.FC = () => {
     },
   })
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      navigate('/profile')
-    }
-  }, [isLoggedIn])
+  if (isLoggedIn) {
+    return <Navigate to={'/profile'} />
+  }
 
   return (
     <div className={s.loginContainer}>
@@ -83,11 +81,7 @@ const SignIn: React.FC = () => {
             </div>
             <div className={s.remember}>
               <label htmlFor={'rememberMe'}>Remember me</label>
-              <Checkbox
-                id="rememberMe"
-                {...formik.getFieldProps('rememberMe')}
-                checked={formik.values.rememberMe}
-              />
+              <Checkbox id="rememberMe" {...formik.getFieldProps('rememberMe')} checked={formik.values.rememberMe} />
             </div>
             <NavLink className={s.forgotPassword} to={'/password'}>
               Forgot password?

@@ -7,6 +7,7 @@ import { Button } from '../../common/component/Button/Button'
 import { Input } from '../../common/component/Input/Input'
 import { useAppDispatch } from '../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../common/hooks/useAppSelector'
+import { registerSelector } from '../../common/Selectors/Selectors'
 import profile from '../profile/Profile.module.scss'
 
 import { registerTC } from './registerReducer'
@@ -20,7 +21,7 @@ interface RegisterErrorType {
 }
 
 export const Register = () => {
-  const register = useAppSelector(state => state.register.register)
+  const register = useAppSelector(registerSelector)
   const dispatch = useAppDispatch()
 
   const formik = useFormik({
@@ -90,11 +91,7 @@ export const Register = () => {
             className={s.input}
             type="password"
             label="ConfirmPassword"
-            error={
-              formik.touched.confirmPassword && formik.errors.confirmPassword
-                ? formik.errors.confirmPassword
-                : ''
-            }
+            error={formik.touched.confirmPassword && formik.errors.confirmPassword ? formik.errors.confirmPassword : ''}
             {...formik.getFieldProps('confirmPassword')}
           />
         </div>

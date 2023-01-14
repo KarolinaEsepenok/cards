@@ -5,10 +5,11 @@ import { useNavigate } from 'react-router-dom'
 import checkEmail from '../../../../assets/img/check-email.svg'
 import { Button } from '../../../../common/component/Button/Button'
 import { useAppSelector } from '../../../../common/hooks/useAppSelector'
+import { currentEmailSelector } from '../../../../common/Selectors/Selectors'
 
 import s from './CheckEmail.module.scss'
 export const CheckEmail = () => {
-  const email = useAppSelector(state => state.password.currenEmail)
+  const email = useAppSelector(currentEmailSelector)
   const navigate = useNavigate()
 
   return (
