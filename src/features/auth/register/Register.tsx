@@ -3,12 +3,12 @@ import React from 'react'
 import { useFormik } from 'formik'
 import { Navigate, NavLink } from 'react-router-dom'
 
-import { Button } from '../../common/component/Button/Button'
-import { Input } from '../../common/component/Input/Input'
-import { useAppDispatch } from '../../common/hooks/useAppDispatch'
-import { useAppSelector } from '../../common/hooks/useAppSelector'
-import { PATH } from '../../common/routes/routes'
-import { registerSelector } from '../../common/selectors/Selectors'
+import { Button } from '../../../common/component/Button/Button'
+import { Input } from '../../../common/component/Input/Input'
+import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
+import { useAppSelector } from '../../../common/hooks/useAppSelector'
+import { registerSelector } from '../../../common/selectors/Selectors'
+import { PATH } from '../../../routes/routes'
 import profile from '../profile/Profile.module.scss'
 
 import { registerTC } from './registerReducer'
@@ -63,6 +63,13 @@ export const Register = () => {
   if (register) {
     return <Navigate to={PATH.SIGN_IN} />
   }
+  const buttonDisabled =
+    !!formik.errors.email ||
+    !!formik.errors.password ||
+    !!formik.errors.confirmPassword ||
+    !formik.values.email ||
+    !formik.values.confirmPassword ||
+    !formik.values.password
 
   return (
     <div className={profile.profile_wrapper}>
@@ -97,18 +104,7 @@ export const Register = () => {
           />
         </div>
 
-        <Button
-          styleType={'primary'}
-          className={s.btn_signup}
-          disabled={
-            !!formik.errors.email ||
-            !!formik.errors.password ||
-            !!formik.errors.confirmPassword ||
-            formik.values.email === '' ||
-            formik.values.confirmPassword === '' ||
-            formik.values.password === ''
-          }
-        >
+        <Button styleType={'primary'} className={s.btn_signup} disabled={buttonDisabled}>
           Sign Up
         </Button>
       </form>

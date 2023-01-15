@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom'
 import checkEmail from '../../../../assets/img/check-email.svg'
 import { Button } from '../../../../common/component/Button/Button'
 import { useAppSelector } from '../../../../common/hooks/useAppSelector'
-import { PATH } from '../../../../common/routes/routes'
 import { currentEmailSelector } from '../../../../common/selectors/Selectors'
+import { PATH } from '../../../../routes/routes'
 
 import s from './CheckEmail.module.scss'
 export const CheckEmail = () => {

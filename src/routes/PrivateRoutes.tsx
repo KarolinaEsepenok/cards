@@ -2,8 +2,8 @@ import React from 'react'
 
 import { Navigate, Outlet } from 'react-router-dom'
 
-import { useAppSelector } from './hooks/useAppSelector'
-import { isLoggedInSelector } from './selectors/Selectors'
+import { useAppSelector } from '../common/hooks/useAppSelector'
+import { isLoggedInSelector } from '../common/selectors/Selectors'
 
 export const PrivateRoutes = () => {
   const isAuth = useAppSelector(isLoggedInSelector)

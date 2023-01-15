@@ -1,9 +1,9 @@
 import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-import { setError, setIsLoading, setIsLoggedIn } from '../../app/app-reducer'
-import { AppThunk } from '../../common/hooks/AppThunk'
-import { authAPI, RequestRegisterType } from '../auth/auth-api'
+import { setError, setIsLoading, setIsLoggedIn } from '../../../app/app-reducer'
+import { AppThunk } from '../../../common/hooks/AppThunk'
+import { authAPI, RequestRegisterType } from '../auth-api'
 
 const initialState = {
   register: false,

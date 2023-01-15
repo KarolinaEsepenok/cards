@@ -2,13 +2,14 @@ import React, { useEffect } from 'react'
 
 import { useFormik } from 'formik'
 
-import { Input } from '../../common/component/Input/Input'
-import style from '../../common/component/Input/Input.module.scss'
-import { useAppDispatch } from '../../common/hooks/useAppDispatch'
-import { useAppSelector } from '../../common/hooks/useAppSelector'
-import { updateProfileNameTC } from '../auth/authReducer'
-import s from '../profile/Profile.module.scss'
+import { Input } from '../../../common/component/Input/Input'
+import style from '../../../common/component/Input/Input.module.scss'
+import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
+import { useAppSelector } from '../../../common/hooks/useAppSelector'
+import { updateProfileNameTC } from '../authReducer'
 import reg from '../register/registration.module.scss'
+
+import s from './Profile.module.scss'
 
 type ProfileEditNamePropsType = {
   setEditMode: (value: boolean) => void
@@ -31,7 +32,7 @@ export const ProfileEditName: React.FC<ProfileEditNamePropsType> = ({ setEditMod
     validate: values => {
       const errors: FormikErrorType = {}
 
-      if (!values.name || values.name.trim() === '') {
+      if (!values.name.trim()) {
         errors.name = 'Name is required'
       }
 
