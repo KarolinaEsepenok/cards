@@ -20,6 +20,8 @@ export const searchTC = createAsyncThunk<void, RequestSearchType, { dispatch: Ap
 
       if (response.data.cardPacksTotalCount === 0) {
         dispatch(searchAC(false))
+      } else {
+        dispatch(searchAC(true))
       }
     } catch (e) {
       if (axios.isAxiosError<{ error: string }>(e)) {
