@@ -3,10 +3,12 @@ import React from 'react'
 import { useFormik } from 'formik'
 import { Navigate, NavLink } from 'react-router-dom'
 
-import { Button } from '../../common/component/Button/Button'
-import { Input } from '../../common/component/Input/Input'
-import { useAppDispatch } from '../../common/hooks/useAppDispatch'
-import { useAppSelector } from '../../common/hooks/useAppSelector'
+import { Button } from '../../../common/component/Button/Button'
+import { Input } from '../../../common/component/Input/Input'
+import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
+import { useAppSelector } from '../../../common/hooks/useAppSelector'
+import { registerSelector } from '../../../common/selectors/Selectors'
+import { PATH } from '../../../routes/routes'
 import profile from '../profile/Profile.module.scss'
 
 import { registerTC } from './registerReducer'
@@ -20,7 +22,7 @@ interface RegisterErrorType {
 }
 
 export const Register = () => {
-  const register = useAppSelector(state => state.register.register)
+  const register = useAppSelector(registerSelector)
   const dispatch = useAppDispatch()
 
   const formik = useFormik({
@@ -41,13 +43,13 @@ export const Register = () => {
 
       if (!values.password) {
         errors.password = 'Required'
-      } else if (values.password.length <= 7) {
-        errors.password = 'must be more 7 characters'
+      } else if (values.password.length <= 8) {
+        errors.password = 'must be more 8 characters'
       }
       if (!values.confirmPassword) {
         errors.confirmPassword = 'Required'
       } else if (values.password !== values.confirmPassword) {
-        errors.confirmPassword = 'password should be identical'
+        errors.confirmPassword = 'passwords should be identical'
       }
 
       return errors
@@ -55,13 +57,19 @@ export const Register = () => {
 
     onSubmit: values => {
       dispatch(registerTC(values))
-      formik.resetForm()
     },
   })
 
   if (register) {
-    return <Navigate to={'/signIn'} />
+    return <Navigate to={PATH.SIGN_IN} />
   }
+  const buttonDisabled =
+    !!formik.errors.email ||
+    !!formik.errors.password ||
+    !!formik.errors.confirmPassword ||
+    !formik.values.email ||
+    !formik.values.confirmPassword ||
+    !formik.values.password
 
   return (
     <div className={profile.profile_wrapper}>
@@ -73,7 +81,7 @@ export const Register = () => {
             className={s.input}
             type="email"
             label="Email"
-            error={formik.touched.email ? formik.errors.email : ''}
+            error={formik.touched.email && formik.errors.email ? formik.errors.email : ''}
             {...formik.getFieldProps('email')}
           />
         </div>
@@ -82,7 +90,7 @@ export const Register = () => {
             className={s.input}
             type="password"
             label="Password"
-            error={formik.touched.password ? formik.errors.password : ''}
+            error={formik.touched.password && formik.errors.password ? formik.errors.password : ''}
             {...formik.getFieldProps('password')}
           />
         </div>
@@ -91,12 +99,12 @@ export const Register = () => {
             className={s.input}
             type="password"
             label="ConfirmPassword"
-            error={formik.touched.confirmPassword ? formik.errors.confirmPassword : ''}
+            error={formik.touched.confirmPassword && formik.errors.confirmPassword ? formik.errors.confirmPassword : ''}
             {...formik.getFieldProps('confirmPassword')}
           />
         </div>
 
-        <Button styleType={'primary'} className={s.btn_signup}>
+        <Button styleType={'primary'} className={s.btn_signup} disabled={buttonDisabled}>
           Sign Up
         </Button>
       </form>

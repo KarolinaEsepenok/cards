@@ -1,6 +1,6 @@
-@import "../../common/style/mixins.scss";
+@import "../../../common/style/mixins";
 
-@import "../../common/style/variables.scss";
+@import "../../../common/style/variables";
 
 .profile {
 
@@ -84,7 +84,7 @@
     position: relative;
 
     &::after {
-      content: url('../../assets/img/icons/profil_edit.png');
+      content: url('../../../assets/img/icons/profil_edit.png');
 
       position: absolute;
       top: 50%;
@@ -143,7 +143,7 @@
       //max-width: 127px;
 
       &::after {
-        content: url('../../assets/img/icons/profile_logout.png');
+        content: url('../../../assets/img/icons/profile_logout.png');
 
         position: absolute;
         top: 50%;

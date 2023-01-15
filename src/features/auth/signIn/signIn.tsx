@@ -1,14 +1,16 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import { FormControl, FormGroup } from '@mui/material'
 import { useFormik } from 'formik'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { Navigate, NavLink } from 'react-router-dom'
 
 import { Button } from '../../../common/component/Button/Button'
 import { Checkbox } from '../../../common/component/Checkbox/Checkbox'
 import { Input } from '../../../common/component/Input/Input'
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../../common/hooks/useAppSelector'
+import { isLoggedInSelector } from '../../../common/selectors/Selectors'
+import { PATH } from '../../../routes/routes'
 import { authTC } from '../authReducer'
 
 import s from './signIn.module.scss'
@@ -19,10 +21,9 @@ interface FormikErrorType {
   rememberMe?: boolean
 }
 
-const SignIn: React.FC = () => {
-  const navigate = useNavigate()
+export const SignIn = () => {
+  const isLoggedIn = useAppSelector(isLoggedInSelector)
   const dispatch = useAppDispatch()
-  const isLoggedIn = useAppSelector(state => state.app.isLoggedIn)
 
   const formik = useFormik({
     initialValues: {
@@ -42,8 +43,8 @@ const SignIn: React.FC = () => {
 
       if (!values.password) {
         errors.password = 'Password is required'
-      } else if (values.password.length <= 7) {
-        errors.password = 'Password should be longer then 7 symbols!'
+      } else if (values.password.length <= 8) {
+        errors.password = 'Password should be longer then 8 symbols!'
       }
 
       return errors
@@ -53,11 +54,9 @@ const SignIn: React.FC = () => {
     },
   })
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      navigate('/profile')
-    }
-  }, [isLoggedIn])
+  if (isLoggedIn) {
+    return <Navigate to={PATH.PROFILE} />
+  }
 
   return (
     <div className={s.loginContainer}>
@@ -83,16 +82,21 @@ const SignIn: React.FC = () => {
             </div>
             <div className={s.remember}>
               <label htmlFor={'rememberMe'}>Remember me</label>
-              <Checkbox
-                id="rememberMe"
-                {...formik.getFieldProps('rememberMe')}
-                checked={formik.values.rememberMe}
-              />
+              <Checkbox id="rememberMe" {...formik.getFieldProps('rememberMe')} checked={formik.values.rememberMe} />
             </div>
             <NavLink className={s.forgotPassword} to={'/password'}>
               Forgot password?
             </NavLink>
-            <Button type={'submit'} styleType="primary">
+            <Button
+              type={'submit'}
+              styleType="primary"
+              disabled={
+                !!formik.errors.password ||
+                !!formik.errors.email ||
+                formik.values.email === '' ||
+                formik.values.password === ''
+              }
+            >
               Sign In
             </Button>
           </FormGroup>
@@ -100,11 +104,9 @@ const SignIn: React.FC = () => {
       </form>
       <div className={s.loginQuestion}>Don`t have an account?</div>
 
-      <NavLink className={s.loginLink} to="/register">
+      <NavLink className={s.loginLink} to={PATH.REGISTER}>
         Sign Up
       </NavLink>
     </div>
   )
 }
-
-export default SignIn

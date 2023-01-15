@@ -1,10 +1,11 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import axios from 'axios'
 
 import { setError, setIsLoading, setIsLoggedIn } from '../../app/app-reducer'
-import { RootStateType } from '../../app/store'
+import { AppThunk } from '../../common/hooks/AppThunk'
 import { AppDispatchType } from '../../common/hooks/useAppDispatch'
 
-import { authAPI, LoginDataType, ResponseProfileUserType, UpdateProfileName } from './auth-api'
+import { authAPI, RequestLoginType, ResponseProfileUserType, UpdateProfileName } from './auth-api'
 
 const initialState = {
   email: '' as null | string,
@@ -14,7 +15,7 @@ const initialState = {
   avatar: '',
 }
 
-export const authTC = createAsyncThunk<void, LoginDataType, { dispatch: AppDispatchType }>(
+export const authTC = createAsyncThunk<void, RequestLoginType, { dispatch: AppDispatchType }>(
   'auth/authTC',
   async function (values, { dispatch }) {
     dispatch(setIsLoading(true))
@@ -31,8 +32,12 @@ export const authTC = createAsyncThunk<void, LoginDataType, { dispatch: AppDispa
         )
         dispatch(setIsLoggedIn(true))
       }
-    } catch (error) {
-      dispatch(setError('not valid email/password /ᐠ-ꞈ-ᐟ\\'))
+    } catch (e) {
+      if (axios.isAxiosError<{ error: string }>(e)) {
+        const error = e.response ? e.response.data.error : 'Something wrong'
+
+        dispatch(setError(error))
+      }
     } finally {
       dispatch(setIsLoading(false))
     }
@@ -40,7 +45,9 @@ export const authTC = createAsyncThunk<void, LoginDataType, { dispatch: AppDispa
 )
 
 export const updateProfileNameTC =
-  (data: UpdateProfileName) => async (dispatch: AppDispatchType, getState: () => RootStateType) => {
+  (data: UpdateProfileName): AppThunk =>
+  async (dispatch, getState) => {
+    dispatch(setIsLoading(true))
     try {
       const profileData = getState()
 
@@ -52,8 +59,14 @@ export const updateProfileNameTC =
       const res = await authAPI.updateProfileName(apiModel)
 
       dispatch(updateProfileNameAC({ data: res.data }))
-    } catch (error) {
-      dispatch(setError(error))
+    } catch (e) {
+      if (axios.isAxiosError<{ error: string }>(e)) {
+        const error = e.response ? e.response.data.error : 'Something wrong'
+
+        dispatch(setError(error))
+      }
+    } finally {
+      dispatch(setIsLoading(false))
     }
   }
 
@@ -65,7 +78,7 @@ const slice = createSlice({
       state.email = action.payload.email
       state.name = action.payload.name
     },
-    setNewPassword: (state, action) => {
+    setNewPassword: (state, action: PayloadAction<string>) => {
       state.password = action.payload
     },
     updateProfileNameAC(state, action: PayloadAction<{ data: ResponseProfileUserType }>) {

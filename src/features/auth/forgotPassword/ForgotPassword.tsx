@@ -7,6 +7,8 @@ import { Button } from '../../../common/component/Button/Button'
 import { Input } from '../../../common/component/Input/Input'
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../../common/hooks/useAppSelector'
+import { forgotPasswordSelector } from '../../../common/selectors/Selectors'
+import { PATH } from '../../../routes/routes'
 
 import { forgotPasswordTC } from './forgotPassword-reducer'
 import s from './ForgotPassword.module.scss'
@@ -16,13 +18,12 @@ export type ErrorsType = {
   password?: string
 }
 export const ForgotPassword = () => {
-  const forgotPassword = useAppSelector(state => state.password.forgotPassword)
+  const forgotPassword = useAppSelector(forgotPasswordSelector)
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const formik = useFormik({
     initialValues: {
       email: '',
-      password: '',
     },
     validate: values => {
       const errors: ErrorsType = {}
@@ -42,7 +43,7 @@ export const ForgotPassword = () => {
   })
 
   if (forgotPassword) {
-    navigate('/checkEmail')
+    navigate(PATH.CHECK_EMAIL)
   }
 
   return (
@@ -59,10 +60,12 @@ export const ForgotPassword = () => {
               {...formik.getFieldProps('email')}
             />
           </div>
-          <p className={s.subtitle}>
-            Enter your email address and we will send you further instructions
-          </p>
-          <Button styleType="primary" className={s.button}>
+          <p className={s.subtitle}>Enter your email address and we will send you further instructions</p>
+          <Button
+            styleType="primary"
+            className={s.button}
+            disabled={formik.values.email === '' || !!formik.errors.email}
+          >
             Send instructions
           </Button>
           <p className={s.label}>Did your remember your password?</p>

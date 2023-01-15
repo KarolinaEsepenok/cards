@@ -1,25 +1,20 @@
 import React, { useEffect } from 'react'
 
 import { CircularProgress, LinearProgress } from '@mui/material'
-import { Navigate, Route, Routes } from 'react-router-dom'
 
 import { ErrorSnackbar } from '../common/component/ErrorSnackbar/ErrorSnackbar'
 import { useAppDispatch } from '../common/hooks/useAppDispatch'
 import { useAppSelector } from '../common/hooks/useAppSelector'
-import { CheckEmail } from '../features/auth/forgotPassword/CheckEmail/CheckEmail'
-import { ForgotPassword } from '../features/auth/forgotPassword/ForgotPassword'
-import { SetNewPassword } from '../features/auth/forgotPassword/SetNewPassword/SetNewPassword'
-import SignIn from '../features/auth/signIn/signIn'
+import { isAppInitialize, isLoadingSelector } from '../common/selectors/Selectors'
 import { Header } from '../features/header/Header'
-import { Profile } from '../features/profile/Profile'
-import { Register } from '../features/register/Register'
+import { RoutesComponent } from '../routes/RoutesComponent'
 
 import { initializeAppTC } from './app-reducer'
 import s from './App.module.scss'
 
 export const App = () => {
-  const isLoading = useAppSelector(state => state.app.isLoading)
-  const isAppInitialized = useAppSelector(state => state.app.isAppInitialized)
+  const isLoading = useAppSelector(isLoadingSelector)
+  const isAppInitialized = useAppSelector(isAppInitialize)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
@@ -36,17 +31,7 @@ export const App = () => {
       {isLoading && <LinearProgress className={s.linearProgress} />}
       <div className={s.centerApp}>
         <div>
-          <Routes>
-            <Route path={'/'} element={<Navigate to={'/signIn'} />} />
-            <Route path="/signIn" element={<SignIn />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/password" element={<ForgotPassword />} />
-            <Route path="/checkEmail" element={<CheckEmail />} />
-            <Route path="/set-new-password/:token" element={<SetNewPassword />} />
-            <Route path="404" element={<div>404: Page not found</div>} />
-            <Route path="*" element={<Navigate to="404" />} />
-          </Routes>
+          <RoutesComponent />
         </div>
       </div>
     </div>

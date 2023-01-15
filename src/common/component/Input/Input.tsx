@@ -1,20 +1,12 @@
-import React, {
-  ChangeEvent,
-  DetailedHTMLProps,
-  InputHTMLAttributes,
-  useEffect,
-  useState,
-} from 'react'
+import React, { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes, useEffect, useState } from 'react'
 
 import visibilityOff from '../../../assets/img/icons/visibility-off.svg'
 import visibilityOn from '../../../assets/img/icons/visibility-on.svg'
 import { Button } from '../Button/Button'
 
 import s from './Input.module.scss'
-type DefaultInputPropsType = DetailedHTMLProps<
-  InputHTMLAttributes<HTMLInputElement>,
-  HTMLInputElement
->
+
+type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 type SuperInputTextPropsType = Omit<DefaultInputPropsType, 'type'> & {
   type: string
   label?: string
@@ -22,6 +14,7 @@ type SuperInputTextPropsType = Omit<DefaultInputPropsType, 'type'> & {
   textChange?: boolean
   textChangeBtnCallback?: (e: any) => void
   className?: string
+  disabled?: boolean
 }
 export const Input: React.FC<SuperInputTextPropsType> = ({
   type,
@@ -30,6 +23,8 @@ export const Input: React.FC<SuperInputTextPropsType> = ({
   textChange,
   textChangeBtnCallback,
   className,
+  disabled,
+
   ...restProps
 }) => {
   const [typeLabel, setTypeLabel] = useState(type)
@@ -50,9 +45,7 @@ export const Input: React.FC<SuperInputTextPropsType> = ({
     passwordVisible ? setTypeLabel('text') : setTypeLabel(type)
   }, [passwordVisible])
 
-  const inputClasses = `${s.input} ${className ? className : ''} ${
-    type === 'password' ? s.inputError : ''
-  }`
+  const inputClasses = `${s.input} ${className ? className : ''} ${type === 'password' ? s.inputError : ''}`
 
   return (
     <>
@@ -85,14 +78,13 @@ export const Input: React.FC<SuperInputTextPropsType> = ({
             styleType="primary"
             className={s.saveButton}
             onClick={textChangeBtnCallbackHandle}
+            disabled={disabled}
           >
             SAVE
           </Button>
         )}
       </div>
-      {!textChange && (
-        <div className={s.errorContainer}>{error && <p className={s.error}>{error}</p>}</div>
-      )}
+      {!textChange && <div className={s.errorContainer}>{error && <p className={s.error}>{error}</p>}</div>}
     </>
   )
 }

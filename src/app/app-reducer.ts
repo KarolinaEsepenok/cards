@@ -1,55 +1,47 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { Dispatch } from 'redux'
 
+import { AppThunk } from '../common/hooks/AppThunk'
 import { authAPI } from '../features/auth/auth-api'
 import { setSignIn } from '../features/auth/authReducer'
 
-type initialStateType = {
-  isAppInitialized: boolean
-  error: null | string
-  isLoading: boolean
-  isLoggedIn: boolean
-}
-const initialState: initialStateType = {
+const initialState = {
   isAppInitialized: false,
-  error: null,
+  error: null as null | string,
   isLoading: false,
   isLoggedIn: false,
 }
 
-export const initializeAppTC = () => async (dispatch: Dispatch) => {
+export const initializeAppTC = (): AppThunk => async dispatch => {
   try {
     const {
       data: { email, name },
     } = await authAPI.me()
 
     dispatch(setSignIn({ email, name }))
-    dispatch(setAppInitialized(true))
     dispatch(setIsLoggedIn(true))
   } catch (e) {
     if (axios.isAxiosError<{ error: string }>(e)) {
-      const error = e.response ? e.response.data.error : 'Something wrong'
-
-      console.log(error)
-      dispatch(setAppInitialized(true))
+      e.response ? e.response.data.error : 'Something wrong'
     }
+  } finally {
+    dispatch(setAppInitialized(true))
   }
 }
 const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    setAppInitialized: (state, action) => {
+    setAppInitialized: (state, action: PayloadAction<boolean>) => {
       state.isAppInitialized = action.payload
     },
-    setError: (state, action) => {
+    setError: (state, action: PayloadAction<string | null>) => {
       state.error = action.payload
     },
-    setIsLoading: (state, action) => {
+    setIsLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload
     },
-    setIsLoggedIn: (state, action) => {
+    setIsLoggedIn: (state, action: PayloadAction<boolean>) => {
       state.isLoggedIn = action.payload
     },
   },

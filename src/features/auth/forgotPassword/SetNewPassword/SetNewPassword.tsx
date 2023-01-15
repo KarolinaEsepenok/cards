@@ -7,13 +7,15 @@ import { Button } from '../../../../common/component/Button/Button'
 import { Input } from '../../../../common/component/Input/Input'
 import { useAppDispatch } from '../../../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../../../common/hooks/useAppSelector'
+import { changePasswordSelector } from '../../../../common/selectors/Selectors'
+import { PATH } from '../../../../routes/routes'
 import { ErrorsType } from '../ForgotPassword'
 import { changePasswordSuccess, setNewPasswordTC } from '../forgotPassword-reducer'
 
 import s from './SetNewPassword.module.scss'
 
 export const SetNewPassword = () => {
-  const onChangePasswordSuccess = useAppSelector(state => state.password.changePasswordSuccess)
+  const onChangePasswordSuccess = useAppSelector(changePasswordSelector)
   const { token } = useParams()
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
@@ -39,8 +41,8 @@ export const SetNewPassword = () => {
   })
 
   if (onChangePasswordSuccess) {
-    dispatch(changePasswordSuccess({ data: false }))
-    navigate('/signIn')
+    dispatch(changePasswordSuccess(false))
+    navigate(PATH.SIGN_IN)
   }
 
   return (
@@ -56,9 +58,7 @@ export const SetNewPassword = () => {
               placeholder="Password"
               {...formik.getFieldProps('password')}
             />
-            <p className={s.subtitle}>
-              Create new password and we will send ypu further instructions to email
-            </p>
+            <p className={s.subtitle}>Create new password and we will send ypu further instructions to email</p>
             <Button styleType="primary" disabled={!!formik.errors.password} className={s.button}>
               Create new password
             </Button>

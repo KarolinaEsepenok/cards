@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { Dispatch } from 'redux'
 
 import { setError, setIsLoading } from '../../../app/app-reducer'
+import { AppThunk } from '../../../common/hooks/AppThunk'
 import { authAPI } from '../auth-api'
 import { setNewPassword } from '../authReducer'
 
 const initialState = {
   forgotPassword: false,
-  currenEmail: '',
+  currentEmail: '',
   changePasswordSuccess: false,
 }
 
@@ -18,10 +18,10 @@ const slice = createSlice({
   reducers: {
     forgotPassword(state, action: PayloadAction<{ data: boolean; email: string }>) {
       state.forgotPassword = action.payload.data
-      state.currenEmail = action.payload.email
+      state.currentEmail = action.payload.email
     },
-    changePasswordSuccess(state, action: PayloadAction<{ data: boolean }>) {
-      state.changePasswordSuccess = action.payload.data
+    changePasswordSuccess(state, action: PayloadAction<boolean>) {
+      state.changePasswordSuccess = action.payload
     },
   },
 })
@@ -29,11 +29,11 @@ const slice = createSlice({
 export const passwordReducer = slice.reducer
 export const { forgotPassword, changePasswordSuccess } = slice.actions
 
-export const forgotPasswordTC = (forgotPass: boolean, email: string) => {
-  return async (dispatch: Dispatch) => {
+export const forgotPasswordTC = (forgotPass: boolean, email: string): AppThunk => {
+  return async dispatch => {
     try {
-      dispatch(setIsLoading({ isLoading: true }))
-      const response = await authAPI.forgotPassword(email)
+      dispatch(setIsLoading(true))
+      await authAPI.forgotPassword(email)
 
       dispatch(forgotPassword({ data: forgotPass, email }))
     } catch (e) {
@@ -47,15 +47,15 @@ export const forgotPasswordTC = (forgotPass: boolean, email: string) => {
     }
   }
 }
-export const setNewPasswordTC = (password: string, token: string | undefined) => {
-  return async (dispatch: Dispatch) => {
-    dispatch(setIsLoading({ isLoading: true }))
+export const setNewPasswordTC = (password: string, token: string | undefined): AppThunk => {
+  return async dispatch => {
+    dispatch(setIsLoading(true))
     try {
       if (token) {
-        const response = await authAPI.setNewPassword(password, token)
+        await authAPI.setNewPassword(password, token)
       }
       dispatch(setNewPassword(password))
-      dispatch(changePasswordSuccess({ data: true }))
+      dispatch(changePasswordSuccess(true))
     } catch (e) {
       if (axios.isAxiosError<{ error: string }>(e)) {
         const error = e.response ? e.response.data.error : 'Something wrong'
