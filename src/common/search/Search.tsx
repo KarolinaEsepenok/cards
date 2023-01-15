@@ -9,7 +9,7 @@ export const Search = () => {
   const [value, setValue] = useState<string>('')
   const debouncedValue = useDebounce<string>(value)
   const dispatch = useAppDispatch()
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleSearchValueChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.currentTarget.value)
   }
 
@@ -19,7 +19,7 @@ export const Search = () => {
 
   return (
     <div>
-      <Input type={'search'} onChange={handleChange} value={value} />
+      <Input type={'search'} onChange={handleSearchValueChange} value={value} />
     </div>
   )
 }
