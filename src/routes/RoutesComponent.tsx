@@ -8,6 +8,7 @@ import { SetNewPassword } from '../features/auth/forgotPassword/SetNewPassword/S
 import { Profile } from '../features/auth/profile/Profile'
 import { Register } from '../features/auth/register/Register'
 import { SignIn } from '../features/auth/signIn/signIn'
+import { Packs } from '../features/packs/Packs'
 import Test from '../Test'
 
 import { PrivateRoutes } from './PrivateRoutes'
@@ -18,6 +19,7 @@ export const RoutesComponent = () => {
     <Routes>
       <Route element={<PrivateRoutes />}>
         <Route path={PATH.PROFILE} element={<Profile />} />
+        <Route path={PATH.PACKS} element={<Packs />} />
       </Route>
       <Route path={PATH.MAIN} element={<Navigate to={PATH.SIGN_IN} />} />
       <Route path={PATH.SIGN_IN} element={<SignIn />} />
