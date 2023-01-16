@@ -25,7 +25,7 @@ const initialState = {
 }
 
 export const getPacksTC = createAsyncThunk<void, RequestType, { state: RootStateType; dispatch: AppDispatchType }>(
-  'packs/searchTC',
+  'packs/getPacksTC',
   async function (values, { dispatch, getState }) {
     dispatch(setIsLoading(true))
     const { packName, sortPacks, max, min, page, pageCount, user_id } = getState().packs.queryParams
