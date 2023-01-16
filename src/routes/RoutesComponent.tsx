@@ -8,6 +8,7 @@ import { SetNewPassword } from '../features/auth/forgotPassword/SetNewPassword/S
 import { Profile } from '../features/auth/profile/Profile'
 import { Register } from '../features/auth/register/Register'
 import { SignIn } from '../features/auth/signIn/signIn'
+import { Packs } from '../features/packs/Packs'
 import Test from '../Test'
 
 import { PrivateRoutes } from './PrivateRoutes'
@@ -25,6 +26,7 @@ export const RoutesComponent = () => {
       <Route path={PATH.PASS_RECOVERY} element={<ForgotPassword />} />
       <Route path={PATH.CHECK_EMAIL} element={<CheckEmail />} />
       <Route path={PATH.SET_NEW_PASS} element={<SetNewPassword />} />
+      <Route path={PATH.PACKS} element={<Packs />} />
       <Route path={PATH.ERROR404} element={<div>404: Page not found</div>} />
       <Route path={PATH.NOT_FOUND} element={<Navigate to="404" />} />
       <Route path={'/test'} element={<Test />} />
