@@ -1,13 +1,13 @@
 import { AxiosResponse } from 'axios'
 
 import { instance } from '../../common/axiosInstance/axiosInstance'
+import { sortingPacksMethods } from '../../common/sortingPacksMethods/sortingPacksMethods'
 
 export const packsApi = {
-  getPacks() {
-    return instance.get<'', AxiosResponse<ResponseType>>('cards/pack')
-  },
-  search(packName: string) {
-    return instance.get<'', AxiosResponse<ResponseType>, RequestSearchType>(`cards/pack?packName=${packName}`)
+
+  getPacks(params: GetParamsType) {
+    return instance.get<'', AxiosResponse<ResponseType>, RequestType>(`cards/pack`, { params: { ...params } })
+
   },
   // getMyPacks(myPacks: boolean) {
   //  return instance.
@@ -25,6 +25,16 @@ export type PackType = {
   updated: string
 }
 
+export type GetParamsType = {
+  page: number
+  pageCount: number
+  packName: string
+  user_id: string
+  min: number
+  max: number
+  sortPacks: sortingPacksMethods
+}
+
 export type ResponseType = {
   cardPacks: PackType[]
   cardPacksTotalCount: number
@@ -35,6 +45,12 @@ export type ResponseType = {
   pageCount: number | null
 }
 
-export type RequestSearchType = {
+export type RequestType = {
+  page: number
+  pageCount: number
   packName: string
+  user_id: string
+  min: number
+  max: number
+  sortPacks: sortingPacksMethods
 }

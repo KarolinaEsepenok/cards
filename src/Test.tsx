@@ -1,12 +1,15 @@
 import React from 'react'
 
-import { useAppSelector } from './common/hooks/useAppSelector'
-import { Search } from './common/search/Search'
+import { Search } from './common/component/search/Search'
+import { RangeSlider } from './features/packs/range/Range'
 
 const Test = () => {
-  const packs = useAppSelector(state => state.packs.isPacks)
-
-  return <div>{packs ? <Search /> : <h2>Packs with this name doesn&apos;t exist</h2>}</div>
+  return (
+    <>
+      <Search />
+      <RangeSlider />
+    </>
+  )
 }
 
 export default Test
