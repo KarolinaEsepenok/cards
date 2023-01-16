@@ -9,6 +9,9 @@ export const packsApi = {
   search(packName: string) {
     return instance.get<'', AxiosResponse<ResponseSearchType>, RequestSearchType>(`cards/pack?packName=${packName}`)
   },
+  // getMyPacks(myPacks: boolean) {
+  //  return instance.
+  //}
 }
 //types
 export type PackType = {
@@ -21,7 +24,6 @@ export type PackType = {
 }
 export type ResponseSearchType = {
   cardPacks: PackType[]
-
   cardPacksTotalCount: number
   // количество колод
   maxCardsCount: number

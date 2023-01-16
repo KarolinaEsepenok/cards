@@ -14,6 +14,7 @@ const initialState = {
   page: null,
   pageCount: null,
   isPacks: true,
+  myPacks: false,
 }
 
 export const getPacksTC = createAsyncThunk<void, undefined, { dispatch: AppDispatchType }>(
@@ -79,8 +80,11 @@ const slice = createSlice({
     searchAC: (state, action: PayloadAction<boolean>) => {
       state.isPacks = action.payload
     },
+    setMyPacks: (state, action) => {
+      state.myPacks = action.payload
+    },
   },
 })
 
-export const packReducer = slice.reducer
-export const { setPacksData, searchAC } = slice.actions
+export const packsReducer = slice.reducer
+export const { setPacksData, searchAC, setMyPacks } = slice.actions

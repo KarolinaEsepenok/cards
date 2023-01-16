@@ -3,7 +3,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import { authReducer } from '../features/auth/authReducer'
 import { passwordReducer } from '../features/auth/forgotPassword/forgotPassword-reducer'
 import { registerReducer } from '../features/auth/register/registerReducer'
-import { packReducer } from '../features/packs/packsReducer'
+import { packsReducer } from '../features/packs/packsReducer'
 
 import { appReducer } from './app-reducer'
 
@@ -13,7 +13,7 @@ export const store = configureStore({
     password: passwordReducer,
     register: registerReducer,
     auth: authReducer,
-    packs: packReducer,
+    packs: packsReducer,
   },
 })
 
