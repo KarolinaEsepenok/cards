@@ -8,7 +8,7 @@ type PaginatorPropsType = {
   currentPage: number
   totalUsersCount: number
 }
-//const Paginator: React.FC<PaginatorPropsType> = ({ onPageChange, pageSize, currentPage, totalUsersCount }) => {
+
 const countButtons = 5
 
 const Paginator: React.FC<PaginatorPropsType> = ({ onPageChange, pageSize, currentPage, totalUsersCount }) => {

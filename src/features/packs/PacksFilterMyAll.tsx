@@ -7,7 +7,7 @@ import { useAppSelector } from '../../common/hooks/useAppSelector'
 import s from './PacksFilterMyAll.module.scss'
 import { getPacksTC, setMyPacks } from './packsReducer'
 
-export const PacksFilterMyAll: React.FC = React.memo(props => {
+export const FilterMyAllPacks: React.FC = React.memo(props => {
   const dispatch = useAppDispatch()
   const isLoading = useAppSelector(state => state.app.isLoading)
   const myPacks = useAppSelector(state => state.packs.myPacks)
@@ -18,9 +18,12 @@ export const PacksFilterMyAll: React.FC = React.memo(props => {
       dispatch(getPacksTC())
     }
   }
-  const handleFilterMyPacks = () => filterMyAllPacks(true)
+  const handleFilterMyPacks = () => {
+    console.log(myPacks, 'My')
+    filterMyAllPacks(true)
+  }
   const handleFilterAllPacks = () => {
-    console.log(myPacks)
+    console.log(myPacks, 'All')
     filterMyAllPacks(false)
   }
 

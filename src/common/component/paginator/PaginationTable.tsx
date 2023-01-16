@@ -12,10 +12,10 @@ import { useAppSelector } from '../../hooks/useAppSelector'
 export const PaginationTable = () => {
   const dispatch = useAppDispatch()
 
-  const pageCount = useAppSelector(state => state)
-  const cardsTotalCount = useAppSelector(state => state)
-  // const page = useAppSelector(state => state)
-  const isLoading = useAppSelector(state => state.app.isLoading)
+  const pageCount = useAppSelector(state => state.packs.pageCount)
+  const cardsPacksTotalCount = useAppSelector(state => state.packs.cardPacksTotalCount)
+  // const page = useAppSelector(state => state.packs.page)
+  //const isLoading = useAppSelector(state => state.app.isLoading)
 
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(5)
@@ -25,11 +25,13 @@ export const PaginationTable = () => {
 
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     setPage(newPage)
+    //dispatch(setPacksData(newPage))
   }
 
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10))
     setPage(0)
+    // dispatch(setPacksData(0))
   }
 
   return (
