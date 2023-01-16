@@ -7,7 +7,6 @@ import { useAppSelector } from '../../hooks/useAppSelector'
 
 import { PaginationTable } from './PaginationTable'
 import Paginator from './Paginator'
-import BasicTable from './оо'
 
 export const TestPagination = () => {
   const dispatch = useAppDispatch()
@@ -37,7 +36,6 @@ export const TestPagination = () => {
       </div>
       <PaginationTable />
       <FilterMyAllPacks />
-      <BasicTable />
     </div>
   )
 }
