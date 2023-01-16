@@ -3,6 +3,9 @@ import { AxiosResponse } from 'axios'
 import { instance } from '../../common/axiosInstance/axiosInstance'
 
 export const packsApi = {
+  getPacks() {
+    return instance.get<'', AxiosResponse<ResponseSearchType>>('cards/pack')
+  },
   search(packName: string) {
     return instance.get<'', AxiosResponse<ResponseSearchType>, RequestSearchType>(`cards/pack?packName=${packName}`)
   },
