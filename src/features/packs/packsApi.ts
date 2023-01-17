@@ -7,9 +7,6 @@ export const packsApi = {
   getPacks(params: GetParamsType) {
     return instance.get<'', AxiosResponse<ResponseType>, RequestType>(`cards/pack`, { params: { ...params } })
   },
-  // getMyPacks(myPacks: boolean) {
-  //  return instance.
-  //}
 }
 
 //types

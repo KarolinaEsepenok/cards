@@ -1,60 +1,45 @@
 import * as React from 'react'
 
-import Paper from '@mui/material/Paper'
-import TableContainer from '@mui/material/TableContainer'
-import TableFooter from '@mui/material/TableFooter'
-import TablePagination from '@mui/material/TablePagination'
-import TableRow from '@mui/material/TableRow'
+import { FormControl, MenuItem, Pagination, Select, SelectChangeEvent } from '@mui/material'
 
+import { getPacksTC } from '../../../features/packs/packsReducer'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
-import { useAppSelector } from '../../hooks/useAppSelector'
 
-export const PaginationTable = () => {
+type PaginationPropsType = {
+  pageCount: number
+  totalCount: number
+  currentPage: number
+  packsOrCards: boolean
+}
+export const PaginationTable = (props: PaginationPropsType) => {
+  const { pageCount, totalCount, currentPage, packsOrCards } = props
+  const pages = Math.ceil(totalCount / pageCount)
+  const pageValue = pageCount.toString()
   const dispatch = useAppDispatch()
-
-  const pageCount = useAppSelector(state => state.packs.pageCount)
-  const cardsPacksTotalCount = useAppSelector(state => state.packs.cardPacksTotalCount)
-  // const page = useAppSelector(state => state.packs.page)
-  //const isLoading = useAppSelector(state => state.app.isLoading)
-
-  const [page, setPage] = React.useState(0)
-  const [rowsPerPage, setRowsPerPage] = React.useState(5)
-
-  // Avoid a layout jump when reaching the last page with empty rows.
-  //  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0
-
-  const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
-    setPage(newPage)
-    //dispatch(setPacksData(newPage))
+  const handleChangePage = (event: React.ChangeEvent<unknown>, currentPage: number) => {
+    packsOrCards ? dispatch(getPacksTC()) : dispatch(getPacksTC())
   }
 
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setRowsPerPage(parseInt(event.target.value, 10))
-    setPage(0)
-    // dispatch(setPacksData(0))
+  const handleChangeRowsPerPage = (event: SelectChangeEvent) => {
+    // const pageCount = +event.currentTarget.value
+    packsOrCards ? dispatch(getPacksTC()) : dispatch(getPacksTC())
   }
 
   return (
-    <TableContainer component={Paper}>
-      <TableFooter>
-        <TableRow>
-          <TablePagination
-            rowsPerPageOptions={[5, 10, 15, 20, 25, 30]}
-            colSpan={5}
-            count={100}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            SelectProps={{
-              inputProps: {
-                'aria-label': 'rows per page',
-              },
-              native: true,
-            }}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
-        </TableRow>
-      </TableFooter>
-    </TableContainer>
+    <div>
+      <Pagination onChange={handleChangePage} page={currentPage} count={pages} />
+      <div>
+        <p>Show</p>
+        <FormControl sx={{ margin: '0 1rem' }} size="small">
+          <Select value={pageValue} onChange={handleChangeRowsPerPage}>
+            <MenuItem value={5}>5</MenuItem>
+            <MenuItem value={10}>10</MenuItem>
+            <MenuItem value={15}>15</MenuItem>
+            <MenuItem value={20}>20</MenuItem>
+          </Select>
+        </FormControl>
+        <div>packs per page</div>
+      </div>
+    </div>
   )
 }
