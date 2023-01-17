@@ -79,6 +79,10 @@ const slice = createSlice({
     setMyPacks: (state, action) => {
       state.queryParams.user_id = action.payload
     },
+    setRangeValues: (state, action: PayloadAction<number[]>) => {
+      state.queryParams.min = action.payload[0]
+      state.queryParams.max = action.payload[1]
+    },
     setPacksCurrentPage: (state, action) => {
       state.queryParams.page = action.payload
     },
@@ -86,4 +90,5 @@ const slice = createSlice({
 })
 
 export const packsReducer = slice.reducer
-export const { setPacksAC, setMyPacks, setPacksCurrentPage } = slice.actions
+export const { setPacksAC, setRangeValues, setMyPacks, setPacksCurrentPage } = slice.actions
+export const { } = slice.actions
