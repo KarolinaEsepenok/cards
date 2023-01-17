@@ -1,0 +1,32 @@
+@import 'src/common/style/variables';
+
+@import 'src/common/style/mixins';
+
+.table {
+  border-collapse: collapse;
+
+  width: $main-width;
+
+  border: 1px solid $background-500-color;
+}
+
+.tableTitle {
+
+  @include subtitle(600,17px);
+
+  padding: 16px 36px;
+
+  text-align: start;
+
+  background: $background-400-color;
+}
+
+.tableBody td{
+
+  @include body();
+
+  padding: 15px 36px;
+
+  border-bottom: 1px solid $background-500-color;
+
+}
