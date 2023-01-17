@@ -73,6 +73,9 @@ const slice = createSlice({
       state.maxCardsCount = action.payload.maxCardsCount
       state.minCardsCount = action.payload.minCardsCount
     },
+    setMyPacks: (state, action) => {
+      state.queryParams.user_id = action.payload
+    },
   },
 })
 
