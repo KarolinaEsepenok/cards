@@ -36,6 +36,7 @@ export type ResponseType = {
   // количество колод
   maxCardsCount: number
   minCardsCount: number
+  page: number
   pageCount: number
 }
 
