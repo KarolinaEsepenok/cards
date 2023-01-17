@@ -15,8 +15,8 @@ import {
 
 import s from './Packs.module.scss'
 import { PackType } from './packsApi'
+import { PacksList } from './packsList/PacksList'
 import { getPacksTC } from './packsReducer'
-import { PacksTable } from './packsTable/PacksTable'
 
 export const Packs = () => {
   const packs: PackType[] = useAppSelector(cardPacks)
@@ -38,7 +38,7 @@ export const Packs = () => {
     <section className={s.packs}>
       <h2>Packs list</h2>
       <div className={s.table}>
-        <PacksTable packs={packs} />
+        <PacksList packs={packs} />
       </div>
     </section>
   )

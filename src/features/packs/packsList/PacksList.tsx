@@ -11,7 +11,7 @@ import { PackType } from '../packsApi'
 type PacksTableType = {
   packs: PackType[]
 }
-export const PacksTable: FC<PacksTableType> = ({ packs }) => {
+export const PacksList: FC<PacksTableType> = ({ packs }) => {
   const myId = useAppSelector(myIdSelector)
 
   return (
