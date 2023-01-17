@@ -3,10 +3,11 @@ import axios from 'axios'
 
 import { setError, setIsLoading } from '../../app/app-reducer'
 import { RootStateType } from '../../app/store'
+import { AppThunk } from '../../common/hooks/AppThunk'
 import { AppDispatchType } from '../../common/hooks/useAppDispatch'
 import { sortingPacksMethods } from '../../common/sortingPacksMethods/sortingPacksMethods'
 
-import { packsApi, PackType } from './packsApi'
+import { AddPackType, packsApi, PackType } from './packsApi'
 
 const initialState = {
   cardPacks: [] as PackType[],
@@ -55,6 +56,42 @@ export const getPacksTC = createAsyncThunk<void, undefined, { state: RootStateTy
   }
 )
 
+export const addNewPackTC =
+  (data: AddPackType): AppThunk =>
+  async dispatch => {
+    dispatch(setIsLoading(true))
+    try {
+      const response = await packsApi.addNewPack(data)
+
+      dispatch(addNewPackAC({ pack: response.data.newCardsPack }))
+    } catch (e) {
+      if (axios.isAxiosError<{ error: string }>(e)) {
+        const error = e.response ? e.response.data.error : 'Something wrong'
+
+        dispatch(setError(error))
+      }
+    } finally {
+      dispatch(setIsLoading(false))
+    }
+  }
+
+export const updateNamePackTC =
+  (packId: string, packName: string): AppThunk =>
+  async dispatch => {
+    dispatch(setIsLoading(true))
+    try {
+      const response = await packsApi.updatePack(packId, packName)
+
+      // dispatch(updateNamePackAC({ id: packId, packName: response.data.updatedCardsPack.name }))
+    } catch (e) {
+      if (axios.isAxiosError<{ error: string }>(e)) {
+        const error = e.response ? e.response.data.error : 'Something wrong'
+
+        dispatch(setError(error))
+      }
+    }
+  }
+
 const slice = createSlice({
   name: 'packs',
   initialState,
@@ -76,8 +113,18 @@ const slice = createSlice({
     setMyPacks: (state, action) => {
       state.queryParams.user_id = action.payload
     },
+    addNewPackAC: (state, action: PayloadAction<{ pack: PackType }>) => {
+      state.cardPacks.unshift(action.payload.pack)
+    },
+    updateNamePackAC: (state, action: PayloadAction<{ id: string; packName: string }>) => {
+      // const index = state.cardPacks.findIndex(i => i._id === action.payload.id)
+      // state[index].packName = action.payload.packName
+      state.cardPacks.map(p => {
+        p._id === action.payload.id ? { name: action.payload.packName } : p
+      })
+    },
   },
 })
 
 export const packsReducer = slice.reducer
-export const { setPacksAC } = slice.actions
+export const { setPacksAC, addNewPackAC, updateNamePackAC } = slice.actions

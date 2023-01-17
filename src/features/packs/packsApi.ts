@@ -7,6 +7,15 @@ export const packsApi = {
   getPacks(params: GetParamsType) {
     return instance.get<'', AxiosResponse<ResponseType>, RequestType>(`cards/pack`, { params: { ...params } })
   },
+  addNewPack(data: AddPackType) {
+    return instance.post<'', AxiosResponse<ResponseNewPack>, AddPackType>('cards/pack', data)
+  },
+  updatePack(packId: string, packName: string) {
+    // return instance.put<'', AxiosResponse<ResponseUpdateNamePack>, UpdateNamePackType>('cards/pack', {
+    //   cardsPack: { _id: packId, packName },
+    // })
+  },
+  deletePack() {},
 }
 
 //types
@@ -49,4 +58,24 @@ export type RequestType = {
   min: number
   max: number
   sortPacks: sortingPacksMethods
+}
+export type AddPackType = {
+  cardsPack: {
+    name: string
+    deckCover: string
+    private: boolean
+  }
+}
+export type UpdateNamePackType = {
+  cardsPack: {
+    _id: string
+    name: string
+  }
+}
+
+export type ResponseNewPack = {
+  newCardsPack: PackType
+}
+export type ResponseUpdateNamePack = {
+  updatedCardsPack: PackType
 }
