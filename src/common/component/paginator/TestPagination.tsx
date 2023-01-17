@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react'
 
-import { FilterMyAllPacks } from '../../../features/packs/FilterMyAllPacks'
 import { getPacksTC } from '../../../features/packs/packsReducer'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { useAppSelector } from '../../hooks/useAppSelector'
 
-import { PaginationTable } from './PaginationTable'
+import { Paginator } from './Paginator'
 
 export const TestPagination = () => {
   const dispatch = useAppDispatch()
@@ -24,8 +23,7 @@ export const TestPagination = () => {
 
   return (
     <div>
-      <PaginationTable pageCount={pageCount} currentPage={page} totalCount={totalCount} packsOrCards={false} />
-      <FilterMyAllPacks />
+      <Paginator pageCount={pageCount} currentPage={page} totalCount={totalCount} packsOrCards={false} />
     </div>
   )
 }

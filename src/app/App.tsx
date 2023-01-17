@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react'
 
-import { CircularProgress, LinearProgress } from '@mui/material'
+import { CircularProgress } from '@mui/material'
 
 import { ErrorSnackbar } from '../common/component/ErrorSnackbar/ErrorSnackbar'
-import { TestPagination } from '../common/component/paginator/TestPagination'
 import { useAppDispatch } from '../common/hooks/useAppDispatch'
 import { useAppSelector } from '../common/hooks/useAppSelector'
-import { isAppInitialize, isLoadingSelector } from '../common/selectors/Selectors'
+import { isAppInitialize } from '../common/selectors/Selectors'
 import { Header } from '../features/header/Header'
 import { RoutesComponent } from '../routes/RoutesComponent'
 
@@ -33,7 +32,6 @@ export const App = () => {
       <div className={s.centerApp}>
         <div>
           <RoutesComponent />
-          <TestPagination />
         </div>
       </div>
     </div>

@@ -5,13 +5,15 @@ import { FormControl, MenuItem, Pagination, Select, SelectChangeEvent } from '@m
 import { getPacksTC } from '../../../features/packs/packsReducer'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 
+import s from './Paginator.module.scss'
+
 type PaginationPropsType = {
   pageCount: number
   totalCount: number
   currentPage: number
   packsOrCards: boolean
 }
-export const PaginationTable = (props: PaginationPropsType) => {
+export const Paginator = (props: PaginationPropsType) => {
   const { pageCount, totalCount, currentPage, packsOrCards } = props
   const pages = Math.ceil(totalCount / pageCount)
   const pageValue = pageCount.toString()
@@ -26,11 +28,11 @@ export const PaginationTable = (props: PaginationPropsType) => {
   }
 
   return (
-    <div>
+    <div className={s.paginatorMain}>
       <Pagination onChange={handleChangePage} page={currentPage} count={pages} />
-      <div>
-        <p>Show</p>
-        <FormControl size="medium">
+      <div className={s.showPerPage}>
+        <div>Show</div>
+        <FormControl size="small">
           <Select value={pageValue} onChange={handleChangeRowsPerPage}>
             <MenuItem value={5}>5</MenuItem>
             <MenuItem value={10}>10</MenuItem>

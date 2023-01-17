@@ -1,37 +1,10 @@
-.paginatorBox {
-  margin: 10px;
+.paginatorMain {
+  display: flex;
+  justify-content: end;
 
-  text-align: center;
+  padding-top: 20px;
 
-  .button {
-    cursor: pointer;
-
-    margin-left: 2px;
-    padding: 6px 12px;
-
-    color: #007BFF;
-
-    background-color: #ffffff;
-    border: none;
-
-    &:hover {
-      background-color: #E9ECEF;
-    }
-
-    .disabled {
-      cursor: unset;
-
-      color: grey;
-
-      background-color: #E9ECEF;
-    }
+  .showPerPage {
+    display: flex;
   }
-}
-
-
-.currentButton {
-  font-weight: bold;
-  color: white;
-
-  background-color: #007BFF;
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { Search } from './common/component/search/Search'
-import { RangeSlider } from './features/packs/range/Range'
+import { RangeSlider } from './common/component/queryParamComponents/range/Range'
+import { Search } from './common/component/queryParamComponents/search/Search'
 
 const Test = () => {
   return (

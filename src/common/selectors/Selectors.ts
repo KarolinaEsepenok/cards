@@ -1,5 +1,4 @@
 import { RootStateType } from '../../app/store'
-import { useAppSelector } from '../hooks/useAppSelector'
 
 //app
 export const isLoggedInSelector = (state: RootStateType) => state.app.isLoggedIn
@@ -30,3 +29,4 @@ export const maxCardsCountSelector = (state: RootStateType) => state.packs.maxCa
 export const sortPacksSelector = (state: RootStateType) => state.packs.queryParams.sortPacks
 export const minValueRangeSelector = (state: RootStateType) => state.packs.queryParams.min
 export const maxValueRangeSelector = (state: RootStateType) => state.packs.queryParams.max
+export const cardPacksTotalCountSelector = (state: RootStateType) => state.packs.cardPacksTotalCount

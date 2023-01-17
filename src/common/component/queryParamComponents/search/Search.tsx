@@ -1,8 +1,8 @@
 import React, { ChangeEvent, useEffect, useState } from 'react'
 
-import { useAppDispatch } from '../../hooks/useAppDispatch'
-import { useDebounce } from '../../hooks/useDebounce'
-import { Input } from '../Input/Input'
+import { useAppDispatch } from '../../../hooks/useAppDispatch'
+import { useDebounce } from '../../../hooks/useDebounce'
+import { Input } from '../../Input/Input'
 
 export const Search = () => {
   const [value, setValue] = useState<string>('')
