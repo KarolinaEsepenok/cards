@@ -13,14 +13,19 @@ import { initializeAppTC } from './app-reducer'
 import s from './App.module.scss'
 
 export const App = () => {
-  const isLoading = useAppSelector(isLoadingSelector)
   const isAppInitialized = useAppSelector(isAppInitialize)
   const dispatch = useAppDispatch()
 
+  console.log(isAppInitialized)
   useEffect(() => {
-    dispatch(initializeAppTC())
+    if (!isAppInitialized) {
+      /*console.log(isAppInitialized)*/
+      dispatch(initializeAppTC())
+    }
   }, [])
   if (!isAppInitialized) {
+    /* console.log('loading')*/
+
     return <CircularProgress sx={{ position: 'absolute', top: '50%', left: '50%' }} />
   }
 
@@ -28,7 +33,6 @@ export const App = () => {
     <div className={s.app}>
       <ErrorSnackbar />
       <Header />
-      {isLoading && <LinearProgress className={s.linearProgress} />}
       <div className={s.centerApp}>
         <div>
           <RoutesComponent />
