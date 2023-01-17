@@ -12,11 +12,13 @@ export const Table: FC<TableType> = ({ titles, children }) => {
       <thead>
         <tr>
           {titles.map(t => (
-            <th key={t}>{t}</th>
+            <th className={s.tableTitle} key={t}>
+              {t}
+            </th>
           ))}
         </tr>
       </thead>
-      <tbody>{children}</tbody>
+      <tbody className={s.tableBody}>{children}</tbody>
     </table>
   )
 }
