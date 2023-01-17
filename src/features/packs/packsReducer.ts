@@ -6,7 +6,7 @@ import { RootStateType } from '../../app/store'
 import { AppDispatchType } from '../../common/hooks/useAppDispatch'
 import { sortingPacksMethods } from '../../common/sortingPacksMethods/sortingPacksMethods'
 
-import { packsApi, PackType, RequestType } from './packsApi'
+import { packsApi, PackType } from './packsApi'
 
 const initialState = {
   cardPacks: [] as PackType[],
@@ -24,9 +24,9 @@ const initialState = {
   },
 }
 
-export const getPacksTC = createAsyncThunk<void, RequestType, { state: RootStateType; dispatch: AppDispatchType }>(
+export const getPacksTC = createAsyncThunk<void, undefined, { state: RootStateType; dispatch: AppDispatchType }>(
   'packs/getPacksTC',
-  async function (values, { dispatch, getState }) {
+  async function (_, { dispatch, getState }) {
     dispatch(setIsLoading(true))
     const { packName, sortPacks, max, min, page, pageCount, user_id } = getState().packs.queryParams
 
@@ -40,9 +40,10 @@ export const getPacksTC = createAsyncThunk<void, RequestType, { state: RootState
         sortPacks: sortPacks,
         user_id: user_id,
       })
+
       const { cardPacks, cardPacksTotalCount, minCardsCount, maxCardsCount } = response.data
 
-      setPacksAC({ cardPacks, cardPacksTotalCount, minCardsCount, maxCardsCount })
+      dispatch(setPacksAC({ cardPacks, cardPacksTotalCount, minCardsCount, maxCardsCount }))
     } catch (e) {
       if (axios.isAxiosError<{ error: string }>(e)) {
         const error = e.response ? e.response.data.error : 'Something wrong'
@@ -72,6 +73,9 @@ const slice = createSlice({
       state.cardPacksTotalCount = action.payload.cardPacksTotalCount
       state.maxCardsCount = action.payload.maxCardsCount
       state.minCardsCount = action.payload.minCardsCount
+    },
+    setMyPacks: (state, action) => {
+      state.queryParams.user_id = action.payload
     },
   },
 })

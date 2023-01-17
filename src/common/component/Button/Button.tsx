@@ -2,10 +2,7 @@ import React, { ButtonHTMLAttributes, DetailedHTMLProps } from 'react'
 
 import s from './Button.module.scss'
 
-type DefaultButtonType = DetailedHTMLProps<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
->
+type DefaultButtonType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
 
 type ButtonType = DefaultButtonType & {
   styleType?: 'primary' | 'secondary' | 'warn'

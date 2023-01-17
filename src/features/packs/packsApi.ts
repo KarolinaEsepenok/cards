@@ -8,15 +8,18 @@ export const packsApi = {
     return instance.get<'', AxiosResponse<ResponseType>, RequestType>(`cards/pack`, { params: { ...params } })
   },
 }
+
 //types
 export type PackType = {
   _id: string
   user_id: string
+  user_name: string
   name: string
   cardsCount: number
   created: string
   updated: string
 }
+
 export type GetParamsType = {
   page: number
   pageCount: number
@@ -26,6 +29,7 @@ export type GetParamsType = {
   max: number
   sortPacks: sortingPacksMethods
 }
+
 export type ResponseType = {
   cardPacks: PackType[]
 
@@ -36,6 +40,7 @@ export type ResponseType = {
   page: number
   pageCount: number
 }
+
 export type RequestType = {
   page: number
   pageCount: number
