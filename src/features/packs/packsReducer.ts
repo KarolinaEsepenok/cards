@@ -83,13 +83,16 @@ export const updateNamePackTC =
     try {
       const response = await packsApi.updatePack(packId, packName)
 
-      // dispatch(updateNamePackAC({ id: packId, packName: response.data.updatedCardsPack.name }))
+      dispatch(updateNamePackAC({ id: packId, packName: response.data.updatedCardsPack.name }))
+      dispatch(getPacksTC())
     } catch (e) {
       if (axios.isAxiosError<{ error: string }>(e)) {
         const error = e.response ? e.response.data.error : 'Something wrong'
 
         dispatch(setError(error))
       }
+    } finally {
+      dispatch(setIsLoading(false))
     }
   }
 

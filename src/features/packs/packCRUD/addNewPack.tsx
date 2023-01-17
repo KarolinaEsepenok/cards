@@ -8,7 +8,7 @@ import { Input } from '../../../common/component/Input/Input'
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
 import { addNewPackTC } from '../packsReducer'
 
-import s from './addNewPack.module.scss'
+import s from './packCRUD.module.scss'
 
 export const AddNewPack = () => {
   const dispatch = useAppDispatch()

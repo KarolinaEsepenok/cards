@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from 'react'
 
-import { getCardsTC } from '../../../../features/packs/cards/catdsReducer'
+import { getCardsTC } from '../../../../features/packs/cards/cardsReducer'
 import { useAppDispatch } from '../../../hooks/useAppDispatch'
 
 type TableRowType = {

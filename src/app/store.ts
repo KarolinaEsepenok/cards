@@ -3,7 +3,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import { authReducer } from '../features/auth/authReducer'
 import { passwordReducer } from '../features/auth/forgotPassword/forgotPassword-reducer'
 import { registerReducer } from '../features/auth/register/registerReducer'
-import { cardsReducer } from '../features/packs/cards/catdsReducer'
+import { cardsReducer } from '../features/packs/cards/cardsReducer'
 import { packsReducer } from '../features/packs/packsReducer'
 
 import { appReducer } from './app-reducer'

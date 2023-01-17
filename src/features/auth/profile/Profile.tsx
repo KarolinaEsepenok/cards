@@ -6,6 +6,8 @@ import { Button } from '../../../common/component/Button/Button'
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../../common/hooks/useAppSelector'
 import { emailSelector, nameSelector } from '../../../common/selectors/Selectors'
+import { AddNewPack } from '../../packs/packCRUD/addNewPack'
+import { PackType } from '../../packs/packsApi'
 import { logoutTC } from '../register/registerReducer'
 
 import profile from './Profile.module.scss'
@@ -16,6 +18,7 @@ type ProfileType = {}
 export const Profile: React.FC<ProfileType> = () => {
   const emailFromState = useAppSelector(emailSelector)
   const nameFromState = useAppSelector(nameSelector)
+  const packs = useAppSelector(state => state.packs)
 
   const [name, setName] = useState(nameFromState)
   const [email, setEmail] = useState(emailFromState)
@@ -65,6 +68,13 @@ export const Profile: React.FC<ProfileType> = () => {
           <Button styleType={'secondary'} className={profile.profile_btn_logout} onClick={logout}>
             LogOut
           </Button>
+
+          {/*need for check*/}
+          <button>add new pack</button>
+          {packs.cardPacks.map((i: PackType) => (
+            <div key={i._id}>{i.name}</div>
+          ))}
+          <AddNewPack />
         </div>
       </div>
     </>

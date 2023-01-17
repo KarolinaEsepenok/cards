@@ -1,15 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { useFormik } from 'formik'
 
 import { Button } from '../../../common/component/Button/Button'
 import { Checkbox } from '../../../common/component/Checkbox/Checkbox'
 import { Input } from '../../../common/component/Input/Input'
+import style from '../../../common/component/Input/Input.module.scss'
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
+import { updateNamePackTC } from '../packsReducer'
 
-import s from './addNewPack.module.scss'
+import s from './packCRUD.module.scss'
 
-export const UpdateNamePack = () => {
+type UpdateNamePackType = {
+  openClosePopup: () => void
+  packId: string
+  packName: string
+}
+interface FormikErrorType {
+  name?: string
+  private?: boolean
+}
+export const UpdateNamePack: React.FC<UpdateNamePackType> = ({ openClosePopup, packId, packName }) => {
   const dispatch = useAppDispatch()
 
   const formik = useFormik({
@@ -17,17 +28,29 @@ export const UpdateNamePack = () => {
       name: '',
       private: false,
     },
+    validate: values => {
+      const errors: FormikErrorType = {}
 
+      if (!values.name.trim()) {
+        errors.name = 'Name is required'
+      }
+
+      return errors
+    },
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2))
-      // dispatch(updateNamePackTC(id, values.name))
+      dispatch(updateNamePackTC(packId, values.name))
+      openClosePopup()
     },
   })
+
+  useEffect(() => {
+    formik.setFieldValue('name', packName)
+  }, [packName])
 
   return (
     <div className={s.newpack_inner}>
       <h2>Edit pack</h2>
-      <div>x</div>
+      <div onClick={openClosePopup}>x</div>
       <form onSubmit={formik.handleSubmit}>
         <Input
           type="text"
@@ -35,16 +58,19 @@ export const UpdateNamePack = () => {
           {...formik.getFieldProps('name')}
           textChangeBtnCallback={formik.handleSubmit}
         />
+        <span className={style.error}>{formik.errors.name}</span>
 
         <div className={s.remember}>
           <label htmlFor={'private'}>Private pack</label>
           <Checkbox id="private" {...formik.getFieldProps('private')} checked={formik.values.private} />
         </div>
 
-        <Button styleType={'secondary'} type="button">
+        <Button styleType={'secondary'} type="button" onClick={openClosePopup}>
           Cancel
         </Button>
-        <Button styleType={'primary'}>Save</Button>
+        <Button styleType={'primary'} disabled={!!formik.errors.name}>
+          Save
+        </Button>
       </form>
     </div>
   )

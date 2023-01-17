@@ -10,10 +10,10 @@ export const packsApi = {
   addNewPack(data: AddPackType) {
     return instance.post<'', AxiosResponse<ResponseNewPack>, AddPackType>('cards/pack', data)
   },
-  updatePack(packId: string, packName: string) {
-    // return instance.put<'', AxiosResponse<ResponseUpdateNamePack>, UpdateNamePackType>('cards/pack', {
-    //   cardsPack: { _id: packId, packName },
-    // })
+  updatePack(packId: string, name: string) {
+    return instance.put<'', AxiosResponse<ResponseUpdateNamePack>, UpdateNamePackType>('cards/pack', {
+      cardsPack: { _id: packId, name },
+    })
   },
   deletePack() {},
 }
