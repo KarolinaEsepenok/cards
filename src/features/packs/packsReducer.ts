@@ -42,7 +42,7 @@ export const getPacksTC = createAsyncThunk<void, undefined, { state: RootStateTy
       })
       const { cardPacks, cardPacksTotalCount, minCardsCount, maxCardsCount } = response.data
 
-      setPacksAC({ cardPacks, cardPacksTotalCount, minCardsCount, maxCardsCount })
+      dispatch(setPacksAC({ cardPacks, cardPacksTotalCount, minCardsCount, maxCardsCount }))
     } catch (e) {
       if (axios.isAxiosError<{ error: string }>(e)) {
         const error = e.response ? e.response.data.error : 'Something wrong'
