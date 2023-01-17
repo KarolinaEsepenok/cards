@@ -4,10 +4,8 @@ import { instance } from '../../common/axiosInstance/axiosInstance'
 import { sortingPacksMethods } from '../../common/sortingPacksMethods/sortingPacksMethods'
 
 export const packsApi = {
-
   getPacks(params: GetParamsType) {
     return instance.get<'', AxiosResponse<ResponseType>, RequestType>(`cards/pack`, { params: { ...params } })
-
   },
 }
 
@@ -37,10 +35,9 @@ export type ResponseType = {
 
   cardPacksTotalCount: number
   // количество колод
-  maxCardsCount: number | null
-  minCardsCount: number | null
-  page: number | null
-  pageCount: number | null
+  maxCardsCount: number
+  minCardsCount: number
+  pageCount: number
 }
 
 export type RequestType = {
