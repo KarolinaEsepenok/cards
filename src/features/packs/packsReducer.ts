@@ -5,6 +5,7 @@ import { setError, setIsLoading } from '../../app/app-reducer'
 import { AppDispatchType } from '../../common/hooks/useAppDispatch'
 
 import { packsApi, PackType, RequestType } from './packsApi'
+import {RootStateType} from "../../app/store";
 
 const initialState = {
   cardPacks: [] as PackType[],
