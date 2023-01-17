@@ -96,6 +96,26 @@ export const updateNamePackTC =
     }
   }
 
+export const deletePackTC =
+  (packId: string): AppThunk =>
+  async dispatch => {
+    dispatch(setIsLoading(true))
+    try {
+      const response = await packsApi.deletePack(packId)
+
+      dispatch(deletePackAC({ packId }))
+      dispatch(getPacksTC())
+    } catch (e) {
+      if (axios.isAxiosError<{ error: string }>(e)) {
+        const error = e.response ? e.response.data.error : 'Something wrong'
+
+        dispatch(setError(error))
+      }
+    } finally {
+      dispatch(setIsLoading(false))
+    }
+  }
+
 const slice = createSlice({
   name: 'packs',
   initialState,
@@ -121,14 +141,13 @@ const slice = createSlice({
       state.cardPacks.unshift(action.payload.pack)
     },
     updateNamePackAC: (state, action: PayloadAction<{ id: string; packName: string }>) => {
-      // const index = state.cardPacks.findIndex(i => i._id === action.payload.id)
-      // state[index].packName = action.payload.packName
       state.cardPacks.map(p => {
         p._id === action.payload.id ? { name: action.payload.packName } : p
       })
     },
+    deletePackAC: (state, action: PayloadAction<{ packId: string }>) => {},
   },
 })
 
 export const packsReducer = slice.reducer
-export const { setPacksAC, addNewPackAC, updateNamePackAC } = slice.actions
+export const { setPacksAC, addNewPackAC, updateNamePackAC, deletePackAC } = slice.actions

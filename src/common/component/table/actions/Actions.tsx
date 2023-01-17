@@ -4,6 +4,8 @@ import edit from '../../../../assets/img/icons/edit.svg'
 import teacher from '../../../../assets/img/icons/teacher.svg'
 import trash from '../../../../assets/img/icons/trash.svg'
 import { UpdateNamePack } from '../../../../features/packs/packCRUD/UpdateNamePack'
+import { deletePackTC } from '../../../../features/packs/packsReducer'
+import { useAppDispatch } from '../../../hooks/useAppDispatch'
 
 type ActionsType = {
   myPack: boolean
@@ -11,10 +13,14 @@ type ActionsType = {
   packName: string
 }
 export const Actions: FC<ActionsType> = ({ myPack, packId, packName }) => {
+  const dispatch = useAppDispatch()
   const [openPopup, setOpenPopup] = useState(false)
 
   const isPackOpenHandler = () => {
     setOpenPopup(!openPopup)
+  }
+  const isPackDeleteHandler = () => {
+    dispatch(deletePackTC(packId))
   }
 
   return (
@@ -27,7 +33,7 @@ export const Actions: FC<ActionsType> = ({ myPack, packId, packName }) => {
           <button onClick={isPackOpenHandler}>
             <img src={edit} alt="icon edit" />
           </button>
-          <button>
+          <button onClick={isPackDeleteHandler}>
             <img src={trash} alt="icon trash" />
           </button>
         </>
