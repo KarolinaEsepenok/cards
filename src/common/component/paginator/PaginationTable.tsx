@@ -30,7 +30,7 @@ export const PaginationTable = (props: PaginationPropsType) => {
       <Pagination onChange={handleChangePage} page={currentPage} count={pages} />
       <div>
         <p>Show</p>
-        <FormControl sx={{ margin: '0 1rem' }} size="small">
+        <FormControl size="medium">
           <Select value={pageValue} onChange={handleChangeRowsPerPage}>
             <MenuItem value={5}>5</MenuItem>
             <MenuItem value={10}>10</MenuItem>

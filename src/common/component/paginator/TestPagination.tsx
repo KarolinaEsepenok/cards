@@ -20,7 +20,7 @@ export const TestPagination = () => {
 
   useEffect(() => {
     dispatch(getPacksTC())
-  }, [dispatch, page, packName, pageCount, user_id, minQueryParam, maxQueryParam, sortBy])
+  }, [page, packName, pageCount, user_id, minQueryParam, maxQueryParam, sortBy])
 
   return (
     <div>
