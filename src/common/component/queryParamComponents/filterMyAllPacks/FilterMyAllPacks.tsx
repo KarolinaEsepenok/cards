@@ -28,6 +28,7 @@ export const FilterMyAllPacks: React.FC = React.memo(props => {
 
   const handleFilterAllPacks = () => {
     dispatch(setMyPacks(''))
+    //dispatch(setRangeValues([0, maxCards]))
   }
 
   return (
