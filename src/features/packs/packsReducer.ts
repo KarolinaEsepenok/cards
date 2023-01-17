@@ -25,7 +25,7 @@ const initialState = {
 }
 
 export const getPacksTC = createAsyncThunk<void, RequestType, { state: RootStateType; dispatch: AppDispatchType }>(
-'packs/getPacksTC',
+  'packs/getPacksTC',
   async function (values, { dispatch, getState }) {
     dispatch(setIsLoading(true))
     const { packName, sortPacks, max, min, page, pageCount, user_id } = getState().packs.queryParams
@@ -59,7 +59,6 @@ const slice = createSlice({
   name: 'packs',
   initialState,
   reducers: {
-
     setPacksAC: (
       state,
       action: PayloadAction<{
@@ -77,8 +76,5 @@ const slice = createSlice({
   },
 })
 
-
 export const packsReducer = slice.reducer
 export const { setPacksAC } = slice.actions
-
-

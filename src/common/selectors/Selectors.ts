@@ -9,3 +9,4 @@ export const changePasswordSelector = (state: RootStateType) => state.password.c
 export const currentEmailSelector = (state: RootStateType) => state.password.currentEmail
 export const registerSelector = (state: RootStateType) => state.register.register
 export const isLoadingSelector = (state: RootStateType) => state.app.isLoading
+export const cardPacks = (state: RootStateType) => state.packs.cardPacks
