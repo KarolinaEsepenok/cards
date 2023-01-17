@@ -11,28 +11,21 @@ export const FilterMyAllPacks: React.FC = React.memo(props => {
   const dispatch = useAppDispatch()
   const isLoading = useAppSelector(state => state.app.isLoading)
   const user_id = useAppSelector(state => state.packs.queryParams.user_id)
-  const [isMy, setIsMy] = useState<boolean>(!!user_id)
+  const [myPacks, setMyPacks] = useState<boolean>(!!user_id)
 
-  {
-    /*const filterMyAllPacks = (value: boolean) => {
-                    dispatch(setMyPacks(value))
-                    if (myPacks !== value) {
-                      dispatch(getPacksTC())
-                    }
-                  }*/
-  }
   useEffect(() => {
     if (!user_id) {
-      setIsMy(false)
+      setMyPacks(false)
     }
   }, [user_id])
   const handleFilterMyPacks = () => {
-    dispatch(getPacksTC)
-    setIsMy(true)
+    dispatch(getPacksTC())
+    setMyPacks(true)
   }
 
   const handleFilterAllPacks = () => {
-    setIsMy(false)
+    dispatch(getPacksTC())
+    setMyPacks(false)
   }
 
   return (

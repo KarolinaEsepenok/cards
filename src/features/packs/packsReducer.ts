@@ -43,6 +43,8 @@ export const getPacksTC = createAsyncThunk<void, undefined, { state: RootStateTy
       const { cardPacks, cardPacksTotalCount, minCardsCount, maxCardsCount } = response.data
 
       dispatch(setPacksAC({ cardPacks, cardPacksTotalCount, minCardsCount, maxCardsCount }))
+      dispatch(setMyPacks(user_id))
+      dispatch(setPacksCurrentPage(page))
     } catch (e) {
       if (axios.isAxiosError<{ error: string }>(e)) {
         const error = e.response ? e.response.data.error : 'Something wrong'
@@ -76,8 +78,11 @@ const slice = createSlice({
     setMyPacks: (state, action) => {
       state.queryParams.user_id = action.payload
     },
+    setPacksCurrentPage: (state, action) => {
+      state.queryParams.page = action.payload
+    },
   },
 })
 
 export const packsReducer = slice.reducer
-export const { setPacksAC } = slice.actions
+export const { setPacksAC, setMyPacks, setPacksCurrentPage } = slice.actions
