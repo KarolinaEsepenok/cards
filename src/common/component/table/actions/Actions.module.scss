@@ -1,0 +1,15 @@
+@import 'src/common/style/variables';
+
+@import 'src/common/style/mixins';
+
+
+
+.button {
+  background: transparent;
+  border: none;
+  outline: none;
+  
+  &:hover {
+    cursor:pointer;
+  }
+}
