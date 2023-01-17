@@ -41,6 +41,7 @@ export const getPacksTC = createAsyncThunk<void, undefined, { state: RootStateTy
         sortPacks: sortPacks,
         user_id: user_id,
       })
+
       const { cardPacks, cardPacksTotalCount, minCardsCount, maxCardsCount } = response.data
 
       dispatch(setPacksAC({ cardPacks, cardPacksTotalCount, minCardsCount, maxCardsCount }))

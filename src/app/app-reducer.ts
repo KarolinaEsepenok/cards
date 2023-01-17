@@ -15,10 +15,10 @@ const initialState = {
 export const initializeAppTC = (): AppThunk => async dispatch => {
   try {
     const {
-      data: { email, name },
+      data: { email, name, _id },
     } = await authAPI.me()
 
-    dispatch(setSignIn({ email, name }))
+    dispatch(setSignIn({ email, name, id: _id }))
     dispatch(setIsLoggedIn(true))
   } catch (e) {
     if (axios.isAxiosError<{ error: string }>(e)) {
