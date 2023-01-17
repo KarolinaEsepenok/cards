@@ -13,6 +13,7 @@ const initialState = {
   rememberMe: true,
   name: 'My name',
   avatar: '',
+  id: null as null | string,
 }
 
 export const authTC = createAsyncThunk<void, RequestLoginType, { dispatch: AppDispatchType }>(
@@ -28,6 +29,7 @@ export const authTC = createAsyncThunk<void, RequestLoginType, { dispatch: AppDi
           setSignIn({
             email: response.data.email,
             name: response.data.name,
+            id: response.data._id,
           })
         )
         dispatch(setIsLoggedIn(true))
@@ -74,9 +76,10 @@ const slice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setSignIn: (state, action: PayloadAction<{ email: string; name: string }>) => {
+    setSignIn: (state, action: PayloadAction<{ email: string; name: string; id: string }>) => {
       state.email = action.payload.email
       state.name = action.payload.name
+      state.id = action.payload.id
     },
     setNewPassword: (state, action: PayloadAction<string>) => {
       state.password = action.payload

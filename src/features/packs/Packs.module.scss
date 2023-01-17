@@ -1,0 +1,13 @@
+@import 'src/common/style/variables';
+
+@import 'src/common/style/mixins';
+
+.packs {
+  width: $main-width;
+  margin: 50px auto;
+}
+
+.table {
+  display: flex;
+  justify-content: center;
+}
