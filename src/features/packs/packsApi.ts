@@ -33,6 +33,8 @@ export type GetParamsType = {
 export type ResponseType = {
   cardPacks: PackType[]
 
+  cardPacksTotalCount: number
+  // количество колод
   maxCardsCount: number
   minCardsCount: number
   page: number
