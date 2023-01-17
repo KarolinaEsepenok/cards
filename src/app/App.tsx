@@ -19,13 +19,10 @@ export const App = () => {
   console.log(isAppInitialized)
   useEffect(() => {
     if (!isAppInitialized) {
-      /*console.log(isAppInitialized)*/
       dispatch(initializeAppTC())
     }
   }, [])
   if (!isAppInitialized) {
-    /* console.log('loading')*/
-
     return <CircularProgress sx={{ position: 'absolute', top: '50%', left: '50%' }} />
   }
 
