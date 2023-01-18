@@ -2,6 +2,27 @@
 
 @import "../../../common/style/variables";
 
+
+.profilePage {
+  max-width: $main-width;
+  margin: 32px auto;
+}
+
+.link {
+
+  @include subtitle(500);
+
+  display: flex;
+  column-gap: 12px;
+  align-items: center;
+
+  color: inherit;
+  text-decoration: none;
+  &:hover {
+    color: $primary-color
+  }
+}
+
 .profile {
 
   //.profile_wrapper
@@ -12,7 +33,7 @@
 
     width: 100%;
     max-width: 413px;
-    margin: 100px auto 0;
+    margin: 20px auto 0;
     padding: 27px 15px 36px;
 
     background-color: #ffffff;
