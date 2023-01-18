@@ -2,8 +2,13 @@
 
 @import "../../common/style/variables";
 
-.headerContainer {box-sizing: border-box;
-  height: 60px;
+.headerContainer {
+  display: flex;
+  align-items: center;
+
+box-sizing: border-box;
+  width: 100%;
+  height: 64px;
   padding: 8px 20px;
 
   background-color: $background-100-color;
@@ -15,7 +20,40 @@
   align-items: center;
   justify-content: space-between;
 
+  width: 100%;
   max-width: $main-width;
   margin: 0 auto;
 }
 
+.userInfoContainer {
+  display: flex;
+  column-gap: 12px;
+  align-items: center;
+}
+
+.name {
+
+  @include title(500);
+
+  position: relative;
+  
+  &:after {
+    content:"";
+
+    position: absolute;
+    right: 0;
+
+    width: 100%;
+    height: 20px;
+    padding-top: 3px;
+
+    border-bottom: 2px $on-primary-color dashed;
+  }
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+
+  border-radius: 50%;
+}
