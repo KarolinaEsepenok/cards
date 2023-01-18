@@ -1,7 +1,7 @@
 import React, { FC, ReactNode } from 'react'
 
 import { PackType } from '../../../features/packs/packsApi'
-import { AddNewPack } from '../../../features/packs/packsList/pack/addNewPack/AddNewPack'
+import { AddNewPack } from '../../../features/packs/packsList/addNewPack/AddNewPack'
 import { useAppSelector } from '../../hooks/useAppSelector'
 import { cardPacks } from '../../selectors/Selectors'
 
