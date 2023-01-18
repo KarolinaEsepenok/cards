@@ -14,6 +14,7 @@ import s from './App.module.scss'
 
 export const App = () => {
   const isAppInitialized = useAppSelector(isAppInitialize)
+  const isLoading = useAppSelector(isLoadingSelector)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
@@ -30,6 +31,7 @@ export const App = () => {
     <div className={s.app}>
       <ErrorSnackbar />
       <Header />
+      {isLoading && <LinearProgress className={s.linearProgress} />}
       <div className={s.centerApp}>
         <div>
           <RoutesComponent />

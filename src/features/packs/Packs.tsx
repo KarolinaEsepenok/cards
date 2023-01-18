@@ -45,7 +45,7 @@ export const Packs = () => {
       <RangeSlider />
       <ResetAllFilters />
 
-      <div>
+      <div className={s.addPackButton}>
         <Button
           styleType="primary"
           onClick={() =>
