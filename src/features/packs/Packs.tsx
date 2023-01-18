@@ -1,12 +1,17 @@
 import React, { useEffect } from 'react'
 
 import { Button } from '../../common/component/Button/Button'
+import { Paginator } from '../../common/component/paginator/Paginator'
+import { FilterMyAllPacks } from '../../common/component/queryParamComponents/filterMyAllPacks/FilterMyAllPacks'
 import { useAppDispatch } from '../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../common/hooks/useAppSelector'
 import {
   cardPacks,
   maxCardsCountSelector,
   minCardsCountSelector,
+  cardPacksTotalCountSelector,
+  maxValueRangeSelector,
+  minValueRangeSelector,
   packNameSelector,
   pageCountSelector,
   pageSelector,
@@ -17,7 +22,7 @@ import {
 import s from './Packs.module.scss'
 import { PackType } from './packsApi'
 import { PacksList } from './packsList/PacksList'
-import { addNewPackTC, getPacksTC } from './packsReducer'
+import { addNewPackTC, getPacksTC, setPacksCurrentPage, setRowPage } from './packsReducer'
 
 export const Packs = () => {
   const packs: PackType[] = useAppSelector(cardPacks)
@@ -28,8 +33,17 @@ export const Packs = () => {
   const minCardsCount = useAppSelector(minCardsCountSelector)
   const maxCardsCount = useAppSelector(maxCardsCountSelector)
   const sortPacks = useAppSelector(sortPacksSelector)
+  const min = useAppSelector(minValueRangeSelector)
+  const max = useAppSelector(maxValueRangeSelector)
+  const totalCount = useAppSelector(cardPacksTotalCountSelector)
 
   const dispatch = useAppDispatch()
+  const changePageHandle = (page: number) => {
+    dispatch(setPacksCurrentPage(page))
+  }
+  const changeRowPageHandle = (pageCount: number) => {
+    dispatch(setRowPage(pageCount))
+  }
 
   useEffect(() => {
     dispatch(getPacksTC())
@@ -58,8 +72,17 @@ export const Packs = () => {
         </Button>
       </div>
 
+      <FilterMyAllPacks />
       <div className={s.table}>
         <PacksList packs={packs} />
+      </div>
+      <div>
+        <Paginator
+          setRowCallback={changeRowPageHandle}
+          setPageCallback={changePageHandle}
+          pageCount={pageCount}
+          totalCount={totalCount}
+        />
       </div>
     </section>
   )

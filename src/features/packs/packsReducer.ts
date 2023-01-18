@@ -113,6 +113,7 @@ export const deletePackTC =
       dispatch(setIsLoading(false))
     }
   }
+)
 
 const slice = createSlice({
   name: 'packs',
@@ -132,12 +133,18 @@ const slice = createSlice({
       state.maxCardsCount = action.payload.maxCardsCount
       state.minCardsCount = action.payload.minCardsCount
     },
+    setMyPacks: (state, action: PayloadAction<string | null>) => {
+      if (action.payload !== null) state.queryParams.user_id = action.payload
+    },
     setRangeValues: (state, action: PayloadAction<number[]>) => {
       state.queryParams.min = action.payload[0]
       state.queryParams.max = action.payload[1]
     },
-    setMyPacks: (state, action) => {
-      state.queryParams.user_id = action.payload
+    setPacksCurrentPage: (state, action) => {
+      state.queryParams.page = action.payload
+    },
+    setRowPage: (state, action) => {
+      state.queryParams.pageCount = action.payload
     },
     addNewPack: (state, action: PayloadAction<{ pack: PackType }>) => {
       state.cardPacks.unshift(action.payload.pack)
@@ -153,4 +160,5 @@ const slice = createSlice({
 })
 
 export const packsReducer = slice.reducer
-export const { setPacks, addNewPack, updateNamePack, setRangeValues } = slice.actions
+export const {setPacks, setRangeValues, setMyPacks, setPacksCurrentPage, setRowPage, addNewPack, updateNamePack} = slice.actions
+

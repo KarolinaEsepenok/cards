@@ -1,0 +1,25 @@
+@import 'src/common/style/variables';
+
+@import 'src/common/style/mixins';
+
+.label {
+
+  @include subtitle($fontWeight: 500, $lineHeight: 24px, $opacity: 1);
+
+  margin-bottom: 10px;
+
+  .buttons {
+    width: 200px;
+
+    .btnFilter {
+      width: 97px;
+      height: 36px;
+
+      font-size: 14px;
+      font-weight: 400;
+
+      border-radius: 2px;
+    }
+
+  }
+}
