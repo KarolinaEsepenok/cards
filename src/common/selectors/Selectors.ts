@@ -1,5 +1,4 @@
 import { RootStateType } from '../../app/store'
-import { useAppSelector } from '../hooks/useAppSelector'
 
 //app
 export const isLoggedInSelector = (state: RootStateType) => state.app.isLoggedIn
@@ -9,6 +8,7 @@ export const isLoadingSelector = (state: RootStateType) => state.app.isLoading
 //auth
 export const emailSelector = (state: RootStateType) => state.auth.email
 export const nameSelector = (state: RootStateType) => state.auth.name
+export const avatarSelector = (state: RootStateType) => state.auth.avatar
 export const myIdSelector = (state: RootStateType) => state.auth.id
 
 //password
