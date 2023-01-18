@@ -12,13 +12,14 @@ import {
   maxValueRangeSelector,
   minCardsCountSelector,
   minValueRangeSelector,
+  resetRangeSelector,
 } from '../../selectors/Selectors'
 
 export const RangeSlider = () => {
   const dispatch = useAppDispatch()
   const minCardsCountValue = useAppSelector(minCardsCountSelector)
   const maxCardsCountValue = useAppSelector(maxCardsCountSelector)
-  const resetRange = useAppSelector(state => state.packs.resetRange)
+  const resetRange = useAppSelector(resetRangeSelector)
   const minValue = useAppSelector(minValueRangeSelector)
   const maxValue = useAppSelector(maxValueRangeSelector)
   const rangeDisabled = useAppSelector(isLoadingSelector)
