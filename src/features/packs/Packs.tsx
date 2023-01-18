@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 
 import { Button } from '../../common/component/Button/Button'
+import { ResetAllFilters } from '../../common/component/resetAllFilters/ResetAllFilters'
+import { Search } from '../../common/component/search/Search'
 import { useAppDispatch } from '../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../common/hooks/useAppSelector'
 import {
@@ -18,6 +20,7 @@ import s from './Packs.module.scss'
 import { PackType } from './packsApi'
 import { PacksList } from './packsList/PacksList'
 import { addNewPackTC, getPacksTC } from './packsReducer'
+import { RangeSlider } from './range/Range'
 
 export const Packs = () => {
   const packs: PackType[] = useAppSelector(cardPacks)
@@ -38,6 +41,9 @@ export const Packs = () => {
   return (
     <section className={s.packs}>
       <h2>Packs list</h2>
+      <Search />
+      <RangeSlider />
+      <ResetAllFilters />
 
       <div>
         <Button

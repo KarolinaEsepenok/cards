@@ -3,11 +3,11 @@ import axios from 'axios'
 
 import { setError, setIsLoading } from '../../app/app-reducer'
 import { RootStateType } from '../../app/store'
+import { sortingPacksMethods } from '../../common/constants/sortingPacksMethods/sortingPacksMethods'
 import { AppThunk } from '../../common/hooks/AppThunk'
 import { AppDispatchType } from '../../common/hooks/useAppDispatch'
-import { sortingPacksMethods } from '../../common/sortingPacksMethods/sortingPacksMethods'
 
-import { AddPackType, packsApi, PackType } from './packsApi'
+import { AddPackType, RequestType, packsApi, PackType } from './packsApi'
 
 const initialState = {
   cardPacks: [] as PackType[],
@@ -147,8 +147,16 @@ const slice = createSlice({
         p._id === action.payload.id ? { name: action.payload.packName } : p
       })
     },
+    setSearchPackName: (state, action: PayloadAction<string>) => {
+      state.queryParams.packName = action.payload
+    },
+    resetAllFilters: (state, action: PayloadAction<RequestType>) => {
+      state.queryParams = { ...action.payload }
+    },
   },
 })
 
 export const packsReducer = slice.reducer
-export const { setPacks, addNewPack, updateNamePack, setRangeValues } = slice.actions
+
+export const { setPacks, setRangeValues, setSearchPackName, resetAllFilters, addNewPack, updateNamePack } =
+  slice.actions
