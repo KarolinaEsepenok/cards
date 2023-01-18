@@ -4,7 +4,7 @@
 
 .label {
 
-  @include subtitle($fontWeight: 500, $lineHeight: 24px, $opacity: 1);
+  @include subtitle($fontWeight: 500, $opacity: 1);
 
   margin-bottom: 10px;
 

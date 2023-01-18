@@ -113,7 +113,6 @@ export const deletePackTC =
       dispatch(setIsLoading(false))
     }
   }
-)
 
 const slice = createSlice({
   name: 'packs',
@@ -160,5 +159,5 @@ const slice = createSlice({
 })
 
 export const packsReducer = slice.reducer
-export const {setPacks, setRangeValues, setMyPacks, setPacksCurrentPage, setRowPage, addNewPack, updateNamePack} = slice.actions
-
+export const { setPacks, setRangeValues, setMyPacks, setPacksCurrentPage, setRowPage, addNewPack, updateNamePack } =
+  slice.actions
