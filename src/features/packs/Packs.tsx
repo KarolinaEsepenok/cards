@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 
+import { Button } from '../../common/component/Button/Button'
 import { useAppDispatch } from '../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../common/hooks/useAppSelector'
 import {
@@ -43,12 +44,8 @@ export const Packs = () => {
       </div>
 
       <div>
+        <Button styleType="primary">Add new pack</Button>
         <AddNewPack />
-        {/*need for check*/}
-        <button>add new pack</button>
-        {packs.map((i: PackType) => (
-          <div key={i._id}>{i.name}</div>
-        ))}
       </div>
     </section>
   )
