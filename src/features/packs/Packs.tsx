@@ -39,7 +39,7 @@ export const Packs = () => {
     <section className={s.packs}>
       <h2>Packs list</h2>
 
-      <div>
+      <div className={s.addPackButton}>
         <Button
           styleType="primary"
           onClick={() =>

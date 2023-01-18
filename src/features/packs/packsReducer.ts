@@ -143,8 +143,10 @@ const slice = createSlice({
       state.cardPacks.unshift(action.payload.pack)
     },
     updateNamePack: (state, action: PayloadAction<{ id: string; packName: string }>) => {
-      state.cardPacks.map(p => {
-        p._id === action.payload.id ? { name: action.payload.packName } : p
+      state.cardPacks.forEach(p => {
+        if (p._id === action.payload.id) {
+          p.name = action.payload.packName
+        }
       })
     },
   },

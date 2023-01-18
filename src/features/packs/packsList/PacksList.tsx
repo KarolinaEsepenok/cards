@@ -1,11 +1,13 @@
 import React, { FC } from 'react'
 
+import { CircularProgress } from '@mui/material'
+
 import { Actions } from '../../../common/component/table/actions/Actions'
 import { Table } from '../../../common/component/table/Table'
 import { TableRow } from '../../../common/component/table/tableRow/TableRow'
 import { formatDate } from '../../../common/hooks/formatDate'
 import { useAppSelector } from '../../../common/hooks/useAppSelector'
-import { myIdSelector } from '../../../common/selectors/Selectors'
+import { isLoadingSelector, myIdSelector } from '../../../common/selectors/Selectors'
 import { PackType } from '../packsApi'
 
 type PacksTableType = {
@@ -13,8 +15,11 @@ type PacksTableType = {
 }
 export const PacksList: FC<PacksTableType> = ({ packs }) => {
   const myId = useAppSelector(myIdSelector)
+  const isLoading = useAppSelector(isLoadingSelector)
 
-  return (
+  return isLoading ? (
+    <CircularProgress sx={{ position: 'absolute', top: '50%', left: '50%' }} />
+  ) : (
     <Table titles={['Name', 'Cards', 'Created by', 'Last Updated', 'Actions']}>
       {packs.map(p => {
         const dateUpdate = formatDate(p.updated)
