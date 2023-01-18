@@ -39,13 +39,14 @@ export const Packs = () => {
   return (
     <section className={s.packs}>
       <h2>Packs list</h2>
-      <div className={s.table}>
-        <PacksTable packs={packs} />
-      </div>
 
       <div>
         <Button styleType="primary">Add new pack</Button>
         <AddNewPack />
+      </div>
+
+      <div className={s.table}>
+        <PacksTable packs={packs} />
       </div>
     </section>
   )
