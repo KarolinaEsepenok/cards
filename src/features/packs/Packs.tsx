@@ -15,6 +15,7 @@ import {
 
 import s from './Packs.module.scss'
 import { PackType } from './packsApi'
+import { AddNewPack } from './packsList/addNewPack/AddNewPack'
 import { getPacksTC } from './packsReducer'
 import { PacksTable } from './packsTable/PacksTable'
 
@@ -39,6 +40,15 @@ export const Packs = () => {
       <h2>Packs list</h2>
       <div className={s.table}>
         <PacksTable packs={packs} />
+      </div>
+
+      <div>
+        <AddNewPack />
+        {/*need for check*/}
+        <button>add new pack</button>
+        {packs.map((i: PackType) => (
+          <div key={i._id}>{i.name}</div>
+        ))}
       </div>
     </section>
   )
