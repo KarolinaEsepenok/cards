@@ -4,6 +4,7 @@ import removeFilter from '../../../assets/img/icons/filter-Remove.svg'
 import { resetAllFilters } from '../../../features/packs/packsReducer'
 import { emptyQueryParams } from '../../constants/emptyQueryParams/emptyQueryParams'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
+
 export const ResetAllFilters = () => {
   const dispatch = useAppDispatch()
   const resetAllFiltersHandler = () => {

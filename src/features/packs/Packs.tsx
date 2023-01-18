@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react'
 
 import { Button } from '../../common/component/Button/Button'
+import { RangeSlider } from '../../common/component/range/Range'
 import { ResetAllFilters } from '../../common/component/resetAllFilters/ResetAllFilters'
 import { Search } from '../../common/component/search/Search'
 import { useAppDispatch } from '../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../common/hooks/useAppSelector'
 import {
   cardPacks,
-  maxCardsCountSelector,
-  minCardsCountSelector,
+  maxValueRangeSelector,
+  minValueRangeSelector,
   packNameSelector,
   pageCountSelector,
   pageSelector,
@@ -20,7 +21,6 @@ import s from './Packs.module.scss'
 import { PackType } from './packsApi'
 import { PacksList } from './packsList/PacksList'
 import { addNewPackTC, getPacksTC } from './packsReducer'
-import { RangeSlider } from './range/Range'
 
 export const Packs = () => {
   const packs: PackType[] = useAppSelector(cardPacks)
@@ -28,8 +28,8 @@ export const Packs = () => {
   const packName = useAppSelector(packNameSelector)
   const pageCount = useAppSelector(pageCountSelector)
   const userId = useAppSelector(userIdSelector)
-  const minCardsCount = useAppSelector(minCardsCountSelector)
-  const maxCardsCount = useAppSelector(maxCardsCountSelector)
+  const minCardsCount = useAppSelector(minValueRangeSelector)
+  const maxCardsCount = useAppSelector(maxValueRangeSelector)
   const sortPacks = useAppSelector(sortPacksSelector)
 
   const dispatch = useAppDispatch()

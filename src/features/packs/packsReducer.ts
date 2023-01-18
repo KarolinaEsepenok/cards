@@ -7,13 +7,14 @@ import { sortingPacksMethods } from '../../common/constants/sortingPacksMethods/
 import { AppThunk } from '../../common/hooks/AppThunk'
 import { AppDispatchType } from '../../common/hooks/useAppDispatch'
 
-import { AddPackType, RequestType, packsApi, PackType } from './packsApi'
+import { AddPackType, packsApi, PackType, RequestType } from './packsApi'
 
 const initialState = {
   cardPacks: [] as PackType[],
   cardPacksTotalCount: 0,
   minCardsCount: 0,
   maxCardsCount: 110,
+  resetRange: false,
   queryParams: {
     pageCount: 5,
     page: 1,
@@ -152,6 +153,7 @@ const slice = createSlice({
     },
     resetAllFilters: (state, action: PayloadAction<RequestType>) => {
       state.queryParams = { ...action.payload }
+      state.resetRange = !state.resetRange
     },
   },
 })

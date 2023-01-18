@@ -3,26 +3,28 @@ import React, { useEffect, useState } from 'react'
 import Box from '@mui/material/Box'
 import Slider from '@mui/material/Slider'
 
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
-import { useAppSelector } from '../../../common/hooks/useAppSelector'
+import { setRangeValues } from '../../../features/packs/packsReducer'
+import { useAppDispatch } from '../../hooks/useAppDispatch'
+import { useAppSelector } from '../../hooks/useAppSelector'
 import {
   isLoadingSelector,
   maxCardsCountSelector,
   maxValueRangeSelector,
   minCardsCountSelector,
   minValueRangeSelector,
-} from '../../../common/selectors/Selectors'
-import { setRangeValues } from '../packsReducer'
+} from '../../selectors/Selectors'
 
 export const RangeSlider = () => {
   const dispatch = useAppDispatch()
   const minCardsCountValue = useAppSelector(minCardsCountSelector)
   const maxCardsCountValue = useAppSelector(maxCardsCountSelector)
+  const resetRange = useAppSelector(state => state.packs.resetRange)
   const minValue = useAppSelector(minValueRangeSelector)
   const maxValue = useAppSelector(maxValueRangeSelector)
   const rangeDisabled = useAppSelector(isLoadingSelector)
   const [value, setValue] = useState<number[]>([minValue, maxValue])
 
+  /*debugger*/
   const handleLocalValuesChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[])
   }
@@ -32,7 +34,7 @@ export const RangeSlider = () => {
 
   useEffect(() => {
     setValue([minCardsCountValue, maxCardsCountValue])
-  }, [minCardsCountValue, maxCardsCountValue])
+  }, [minCardsCountValue, maxCardsCountValue, resetRange])
 
   return (
     <Box sx={{ width: 300, marginLeft: 30, display: 'flex', justifyContent: 'center' }}>
