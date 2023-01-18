@@ -23,23 +23,22 @@
   }
 }
 
+.profile_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  max-width: 413px;
+  margin: 20px auto 0;
+  padding: 27px 15px 36px;
+
+  background-color: #ffffff;
+  border-radius: 2px;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
+}
+
 .profile {
-
-  //.profile_wrapper
-  &_wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    width: 100%;
-    max-width: 413px;
-    margin: 20px auto 0;
-    padding: 27px 15px 36px;
-
-    background-color: #ffffff;
-    border-radius: 2px;
-    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
-  }
 
   //profile_title
   &_title {
