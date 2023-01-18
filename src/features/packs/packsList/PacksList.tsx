@@ -24,11 +24,12 @@ export const PacksList: FC<PacksTableType> = ({ packs }) => {
         return (
           <TableRow
             key={p._id}
+            id={p._id}
             name={p.name}
             cardsCount={p.cardsCount}
             author={p.user_name}
             updated={dateUpdate}
-            actions={<Actions myPack={myPack} />}
+            actions={<Actions myPack={myPack} packId={p._id} packName={p.name} />}
           />
         )
       })}

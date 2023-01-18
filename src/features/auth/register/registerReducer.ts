@@ -1,4 +1,4 @@
-import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 import { setError, setIsLoading, setIsLoggedIn } from '../../../app/app-reducer'
@@ -13,13 +13,13 @@ const slice = createSlice({
   name: 'register',
   initialState: initialState,
   reducers: {
-    registerAC(state, action: PayloadAction<{ data: boolean }>) {
+    register(state, action: PayloadAction<{ data: boolean }>) {
       state.register = action.payload.data
     },
   },
 })
 
-export const { registerAC } = slice.actions
+export const { register } = slice.actions
 export const registerReducer = slice.reducer
 
 export const registerTC =
@@ -30,7 +30,7 @@ export const registerTC =
       const res = await authAPI.registration(data)
 
       if (res) {
-        dispatch(registerAC({ data: true }))
+        dispatch(register({ data: true }))
       }
     } catch (e) {
       if (axios.isAxiosError<{ error: string }>(e)) {

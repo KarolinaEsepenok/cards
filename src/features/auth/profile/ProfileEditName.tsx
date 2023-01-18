@@ -45,6 +45,7 @@ export const ProfileEditName: React.FC<ProfileEditNamePropsType> = ({ setEditMod
     },
   })
 
+  //нужно чтоб в инпуте сохранялось имя прошлое при обновлении
   useEffect(() => {
     formik.setFieldValue('name', profileName)
   }, [profileName])

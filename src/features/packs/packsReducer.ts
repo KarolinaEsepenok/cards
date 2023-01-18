@@ -3,10 +3,11 @@ import axios from 'axios'
 
 import { setError, setIsLoading } from '../../app/app-reducer'
 import { RootStateType } from '../../app/store'
+import { AppThunk } from '../../common/hooks/AppThunk'
 import { AppDispatchType } from '../../common/hooks/useAppDispatch'
 import { sortingPacksMethods } from '../../common/sortingPacksMethods/sortingPacksMethods'
 
-import { packsApi, PackType } from './packsApi'
+import { AddPackType, packsApi, PackType } from './packsApi'
 
 const initialState = {
   cardPacks: [] as PackType[],
@@ -43,7 +44,7 @@ export const getPacksTC = createAsyncThunk<void, undefined, { state: RootStateTy
 
       const { cardPacks, cardPacksTotalCount, minCardsCount, maxCardsCount } = response.data
 
-      dispatch(setPacksAC({ cardPacks, cardPacksTotalCount, minCardsCount, maxCardsCount }))
+      dispatch(setPacks({ cardPacks, cardPacksTotalCount, minCardsCount, maxCardsCount }))
     } catch (e) {
       if (axios.isAxiosError<{ error: string }>(e)) {
         const error = e.response ? e.response.data.error : 'Something wrong'
@@ -56,11 +57,68 @@ export const getPacksTC = createAsyncThunk<void, undefined, { state: RootStateTy
   }
 )
 
+export const addNewPackTC =
+  (data: AddPackType): AppThunk =>
+  async dispatch => {
+    dispatch(setIsLoading(true))
+    try {
+      const response = await packsApi.addNewPack(data)
+
+      dispatch(addNewPack({ pack: response.data.newCardsPack }))
+    } catch (e) {
+      if (axios.isAxiosError<{ error: string }>(e)) {
+        const error = e.response ? e.response.data.error : 'Something wrong'
+
+        dispatch(setError(error))
+      }
+    } finally {
+      dispatch(setIsLoading(false))
+    }
+  }
+
+export const updateNamePackTC =
+  (packId: string, packName: string): AppThunk =>
+  async dispatch => {
+    dispatch(setIsLoading(true))
+    try {
+      const response = await packsApi.updatePack(packId, packName)
+
+      dispatch(updateNamePack({ id: packId, packName: response.data.updatedCardsPack.name }))
+      dispatch(getPacksTC())
+    } catch (e) {
+      if (axios.isAxiosError<{ error: string }>(e)) {
+        const error = e.response ? e.response.data.error : 'Something wrong'
+
+        dispatch(setError(error))
+      }
+    } finally {
+      dispatch(setIsLoading(false))
+    }
+  }
+
+export const deletePackTC =
+  (packId: string): AppThunk =>
+  async dispatch => {
+    dispatch(setIsLoading(true))
+    try {
+      await packsApi.deletePack(packId)
+      dispatch(getPacksTC())
+    } catch (e) {
+      if (axios.isAxiosError<{ error: string }>(e)) {
+        const error = e.response ? e.response.data.error : 'Something wrong'
+
+        dispatch(setError(error))
+      }
+    } finally {
+      dispatch(setIsLoading(false))
+    }
+  }
+
 const slice = createSlice({
   name: 'packs',
   initialState,
   reducers: {
-    setPacksAC: (
+    setPacks: (
       state,
       action: PayloadAction<{
         cardPacks: PackType[]
@@ -74,15 +132,23 @@ const slice = createSlice({
       state.maxCardsCount = action.payload.maxCardsCount
       state.minCardsCount = action.payload.minCardsCount
     },
-    setMyPacks: (state, action) => {
-      state.queryParams.user_id = action.payload
-    },
     setRangeValues: (state, action: PayloadAction<number[]>) => {
       state.queryParams.min = action.payload[0]
       state.queryParams.max = action.payload[1]
+    },
+    setMyPacks: (state, action) => {
+      state.queryParams.user_id = action.payload
+    },
+    addNewPack: (state, action: PayloadAction<{ pack: PackType }>) => {
+      state.cardPacks.unshift(action.payload.pack)
+    },
+    updateNamePack: (state, action: PayloadAction<{ id: string; packName: string }>) => {
+      state.cardPacks.map(p => {
+        p._id === action.payload.id ? { name: action.payload.packName } : p
+      })
     },
   },
 })
 
 export const packsReducer = slice.reducer
-export const { setPacksAC, setRangeValues } = slice.actions
+export const { setPacks, addNewPack, updateNamePack, setRangeValues } = slice.actions
