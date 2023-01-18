@@ -15,13 +15,13 @@ import {
 } from '../../../selectors/Selectors'
 
 export const RangeSlider = () => {
-  const dispatch = useAppDispatch()
   const minCardsCountValue = useAppSelector(minCardsCountSelector)
   const maxCardsCountValue = useAppSelector(maxCardsCountSelector)
   const minValue = useAppSelector(minValueRangeSelector)
   const maxValue = useAppSelector(maxValueRangeSelector)
   const rangeDisabled = useAppSelector(isLoadingSelector)
   const [value, setValue] = useState<number[]>([minValue, maxValue])
+  const dispatch = useAppDispatch()
 
   const handleLocalValuesChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[])
