@@ -35,12 +35,9 @@ export const getCardsTC =
         sortCards,
       })
 
-      console.log(response)
-      const { cards, cardsTotalCount } = response.data
+      const { cards } = response.data
 
       dispatch(getCards({ cards: cards }))
-      // dispatch(setCardsTotalCount(cardsTotalCount))
-      // dispatch(setIsCardsFetched(true));
     } catch (e) {
       if (axios.isAxiosError<{ error: string }>(e)) {
         const error = e.response ? e.response.data.error : 'Something wrong'

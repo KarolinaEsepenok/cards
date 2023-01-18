@@ -60,7 +60,7 @@ export const updateProfileNameTC =
       }
       const res = await authAPI.updateProfileName(apiModel)
 
-      dispatch(updateProfileNameAC({ data: res.data }))
+      dispatch(updateProfileName({ data: res.data }))
     } catch (e) {
       if (axios.isAxiosError<{ error: string }>(e)) {
         const error = e.response ? e.response.data.error : 'Something wrong'
@@ -84,11 +84,11 @@ const slice = createSlice({
     setNewPassword: (state, action: PayloadAction<string>) => {
       state.password = action.payload
     },
-    updateProfileNameAC(state, action: PayloadAction<{ data: ResponseProfileUserType }>) {
+    updateProfileName(state, action: PayloadAction<{ data: ResponseProfileUserType }>) {
       state.name = action.payload.data.updatedUser.name
     },
   },
 })
 
 export const authReducer = slice.reducer
-export const { setSignIn, setNewPassword, updateProfileNameAC } = slice.actions
+export const { setSignIn, setNewPassword, updateProfileName } = slice.actions

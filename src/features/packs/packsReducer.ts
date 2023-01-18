@@ -44,7 +44,7 @@ export const getPacksTC = createAsyncThunk<void, undefined, { state: RootStateTy
 
       const { cardPacks, cardPacksTotalCount, minCardsCount, maxCardsCount } = response.data
 
-      dispatch(setPacksAC({ cardPacks, cardPacksTotalCount, minCardsCount, maxCardsCount }))
+      dispatch(setPacks({ cardPacks, cardPacksTotalCount, minCardsCount, maxCardsCount }))
     } catch (e) {
       if (axios.isAxiosError<{ error: string }>(e)) {
         const error = e.response ? e.response.data.error : 'Something wrong'
@@ -64,7 +64,7 @@ export const addNewPackTC =
     try {
       const response = await packsApi.addNewPack(data)
 
-      dispatch(addNewPackAC({ pack: response.data.newCardsPack }))
+      dispatch(addNewPack({ pack: response.data.newCardsPack }))
     } catch (e) {
       if (axios.isAxiosError<{ error: string }>(e)) {
         const error = e.response ? e.response.data.error : 'Something wrong'
@@ -83,7 +83,7 @@ export const updateNamePackTC =
     try {
       const response = await packsApi.updatePack(packId, packName)
 
-      dispatch(updateNamePackAC({ id: packId, packName: response.data.updatedCardsPack.name }))
+      dispatch(updateNamePack({ id: packId, packName: response.data.updatedCardsPack.name }))
       dispatch(getPacksTC())
     } catch (e) {
       if (axios.isAxiosError<{ error: string }>(e)) {
@@ -101,9 +101,7 @@ export const deletePackTC =
   async dispatch => {
     dispatch(setIsLoading(true))
     try {
-      const response = await packsApi.deletePack(packId)
-
-      dispatch(deletePackAC({ packId }))
+      await packsApi.deletePack(packId)
       dispatch(getPacksTC())
     } catch (e) {
       if (axios.isAxiosError<{ error: string }>(e)) {
@@ -120,7 +118,7 @@ const slice = createSlice({
   name: 'packs',
   initialState,
   reducers: {
-    setPacksAC: (
+    setPacks: (
       state,
       action: PayloadAction<{
         cardPacks: PackType[]
@@ -137,17 +135,16 @@ const slice = createSlice({
     setMyPacks: (state, action) => {
       state.queryParams.user_id = action.payload
     },
-    addNewPackAC: (state, action: PayloadAction<{ pack: PackType }>) => {
+    addNewPack: (state, action: PayloadAction<{ pack: PackType }>) => {
       state.cardPacks.unshift(action.payload.pack)
     },
-    updateNamePackAC: (state, action: PayloadAction<{ id: string; packName: string }>) => {
+    updateNamePack: (state, action: PayloadAction<{ id: string; packName: string }>) => {
       state.cardPacks.map(p => {
         p._id === action.payload.id ? { name: action.payload.packName } : p
       })
     },
-    deletePackAC: (state, action: PayloadAction<{ packId: string }>) => {},
   },
 })
 
 export const packsReducer = slice.reducer
-export const { setPacksAC, addNewPackAC, updateNamePackAC, deletePackAC } = slice.actions
+export const { setPacks, addNewPack, updateNamePack } = slice.actions

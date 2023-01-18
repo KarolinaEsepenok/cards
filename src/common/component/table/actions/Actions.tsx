@@ -3,7 +3,7 @@ import React, { FC, useState } from 'react'
 import edit from '../../../../assets/img/icons/edit.svg'
 import teacher from '../../../../assets/img/icons/teacher.svg'
 import trash from '../../../../assets/img/icons/trash.svg'
-import { UpdateNamePack } from '../../../../features/packs/packCRUD/UpdateNamePack'
+import { UpdateNamePack } from '../../../../features/packs/packsList/pack/updateNamePack/UpdateNamePack'
 import { deletePackTC } from '../../../../features/packs/packsReducer'
 import { useAppDispatch } from '../../../hooks/useAppDispatch'
 

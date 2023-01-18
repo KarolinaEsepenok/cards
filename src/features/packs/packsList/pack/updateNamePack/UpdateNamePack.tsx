@@ -2,14 +2,13 @@ import React, { useEffect } from 'react'
 
 import { useFormik } from 'formik'
 
-import { Button } from '../../../common/component/Button/Button'
-import { Checkbox } from '../../../common/component/Checkbox/Checkbox'
-import { Input } from '../../../common/component/Input/Input'
-import style from '../../../common/component/Input/Input.module.scss'
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
-import { updateNamePackTC } from '../packsReducer'
-
-import s from './packCRUD.module.scss'
+import { Button } from '../../../../../common/component/Button/Button'
+import { Checkbox } from '../../../../../common/component/Checkbox/Checkbox'
+import { Input } from '../../../../../common/component/Input/Input'
+import style from '../../../../../common/component/Input/Input.module.scss'
+import { useAppDispatch } from '../../../../../common/hooks/useAppDispatch'
+import { updateNamePackTC } from '../../../packsReducer'
+import s from '../../PackList.module.scss'
 
 type UpdateNamePackType = {
   togglePopup: () => void
@@ -48,7 +47,7 @@ export const UpdateNamePack: React.FC<UpdateNamePackType> = ({ togglePopup, pack
   }, [packName])
 
   return (
-    <div className={s.newpack_inner}>
+    <div className={s.newPackInner}>
       <h2>Edit pack</h2>
       <div onClick={togglePopup}>x</div>
       <form onSubmit={formik.handleSubmit}>
