@@ -12,7 +12,7 @@ import { updateNamePackTC } from '../packsReducer'
 import s from './packCRUD.module.scss'
 
 type UpdateNamePackType = {
-  openClosePopup: () => void
+  togglePopup: () => void
   packId: string
   packName: string
 }
@@ -20,7 +20,7 @@ interface FormikErrorType {
   name?: string
   private?: boolean
 }
-export const UpdateNamePack: React.FC<UpdateNamePackType> = ({ openClosePopup, packId, packName }) => {
+export const UpdateNamePack: React.FC<UpdateNamePackType> = ({ togglePopup, packId, packName }) => {
   const dispatch = useAppDispatch()
 
   const formik = useFormik({
@@ -39,7 +39,7 @@ export const UpdateNamePack: React.FC<UpdateNamePackType> = ({ openClosePopup, p
     },
     onSubmit: values => {
       dispatch(updateNamePackTC(packId, values.name))
-      openClosePopup()
+      togglePopup()
     },
   })
 
@@ -50,7 +50,7 @@ export const UpdateNamePack: React.FC<UpdateNamePackType> = ({ openClosePopup, p
   return (
     <div className={s.newpack_inner}>
       <h2>Edit pack</h2>
-      <div onClick={openClosePopup}>x</div>
+      <div onClick={togglePopup}>x</div>
       <form onSubmit={formik.handleSubmit}>
         <Input
           type="text"
@@ -65,7 +65,7 @@ export const UpdateNamePack: React.FC<UpdateNamePackType> = ({ openClosePopup, p
           <Checkbox id="private" {...formik.getFieldProps('private')} checked={formik.values.private} />
         </div>
 
-        <Button styleType={'secondary'} type="button" onClick={openClosePopup}>
+        <Button styleType={'secondary'} type="button" onClick={togglePopup}>
           Cancel
         </Button>
         <Button styleType={'primary'} disabled={!!formik.errors.name}>

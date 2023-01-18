@@ -21,7 +21,6 @@ export const AddNewPack = () => {
     },
 
     onSubmit: values => {
-      // alert(JSON.stringify(values, null, 2))
       dispatch(addNewPackTC({ cardsPack: values }))
     },
   })

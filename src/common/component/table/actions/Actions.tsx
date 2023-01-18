@@ -14,12 +14,12 @@ type ActionsType = {
 }
 export const Actions: FC<ActionsType> = ({ myPack, packId, packName }) => {
   const dispatch = useAppDispatch()
-  const [openPopup, setOpenPopup] = useState(false)
+  const [togglePopup, setTogglePopup] = useState(false)
 
-  const isPackOpenHandler = () => {
-    setOpenPopup(!openPopup)
+  const handlerTogglePopup = () => {
+    setTogglePopup(!togglePopup)
   }
-  const isPackDeleteHandler = () => {
+  const handlerDeletePack = () => {
     dispatch(deletePackTC(packId))
   }
 
@@ -30,15 +30,15 @@ export const Actions: FC<ActionsType> = ({ myPack, packId, packName }) => {
       </button>
       {myPack && (
         <>
-          <button onClick={isPackOpenHandler}>
+          <button onClick={handlerTogglePopup}>
             <img src={edit} alt="icon edit" />
           </button>
-          <button onClick={isPackDeleteHandler}>
+          <button onClick={handlerDeletePack}>
             <img src={trash} alt="icon trash" />
           </button>
         </>
       )}
-      {openPopup && <UpdateNamePack openClosePopup={isPackOpenHandler} packId={packId} packName={packName} />}
+      {togglePopup && <UpdateNamePack togglePopup={handlerTogglePopup} packId={packId} packName={packName} />}
     </div>
   )
 }
