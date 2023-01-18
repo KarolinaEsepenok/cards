@@ -16,9 +16,8 @@ import {
 
 import s from './Packs.module.scss'
 import { PackType } from './packsApi'
-import { AddNewPack } from './packsList/addNewPack/AddNewPack'
 import { PacksList } from './packsList/PacksList'
-import { getPacksTC } from './packsReducer'
+import { addNewPackTC, getPacksTC } from './packsReducer'
 
 export const Packs = () => {
   const packs: PackType[] = useAppSelector(cardPacks)
@@ -41,8 +40,22 @@ export const Packs = () => {
       <h2>Packs list</h2>
 
       <div>
-        <Button styleType="primary">Add new pack</Button>
-        <AddNewPack />
+        <Button
+          styleType="primary"
+          onClick={() =>
+            dispatch(
+              addNewPackTC({
+                cardsPack: {
+                  name: 'NewPack',
+                  deckCover: '',
+                  private: false,
+                },
+              })
+            )
+          }
+        >
+          Add new pack
+        </Button>
       </div>
 
       <div className={s.table}>

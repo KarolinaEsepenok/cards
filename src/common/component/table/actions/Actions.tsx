@@ -7,6 +7,8 @@ import { UpdateNamePack } from '../../../../features/packs/packsList/pack/update
 import { deletePackTC } from '../../../../features/packs/packsReducer'
 import { useAppDispatch } from '../../../hooks/useAppDispatch'
 
+import s from './Actions.module.scss'
+
 type ActionsType = {
   myPack: boolean
   packId: string
@@ -25,15 +27,15 @@ export const Actions: FC<ActionsType> = ({ myPack, packId, packName }) => {
 
   return (
     <div>
-      <button>
+      <button className={s.button}>
         <img src={teacher} alt="icon teacher" />
       </button>
       {myPack && (
         <>
-          <button onClick={handlerTogglePopup}>
+          <button className={s.button} onClick={handlerTogglePopup}>
             <img src={edit} alt="icon edit" />
           </button>
-          <button onClick={handlerDeletePack}>
+          <button className={s.button} onClick={handlerDeletePack}>
             <img src={trash} alt="icon trash" />
           </button>
         </>
