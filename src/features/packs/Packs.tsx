@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 
 import { Paginator } from '../../common/component/paginator/Paginator'
 import { FilterMyAllPacks } from '../../common/component/queryParamComponents/filterMyAllPacks/FilterMyAllPacks'
-import { RangeSlider } from '../../common/component/queryParamComponents/range/Range'
 import { useAppDispatch } from '../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../common/hooks/useAppSelector'
 import {
@@ -20,7 +19,7 @@ import {
 import s from './Packs.module.scss'
 import { PackType } from './packsApi'
 import { PacksList } from './packsList/PacksList'
-import { getPacksTC } from './packsReducer'
+import { getPacksTC, setPacksCurrentPage, setRowPage } from './packsReducer'
 
 export const Packs = () => {
   const packs: PackType[] = useAppSelector(cardPacks)
@@ -34,6 +33,12 @@ export const Packs = () => {
   const totalCount = useAppSelector(cardPacksTotalCountSelector)
 
   const dispatch = useAppDispatch()
+  const changePageHandle = (page: number) => {
+    dispatch(setPacksCurrentPage(page))
+  }
+  const changeRowPageHandle = (pageCount: number) => {
+    dispatch(setRowPage(pageCount))
+  }
 
   useEffect(() => {
     dispatch(getPacksTC())
@@ -42,14 +47,17 @@ export const Packs = () => {
   return (
     <section className={s.packs}>
       <h2>Packs list</h2>
-      <RangeSlider />
       <FilterMyAllPacks />
       <div className={s.table}>
         <PacksList packs={packs} />
       </div>
       <div>
-        {' '}
-        <Paginator pageCount={pageCount} currentPage={page} totalCount={totalCount} packsOrCards={false} />
+        <Paginator
+          setRowCallback={changeRowPageHandle}
+          setPageCallback={changePageHandle}
+          pageCount={pageCount}
+          totalCount={totalCount}
+        />
       </div>
     </section>
   )

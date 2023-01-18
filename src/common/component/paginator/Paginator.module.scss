@@ -1,10 +1,22 @@
 .paginatorMain {
   display: flex;
-  justify-content: end;
+  justify-content: start;
 
   padding-top: 20px;
 
   .showPerPage {
     display: flex;
+
+
+    margin-left: 20px;
+
+    font-size: 12px;
+
+    .nameShowPerPage {
+      align-self: center;
+
+      margin-right: 10px;
+      margin-left: 10px;
+    }
   }
 }

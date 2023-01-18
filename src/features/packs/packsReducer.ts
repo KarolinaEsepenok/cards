@@ -84,9 +84,12 @@ const slice = createSlice({
     setPacksCurrentPage: (state, action) => {
       state.queryParams.page = action.payload
     },
+    setRowPage: (state, action) => {
+      state.queryParams.pageCount = action.payload
+    },
   },
 })
 
 export const packsReducer = slice.reducer
-export const { setPacksAC, setRangeValues, setMyPacks, setPacksCurrentPage } = slice.actions
+export const { setPacksAC, setRangeValues, setMyPacks, setPacksCurrentPage, setRowPage } = slice.actions
 export const {} = slice.actions
