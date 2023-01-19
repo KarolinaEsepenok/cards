@@ -7,6 +7,7 @@ import s from './Paginator.module.scss'
 type PaginationPropsType = {
   pageCount: number
   totalCount: number
+  currentPage: number
   setPageCallback: (page: number) => void
   setRowCallback: (pageCount: number) => void
 }
@@ -15,6 +16,7 @@ export const Paginator: React.FC<PaginationPropsType> = ({
   totalCount,
   setPageCallback,
   setRowCallback,
+  currentPage,
 }) => {
   const pages = Math.ceil(totalCount / pageCount)
   const pageValue = pageCount.toString()
@@ -30,7 +32,7 @@ export const Paginator: React.FC<PaginationPropsType> = ({
 
   return (
     <div className={s.paginatorMain}>
-      <Pagination onChange={handleChangePage} count={pages} />
+      <Pagination onChange={handleChangePage} count={pages} page={currentPage} />
       <div className={s.showPerPage}>
         <div className={s.nameShowPerPage}>Show</div>
         <FormControl sx={{ margin: '0 1rem' }} size="small">
