@@ -2,10 +2,7 @@ import React, { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes } from 'reac
 
 import s from './Checkbox.module.scss'
 
-type DefaultInputPropsType = DetailedHTMLProps<
-  InputHTMLAttributes<HTMLInputElement>,
-  HTMLInputElement
->
+type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 
 type SuperCheckboxPropsType = Omit<DefaultInputPropsType, 'type'> & {
   onChangeChecked?: (checked: boolean) => void

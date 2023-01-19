@@ -20,7 +20,7 @@ export const PacksList: FC<PacksTableType> = ({ packs }) => {
   return isLoading ? (
     <CircularProgress sx={{ position: 'absolute', top: '50%', left: '50%' }} />
   ) : (
-    <Table titles={['Name', 'Cards', 'Created by', 'Last Updated', 'Actions']}>
+    <Table titles={['Name', 'Cards', 'Last Updated', 'Created by', 'Actions']}>
       {packs.map(p => {
         const dateUpdate = formatDate(p.updated)
 
