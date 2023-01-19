@@ -51,7 +51,6 @@ export const Packs = () => {
   return (
     <section className={s.packs}>
       <h2>Packs list</h2>
-
       <div className={s.addPackButton}>
         <Button
           styleType="primary"
