@@ -7,9 +7,9 @@ import { useAppDispatch } from '../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../common/hooks/useAppSelector'
 import {
   cardPacks,
+  cardPacksTotalCountSelector,
   maxCardsCountSelector,
   minCardsCountSelector,
-  cardPacksTotalCountSelector,
   packNameSelector,
   pageCountSelector,
   pageSelector,
@@ -44,6 +44,16 @@ export const Packs = () => {
   useEffect(() => {
     dispatch(getPacksTC())
   }, [page, packName, pageCount, userId, minCardsCount, maxCardsCount, sortPacks])
+
+  useEffect(() => {
+    const pageL = localStorage.getItem('page')
+
+    if (pageL) {
+      if (Number(pageL) !== page) {
+        changePageHandle(+pageL)
+      }
+    }
+  }, [])
 
   return (
     <section className={s.packs}>

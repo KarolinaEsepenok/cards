@@ -21,6 +21,7 @@ export const Paginator: React.FC<PaginationPropsType> = ({
   const pages = Math.ceil(totalCount / pageCount)
   const pageValue = pageCount.toString()
   const handleChangePage = (event: React.ChangeEvent<unknown>, value: number) => {
+    localStorage.setItem('page', JSON.stringify(value))
     setPageCallback(value)
   }
 
