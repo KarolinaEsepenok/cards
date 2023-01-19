@@ -82,6 +82,7 @@ export const Packs = () => {
           setPageCallback={changePageHandle}
           pageCount={pageCount}
           totalCount={totalCount}
+          currentPage={page}
         />
       </div>
     </section>
