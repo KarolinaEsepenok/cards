@@ -2,7 +2,7 @@ import React, { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes, useEffect, 
 
 import visibilityOff from '../../../assets/img/icons/visibility-off.svg'
 import visibilityOn from '../../../assets/img/icons/visibility-on.svg'
-import { Button } from '../Button/Button'
+import { Button } from '../button/Button'
 
 import s from './Input.module.scss'
 

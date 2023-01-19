@@ -2,8 +2,8 @@ import React, { useEffect } from 'react'
 
 import { useFormik } from 'formik'
 
-import { Button } from '../../../../../common/component/Button/Button'
-import { Checkbox } from '../../../../../common/component/Checkbox/Checkbox'
+import { Button } from '../../../../../common/component/button/Button'
+import { Checkbox } from '../../../../../common/component/checkbox/Checkbox'
 import { Input } from '../../../../../common/component/Input/Input'
 import style from '../../../../../common/component/Input/Input.module.scss'
 import { useAppDispatch } from '../../../../../common/hooks/useAppDispatch'

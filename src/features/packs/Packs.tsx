@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import { Button } from '../../common/component/Button/Button'
+import { Button } from '../../common/component/button/Button'
 import { Paginator } from '../../common/component/paginator/Paginator'
 import { FilterMyAllPacks } from '../../common/component/queryParamComponents/filterMyAllPacks/FilterMyAllPacks'
 import { RangeSlider } from '../../common/component/queryParamComponents/range/Range'

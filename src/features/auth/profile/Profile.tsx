@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 import editName from '../../../assets/img/icons/profile_edit_name.png'
 import ava from '../../../assets/img/profile_photo.jpg'
-import { Button } from '../../../common/component/Button/Button'
+import { Button } from '../../../common/component/button/Button'
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../../common/hooks/useAppSelector'
 import { emailSelector, nameSelector } from '../../../common/selectors/Selectors'

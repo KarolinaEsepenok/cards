@@ -3,7 +3,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import checkEmail from '../../../../assets/img/check-email.svg'
-import { Button } from '../../../../common/component/Button/Button'
+import { Button } from '../../../../common/component/button/Button'
 import { useAppSelector } from '../../../../common/hooks/useAppSelector'
 import { currentEmailSelector } from '../../../../common/selectors/Selectors'
 import { PATH } from '../../../../routes/routes'

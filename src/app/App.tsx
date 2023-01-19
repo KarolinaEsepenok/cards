@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 
 import { CircularProgress, LinearProgress } from '@mui/material'
 
-import { ErrorSnackbar } from '../common/component/ErrorSnackbar/ErrorSnackbar'
+import { ErrorSnackbar } from '../common/component/errorSnackbar/ErrorSnackbar'
 import { useAppDispatch } from '../common/hooks/useAppDispatch'
 import { useAppSelector } from '../common/hooks/useAppSelector'
 import { isAppInitialize, isLoadingSelector } from '../common/selectors/Selectors'
@@ -32,11 +32,10 @@ export const App = () => {
       <ErrorSnackbar />
       <Header />
       {isLoading && <LinearProgress className={s.linearProgress} />}
-      <div className={s.centerApp}>
-        <div>
-          <RoutesComponent />
-        </div>
-      </div>
+
+      <section className={s.contentContainer}>
+        <RoutesComponent />
+      </section>
     </div>
   )
 }
