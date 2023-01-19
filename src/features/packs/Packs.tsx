@@ -10,8 +10,6 @@ import {
   maxCardsCountSelector,
   minCardsCountSelector,
   cardPacksTotalCountSelector,
-  maxValueRangeSelector,
-  minValueRangeSelector,
   packNameSelector,
   pageCountSelector,
   pageSelector,
@@ -33,8 +31,6 @@ export const Packs = () => {
   const minCardsCount = useAppSelector(minCardsCountSelector)
   const maxCardsCount = useAppSelector(maxCardsCountSelector)
   const sortPacks = useAppSelector(sortPacksSelector)
-  const min = useAppSelector(minValueRangeSelector)
-  const max = useAppSelector(maxValueRangeSelector)
   const totalCount = useAppSelector(cardPacksTotalCountSelector)
 
   const dispatch = useAppDispatch()
@@ -82,6 +78,7 @@ export const Packs = () => {
           setPageCallback={changePageHandle}
           pageCount={pageCount}
           totalCount={totalCount}
+          currentPage={page}
         />
       </div>
     </section>
