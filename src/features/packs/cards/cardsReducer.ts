@@ -2,8 +2,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 import { setError, setIsLoading } from '../../../app/app-reducer'
+import { sortingCardsMethods } from '../../../common/constants/sortingPacksMethods/sortingPacksMethods'
 import { AppThunk } from '../../../common/hooks/AppThunk'
-import { sortingCardsMethods } from '../../../common/sortingPacksMethods/sortingPacksMethods'
 
 import { cardsAPI, CardType } from './cardsApi'
 
@@ -18,6 +18,8 @@ const initialState = {
     cardQuestion: '',
     sortCards: sortingCardsMethods.desUpdate,
   },
+  packId: '',
+  creatorId: '',
 }
 
 export const getCardsTC =
@@ -38,6 +40,7 @@ export const getCardsTC =
       const { cards } = response.data
 
       dispatch(getCards({ cards: cards }))
+      dispatch(setCreatorId(response.data.packUserId))
     } catch (e) {
       if (axios.isAxiosError<{ error: string }>(e)) {
         const error = e.response ? e.response.data.error : 'Something wrong'
@@ -55,8 +58,14 @@ const slice = createSlice({
     getCards: (state, action: PayloadAction<{ cards: CardType[] }>) => {
       state.cards = action.payload.cards
     },
+    setPackId: (state, action: PayloadAction<string>) => {
+      state.packId = action.payload
+    },
+    setCreatorId: (state, action: PayloadAction<string>) => {
+      state.creatorId = action.payload
+    },
   },
 })
 
 export const cardsReducer = slice.reducer
-export const { getCards } = slice.actions
+export const { getCards, setPackId, setCreatorId } = slice.actions

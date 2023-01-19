@@ -6,8 +6,7 @@ import trash from '../../../../assets/img/icons/trash.svg'
 import { UpdateNamePack } from '../../../../features/packs/packsList/pack/updateNamePack/UpdateNamePack'
 import { deletePackTC } from '../../../../features/packs/packsReducer'
 import { useAppDispatch } from '../../../hooks/useAppDispatch'
-
-import s from './Actions.module.scss'
+import { Button } from '../../button/Button'
 
 type ActionsType = {
   myPack: boolean
@@ -27,17 +26,17 @@ export const Actions: FC<ActionsType> = ({ myPack, packId, packName }) => {
 
   return (
     <div>
-      <button className={s.button}>
+      <Button styleType="icon">
         <img src={teacher} alt="icon teacher" />
-      </button>
+      </Button>
       {myPack && (
         <>
-          <button className={s.button} onClick={handlerTogglePopup}>
+          <Button styleType="icon" onClick={handlerTogglePopup}>
             <img src={edit} alt="icon edit" />
-          </button>
-          <button className={s.button} onClick={handlerDeletePack}>
-            <img src={trash} alt="icon trash" />
-          </button>
+          </Button>
+          <Button styleType="icon">
+            <img src={trash} alt="icon trash" onClick={handlerDeletePack} />
+          </Button>
         </>
       )}
       {togglePopup && <UpdateNamePack togglePopup={handlerTogglePopup} packId={packId} packName={packName} />}

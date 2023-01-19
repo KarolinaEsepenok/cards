@@ -3,7 +3,7 @@ import React from 'react'
 import { useFormik } from 'formik'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { Button } from '../../../../common/component/Button/Button'
+import { Button } from '../../../../common/component/button/Button'
 import { Input } from '../../../../common/component/Input/Input'
 import { useAppDispatch } from '../../../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../../../common/hooks/useAppSelector'

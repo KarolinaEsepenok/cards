@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react'
 
-import { Button } from '../../common/component/Button/Button'
+import { Button } from '../../common/component/button/Button'
 import { Paginator } from '../../common/component/paginator/Paginator'
 import { FilterMyAllPacks } from '../../common/component/queryParamComponents/filterMyAllPacks/FilterMyAllPacks'
+import { RangeSlider } from '../../common/component/queryParamComponents/range/Range'
+import { ResetAllFilters } from '../../common/component/queryParamComponents/resetAllFilters/ResetAllFilters'
+import { Search } from '../../common/component/queryParamComponents/search/Search'
 import { useAppDispatch } from '../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../common/hooks/useAppSelector'
 import {
   cardPacks,
-  maxCardsCountSelector,
-  minCardsCountSelector,
   cardPacksTotalCountSelector,
   maxValueRangeSelector,
   minValueRangeSelector,
@@ -30,11 +31,9 @@ export const Packs = () => {
   const packName = useAppSelector(packNameSelector)
   const pageCount = useAppSelector(pageCountSelector)
   const userId = useAppSelector(userIdSelector)
-  const minCardsCount = useAppSelector(minCardsCountSelector)
-  const maxCardsCount = useAppSelector(maxCardsCountSelector)
-  const sortPacks = useAppSelector(sortPacksSelector)
   const min = useAppSelector(minValueRangeSelector)
   const max = useAppSelector(maxValueRangeSelector)
+  const sortPacks = useAppSelector(sortPacksSelector)
   const totalCount = useAppSelector(cardPacksTotalCountSelector)
 
   const dispatch = useAppDispatch()
@@ -47,7 +46,7 @@ export const Packs = () => {
 
   useEffect(() => {
     dispatch(getPacksTC())
-  }, [page, packName, pageCount, userId, minCardsCount, maxCardsCount, sortPacks])
+  }, [page, packName, pageCount, userId, min, max, sortPacks])
 
   return (
     <section className={s.packs}>
@@ -71,7 +70,9 @@ export const Packs = () => {
           Add new pack
         </Button>
       </div>
-
+      <Search />
+      <RangeSlider />
+      <ResetAllFilters />
       <FilterMyAllPacks />
       <div className={s.table}>
         <PacksList packs={packs} />

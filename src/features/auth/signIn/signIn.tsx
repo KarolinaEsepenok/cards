@@ -4,7 +4,7 @@ import { FormControl, FormGroup } from '@mui/material'
 import { useFormik } from 'formik'
 import { Navigate, NavLink } from 'react-router-dom'
 
-import { Button } from '../../../common/component/Button/Button'
+import { Button } from '../../../common/component/button/Button'
 import { Checkbox } from '../../../common/component/Checkbox/Checkbox'
 import { Input } from '../../../common/component/Input/Input'
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
