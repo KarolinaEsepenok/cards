@@ -39,7 +39,6 @@ export const getCardsTC =
 
       const { cards } = response.data
 
-      //console.log(response.data)
       dispatch(getCards({ cards: cards }))
       dispatch(setCreatorId(response.data.packUserId))
     } catch (e) {
