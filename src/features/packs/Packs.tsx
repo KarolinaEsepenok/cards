@@ -49,9 +49,7 @@ export const Packs = () => {
     const pageL = localStorage.getItem('page')
 
     if (pageL) {
-      if (Number(pageL) !== page) {
-        changePageHandle(+pageL)
-      }
+      Number(pageL) !== page && changePageHandle(+pageL)
     }
   }, [])
 
