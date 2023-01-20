@@ -2,24 +2,19 @@
 
 @import 'src/common/style/mixins';
 
-.label {
+.buttons {
+  width: 200px;
+}
 
-  @include subtitle($fontWeight: 500, $opacity: 1);
+.btnFilter {
+  width: 97px;
+  height: 36px;
 
-  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 400;
 
-  .buttons {
-    width: 200px;
-
-    .btnFilter {
-      width: 97px;
-      height: 36px;
-
-      font-size: 14px;
-      font-weight: 400;
-
-      border-radius: 2px;
-    }
-
+  border-radius: 4px 0 0 4px;
+  &:last-child {
+    border-radius: 0 4px 4px 0;
   }
 }
