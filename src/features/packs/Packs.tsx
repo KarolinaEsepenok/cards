@@ -71,7 +71,7 @@ export const Packs = () => {
         </Button>
       </div>
       <div className={s.filtersContainer}>
-        <Search />
+        <Search class={s.search} />
         <RangeSlider />
         <FilterMyAllPacks />
         <ResetAllFilters />
