@@ -50,7 +50,7 @@ export const Packs = () => {
   }, [page, packName, pageCount, userId, min, max, sortPacks])
 
   return (
-    <section className={s.packs}>
+    <div className={s.packs}>
       <h2>Packs list</h2>
 
       <div className={s.addPackButton}>
@@ -104,6 +104,6 @@ export const Packs = () => {
           currentPage={page}
         />
       </div>
-    </section>
+    </div>
   )
 }
