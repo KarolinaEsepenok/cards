@@ -1,0 +1,6 @@
+@import 'src/common/style/mixins';
+
+.subtitle {
+
+  @include subtitle(500);
+}

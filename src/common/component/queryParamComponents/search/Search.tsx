@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import React, { ChangeEvent, FC, useEffect, useState } from 'react'
 
 import { setSearchName } from '../../../../features/packs/packsReducer'
 import { useAppDispatch } from '../../../hooks/useAppDispatch'
@@ -7,7 +7,10 @@ import { packNameSelector } from '../../../selectors/Selectors'
 import { useDebounce } from '../../../utils/useDebounce'
 import { Input } from '../../Input/Input'
 
-export const Search = () => {
+type SearchType = {
+  class?: string
+}
+export const Search: FC<SearchType> = props => {
   const dispatch = useAppDispatch()
   const packName = useAppSelector(packNameSelector)
   const [value, setValue] = useState<string>('')
@@ -19,13 +22,18 @@ export const Search = () => {
   useEffect(() => {
     dispatch(setSearchName(value))
   }, [debouncedValue])
+
   useEffect(() => {
     if (packName === '') setValue(packName)
   }, [packName])
 
   return (
-    <div>
-      <Input type={'search'} onChange={handleSearchValueChange} value={value} />
-    </div>
+    <Input
+      type="search"
+      onChange={handleSearchValueChange}
+      value={value}
+      placeholder="Provide your text"
+      className={props.class}
+    />
   )
 }
