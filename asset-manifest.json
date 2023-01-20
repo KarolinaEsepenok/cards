@@ -1,22 +1,27 @@
 {
   "files": {
-    "main.css": "/cards/static/css/main.eb0bc8af.css",
-    "main.js": "/cards/static/js/main.33e2b4c9.js",
+    "main.css": "/cards/static/css/main.e2c72ee3.css",
+    "main.js": "/cards/static/js/main.f5d1ed9c.js",
     "static/media/profile_photo.jpg": "/cards/static/media/profile_photo.ebc6876edbbd113ce2dd.jpg",
     "static/media/Montserrat-SemiBold.ttf": "/cards/static/media/Montserrat-SemiBold.d5e0cc788cba9ced1fb9.ttf",
     "static/media/Montserrat-Medium.ttf": "/cards/static/media/Montserrat-Medium.c86e3b9010ff63c99166.ttf",
     "static/media/Montserrat-Regular.ttf": "/cards/static/media/Montserrat-Regular.ceb11275ab638627a643.ttf",
     "static/media/check-email.svg": "/cards/static/media/check-email.cdfba66fde5a43fa07de20848a33be02.svg",
-    "static/media/LogoCards.svg": "/cards/static/media/LogoCards.66aa37dd1366aaf98fa95be1206c3b1e.svg",
+    "static/media/LogoCards.svg": "/cards/static/media/LogoCards.3c09153556dc0fef65c4fc532ee16562.svg",
+    "static/media/resetAllFilters.svg": "/cards/static/media/resetAllFilters.3d63a989d310532a812c82da24271d9d.svg",
+    "static/media/trash.svg": "/cards/static/media/trash.b791b8fa7991d0e4e9535dd5338d2caa.svg",
+    "static/media/edit.svg": "/cards/static/media/edit.2e348c1bdb88ec143e7247e644135a0c.svg",
     "static/media/visibility-off.svg": "/cards/static/media/visibility-off.583e41f16dd351b9c1a6a3b582409bbc.svg",
     "index.html": "/cards/index.html",
-    "static/media/checked.svg": "/cards/static/media/checked.b75ca55e8759862b4083.svg",
+    "static/media/teacher.svg": "/cards/static/media/teacher.61316ef9f9bb14acdf57faf399645aeb.svg",
+    "static/media/checked.svg": "/cards/static/media/checked.0b6a1bcf5d417ff0a947.svg",
+    "static/media/search.svg": "/cards/static/media/search.a585ed9d36c01e009d5a.svg",
     "static/media/visibility-on.svg": "/cards/static/media/visibility-on.12e5300f66908a6f62fcbc9e19980293.svg",
-    "main.eb0bc8af.css.map": "/cards/static/css/main.eb0bc8af.css.map",
-    "main.33e2b4c9.js.map": "/cards/static/js/main.33e2b4c9.js.map"
+    "main.e2c72ee3.css.map": "/cards/static/css/main.e2c72ee3.css.map",
+    "main.f5d1ed9c.js.map": "/cards/static/js/main.f5d1ed9c.js.map"
   },
   "entrypoints": [
-    "static/css/main.eb0bc8af.css",
-    "static/js/main.33e2b4c9.js"
+    "static/css/main.e2c72ee3.css",
+    "static/js/main.f5d1ed9c.js"
   ]
 }
