@@ -2,177 +2,77 @@
 
 @import "../../../common/style/variables";
 
+
+.signIn {
+  margin: 60px auto;
+}
+
+.popupContainer {
+    width: 413px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 35px 0 42px 0;
+
+    text-align: center;
+
+    background-color: $background-base-color;
+    border-radius: 2px;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+
+  @include headline1();
+
+  margin: 0;
+  padding-bottom: 41px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.inputContainer {
+  margin-bottom: 20px;
+}
+
 .input {
   width: $popup-input-width;
 }
 
-.loginContainer {
-  display: flex;
-  flex-direction: column;
-
-  width: 413px;
-  height: 528px;
-  margin: 100px auto 0 auto;
-
-  text-align: center;
-
-  background-color: #FFF;
-  border-radius: 2px;
-  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
-
-  .loginNameContainer {
-    margin-top: 35px;
-    margin-bottom: 41px;
-  }
-
-  .remember {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-    justify-content: start;
-
-    margin-top: 5px;
-    margin-bottom: 24px;
-    margin-left: -64px;
-
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 100%;
-
-  }
-
-  .label {
-    position: relative;
-
-    display: flex;
-    flex-direction: column;
-
-    .eysPasswordBtn {
-      position: absolute;
-      right: 5px;
-
-      &::after {
-        content: '';
-
-        position: absolute;
-        top: 11px;
-        right: 0;
-        transform: rotate(45deg);
-
-        width: 23px;
-        height: 2px;
-
-        opacity: 1;
-        background: #000000;
-
-        transition: .3s all ease;
-      }
-    }
-  }
-
-  .loginError {
-    position: absolute;
-
-    padding-top: 50px;
-
-    font-size: 14px;
-    color: #B21232;
-  }
-
-  .passwordError {
-    position: absolute;
-
-    padding-top: 125px;
-
-    font-size: 14px;
-    color: #B21232;
-  }
-
-  .confPasswordError {
-    position: absolute;
-
-    padding-top: 200px;
-
-    font-size: 14px;
-    color: #B21232;
-  }
-
-  .eysPasswordBtnActive {
-    position: absolute;
-    right: 5px;
-
-    &::after {
-      opacity: 0;
-    }
-  }
-}
-
-.loginInputLabel {
-  width: 347px;
-  height: 28px;
-  margin-bottom: 24px;
-
-  border: 0;
-  border: none;
-  border-bottom: 1px solid #7F7F7F;
-  outline: none;
-
-  &:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 100px #FFF inset;
-
-    transition: background-color 5000s ease-in-out 0s;
-
-    -webkit-text-fill-color: #000;
-  }
-}
-
-.rememberMeLable {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: start;
-
-  margin-bottom: 19px;
-
-
-}
-
 .forgotPassword {
-  height: 36px;
-  margin-bottom: 50px;
 
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 100%;
-  color: #000000;
-  text-align: end;
+  @include subtitle(500);
 
-  &:hover {
-    opacity: 0.7;
-  }
+  align-self: end;
+
+  color:inherit;
+  text-decoration: none;
 }
 
+.button {
+  width:100%;
+  margin: 60px 0 40px 0;
+}
 
-.loginQuestion {
-  margin-top: 31px;
-  margin-bottom: 13px;
+.subtitle {
 
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 130%;
+  @include subtitle(600, 0.5);
 
-  opacity: 0.5;
+  margin-bottom: 7px;
 }
 
 .loginLink {
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 110%;
-  color: #366EFF;
+
+  @include title(600);
+
+  color:$primary-color;
 
   &:hover {
-    color: black;
-
-    opacity: 0.7;
-
+    color:$on-primary-color;
   }
 }

@@ -31,7 +31,7 @@ export const App = () => {
     <div className={s.app}>
       <ErrorSnackbar />
       <Header />
-      {isLoading && <LinearProgress className={s.linearProgress} />}
+      <div className={s.linearProgress}>{isLoading && <LinearProgress className={s.linearProgress} />}</div>
 
       <section className={s.contentContainer}>
         <RoutesComponent />

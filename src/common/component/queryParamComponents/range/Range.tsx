@@ -37,7 +37,7 @@ export const RangeSlider = () => {
   }, [minCardsCountValue, maxCardsCountValue, resetRangeValues])
 
   return (
-    <Box sx={{ width: 300, marginLeft: 30, display: 'flex', justifyContent: 'center' }}>
+    <Box sx={{ width: 300, margin: 0, display: 'flex', justifyContent: 'center' }}>
       <span style={{ marginRight: 20 }}>{value[0]}</span>{' '}
       <Slider
         getAriaLabel={() => 'Range'}

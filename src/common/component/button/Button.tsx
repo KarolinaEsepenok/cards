@@ -10,14 +10,14 @@ type ButtonType = DefaultButtonType & {
 export const Button: React.FC<ButtonType> = ({
   styleType,
   className,
-  disabled,
   ...restProps // все остальные пропсы попадут в объект restProps, там же будет children
 }) => {
-  const finalClassName = `${styleType && s[styleType]} ${className && className} ${disabled ? s.disabled : ''}`.trim()
+  const finalClassName = `${styleType && s[styleType]} ${className && className} ${
+    restProps.disabled ? s.disabled : ''
+  }`.trim()
 
   return (
     <button
-      disabled={disabled}
       className={finalClassName}
       {...restProps} // отдаём кнопке остальные пропсы если они есть (children там внутри)
     >
