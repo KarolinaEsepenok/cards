@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 
+// eslint-disable-next-line import/namespace
 import { authReducer } from '../features/auth/authReducer'
 import { passwordReducer } from '../features/auth/forgotPassword/forgotPasswordReducer'
 import { registerReducer } from '../features/auth/register/registerReducer'
