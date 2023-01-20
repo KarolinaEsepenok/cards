@@ -2,8 +2,8 @@ import React, { useEffect } from 'react'
 
 import { useFormik } from 'formik'
 
-import { Button } from '../../../../../common/component/Button/Button'
-import { Checkbox } from '../../../../../common/component/Checkbox/Checkbox'
+import { Button } from '../../../../../common/component/button/Button'
+import { Checkbox } from '../../../../../common/component/checkbox/Checkbox'
 import { Input } from '../../../../../common/component/Input/Input'
 import style from '../../../../../common/component/Input/Input.module.scss'
 import { useAppDispatch } from '../../../../../common/hooks/useAppDispatch'
@@ -59,9 +59,10 @@ export const UpdateNamePack: React.FC<UpdateNamePackType> = ({ togglePopup, pack
         />
         <span className={style.error}>{formik.errors.name}</span>
 
-        <div className={s.remember}>
-          <label htmlFor={'private'}>Private pack</label>
-          <Checkbox id="private" {...formik.getFieldProps('private')} checked={formik.values.private} />
+        <div className={s.rememberContainer}>
+          <Checkbox {...formik.getFieldProps('private')} checked={formik.values.private}>
+            Private pack
+          </Checkbox>
         </div>
 
         <Button styleType={'secondary'} type="button" onClick={togglePopup}>

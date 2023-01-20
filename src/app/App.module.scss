@@ -2,7 +2,15 @@
 
 .app {
   height: 100%;
-  margin: 0 auto;
+  min-height: 100vh;
 
   background-color: $background-200-color;
+}
+
+.linearProgress{
+  height: 6px;
+}
+.contentContainer {
+  max-width: $main-width;
+  margin: 0 auto;
 }

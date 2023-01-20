@@ -12,11 +12,13 @@ import {
   maxValueRangeSelector,
   minCardsCountSelector,
   minValueRangeSelector,
+  resetRange,
 } from '../../../selectors/Selectors'
 
 export const RangeSlider = () => {
   const minCardsCountValue = useAppSelector(minCardsCountSelector)
   const maxCardsCountValue = useAppSelector(maxCardsCountSelector)
+  const resetRangeValues = useAppSelector(resetRange)
   const minValue = useAppSelector(minValueRangeSelector)
   const maxValue = useAppSelector(maxValueRangeSelector)
   const rangeDisabled = useAppSelector(isLoadingSelector)
@@ -32,11 +34,11 @@ export const RangeSlider = () => {
 
   useEffect(() => {
     setValue([minCardsCountValue, maxCardsCountValue])
-  }, [minCardsCountValue, maxCardsCountValue])
+  }, [minCardsCountValue, maxCardsCountValue, resetRangeValues])
 
   return (
-    <Box sx={{ width: 300, marginLeft: 30, display: 'flex', justifyContent: 'center' }}>
-      <span style={{ marginRight: 20 }}>{minValue}</span>{' '}
+    <Box sx={{ width: 300, margin: 0, display: 'flex', justifyContent: 'center' }}>
+      <span style={{ marginRight: 20 }}>{value[0]}</span>{' '}
       <Slider
         getAriaLabel={() => 'Range'}
         value={value}
@@ -46,7 +48,7 @@ export const RangeSlider = () => {
         min={minCardsCountValue}
         disabled={rangeDisabled}
       />
-      <span style={{ marginLeft: 20 }}>{maxValue}</span>
+      <span style={{ marginLeft: 20 }}>{value[1]}</span>
     </Box>
   )
 }

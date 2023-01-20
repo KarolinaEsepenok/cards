@@ -3,7 +3,7 @@ import React from 'react'
 import { setMyPacks } from '../../../../features/packs/packsReducer'
 import { useAppDispatch } from '../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../hooks/useAppSelector'
-import { Button } from '../../Button/Button'
+import { Button } from '../../button/Button'
 
 import s from './FilterMyAllPacks.module.scss'
 

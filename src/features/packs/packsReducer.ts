@@ -3,9 +3,10 @@ import axios from 'axios'
 
 import { setError, setIsLoading } from '../../app/app-reducer'
 import { RootStateType } from '../../app/store'
+import { emptyQueryParams } from '../../common/constants/emptyQueryParams/emptyQueryParams'
+import { sortingPacksMethods } from '../../common/constants/sortingPacksMethods/sortingPacksMethods'
 import { AppThunk } from '../../common/hooks/AppThunk'
 import { AppDispatchType } from '../../common/hooks/useAppDispatch'
-import { sortingPacksMethods } from '../../common/sortingPacksMethods/sortingPacksMethods'
 
 import { AddPackType, packsApi, PackType } from './packsApi'
 
@@ -14,6 +15,7 @@ const initialState = {
   cardPacksTotalCount: 0,
   minCardsCount: 0,
   maxCardsCount: 110,
+  resetRange: false,
   queryParams: {
     pageCount: localStorage.getItem('row') ? Number(localStorage.getItem('row')) : 5,
     page: localStorage.getItem('page') ? Number(localStorage.getItem('page')) : 1,
@@ -155,9 +157,25 @@ const slice = createSlice({
         }
       })
     },
+    resetAllFilters: state => {
+      state.queryParams = { ...emptyQueryParams }
+      state.resetRange = !state.resetRange
+    },
+    setSearchName: (state, action: PayloadAction<string>) => {
+      state.queryParams.packName = action.payload
+    },
   },
 })
 
 export const packsReducer = slice.reducer
-export const { setPacks, setRangeValues, setMyPacks, setPacksCurrentPage, setRowPage, addNewPack, updateNamePack } =
-  slice.actions
+export const {
+  setPacks,
+  setRangeValues,
+  setMyPacks,
+  setPacksCurrentPage,
+  setRowPage,
+  addNewPack,
+  updateNamePack,
+  resetAllFilters,
+  setSearchName,
+} = slice.actions
