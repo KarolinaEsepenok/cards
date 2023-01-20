@@ -42,16 +42,9 @@ export const Packs = () => {
   }
 
   useEffect(() => {
+    console.log(minCardsCount, maxCardsCount)
     dispatch(getPacksTC())
   }, [page, packName, pageCount, userId, minCardsCount, maxCardsCount, sortPacks])
-
-  useEffect(() => {
-    const pageL = localStorage.getItem('page')
-
-    if (pageL) {
-      Number(pageL) !== page && changePageHandle(+pageL)
-    }
-  }, [])
 
   return (
     <section className={s.packs}>
