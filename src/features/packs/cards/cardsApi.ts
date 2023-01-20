@@ -9,6 +9,27 @@ export const cardsAPI = {
       params: { ...params },
     })
   },
+  addNewCard(cardsPack_id: string, newCard: AddNewCardParamType) {
+    return instance.post<'', AxiosResponse<ResponseNewCardType>, RequestNewCardType>('cards/card', {
+      card: { cardsPack_id: cardsPack_id, ...newCard },
+    })
+  },
+  updateCard(cardId: string, question: string) {
+    return instance.put<'', AxiosResponse<ResponseUpdateCardType>, RequestUpdateCardType>('cards/card', {
+      card: {
+        _id: cardId,
+        question,
+      },
+    })
+  },
+  deleteCard(cardId: string) {
+    // return instance.delete<DeleteCardType>('cards/card')
+    return instance.delete<DeleteCardType>(`cards/card?_id=${cardId}`)
+    // return instance.delete<'', AxiosResponse<DeleteCardType>, string>('cards/card', { params: cardId })
+  },
+  // deleteCard() {
+  //   return instance.delete<DeleteCardType>('cards/card')
+  // },
 }
 
 //type
@@ -49,4 +70,43 @@ export type RequestCardsType = {
   sortCards: string
   page: number
   pageCount: number
+}
+export type RequestNewCardType = {
+  card: {
+    cardsPack_id: string
+    question?: string
+    answer?: string
+    grade?: number
+    shots?: number
+    answerImg?: string
+    questionImg?: string
+    questionVideo?: string
+    answerVideo?: string
+  }
+}
+
+export type AddNewCardParamType = {
+  question: string
+  answer: string
+  grade: number
+  shots: number
+  answerImg: string
+  questionImg: string
+  questionVideo: string
+  answerVideo: string
+}
+export type ResponseNewCardType = {
+  newCard: CardType
+}
+export type DeleteCardType = {
+  deletedCard: CardType
+}
+export type ResponseUpdateCardType = {
+  updatedCard: CardType
+}
+export type RequestUpdateCardType = {
+  card: {
+    _id: string
+    question: string
+  }
 }

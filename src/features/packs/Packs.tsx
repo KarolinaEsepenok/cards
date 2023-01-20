@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 
+import { toggleModal } from '../../app/appReducer'
 import { Button } from '../../common/component/button/Button'
+import { AddPackModal } from '../../common/component/modals/AddPackModal'
 import { Paginator } from '../../common/component/paginator/Paginator'
 import { FilterMyAllPacks } from '../../common/component/queryParamComponents/filterMyAllPacks/FilterMyAllPacks'
 import { RangeSlider } from '../../common/component/queryParamComponents/range/Range'
@@ -24,7 +26,7 @@ import {
 import s from './Packs.module.scss'
 import { PackType } from './packsApi'
 import { PacksList } from './packsList/PacksList'
-import { addNewPackTC, getPacksTC, setPacksCurrentPage, setRowPage } from './packsReducer'
+import { getPacksTC, setPacksCurrentPage, setRowPage } from './packsReducer'
 
 export const Packs = () => {
   const packs: PackType[] = useAppSelector(cardPacks)
@@ -45,6 +47,10 @@ export const Packs = () => {
     dispatch(setRowPage(pageCount))
   }
 
+  const handleOpen = () => {
+    dispatch(toggleModal(true))
+  }
+
   useEffect(() => {
     dispatch(getPacksTC())
   }, [page, packName, pageCount, userId, min, max, sortPacks])
@@ -56,21 +62,24 @@ export const Packs = () => {
       <div className={s.addPackButton}>
         <Button
           styleType="primary"
-          onClick={() =>
-            dispatch(
-              addNewPackTC({
-                cardsPack: {
-                  name: 'NewPack',
-                  deckCover: '',
-                  private: false,
-                },
-              })
-            )
-          }
+          // onClick={() =>
+          //   dispatch(
+          //     addNewPackTC({
+          //       cardsPack: {
+          //         name: 'NewPack',
+          //         deckCover: '',
+          //         private: false,
+          //       },
+          //     })
+          //   )
+          // }
+          onClick={handleOpen}
         >
           Add new pack
         </Button>
       </div>
+
+      <AddPackModal />
 
       <div className={s.filtersContainer}>
         <div>

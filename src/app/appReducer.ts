@@ -10,6 +10,7 @@ const initialState = {
   error: null as null | string,
   isLoading: false,
   isLoggedIn: false,
+  toggleModal: false,
 }
 
 export const initializeAppTC = (): AppThunk => async dispatch => {
@@ -44,9 +45,12 @@ const appSlice = createSlice({
     setIsLoggedIn: (state, action: PayloadAction<boolean>) => {
       state.isLoggedIn = action.payload
     },
+    toggleModal: (state, action: PayloadAction<boolean>) => {
+      state.toggleModal = action.payload
+    },
   },
 })
 
-export const { setAppInitialized, setError, setIsLoading, setIsLoggedIn } = appSlice.actions
+export const { setAppInitialized, setError, setIsLoading, setIsLoggedIn, toggleModal } = appSlice.actions
 
 export const appReducer = appSlice.reducer
