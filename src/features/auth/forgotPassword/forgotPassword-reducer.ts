@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-import { setError, setIsLoading } from '../../../app/app-reducer'
+import { setError, setIsLoading } from '../../../app/appReducer'
 import { AppThunk } from '../../../common/hooks/AppThunk'
 import { authAPI } from '../auth-api'
 import { setNewPassword } from '../authReducer'

@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-import { setError, setIsLoading, setIsLoggedIn } from '../../app/app-reducer'
+import { setError, setIsLoading, setIsLoggedIn } from '../../app/appReducer'
 import { AppThunk } from '../../common/hooks/AppThunk'
 import { AppDispatchType } from '../../common/hooks/useAppDispatch'
 

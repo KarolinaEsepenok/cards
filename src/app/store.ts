@@ -6,7 +6,7 @@ import { registerReducer } from '../features/auth/register/registerReducer'
 import { cardsReducer } from '../features/packs/cards/cardsReducer'
 import { packsReducer } from '../features/packs/packsReducer'
 
-import { appReducer } from './app-reducer'
+import { appReducer } from './appReducer'
 
 export const store = configureStore({
   reducer: {
