@@ -3,8 +3,8 @@ import React, { ChangeEvent, useEffect, useState } from 'react'
 import { setSearchName } from '../../../../features/packs/packsReducer'
 import { useAppDispatch } from '../../../hooks/useAppDispatch'
 import { useAppSelector } from '../../../hooks/useAppSelector'
-import { useDebounce } from '../../../hooks/useDebounce'
 import { packNameSelector } from '../../../selectors/Selectors'
+import { useDebounce } from '../../../utils/useDebounce'
 import { Input } from '../../Input/Input'
 
 export const Search = () => {

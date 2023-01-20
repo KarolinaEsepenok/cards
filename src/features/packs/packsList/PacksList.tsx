@@ -1,9 +1,9 @@
 import React, { FC } from 'react'
 
-import { formatDate } from '../../../common/hooks/formatDate'
 import { useAppSelector } from '../../../common/hooks/useAppSelector'
 import { myIdSelector } from '../../../common/selectors/Selectors'
 import list from '../../../common/style/List.module.scss'
+import { formatDate } from '../../../common/utils/formatDate'
 import { PackType } from '../packsApi'
 
 import { PackActions } from './pack/actions/PackActions'
