@@ -2,9 +2,9 @@ import React from 'react'
 
 import { Navigate, Route, Routes } from 'react-router-dom'
 
-import { CheckEmail } from '../features/auth/forgotPassword/CheckEmail/CheckEmail'
+import { CheckEmail } from '../features/auth/forgotPassword/checkEmail/CheckEmail'
 import { ForgotPassword } from '../features/auth/forgotPassword/ForgotPassword'
-import { SetNewPassword } from '../features/auth/forgotPassword/SetNewPassword/SetNewPassword'
+import { SetNewPassword } from '../features/auth/forgotPassword/setNewPassword/SetNewPassword'
 import { Profile } from '../features/auth/profile/Profile'
 import { Register } from '../features/auth/register/Register'
 import { SignIn } from '../features/auth/signIn/signIn'

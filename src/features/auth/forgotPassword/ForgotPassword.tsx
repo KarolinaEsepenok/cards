@@ -10,8 +10,8 @@ import { useAppSelector } from '../../../common/hooks/useAppSelector'
 import { forgotPasswordSelector } from '../../../common/selectors/Selectors'
 import { PATH } from '../../../routes/routes'
 
-import { forgotPasswordTC } from './forgotPassword-reducer'
 import s from './ForgotPassword.module.scss'
+import { forgotPasswordTC } from './forgotPasswordReducer'
 
 export type ErrorsType = {
   email?: string

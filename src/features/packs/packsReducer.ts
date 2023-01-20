@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-import { setError, setIsLoading } from '../../app/app-reducer'
+import { setError, setIsLoading } from '../../app/appReducer'
 import { RootStateType } from '../../app/store'
 import { emptyQueryParams } from '../../common/constants/emptyQueryParams/emptyQueryParams'
 import { sortingPacksMethods } from '../../common/constants/sortingPacksMethods/sortingPacksMethods'
