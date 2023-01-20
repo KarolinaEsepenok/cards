@@ -15,8 +15,8 @@ const initialState = {
   minCardsCount: 0,
   maxCardsCount: 110,
   queryParams: {
-    pageCount: sessionStorage.getItem('row') ? Number(sessionStorage.getItem('row')) : 5,
-    page: sessionStorage.getItem('page') ? Number(sessionStorage.getItem('page')) : 1,
+    pageCount: localStorage.getItem('row') ? Number(localStorage.getItem('row')) : 5,
+    page: localStorage.getItem('page') ? Number(localStorage.getItem('page')) : 1,
     min: 0,
     max: 110,
     user_id: '',
