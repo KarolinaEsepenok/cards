@@ -103,7 +103,7 @@
 }
 
 .search {
-  padding: 6px 10px  6px 40px;
+  padding: 6px 10px;
 
   border: 1px solid $background-500-color;
   border-radius: 2px;
@@ -112,5 +112,9 @@
   &::placeholder {
 
     @include subtitle($opacity:0.5);
+
+    padding-left: 25px;
+
+    background: url("../../../assets/img/icons/search.svg") no-repeat;
   }
 }
