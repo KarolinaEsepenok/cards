@@ -10,9 +10,9 @@ import { useAppDispatch } from '../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../common/hooks/useAppSelector'
 import {
   cardPacks,
-  maxCardsCountSelector,
-  minCardsCountSelector,
   cardPacksTotalCountSelector,
+  maxValueRangeSelector,
+  minValueRangeSelector,
   packNameSelector,
   pageCountSelector,
   pageSelector,
