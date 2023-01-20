@@ -20,9 +20,9 @@ export const RoutesComponent = () => {
     <Routes>
       <Route element={<PrivateRoutes />}>
         <Route path={PATH.PROFILE} element={<Profile />} />
-        <Route path={PATH.PACKS} element={<Packs />} />
-        <Route path={PATH.CARDS} element={<Cards />} />
-        <Route path={PATH.EMPTY_PACK} element={<EmptyPack />} />
+        {/*<Route path={PATH.PACKS} element={<Packs />} />*/}
+        {/*<Route path={PATH.CARDS} element={<Cards />} />*/}
+        {/*<Route path={PATH.EMPTY_PACK} element={<EmptyPack />} />*/}
       </Route>
       <Route path={PATH.MAIN} element={<Navigate to={PATH.SIGN_IN} />} />
       <Route path={PATH.SIGN_IN} element={<SignIn />} />
@@ -32,6 +32,10 @@ export const RoutesComponent = () => {
       <Route path={PATH.SET_NEW_PASS} element={<SetNewPassword />} />
       <Route path={PATH.ERROR404} element={<div>404: Page not found</div>} />
       <Route path={PATH.NOT_FOUND} element={<Navigate to="404" />} />
+
+      <Route path={PATH.PACKS} element={<Packs />} />
+      <Route path={PATH.CARDS} element={<Cards />} />
+      <Route path={PATH.EMPTY_PACK} element={<EmptyPack />} />
     </Routes>
   )
 }
