@@ -1,19 +1,19 @@
 import React, { FC, useState } from 'react'
 
-import edit from '../../../../assets/img/icons/edit.svg'
-import teacher from '../../../../assets/img/icons/teacher.svg'
-import trash from '../../../../assets/img/icons/trash.svg'
-import { UpdateNamePack } from '../../../../features/packs/packsList/pack/updateNamePack/UpdateNamePack'
-import { deletePackTC } from '../../../../features/packs/packsReducer'
-import { useAppDispatch } from '../../../hooks/useAppDispatch'
-import { Button } from '../../button/Button'
+import edit from '../../../../../assets/img/icons/edit.svg'
+import teacher from '../../../../../assets/img/icons/teacher.svg'
+import trash from '../../../../../assets/img/icons/trash.svg'
+import { Button } from '../../../../../common/component/button/Button'
+import { useAppDispatch } from '../../../../../common/hooks/useAppDispatch'
+import { deletePackTC } from '../../../packsReducer'
+import { UpdateNamePack } from '../updateNamePack/UpdateNamePack'
 
 type ActionsType = {
   myPack: boolean
   packId: string
   packName: string
 }
-export const Actions: FC<ActionsType> = ({ myPack, packId, packName }) => {
+export const PackActions: FC<ActionsType> = ({ myPack, packId, packName }) => {
   const dispatch = useAppDispatch()
   const [togglePopup, setTogglePopup] = useState(false)
 

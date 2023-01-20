@@ -1,0 +1,42 @@
+@import "src/common/style/variables";
+
+@import "src/common/style/mixins";
+
+.checkbox {
+  cursor: pointer;
+
+  width: 18px;
+  height: 18px;
+  margin-right: 12px;
+
+  vertical-align: middle;
+
+  background-repeat: no-repeat;
+  background-position: center center;
+  border: 3px solid #0166cc;
+  border-radius: 3px;
+
+  appearance: none;
+
+  &:checked {
+    background-image: url('../../../assets/img/icons/checked.svg');
+
+    appearance: none;
+  }
+
+  &:focus {
+    border-color: #0166cc;
+  }
+}
+
+.label {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+}
+
+.labelText {
+
+  @include subtitle(500)
+}

@@ -70,10 +70,12 @@ export const Packs = () => {
           Add new pack
         </Button>
       </div>
-      <Search />
-      <RangeSlider />
-      <ResetAllFilters />
-      <FilterMyAllPacks />
+      <div className={s.filtersContainer}>
+        <Search />
+        <RangeSlider />
+        <FilterMyAllPacks />
+        <ResetAllFilters />
+      </div>
       <div className={s.table}>
         <PacksList packs={packs} />
       </div>

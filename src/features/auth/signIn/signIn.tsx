@@ -1,11 +1,10 @@
 import React from 'react'
 
-import { FormControl, FormGroup } from '@mui/material'
 import { useFormik } from 'formik'
 import { Navigate, NavLink } from 'react-router-dom'
 
 import { Button } from '../../../common/component/button/Button'
-import { Checkbox } from '../../../common/component/Checkbox/Checkbox'
+import { Checkbox } from '../../../common/component/checkbox/Checkbox'
 import { Input } from '../../../common/component/Input/Input'
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../../common/hooks/useAppSelector'
@@ -59,54 +58,51 @@ export const SignIn = () => {
   }
 
   return (
-    <div className={s.loginContainer}>
-      <h1 className={s.loginNameContainer}>Sign In</h1>
-      <form onSubmit={formik.handleSubmit}>
-        <FormControl>
-          <FormGroup>
-            <div className={s.label}>
-              <Input
-                className={s.input}
-                type="email"
-                label="Email"
-                error={formik.touched.email ? formik.errors.email : ''}
-                {...formik.getFieldProps('email')}
-              />
-              <Input
-                className={s.input}
-                type="password"
-                label="Password"
-                error={formik.touched.password ? formik.errors.password : ''}
-                {...formik.getFieldProps('password')}
-              />
-            </div>
-            <div className={s.remember}>
-              <label htmlFor={'rememberMe'}>Remember me</label>
-              <Checkbox id="rememberMe" {...formik.getFieldProps('rememberMe')} checked={formik.values.rememberMe} />
-            </div>
-            <NavLink className={s.forgotPassword} to={'/password'}>
-              Forgot password?
-            </NavLink>
-            <Button
-              type={'submit'}
-              styleType="primary"
-              disabled={
-                !!formik.errors.password ||
-                !!formik.errors.email ||
-                formik.values.email === '' ||
-                formik.values.password === ''
-              }
-            >
-              Sign In
-            </Button>
-          </FormGroup>
-        </FormControl>
-      </form>
-      <div className={s.loginQuestion}>Don`t have an account?</div>
+    <div className={s.signIn}>
+      <div className={s.popupContainer}>
+        <h1 className={s.title}>Sign In</h1>
+        <form onSubmit={formik.handleSubmit} className={s.form}>
+          <div className={s.inputContainer}>
+            <Input
+              className={s.input}
+              type="email"
+              label="Email"
+              error={formik.touched.email ? formik.errors.email : ''}
+              {...formik.getFieldProps('email')}
+            />
+          </div>
+          <div className={s.inputContainer}>
+            <Input
+              className={s.input}
+              type="password"
+              label="Password"
+              error={formik.touched.password ? formik.errors.password : ''}
+              {...formik.getFieldProps('password')}
+            />
+          </div>
+          <Checkbox {...formik.getFieldProps('rememberMe')} checked={formik.values.rememberMe}>
+            Remember me
+          </Checkbox>
 
-      <NavLink className={s.loginLink} to={PATH.REGISTER}>
-        Sign Up
-      </NavLink>
+          <NavLink className={s.forgotPassword} to={'/password'}>
+            Forgot password?
+          </NavLink>
+          <Button
+            type="submit"
+            styleType="primary"
+            className={s.button}
+            disabled={
+              !!formik.errors.password || !!formik.errors.email || !formik.values.email || !formik.values.password
+            }
+          >
+            Sign In
+          </Button>
+        </form>
+        <div className={s.subtitle}>Don`t have an account?</div>
+        <NavLink className={s.loginLink} to={PATH.REGISTER}>
+          Sign Up
+        </NavLink>
+      </div>
     </div>
   )
 }
