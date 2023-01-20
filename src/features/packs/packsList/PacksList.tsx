@@ -1,43 +1,50 @@
 import React, { FC } from 'react'
 
-import { CircularProgress } from '@mui/material'
-
-import { Actions } from '../../../common/component/table/actions/Actions'
-import { Table } from '../../../common/component/table/Table'
-import { TableRow } from '../../../common/component/table/tableRow/TableRow'
-import { formatDate } from '../../../common/hooks/formatDate'
 import { useAppSelector } from '../../../common/hooks/useAppSelector'
-import { isLoadingSelector, myIdSelector } from '../../../common/selectors/Selectors'
+import { myIdSelector } from '../../../common/selectors/Selectors'
+import list from '../../../common/style/List.module.scss'
+import { formatDate } from '../../../common/utils/formatDate'
 import { PackType } from '../packsApi'
+
+import { PackActions } from './pack/actions/PackActions'
+import { Pack } from './pack/Pack'
 
 type PacksTableType = {
   packs: PackType[]
 }
+
 export const PacksList: FC<PacksTableType> = ({ packs }) => {
   const myId = useAppSelector(myIdSelector)
-  const isLoading = useAppSelector(isLoadingSelector)
 
-  return isLoading ? (
-    <CircularProgress sx={{ position: 'absolute', top: '50%', left: '50%' }} />
-  ) : (
-    <Table titles={['Name', 'Cards', 'Last Updated', 'Created by', 'Actions']}>
-      {packs.map(p => {
-        const dateUpdate = formatDate(p.updated)
+  return (
+    <table className={list.table}>
+      <thead>
+        <tr>
+          <th className={list.tableTitle}>Name</th>
+          <th className={list.tableTitle}>Cards</th>
+          <th className={list.tableTitle}>Last Updated</th>
+          <th className={list.tableTitle}>Created by</th>
+          <th className={list.tableTitle}>Actions</th>
+        </tr>
+      </thead>
+      <tbody className={list.tableBody}>
+        {packs.map(p => {
+          const dateUpdate = formatDate(p.updated)
+          const myPack = p.user_id === myId
 
-        const myPack = p.user_id === myId
-
-        return (
-          <TableRow
-            key={p._id}
-            id={p._id}
-            name={p.name}
-            cardsCount={p.cardsCount}
-            author={p.user_name}
-            updated={dateUpdate}
-            actions={<Actions myPack={myPack} packId={p._id} packName={p.name} />}
-          />
-        )
-      })}
-    </Table>
+          return (
+            <Pack
+              key={p._id}
+              id={p._id}
+              name={p.name}
+              cardsCount={p.cardsCount}
+              author={p.user_name}
+              updated={dateUpdate}
+              actions={<PackActions myPack={myPack} packId={p._id} packName={p.name} />}
+            />
+          )
+        })}
+      </tbody>
+    </table>
   )
 }

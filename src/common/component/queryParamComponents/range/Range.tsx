@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 
-import Box from '@mui/material/Box'
 import Slider from '@mui/material/Slider'
 
 import { setRangeValues } from '../../../../features/packs/packsReducer'
@@ -14,6 +13,8 @@ import {
   minValueRangeSelector,
   resetRange,
 } from '../../../selectors/Selectors'
+
+import s from './Range.module.scss'
 
 export const RangeSlider = () => {
   const minCardsCountValue = useAppSelector(minCardsCountSelector)
@@ -37,9 +38,10 @@ export const RangeSlider = () => {
   }, [minCardsCountValue, maxCardsCountValue, resetRangeValues])
 
   return (
-    <Box sx={{ width: 300, marginLeft: 30, display: 'flex', justifyContent: 'center' }}>
-      <span style={{ marginRight: 20 }}>{value[0]}</span>{' '}
+    <div className={s.container}>
+      <span className={s.min}>{value[0]}</span>
       <Slider
+        style={{ width: '180px' }}
         getAriaLabel={() => 'Range'}
         value={value}
         onChange={handleLocalValuesChange}
@@ -48,7 +50,7 @@ export const RangeSlider = () => {
         min={minCardsCountValue}
         disabled={rangeDisabled}
       />
-      <span style={{ marginLeft: 20 }}>{value[1]}</span>
-    </Box>
+      <span className={s.max}>{value[1]}</span>
+    </div>
   )
 }

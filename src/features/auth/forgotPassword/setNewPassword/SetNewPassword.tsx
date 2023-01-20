@@ -10,7 +10,7 @@ import { useAppSelector } from '../../../../common/hooks/useAppSelector'
 import { changePasswordSelector } from '../../../../common/selectors/Selectors'
 import { PATH } from '../../../../routes/routes'
 import { ErrorsType } from '../ForgotPassword'
-import { changePasswordSuccess, setNewPasswordTC } from '../forgotPassword-reducer'
+import { changePasswordSuccess, setNewPasswordTC } from '../forgotPasswordReducer'
 
 import s from './SetNewPassword.module.scss'
 

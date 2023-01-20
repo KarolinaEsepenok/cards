@@ -9,8 +9,8 @@ import { isAppInitialize, isLoadingSelector } from '../common/selectors/Selector
 import { Header } from '../features/header/Header'
 import { RoutesComponent } from '../routes/RoutesComponent'
 
-import { initializeAppTC } from './app-reducer'
 import s from './App.module.scss'
+import { initializeAppTC } from './appReducer'
 
 export const App = () => {
   const isAppInitialized = useAppSelector(isAppInitialize)
@@ -31,7 +31,7 @@ export const App = () => {
     <div className={s.app}>
       <ErrorSnackbar />
       <Header />
-      {isLoading && <LinearProgress className={s.linearProgress} />}
+      <div className={s.linearProgress}>{isLoading && <LinearProgress className={s.linearProgress} />}</div>
 
       <section className={s.contentContainer}>
         <RoutesComponent />

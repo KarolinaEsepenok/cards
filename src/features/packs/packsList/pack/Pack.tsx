@@ -2,10 +2,12 @@ import React, { FC, ReactNode } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
-import { setPackId } from '../../../../features/packs/cards/cardsReducer'
-import { useAppDispatch } from '../../../hooks/useAppDispatch'
+import { useAppDispatch } from '../../../../common/hooks/useAppDispatch'
+import { setPackId } from '../../cards/cardsReducer'
 
-type TableRowType = {
+import s from './Pack.module.scss'
+
+type PackType = {
   name: string
   cardsCount: number
   author: string
@@ -14,7 +16,7 @@ type TableRowType = {
   id: string
 }
 
-export const TableRow: FC<TableRowType> = ({ name, cardsCount, author, updated, actions, id }) => {
+export const Pack: FC<PackType> = ({ name, cardsCount, author, updated, actions, id }) => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
@@ -25,7 +27,9 @@ export const TableRow: FC<TableRowType> = ({ name, cardsCount, author, updated, 
 
   return (
     <tr>
-      <td onClick={cardsGetHandler}>{name}</td>
+      <td onClick={cardsGetHandler} className={s.name}>
+        {name}
+      </td>
       <td>{cardsCount}</td>
       <td>{updated}</td>
       <td>{author}</td>

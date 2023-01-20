@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-import { setError, setIsLoading } from '../../app/app-reducer'
+import { setError, setIsLoading } from '../../app/appReducer'
 import { RootStateType } from '../../app/store'
 import { emptyQueryParams } from '../../common/constants/emptyQueryParams/emptyQueryParams'
 import { sortingPacksMethods } from '../../common/constants/sortingPacksMethods/sortingPacksMethods'
@@ -17,8 +17,8 @@ const initialState = {
   maxCardsCount: 110,
   resetRange: false,
   queryParams: {
-    pageCount: 5,
-    page: 1,
+    pageCount: localStorage.getItem('row') ? Number(localStorage.getItem('row')) : 5,
+    page: localStorage.getItem('page') ? Number(localStorage.getItem('page')) : 1,
     min: 0,
     max: 110,
     user_id: '',

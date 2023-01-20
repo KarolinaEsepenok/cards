@@ -14,7 +14,6 @@ type SuperInputTextPropsType = Omit<DefaultInputPropsType, 'type'> & {
   textChange?: boolean
   textChangeBtnCallback?: (e: any) => void
   className?: string
-  disabled?: boolean
 }
 export const Input: React.FC<SuperInputTextPropsType> = ({
   type,
@@ -23,7 +22,6 @@ export const Input: React.FC<SuperInputTextPropsType> = ({
   textChange,
   textChangeBtnCallback,
   className,
-  disabled,
 
   ...restProps
 }) => {
@@ -45,7 +43,11 @@ export const Input: React.FC<SuperInputTextPropsType> = ({
     passwordVisible ? setTypeLabel('text') : setTypeLabel(type)
   }, [passwordVisible])
 
-  const inputClasses = `${s.input} ${className ? className : ''} ${type === 'password' ? s.inputError : ''}`
+  const inputClasses = `${s.input} ${className ? className : ''} ${type === 'password' ? s.inputError : ''} ${
+    type === 'search' && s.search
+  }`
+
+  const showError = !textChange && type !== 'search'
 
   return (
     <>
@@ -78,13 +80,13 @@ export const Input: React.FC<SuperInputTextPropsType> = ({
             styleType="primary"
             className={s.saveButton}
             onClick={textChangeBtnCallbackHandle}
-            disabled={disabled}
+            disabled={restProps.disabled}
           >
             SAVE
           </Button>
         )}
       </div>
-      {!textChange && <div className={s.errorContainer}>{error && <p className={s.error}>{error}</p>}</div>}
+      {showError && <div className={s.errorContainer}>{error && <p className={s.error}>{error}</p>}</div>}
     </>
   )
 }

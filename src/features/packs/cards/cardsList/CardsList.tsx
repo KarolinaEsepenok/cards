@@ -1,33 +1,34 @@
 import React, { FC } from 'react'
 
-import s from '../../../../common/component/table/Table.module.scss'
-import { formatDate } from '../../../../common/hooks/formatDate'
 import { useAppSelector } from '../../../../common/hooks/useAppSelector'
+import list from '../../../../common/style/List.module.scss'
+import { formatDate } from '../../../../common/utils/formatDate'
 import { CardType } from '../cardsApi'
 
-import { Actions } from './card/actions/Actions'
+import { CardActions } from './card/actions/CardActions'
 import { Card } from './card/Card'
 
 type CardsListType = {
   cards: CardType[]
 }
+
 export const CardsList: FC<CardsListType> = ({ cards }) => {
   const myId = useAppSelector(state => state.auth.id)
   const packCreatorId = useAppSelector(state => state.cards.creatorId)
   const myPack = myId === packCreatorId
 
   return (
-    <table className={s.table}>
+    <table className={list.table}>
       <thead>
         <tr>
-          <th className={s.tableTitle}>Question</th>
-          <th className={s.tableTitle}>Answer</th>
-          <th className={s.tableTitle}>Last Updated</th>
-          <th className={s.tableTitle}>Grade</th>
-          {myPack && <th className={s.tableTitle}>Actions</th>}
+          <th className={list.tableTitle}>Question</th>
+          <th className={list.tableTitle}>Answer</th>
+          <th className={list.tableTitle}>Last Updated</th>
+          <th className={list.tableTitle}>Grade</th>
+          {myPack && <th className={list.tableTitle}>Actions</th>}
         </tr>
       </thead>
-      <tbody className={s.tableBody}>
+      <tbody className={list.tableBody}>
         {cards.map(c => {
           const dateUpdate = formatDate(c.updated)
 
@@ -38,7 +39,7 @@ export const CardsList: FC<CardsListType> = ({ cards }) => {
               answer={c.answer}
               update={dateUpdate}
               grade={c.grade}
-              actions={myPack && <Actions />}
+              actions={myPack && <CardActions />}
             />
           )
         })}

@@ -6,6 +6,7 @@ import { FilterMyAllPacks } from '../../common/component/queryParamComponents/fi
 import { RangeSlider } from '../../common/component/queryParamComponents/range/Range'
 import { ResetAllFilters } from '../../common/component/queryParamComponents/resetAllFilters/ResetAllFilters'
 import { Search } from '../../common/component/queryParamComponents/search/Search'
+import { Subtitle } from '../../common/component/typography/subtitle/Subtitle'
 import { useAppDispatch } from '../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../common/hooks/useAppSelector'
 import {
@@ -49,7 +50,7 @@ export const Packs = () => {
   }, [page, packName, pageCount, userId, min, max, sortPacks])
 
   return (
-    <section className={s.packs}>
+    <div className={s.packs}>
       <h2>Packs list</h2>
 
       <div className={s.addPackButton}>
@@ -70,13 +71,30 @@ export const Packs = () => {
           Add new pack
         </Button>
       </div>
-      <Search />
-      <RangeSlider />
-      <ResetAllFilters />
-      <FilterMyAllPacks />
+
+      <div className={s.filtersContainer}>
+        <div>
+          <Subtitle>Search</Subtitle>
+          <Search class={s.search} />
+        </div>
+
+        <div>
+          <Subtitle>Show packs cards</Subtitle>
+          <FilterMyAllPacks />
+        </div>
+
+        <div>
+          <Subtitle>Number of cards</Subtitle>
+          <RangeSlider />
+        </div>
+
+        <ResetAllFilters />
+      </div>
+
       <div className={s.table}>
         <PacksList packs={packs} />
       </div>
+
       <div>
         <Paginator
           setRowCallback={changeRowPageHandle}
@@ -86,6 +104,6 @@ export const Packs = () => {
           currentPage={page}
         />
       </div>
-    </section>
+    </div>
   )
 }

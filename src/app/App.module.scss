@@ -7,7 +7,11 @@
   background-color: $background-200-color;
 }
 
+.linearProgress{
+  height: 6px;
+}
 .contentContainer {
   max-width: $main-width;
-  margin: 0 auto;
+  margin: auto;
+  padding: 50px 0;
 }
