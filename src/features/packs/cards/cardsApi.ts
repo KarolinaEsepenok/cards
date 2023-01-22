@@ -5,9 +5,7 @@ import { sortingCardsMethods } from '../../../common/constants/sortingPacksMetho
 
 export const cardsAPI = {
   getCards(params: GetParamsCardType) {
-    return instance.get<'', AxiosResponse<ResponseGetType>, RequestCardsType>('cards/card', {
-      params: { ...params },
-    })
+    return instance.get<ResponseGetType>('cards/card', { params })
   },
 }
 

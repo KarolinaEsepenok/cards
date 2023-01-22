@@ -5,18 +5,18 @@ import { sortingPacksMethods } from '../../common/constants/sortingPacksMethods/
 
 export const packsApi = {
   getPacks(params: GetParamsType) {
-    return instance.get<'', AxiosResponse<ResponseType>, RequestType>(`cards/pack`, { params })
+    return instance.get<ResponseType>(`cards/pack`, { params })
   },
   addNewPack(data: AddPackType) {
-    return instance.post<'', AxiosResponse<ResponseNewPack>, AddPackType>('cards/pack', data)
+    return instance.post<ResponseNewPack>('cards/pack', data)
   },
   updatePack(packId: string, name: string) {
-    return instance.put<'', AxiosResponse<ResponseUpdateNamePack>, UpdateNamePackType>('cards/pack', {
+    return instance.put<ResponseUpdateNamePack>('cards/pack', {
       cardsPack: { _id: packId, name },
     })
   },
   deletePack(packId: string) {
-    return instance.delete<'', AxiosResponse<ResponseDeletePackType>, string>(`cards/pack?id=${packId}`)
+    return instance.delete<ResponseDeletePackType>(`cards/pack?id=${packId}`)
   },
 }
 
