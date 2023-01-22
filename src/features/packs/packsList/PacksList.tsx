@@ -13,6 +13,7 @@ import { setSort } from '../packsReducer'
 
 import { PackActions } from './pack/actions/PackActions'
 import { Pack } from './pack/Pack'
+import s from './PackList.module.scss'
 
 type PacksTableType = {
   packs: PackType[]
@@ -23,13 +24,13 @@ export const PacksList: FC<PacksTableType> = ({ packs }) => {
   const dispatch = useAppDispatch()
   const sortMethod = useAppSelector(state => state.packs.queryParams.sortPacks)
   const arrowDirectionName =
-    sortMethod === sortingPacksMethods.desName ? <img src={arrowUp} /> : <img src={arrowDown} />
+    sortMethod === sortingPacksMethods.ascName ? <img src={arrowUp} /> : <img src={arrowDown} />
   const arrowDirectionCards =
-    sortMethod === sortingPacksMethods.desCardsCount ? <img src={arrowUp} /> : <img src={arrowDown} />
+    sortMethod === sortingPacksMethods.ascCardsCount ? <img src={arrowUp} /> : <img src={arrowDown} />
   const arrowDirectionDate =
-    sortMethod === sortingPacksMethods.desUpdate ? <img src={arrowUp} /> : <img src={arrowDown} />
+    sortMethod === sortingPacksMethods.ascUpdate ? <img src={arrowUp} /> : <img src={arrowDown} />
   const arrowDirectionCreated =
-    sortMethod === sortingPacksMethods.desUserName ? <img src={arrowUp} /> : <img src={arrowDown} />
+    sortMethod === sortingPacksMethods.ascUserName ? <img src={arrowUp} /> : <img src={arrowDown} />
 
   const sortByNameHandler = () => {
     sortMethod === sortingPacksMethods.desName
@@ -60,18 +61,24 @@ export const PacksList: FC<PacksTableType> = ({ packs }) => {
       <thead>
         <tr>
           <th className={list.tableTitle}>
-            <span onClick={sortByNameHandler}>Name {arrowDirectionName}</span>
+            <span onClick={sortByNameHandler} className={s.cursor}>
+              Name {arrowDirectionName}
+            </span>
           </th>
           <th className={list.tableTitle}>
-            <span onClick={sortByCardsHandler}>Cards {arrowDirectionCards}</span>
+            <span onClick={sortByCardsHandler} className={s.cursor}>
+              Cards {arrowDirectionCards}
+            </span>
           </th>
           <th className={list.tableTitle}>
-            <span style={{ cursor: 'pointer' }} onClick={sortByDateHandler}>
+            <span onClick={sortByDateHandler} className={s.cursor}>
               Last Updated {arrowDirectionDate}
             </span>
           </th>
           <th className={list.tableTitle}>
-            <span onClick={sortByCreateHandler}>Created by {arrowDirectionCreated}</span>
+            <span onClick={sortByCreateHandler} className={s.cursor}>
+              Created by {arrowDirectionCreated}
+            </span>
           </th>
           <th className={list.tableTitle}>Actions</th>
         </tr>
