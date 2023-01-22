@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 
 import { toggleModal } from '../../../../../app/appReducer'
 import { Button } from '../../../../../common/component/button/Button'
-import { AddCardModal } from '../../../../../common/component/modals/AddcardModal'
+import { AddCardModal } from '../../../../../common/component/modals/AddCardModal'
 
 export const EmptyPack = () => {
   const dispatch = useDispatch()

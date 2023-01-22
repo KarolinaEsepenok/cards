@@ -91,20 +91,25 @@ export const deleteCardTC =
     }
   }
 
-export const updateCardTC = (): AppThunk => async dispatch => {
-  dispatch(setIsLoading(true))
-  try {
-    // const response = await cardsAPI.updateCard()
-  } catch (e) {
-    if (axios.isAxiosError<{ error: string }>(e)) {
-      const error = e.response ? e.response.data.error : 'Something wrong'
+export const updateCardTC =
+  (packId: string, cardId: string, editCard: AddNewCardParamType): AppThunk =>
+  async dispatch => {
+    dispatch(setIsLoading(true))
+    try {
+      const response = await cardsAPI.updateCard(cardId, editCard)
 
-      dispatch(setError(error))
+      dispatch(updateCard({ cardId, editCard: response.data.updatedCard }))
+      dispatch(getCardsTC(packId))
+    } catch (e) {
+      if (axios.isAxiosError<{ error: string }>(e)) {
+        const error = e.response ? e.response.data.error : 'Something wrong'
+
+        dispatch(setError(error))
+      }
+    } finally {
+      dispatch(setIsLoading(false))
     }
-  } finally {
-    dispatch(setIsLoading(false))
   }
-}
 
 const slice = createSlice({
   name: 'cards',
@@ -129,10 +134,11 @@ const slice = createSlice({
         }
       })
     },
-    updateCard: (state, action: PayloadAction<{ cardId: string; question: string }>) => {
+    updateCard: (state, action: PayloadAction<{ cardId: string; editCard: AddNewCardParamType }>) => {
       state.cards.forEach(c => {
         if (c._id === action.payload.cardId) {
-          c.question = action.payload.question
+          c.question = action.payload.editCard.question
+          c.answer = action.payload.editCard.answer
         }
       })
     },

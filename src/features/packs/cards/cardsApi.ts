@@ -14,22 +14,18 @@ export const cardsAPI = {
       card: { cardsPack_id: packId, ...newCard },
     })
   },
-  updateCard(cardId: string, question: string) {
+  updateCard(cardId: string, editCard: AddNewCardParamType) {
     return instance.put<'', AxiosResponse<ResponseUpdateCardType>, RequestUpdateCardType>('cards/card', {
       card: {
         _id: cardId,
-        question,
+        question: editCard.question,
+        answer: editCard.answer,
       },
     })
   },
   deleteCard(cardId: string) {
-    // return instance.delete<DeleteCardType>('cards/card')
-    return instance.delete<DeleteCardType>(`cards/card?_id=${cardId}`)
-    // return instance.delete<'', AxiosResponse<DeleteCardType>, string>('cards/card', { params: cardId })
+    return instance.delete<DeleteCardType>(`cards/card?id=${cardId}`)
   },
-  // deleteCard() {
-  //   return instance.delete<DeleteCardType>('cards/card')
-  // },
 }
 
 //type
@@ -88,12 +84,6 @@ export type RequestNewCardType = {
 export type AddNewCardParamType = {
   question: string
   answer: string
-  // grade: number
-  // shots: number
-  // answerImg: string
-  // questionImg: string
-  // questionVideo: string
-  // answerVideo: string
 }
 export type ResponseNewCardType = {
   newCard: CardType
@@ -108,5 +98,6 @@ export type RequestUpdateCardType = {
   card: {
     _id: string
     question: string
+    answer: string
   }
 }

@@ -1,5 +1,6 @@
 .modal {
   position: fixed;
+  z-index: 9;
   top: 0;
   left: 0;
 
@@ -18,4 +19,8 @@
   padding: 20px;
 
   background-color: #FFFFFF;
+}
+
+.test {
+
 }

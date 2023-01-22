@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 
 import { toggleModal } from '../../../../app/appReducer'
 import { Button } from '../../../../common/component/button/Button'
-import { AddCardModal } from '../../../../common/component/modals/AddcardModal'
+import { AddCardModal } from '../../../../common/component/modals/AddCardModal'
 import { useAppSelector } from '../../../../common/hooks/useAppSelector'
 import list from '../../../../common/style/List.module.scss'
 import { formatDate } from '../../../../common/utils/formatDate'
@@ -55,7 +55,7 @@ export const CardsList: FC<CardsListType> = ({ cards }) => {
                 answer={c.answer}
                 update={dateUpdate}
                 grade={c.grade}
-                actions={myPack && <CardActions />}
+                actions={myPack && <CardActions cardId={c._id} />}
               />
             )
           })}

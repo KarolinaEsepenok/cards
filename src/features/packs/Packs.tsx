@@ -39,6 +39,8 @@ export const Packs = () => {
   const sortPacks = useAppSelector(sortPacksSelector)
   const totalCount = useAppSelector(cardPacksTotalCountSelector)
 
+  // const [togglePopup, setTogglePopup] = useState(false)
+
   const dispatch = useAppDispatch()
   const changePageHandle = (page: number) => {
     dispatch(setPacksCurrentPage(page))
@@ -57,11 +59,13 @@ export const Packs = () => {
 
       <div className={s.addPackButton}>
         <Button styleType="primary" onClick={() => dispatch(toggleModal(true))}>
+          {/*<Button styleType="primary" onClick={() => setTogglePopup(!togglePopup)}>*/}
           Add new pack
         </Button>
       </div>
 
       <AddPackModal />
+      {/*{togglePopup && <AddPackModal />}*/}
 
       <div className={s.filtersContainer}>
         <div>
