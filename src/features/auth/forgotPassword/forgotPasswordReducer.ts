@@ -47,6 +47,7 @@ export const forgotPasswordTC = (forgotPass: boolean, email: string): AppThunk =
     }
   }
 }
+
 export const setNewPasswordTC = (password: string, token: string | undefined): AppThunk => {
   return async dispatch => {
     dispatch(setIsLoading(true))

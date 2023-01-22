@@ -47,10 +47,6 @@ export const Packs = () => {
     dispatch(setRowPage(pageCount))
   }
 
-  const handleOpen = () => {
-    dispatch(toggleModal(true))
-  }
-
   useEffect(() => {
     dispatch(getPacksTC())
   }, [page, packName, pageCount, userId, min, max, sortPacks])
@@ -60,21 +56,7 @@ export const Packs = () => {
       <h2>Packs list</h2>
 
       <div className={s.addPackButton}>
-        <Button
-          styleType="primary"
-          // onClick={() =>
-          //   dispatch(
-          //     addNewPackTC({
-          //       cardsPack: {
-          //         name: 'NewPack',
-          //         deckCover: '',
-          //         private: false,
-          //       },
-          //     })
-          //   )
-          // }
-          onClick={handleOpen}
-        >
+        <Button styleType="primary" onClick={() => dispatch(toggleModal(true))}>
           Add new pack
         </Button>
       </div>

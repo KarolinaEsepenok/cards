@@ -24,14 +24,10 @@ export const CardsList: FC<CardsListType> = ({ cards }) => {
 
   const dispatch = useDispatch()
 
-  const handleOpen = () => {
-    dispatch(toggleModal(true))
-  }
-
   return (
     <>
       {myPack && (
-        <Button onClick={handleOpen} styleType={'primary'}>
+        <Button onClick={() => dispatch(toggleModal(true))} styleType={'primary'}>
           Add New Card
         </Button>
       )}

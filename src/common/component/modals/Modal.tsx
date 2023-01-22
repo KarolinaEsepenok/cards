@@ -11,13 +11,19 @@ import s from './Modals.module.scss'
 type BasicModalType = {
   children: ReactNode
   title: string
+  onClickSave: () => void
 }
 
-export const BasicModal: React.FC<BasicModalType> = ({ children, title }) => {
+export const Modal: React.FC<BasicModalType> = ({ children, title, onClickSave }) => {
   const toggle = useAppSelector(state => state.app.toggleModal)
   const dispatch = useDispatch()
 
   const handleClose = () => {
+    dispatch(toggleModal(false))
+  }
+
+  const handleDispatch = () => {
+    onClickSave()
     dispatch(toggleModal(false))
   }
 
@@ -32,6 +38,9 @@ export const BasicModal: React.FC<BasicModalType> = ({ children, title }) => {
             {children}
 
             <Button onClick={handleClose}>Cancel</Button>
+            <Button onClick={handleDispatch} styleType="primary">
+              save
+            </Button>
           </div>
         </div>
       )}

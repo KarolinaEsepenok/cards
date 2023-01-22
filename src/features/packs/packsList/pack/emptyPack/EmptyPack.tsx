@@ -1,18 +1,23 @@
 import React from 'react'
 
+import { useDispatch } from 'react-redux'
+
+import { toggleModal } from '../../../../../app/appReducer'
 import { Button } from '../../../../../common/component/button/Button'
-import { useAppSelector } from '../../../../../common/hooks/useAppSelector'
+import { AddCardModal } from '../../../../../common/component/modals/AddcardModal'
 
 export const EmptyPack = () => {
-  const cards = useAppSelector(state => state.cards.cards)
-
-  console.log(cards)
+  const dispatch = useDispatch()
 
   return (
     <div>
       <h2>{'Need render names pack'}</h2>
       <p>This pack is empty. Click add new card to fill this pack</p>
-      <Button styleType="primary">Add new card</Button>
+      <Button onClick={() => dispatch(toggleModal(true))} styleType={'primary'}>
+        Add New Card
+      </Button>
+
+      <AddCardModal />
     </div>
   )
 }

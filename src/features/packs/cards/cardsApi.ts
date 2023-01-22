@@ -9,9 +9,9 @@ export const cardsAPI = {
       params: { ...params },
     })
   },
-  addNewCard(cardsPack_id: string, newCard: AddNewCardParamType) {
+  addNewCard(packId: string, newCard: AddNewCardParamType) {
     return instance.post<'', AxiosResponse<ResponseNewCardType>, RequestNewCardType>('cards/card', {
-      card: { cardsPack_id: cardsPack_id, ...newCard },
+      card: { cardsPack_id: packId, ...newCard },
     })
   },
   updateCard(cardId: string, question: string) {
@@ -88,12 +88,12 @@ export type RequestNewCardType = {
 export type AddNewCardParamType = {
   question: string
   answer: string
-  grade: number
-  shots: number
-  answerImg: string
-  questionImg: string
-  questionVideo: string
-  answerVideo: string
+  // grade: number
+  // shots: number
+  // answerImg: string
+  // questionImg: string
+  // questionVideo: string
+  // answerVideo: string
 }
 export type ResponseNewCardType = {
   newCard: CardType

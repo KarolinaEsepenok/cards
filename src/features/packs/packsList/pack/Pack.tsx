@@ -2,6 +2,7 @@ import React, { FC, ReactNode } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
+import { setIsLoading } from '../../../../app/appReducer'
 import { useAppDispatch } from '../../../../common/hooks/useAppDispatch'
 import { setPackId } from '../../cards/cardsReducer'
 
@@ -13,16 +14,18 @@ type PackType = {
   author: string
   updated: string
   actions: ReactNode
-  id: string
+  packId: string
 }
 
-export const Pack: FC<PackType> = ({ name, cardsCount, author, updated, actions, id }) => {
+export const Pack: FC<PackType> = ({ name, cardsCount, author, updated, actions, packId }) => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
   const cardsGetHandler = () => {
-    dispatch(setPackId(id))
-    cardsCount ? navigate('/cards') : navigate('/empty-pack')
+    dispatch(setPackId(packId))
+    // dispatch(setPackName(name))
+    dispatch(setIsLoading(true))
+    navigate(`/cards/${packId}`)
   }
 
   return (

@@ -9,6 +9,7 @@ import { currentEmailSelector } from '../../../../common/selectors/Selectors'
 import { PATH } from '../../../../routes/routes'
 
 import s from './CheckEmail.module.scss'
+
 export const CheckEmail = () => {
   const email = useAppSelector(currentEmailSelector)
   const navigate = useNavigate()

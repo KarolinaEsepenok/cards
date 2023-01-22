@@ -35,7 +35,7 @@ export const PacksList: FC<PacksTableType> = ({ packs }) => {
           return (
             <Pack
               key={p._id}
-              id={p._id}
+              packId={p._id}
               name={p.name}
               cardsCount={p.cardsCount}
               author={p.user_name}

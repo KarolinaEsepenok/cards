@@ -1,30 +1,23 @@
 import React from 'react'
 
-import { useDispatch } from 'react-redux'
-
 import { addNewPackTC } from '../../../features/packs/packsReducer'
-import { Button } from '../button/Button'
+import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { Checkbox } from '../Checkbox/Checkbox'
 import { Input } from '../Input/Input'
 
-import { BasicModal } from './BasicModal'
+import { Modal } from './Modal'
 
 export const AddPackModal = () => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
+
+  const handleAddPack = () => dispatch(addNewPackTC({ cardsPack: { name: 'NewPack', deckCover: '', private: false } }))
 
   return (
-    <BasicModal title={'Add new pack'}>
+    <Modal title={'Add new pack'} onClickSave={handleAddPack}>
       <>
         <Input type="text" label="Name pack" />
         <Checkbox />
-        <Button
-          styleType="primary"
-          // @ts-ignore
-          onClick={() => dispatch(addNewPackTC({ cardsPack: { name: 'NewPack', deckCover: '', private: false } }))}
-        >
-          save
-        </Button>
       </>
-    </BasicModal>
+    </Modal>
   )
 }

@@ -13,7 +13,7 @@ const initialState = {
   packName: '',
   isCardsFetched: false,
   queryParams: {
-    pageCount: 5,
+    pageCount: 110,
     page: 1,
     cardQuestion: '',
     sortCards: sortingCardsMethods.desUpdate,
@@ -53,13 +53,13 @@ export const getCardsTC =
   }
 
 export const addNewCardTC =
-  (cardsPack_id: string, card: AddNewCardParamType): AppThunk =>
+  (packId: string, card: AddNewCardParamType): AppThunk =>
   async dispatch => {
     dispatch(setIsLoading(true))
     try {
-      const response = await cardsAPI.addNewCard(cardsPack_id, card)
+      const response = await cardsAPI.addNewCard(packId, card)
 
-      // dispatch(addNewCard({ cardsPack_id, newCard: response.data.newCard }))
+      // dispatch(addNewCard({ packId, newCard: response.data.newCard }))
       dispatch(getCardsTC(response.data.newCard.cardsPack_id))
     } catch (e) {
       if (axios.isAxiosError<{ error: string }>(e)) {
@@ -122,9 +122,9 @@ const slice = createSlice({
     setPackName: (state, action: PayloadAction<string>) => {
       state.packName = action.payload
     },
-    addNewCard: (state, action: PayloadAction<{ cardsPack_id: string; newCard: CardType }>) => {
+    addNewCard: (state, action: PayloadAction<{ packId: string; newCard: CardType }>) => {
       state.cards.forEach(c => {
-        if (c.cardsPack_id === action.payload.cardsPack_id) {
+        if (c.cardsPack_id === action.payload.packId) {
           state.cards.unshift(action.payload.newCard)
         }
       })

@@ -1,13 +1,22 @@
 import React from 'react'
 
-import { Button } from '../button/Button'
+import { useParams } from 'react-router-dom'
+
+import { addNewCardTC } from '../../../features/packs/cards/cardsReducer'
+import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { Input } from '../Input/Input'
 
-import { BasicModal } from './BasicModal'
+import { Modal } from './Modal'
 
 export const AddCardModal = () => {
+  const dispatch = useAppDispatch()
+
+  let { id } = useParams()
+
+  const handleAddcard = () => dispatch(addNewCardTC(id ? id : '', { question: '01', answer: '02' }))
+
   return (
-    <BasicModal title={'Add new card'}>
+    <Modal title={'Add new card'} onClickSave={handleAddcard}>
       <>
         <select>
           <option value="0">Select1</option>
@@ -16,9 +25,7 @@ export const AddCardModal = () => {
 
         <Input type="text" label="Question" />
         <Input type="text" label="Answer" />
-
-        <Button styleType="primary">save</Button>
       </>
-    </BasicModal>
+    </Modal>
   )
 }
