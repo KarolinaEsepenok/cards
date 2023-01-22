@@ -1,6 +1,8 @@
-import * as React from 'react'
+import { ChangeEvent, FC } from 'react'
 
-import { FormControl, MenuItem, Pagination, Select, SelectChangeEvent } from '@mui/material'
+import MenuItem from '@mui/material/MenuItem'
+import Pagination from '@mui/material/Pagination'
+import Select, { SelectChangeEvent } from '@mui/material/Select'
 
 import s from './Paginator.module.scss'
 
@@ -11,7 +13,7 @@ type PaginationPropsType = {
   setPageCallback: (page: number) => void
   setRowCallback: (pageCount: number) => void
 }
-export const Paginator: React.FC<PaginationPropsType> = ({
+export const Paginator: FC<PaginationPropsType> = ({
   pageCount,
   totalCount,
   setPageCallback,
@@ -20,7 +22,8 @@ export const Paginator: React.FC<PaginationPropsType> = ({
 }) => {
   const pages = Math.ceil(totalCount / pageCount)
   const pageValue = pageCount.toString()
-  const handleChangePage = (event: React.ChangeEvent<unknown>, value: number) => {
+
+  const handleChangePage = (event: ChangeEvent<unknown>, value: number) => {
     localStorage.setItem('page', JSON.stringify(value))
     setPageCallback(value)
   }
@@ -33,23 +36,40 @@ export const Paginator: React.FC<PaginationPropsType> = ({
   }
 
   return (
-    <div className={s.paginatorMain}>
-      <Pagination onChange={handleChangePage} count={pages} page={currentPage} />
+    <div className={s.paginatorContainer}>
+      <Pagination
+        onChange={handleChangePage}
+        count={pages}
+        page={currentPage}
+        sx={{
+          '.MuiPaginationItem-root': {
+            width: '24px',
+            height: '24px',
+            size: '12px',
+            borderRadius: '4px',
+          },
+          '.css-yuzg60-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected': {
+            background: '#366eff',
+            color: '#ffffff',
+          },
+        }}
+      />
+
       <div className={s.showPerPage}>
-        <div className={s.nameShowPerPage}>Show</div>
-        <FormControl sx={{ margin: '0 1rem' }} size="small">
-          <Select
-            sx={{ fontFamily: 'inherit', fontSize: 'inherit' }}
-            value={pageValue}
-            onChange={handleChangeRowsPerPage}
-          >
-            <MenuItem value={5}>5</MenuItem>
-            <MenuItem value={10}>10</MenuItem>
-            <MenuItem value={15}>15</MenuItem>
-            <MenuItem value={20}>20</MenuItem>
-          </Select>
-        </FormControl>
-        <div className={s.nameShowPerPage}>packs per page</div>
+        <p className={s.nameShowPerPage}>Show</p>
+
+        <Select
+          sx={{ fontFamily: 'inherit', fontSize: 'inherit' }}
+          value={pageValue}
+          onChange={handleChangeRowsPerPage}
+        >
+          <MenuItem value={5}>5</MenuItem>
+          <MenuItem value={10}>10</MenuItem>
+          <MenuItem value={15}>15</MenuItem>
+          <MenuItem value={20}>20</MenuItem>
+        </Select>
+
+        <p className={s.nameShowPerPage}>packs per page</p>
       </div>
     </div>
   )

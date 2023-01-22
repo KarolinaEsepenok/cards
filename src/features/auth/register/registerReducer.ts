@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import { setError, setIsLoading, setIsLoggedIn } from '../../../app/appReducer'
 import { AppThunk } from '../../../common/hooks/AppThunk'
-import { authAPI, RequestRegisterType } from '../auth-api'
+import { authApi, RequestRegisterType } from '../authApi'
 
 const initialState = {
   register: false,
@@ -19,15 +19,13 @@ const slice = createSlice({
   },
 })
 
-export const { register } = slice.actions
-export const registerReducer = slice.reducer
-
 export const registerTC =
   (data: RequestRegisterType): AppThunk =>
   async dispatch => {
     dispatch(setIsLoading(true))
+
     try {
-      const res = await authAPI.registration(data)
+      const res = await authApi.registration(data)
 
       if (res) {
         dispatch(register({ data: true }))
@@ -45,8 +43,9 @@ export const registerTC =
 
 export const logoutTC = (): AppThunk => async dispatch => {
   dispatch(setIsLoading(true))
+
   try {
-    const res = await authAPI.logout()
+    const res = await authApi.logout()
 
     if (res) {
       dispatch(setIsLoggedIn(false))
@@ -61,3 +60,6 @@ export const logoutTC = (): AppThunk => async dispatch => {
     dispatch(setIsLoading(false))
   }
 }
+
+export const { register } = slice.actions
+export const registerReducer = slice.reducer

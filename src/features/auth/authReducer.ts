@@ -5,7 +5,7 @@ import { setError, setIsLoading, setIsLoggedIn } from '../../app/appReducer'
 import { AppThunk } from '../../common/hooks/AppThunk'
 import { AppDispatchType } from '../../common/hooks/useAppDispatch'
 
-import { authAPI, RequestLoginType, ResponseProfileUserType, UpdateProfileName } from './auth-api'
+import { authApi, RequestLoginType, ResponseProfileUserType, UpdateProfileName } from './authApi'
 
 const initialState = {
   email: '' as null | string,
@@ -22,7 +22,7 @@ export const authTC = createAsyncThunk<void, RequestLoginType, { dispatch: AppDi
     dispatch(setIsLoading(true))
 
     try {
-      const response = await authAPI.signIn(values)
+      const response = await authApi.signIn(values)
 
       if (response) {
         dispatch(
@@ -58,7 +58,7 @@ export const updateProfileNameTC =
         avatar: profileData.auth.avatar,
         ...data,
       }
-      const res = await authAPI.updateProfileName(apiModel)
+      const res = await authApi.updateProfileName(apiModel)
 
       dispatch(updateProfileName({ data: res.data }))
     } catch (e) {

@@ -8,6 +8,7 @@ import { Button } from '../../../common/component/button/Button'
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../../common/hooks/useAppSelector'
 import { emailSelector, nameSelector } from '../../../common/selectors/Selectors'
+import { PATH } from '../../../routes/routes'
 import { logoutTC } from '../register/registerReducer'
 
 import s from './Profile.module.scss'
@@ -40,7 +41,7 @@ export const Profile: React.FC<ProfileType> = () => {
 
   return (
     <section className={s.profilePage}>
-      <NavLink to="/packs" className={s.link}>
+      <NavLink to={PATH.PACKS} className={s.link}>
         <p>&lArr; Back to Packs List</p>
       </NavLink>
 

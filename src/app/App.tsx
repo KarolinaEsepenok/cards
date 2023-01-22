@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 
-import { CircularProgress, LinearProgress } from '@mui/material'
+import CircularProgress from '@mui/material/CircularProgress'
+import LinearProgress from '@mui/material/LinearProgress'
 
 import { ErrorSnackbar } from '../common/component/errorSnackbar/ErrorSnackbar'
 import { useAppDispatch } from '../common/hooks/useAppDispatch'
@@ -13,9 +14,9 @@ import s from './App.module.scss'
 import { initializeAppTC } from './appReducer'
 
 export const App = () => {
+  const dispatch = useAppDispatch()
   const isAppInitialized = useAppSelector(isAppInitialize)
   const isLoading = useAppSelector(isLoadingSelector)
-  const dispatch = useAppDispatch()
 
   useEffect(() => {
     if (!isAppInitialized) {
@@ -31,7 +32,11 @@ export const App = () => {
     <div className={s.app}>
       <ErrorSnackbar />
       <Header />
-      <div className={s.linearProgress}>{isLoading && <LinearProgress className={s.linearProgress} />}</div>
+      {isLoading && (
+        <div className={s.linearProgress}>
+          <LinearProgress />
+        </div>
+      )}
 
       <section className={s.contentContainer}>
         <RoutesComponent />

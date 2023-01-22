@@ -30,8 +30,8 @@ export const RoutesComponent = () => {
       <Route path={PATH.PASS_RECOVERY} element={<ForgotPassword />} />
       <Route path={PATH.CHECK_EMAIL} element={<CheckEmail />} />
       <Route path={PATH.SET_NEW_PASS} element={<SetNewPassword />} />
-      <Route path={PATH.ERROR404} element={<div>404: Page not found</div>} />
-      <Route path={PATH.NOT_FOUND} element={<Navigate to="404" />} />
+      <Route path={PATH.ERROR_404} element={<div>404: Page not found</div>} />
+      <Route path={PATH.NOT_FOUND} element={<Navigate to={PATH.ERROR_404} />} />
     </Routes>
   )
 }

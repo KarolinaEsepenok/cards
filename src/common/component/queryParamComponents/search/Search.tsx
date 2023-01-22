@@ -15,6 +15,7 @@ export const Search: FC<SearchType> = props => {
   const packName = useAppSelector(packNameSelector)
   const [value, setValue] = useState<string>('')
   const debouncedValue = useDebounce<string>(value)
+
   const handleSearchValueChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.currentTarget.value)
   }

@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 import { AppThunk } from '../common/hooks/AppThunk'
-import { authAPI } from '../features/auth/auth-api'
+import { authApi } from '../features/auth/authApi'
 import { setSignIn } from '../features/auth/authReducer'
 
 const initialState = {
@@ -16,7 +16,7 @@ export const initializeAppTC = (): AppThunk => async dispatch => {
   try {
     const {
       data: { email, name, _id },
-    } = await authAPI.me()
+    } = await authApi.me()
 
     dispatch(setSignIn({ email, name, id: _id }))
     dispatch(setIsLoggedIn(true))

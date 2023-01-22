@@ -4,6 +4,7 @@ import { RootStateType } from '../../app/store'
 export const isLoggedInSelector = (state: RootStateType) => state.app.isLoggedIn
 export const isAppInitialize = (state: RootStateType) => state.app.isAppInitialized
 export const isLoadingSelector = (state: RootStateType) => state.app.isLoading
+export const errorSelector = (state: RootStateType) => state.app.error
 
 //auth
 export const emailSelector = (state: RootStateType) => state.auth.email

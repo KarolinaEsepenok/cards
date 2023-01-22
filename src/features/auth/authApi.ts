@@ -11,7 +11,7 @@ link</a>
 </div>`,
 }
 
-export const authAPI = {
+export const authApi = {
   signIn(loginData: RequestLoginType) {
     return instance.post<'', AxiosResponse<ResponseUserType>, RequestLoginType>(`auth/login`, loginData)
   },
@@ -20,7 +20,6 @@ export const authAPI = {
   },
   registration(data: RequestRegisterType) {
     return instance.post<'', AxiosResponse<ResponseRegisterType>, RequestRegisterType>('auth/register', data)
-    // return instance.post('https://neko-back.herokuapp.com/2.0/auth/register', data)
   },
   logout() {
     return instance.delete<'', CommonType>('auth/me')
@@ -42,49 +41,56 @@ export const authAPI = {
 //types
 export type ResponseRegisterType = {
   addedUser: {}
-
   error?: string
 }
+
 export type RequestRegisterType = {
   email: string
   password: string
 }
+
 export type RequestForgotPasswordType = {
   email: string
   from?: string
 
   message: string
 }
+
 export type RequestSetNewPasswordType = {
   password: string
   resetPasswordToken: string
 }
+
 export type CommonType = {
   info: string
   error?: string
 }
+
 export type RequestLoginType = {
   email: string
   password: string
   rememberMe: boolean
 }
+
 export type ResponseUserType = {
   _id: string
   email: string
   name: string
   avatar?: string
-  publicCardPacksCount: number // количество колод
+  publicCardPacksCount: number
   created: Date
   updated: Date
   isAdmin: boolean
-  verified: boolean // подтвердил ли почту
+  verified: boolean
   rememberMe: boolean
   error?: string
 }
+
 export type UpdateProfileName = {
   name?: string
   avatar?: string
 }
+
 export type ResponseProfileUserType = {
   updatedUser: ResponseUserType
   error?: ''

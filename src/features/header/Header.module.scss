@@ -3,10 +3,12 @@
 @import "../../common/style/variables";
 
 .headerContainer {
+  position: relative;
+
   display: flex;
   align-items: center;
 
-box-sizing: border-box;
+  box-sizing: border-box;
   width: 100%;
   height: 64px;
   padding: 8px 20px;

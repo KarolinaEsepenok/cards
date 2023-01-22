@@ -18,9 +18,10 @@ export type ErrorsType = {
   password?: string
 }
 export const ForgotPassword = () => {
-  const forgotPassword = useAppSelector(forgotPasswordSelector)
-  const navigate = useNavigate()
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+  const forgotPassword = useAppSelector(forgotPasswordSelector)
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -50,6 +51,7 @@ export const ForgotPassword = () => {
     <section className={s.container}>
       <div className={s.popup}>
         <h2 className={s.title}>Forgot your password?</h2>
+
         <form onSubmit={formik.handleSubmit} className={s.form}>
           <div className={s.inputContainer}>
             <Input
@@ -60,6 +62,7 @@ export const ForgotPassword = () => {
               {...formik.getFieldProps('email')}
             />
           </div>
+
           <p className={s.subtitle}>Enter your email address and we will send you further instructions</p>
           <Button
             styleType="primary"
@@ -68,8 +71,9 @@ export const ForgotPassword = () => {
           >
             Send instructions
           </Button>
+
           <p className={s.label}>Did your remember your password?</p>
-          <NavLink className={s.link} to="/signIn">
+          <NavLink className={s.link} to={PATH.SIGN_IN}>
             Try to logging in
           </NavLink>
         </form>

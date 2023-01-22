@@ -17,7 +17,6 @@ import s from './registration.module.scss'
 interface RegisterErrorType {
   email?: string
   password?: string
-
   confirmPassword?: string
 }
 
@@ -110,7 +109,7 @@ export const Register = () => {
       </form>
       <div className={s.have_acc}>Already have an account?</div>
 
-      <NavLink to="/signIn" className={s.signin}>
+      <NavLink to={PATH.SIGN_IN} className={s.link}>
         Sign In
       </NavLink>
     </div>

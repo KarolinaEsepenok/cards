@@ -10,14 +10,15 @@ import { PATH } from '../../../../routes/routes'
 
 import s from './CheckEmail.module.scss'
 export const CheckEmail = () => {
-  const email = useAppSelector(currentEmailSelector)
   const navigate = useNavigate()
+  const email = useAppSelector(currentEmailSelector)
 
   return (
     <section className={s.container}>
       <div className={s.popup}>
         <h2>Check your email</h2>
         <img className={s.emailImg} src={checkEmail} alt="" />
+
         <form>
           <p className={s.subtitle}>We&apos;ve sent an Email with instruction to {email}</p>
           <Button

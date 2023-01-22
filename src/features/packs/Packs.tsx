@@ -91,7 +91,7 @@ export const Packs = () => {
         <ResetAllFilters />
       </div>
 
-      <div className={s.table}>
+      <div className={s.packsList}>
         <PacksList packs={packs} />
       </div>
 

@@ -7,20 +7,13 @@ type DefaultButtonType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElemen
 type ButtonType = DefaultButtonType & {
   styleType?: 'primary' | 'secondary' | 'warn' | 'icon'
 }
-export const Button: React.FC<ButtonType> = ({
-  styleType,
-  className,
-  ...restProps // все остальные пропсы попадут в объект restProps, там же будет children
-}) => {
+export const Button: React.FC<ButtonType> = ({ styleType, className, ...restProps }) => {
   const finalClassName = `${styleType && s[styleType]} ${className && className} ${
     restProps.disabled ? s.disabled : ''
   }`.trim()
 
   return (
-    <button
-      className={finalClassName}
-      {...restProps} // отдаём кнопке остальные пропсы если они есть (children там внутри)
-    >
+    <button className={finalClassName} {...restProps}>
       {restProps.children}
     </button>
   )

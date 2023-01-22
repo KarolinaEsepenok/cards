@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC, memo } from 'react'
 
 import { setMyPacks } from '../../../../features/packs/packsReducer'
 import { useAppDispatch } from '../../../hooks/useAppDispatch'
@@ -7,14 +7,14 @@ import { Button } from '../../button/Button'
 
 import s from './FilterMyAllPacks.module.scss'
 
-export const FilterMyAllPacks: React.FC = React.memo(props => {
+export const FilterMyAllPacks: FC = memo(props => {
   const dispatch = useAppDispatch()
   const isLoading = useAppSelector(state => state.app.isLoading)
-  const queryUserId = useAppSelector(state => state.packs.queryParams.user_id)
-  const id = useAppSelector(state => state.auth.id)
+  const packCreatorId = useAppSelector(state => state.packs.queryParams.user_id)
+  const myId = useAppSelector(state => state.auth.id)
 
   const handleFilterMyPacks = () => {
-    dispatch(setMyPacks(id))
+    dispatch(setMyPacks(myId))
   }
 
   const handleFilterAllPacks = () => {
@@ -25,7 +25,7 @@ export const FilterMyAllPacks: React.FC = React.memo(props => {
     <div className={s.buttons}>
       <Button
         className={s.btnFilter}
-        styleType={queryUserId ? 'primary' : 'secondary'}
+        styleType={packCreatorId ? 'primary' : 'secondary'}
         onClick={handleFilterMyPacks}
         disabled={isLoading}
       >
@@ -33,7 +33,7 @@ export const FilterMyAllPacks: React.FC = React.memo(props => {
       </Button>
       <Button
         className={s.btnFilter}
-        styleType={queryUserId ? 'secondary' : 'primary'}
+        styleType={packCreatorId ? 'secondary' : 'primary'}
         onClick={handleFilterAllPacks}
         disabled={isLoading}
       >

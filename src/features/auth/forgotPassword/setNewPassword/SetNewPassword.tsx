@@ -15,10 +15,11 @@ import { changePasswordSuccess, setNewPasswordTC } from '../forgotPasswordReduce
 import s from './SetNewPassword.module.scss'
 
 export const SetNewPassword = () => {
-  const onChangePasswordSuccess = useAppSelector(changePasswordSelector)
-  const { token } = useParams()
-  const navigate = useNavigate()
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+  const { token } = useParams()
+  const onChangePasswordSuccess = useAppSelector(changePasswordSelector)
+
   const formik = useFormik({
     initialValues: {
       password: '',

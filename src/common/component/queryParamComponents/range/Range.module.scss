@@ -1,4 +1,3 @@
-
 @import 'src/common/style/variables';
 
 @import 'src/common/style/mixins';
@@ -10,6 +9,9 @@
 }
 
 @mixin num() {
+
+  @include title(600);
+
   display: flex;
   flex-shrink: 0;
   align-items: center;
