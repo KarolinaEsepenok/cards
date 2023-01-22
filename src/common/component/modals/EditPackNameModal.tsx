@@ -12,10 +12,11 @@ type EditPackNameModalType = {
   packId: string
   setTogglePopup: (v: any) => void
   togglePopup: boolean
+  name: string
 }
-export const EditPackNameModal: React.FC<EditPackNameModalType> = ({ packId, setTogglePopup, togglePopup }) => {
+export const EditPackNameModal: React.FC<EditPackNameModalType> = ({ packId, setTogglePopup, togglePopup, name }) => {
   const dispatch = useAppDispatch()
-  const [name, setName] = useState<string>('')
+  const [nameValue, setNameValue] = useState<string>(name)
 
   const handleAddPack = () => dispatch(updateNamePackTC(packId, name))
 
@@ -28,7 +29,7 @@ export const EditPackNameModal: React.FC<EditPackNameModalType> = ({ packId, set
     // </Modal>
     <div className={s.modalContent}>
       <h2>Edit pack</h2>
-      <Input value={name} onChange={e => setName(e.currentTarget.value)} type="text" label="Name pack" />
+      <Input value={nameValue} onChange={e => setNameValue(e.currentTarget.value)} type="text" label="Name pack" />
       <Checkbox />
       <Button onClick={handleAddPack} styleType="primary">
         Save

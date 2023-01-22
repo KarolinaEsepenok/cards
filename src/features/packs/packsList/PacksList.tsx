@@ -40,7 +40,7 @@ export const PacksList: FC<PacksTableType> = ({ packs }) => {
               cardsCount={p.cardsCount}
               author={p.user_name}
               updated={dateUpdate}
-              actions={<PackActions myPack={myPack} packId={p._id} />}
+              actions={<PackActions myPack={myPack} packId={p._id} name={p.name} />}
             />
           )
         })}

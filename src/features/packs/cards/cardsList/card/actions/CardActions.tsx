@@ -9,8 +9,10 @@ import { deleteCardTC } from '../../../cardsReducer'
 
 type CardActionsType = {
   cardId: string
+  question: string
+  answer: string
 }
-export const CardActions: React.FC<CardActionsType> = ({ cardId }) => {
+export const CardActions: React.FC<CardActionsType> = ({ cardId, question, answer }) => {
   const dispatch = useAppDispatch()
 
   const [toggle, setToggle] = useState(false)
@@ -29,7 +31,9 @@ export const CardActions: React.FC<CardActionsType> = ({ cardId }) => {
         <img src={trash} alt="icon trash" />
       </Button>
 
-      {toggle && <EditCardModal setToggle={setToggle} toggle={toggle} cardId={cardId} />}
+      {toggle && (
+        <EditCardModal setToggle={setToggle} toggle={toggle} cardId={cardId} question={question} answer={answer} />
+      )}
     </>
   )
 }

@@ -13,24 +13,26 @@ type EditCardModalType = {
   setToggle: (v: any) => void
   toggle: boolean
   cardId: string
+  question: string
+  answer: string
 }
-export const EditCardModal: React.FC<EditCardModalType> = ({ setToggle, toggle, cardId }) => {
+export const EditCardModal: React.FC<EditCardModalType> = ({ setToggle, toggle, cardId, question, answer }) => {
   const dispatch = useAppDispatch()
   let { id } = useParams()
 
-  const [question, setQuestion] = useState<string>('')
-  const [answer, setAnswer] = useState<string>('')
+  const [questionValue, setQuestionValue] = useState<string>(question)
+  const [answerValue, setAnswerValue] = useState<string>(answer)
 
   const handleAddPack = () => dispatch(updateCardTC(id ? id : '', cardId, { question, answer }))
 
-  const handleChangeQuestion = (e: React.ChangeEvent<HTMLInputElement>) => setQuestion(e.currentTarget.value)
-  const handleChangeAnswer = (e: React.ChangeEvent<HTMLInputElement>) => setAnswer(e.currentTarget.value)
+  const handleChangeQuestion = (e: React.ChangeEvent<HTMLInputElement>) => setQuestionValue(e.currentTarget.value)
+  const handleChangeAnswer = (e: React.ChangeEvent<HTMLInputElement>) => setAnswerValue(e.currentTarget.value)
 
   return (
     <div className={s.modalContent}>
       <h2>Edit card</h2>
-      <Input value={question} onChange={handleChangeQuestion} type="text" label="Question" />
-      <Input value={answer} onChange={handleChangeAnswer} type="text" label="Answer" />
+      <Input value={questionValue} onChange={handleChangeQuestion} type="text" label="Question" />
+      <Input value={answerValue} onChange={handleChangeAnswer} type="text" label="Answer" />
 
       <Button onClick={handleAddPack} styleType="primary">
         Save

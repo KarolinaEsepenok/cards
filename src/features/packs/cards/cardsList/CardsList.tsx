@@ -55,7 +55,7 @@ export const CardsList: FC<CardsListType> = ({ cards }) => {
                 answer={c.answer}
                 update={dateUpdate}
                 grade={c.grade}
-                actions={myPack && <CardActions cardId={c._id} />}
+                actions={myPack && <CardActions cardId={c._id} question={c.question} answer={c.answer} />}
               />
             )
           })}

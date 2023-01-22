@@ -11,8 +11,9 @@ import { deletePackTC } from '../../../packsReducer'
 type ActionsType = {
   myPack: boolean
   packId: string
+  name: string
 }
-export const PackActions: FC<ActionsType> = ({ myPack, packId }) => {
+export const PackActions: FC<ActionsType> = ({ myPack, packId, name }) => {
   const dispatch = useAppDispatch()
   const [togglePopup, setTogglePopup] = useState(false)
 
@@ -39,7 +40,9 @@ export const PackActions: FC<ActionsType> = ({ myPack, packId }) => {
         </>
       )}
 
-      {togglePopup && <EditPackNameModal packId={packId} setTogglePopup={setTogglePopup} togglePopup={togglePopup} />}
+      {togglePopup && (
+        <EditPackNameModal packId={packId} setTogglePopup={setTogglePopup} togglePopup={togglePopup} name={name} />
+      )}
     </div>
   )
 }
