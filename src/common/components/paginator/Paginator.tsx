@@ -23,7 +23,6 @@ export const Paginator: FC<PaginationPropsType> = ({
   setRowCallback,
   currentPage,
 }) => {
-  const disabled = useAppSelector(isLoadingSelector)
   const pages = Math.ceil(totalCount / pageCount)
   const pageValue = pageCount.toString()
   const isLoading = useAppSelector(isLoadingSelector)
@@ -47,7 +46,6 @@ export const Paginator: FC<PaginationPropsType> = ({
         onChange={handleChangePage}
         count={pages}
         page={currentPage}
-        disabled={disabled}
         size="small"
         shape="rounded"
         sx={{
@@ -70,7 +68,6 @@ export const Paginator: FC<PaginationPropsType> = ({
           sx={{ fontFamily: 'inherit', fontSize: 'inherit' }}
           value={pageValue}
           onChange={handleChangeRowsPerPage}
-          disabled={disabled}
         >
           <MenuItem value={5}>5</MenuItem>
           <MenuItem value={10}>10</MenuItem>
