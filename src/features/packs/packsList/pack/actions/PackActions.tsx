@@ -2,7 +2,6 @@ import React, { FC, useState } from 'react'
 
 import { EditPackNameModal } from '../../../../../common/component/modals/EditPackNameModal'
 
-
 import edit from 'assets/img/icons/edit.svg'
 import teacher from 'assets/img/icons/teacher.svg'
 import trash from 'assets/img/icons/trash.svg'

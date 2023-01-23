@@ -10,7 +10,6 @@ import { useAppSelector } from 'common/hooks/useAppSelector'
 import { currentEmailSelector } from 'common/selectors/Selectors'
 import { PATH } from 'routes/routes'
 
-
 export const CheckEmail = () => {
   const email = useAppSelector(currentEmailSelector)
   const navigate = useNavigate()

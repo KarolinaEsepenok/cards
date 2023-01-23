@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+
 import { useDispatch } from 'react-redux'
 
 import { toggleModal } from '../../../../app/appReducer'

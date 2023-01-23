@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react'
 
+import { toggleModal } from '../../app/appReducer'
+import { AddPackModal } from '../../common/component/modals/AddPackModal'
+
 import s from './Packs.module.scss'
 import { PackType } from './packsApi'
 import { PacksList } from './packsList/PacksList'
@@ -14,8 +17,6 @@ import { Search } from 'common/component/queryParamComponents/search/Search'
 import { Subtitle } from 'common/component/typography/subtitle/Subtitle'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
-import { toggleModal } from '../../app/appReducer'
-import { AddPackModal } from '../../common/component/modals/AddPackModal'
 import {
   cardPacks,
   cardPacksTotalCountSelector,
