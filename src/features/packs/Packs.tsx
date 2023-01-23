@@ -10,7 +10,6 @@ import { Subtitle } from '../../common/component/typography/subtitle/Subtitle'
 import { useAppDispatch } from '../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../common/hooks/useAppSelector'
 import {
-  cardPacks,
   cardPacksTotalCountSelector,
   maxValueRangeSelector,
   minValueRangeSelector,
@@ -22,12 +21,10 @@ import {
 } from '../../common/selectors/Selectors'
 
 import s from './Packs.module.scss'
-import { PackType } from './packsApi'
 import { PacksList } from './packsList/PacksList'
 import { addNewPackTC, getPacksTC, setPacksCurrentPage, setRowPage } from './packsReducer'
 
 export const Packs = () => {
-  const packs: PackType[] = useAppSelector(cardPacks)
   const page = useAppSelector(pageSelector)
   const packName = useAppSelector(packNameSelector)
   const pageCount = useAppSelector(pageCountSelector)
@@ -92,7 +89,7 @@ export const Packs = () => {
       </div>
 
       <div className={s.packsList}>
-        <PacksList packs={packs} />
+        <PacksList />
       </div>
 
       <div>

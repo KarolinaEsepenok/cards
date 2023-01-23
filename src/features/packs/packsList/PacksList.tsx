@@ -1,19 +1,13 @@
-import React, { FC } from 'react'
-
 import { useAppSelector } from '../../../common/hooks/useAppSelector'
-import { myIdSelector } from '../../../common/selectors/Selectors'
+import { cardPacks, myIdSelector } from '../../../common/selectors/Selectors'
 import list from '../../../common/style/List.module.scss'
 import { formatDate } from '../../../common/utils/formatDate'
-import { PackType } from '../packsApi'
 
 import { PackActions } from './pack/actions/PackActions'
 import { Pack } from './pack/Pack'
 
-type PacksTableType = {
-  packs: PackType[]
-}
-
-export const PacksList: FC<PacksTableType> = ({ packs }) => {
+export const PacksList = () => {
+  const packs = useAppSelector(cardPacks)
   const myId = useAppSelector(myIdSelector)
 
   return (

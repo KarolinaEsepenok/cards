@@ -48,9 +48,13 @@ export const Paginator: FC<PaginationPropsType> = ({
             size: '12px',
             borderRadius: '4px',
           },
+          '.MuiPaginationItem-root:hover': {
+            backgroundColor: '#dadada',
+          },
           '.css-yuzg60-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected': {
-            background: '#366eff',
+            backgroundColor: '#366eff',
             color: '#ffffff',
+            pointerEvents: 'none',
           },
         }}
       />
