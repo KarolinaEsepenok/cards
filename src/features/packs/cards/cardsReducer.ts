@@ -67,9 +67,10 @@ export const addNewCardTC =
 
         dispatch(setError(error))
       }
-    } finally {
-      dispatch(setIsLoading(false))
     }
+    // finally {
+    //   dispatch(setIsLoading(false))
+    // }
   }
 
 export const deleteCardTC =
