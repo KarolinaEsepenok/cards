@@ -4,6 +4,7 @@ import { RootStateType } from 'app/store'
 export const isLoggedInSelector = (state: RootStateType) => state.app.isLoggedIn
 export const isAppInitialize = (state: RootStateType) => state.app.isAppInitialized
 export const isLoadingSelector = (state: RootStateType) => state.app.isLoading
+export const errorSelector = (state: RootStateType) => state.app.error
 
 //auth
 export const emailSelector = (state: RootStateType) => state.auth.email
@@ -32,3 +33,6 @@ export const minValueRangeSelector = (state: RootStateType) => state.packs.query
 export const maxValueRangeSelector = (state: RootStateType) => state.packs.queryParams.max
 export const cardPacksTotalCountSelector = (state: RootStateType) => state.packs.cardPacksTotalCount
 export const resetRange = (state: RootStateType) => state.packs.resetRange
+
+//cards
+export const cardsSelector = (state: RootStateType) => state.cards.cards

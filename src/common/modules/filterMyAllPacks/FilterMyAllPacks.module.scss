@@ -1,0 +1,20 @@
+@import '../../style/variables';
+
+@import '../../style/mixins';
+
+.buttons {
+  width: 200px;
+}
+
+.btnFilter {
+  width: 97px;
+  height: 36px;
+
+  font-size: 14px;
+  font-weight: 400;
+
+  border-radius: 4px 0 0 4px;
+  &:last-child {
+    border-radius: 0 4px 4px 0;
+  }
+}

@@ -9,6 +9,6 @@ export const PATH = {
   CHECK_EMAIL: '/checkEmail',
   PACKS: '/packs',
   EMPTY_PACK: '/empty-pack',
-  CARDS: '/cards',
-  ERROR404: '/404',
+  ERROR_404: '/404',
+  CARDS: '/cards/:id',
 } as const

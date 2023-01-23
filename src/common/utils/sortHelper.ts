@@ -1,6 +1,7 @@
-import { setSort } from '../../features/packs/packsReducer'
 import { sortingPacksMethods } from '../constants/sortingPacksMethods/sortingPacksMethods'
 import { AppDispatchType } from '../hooks/useAppDispatch'
+
+import { setSort } from 'pages/packs/packsSlice'
 
 export const sortHelper = (
   dispatch: AppDispatchType,
