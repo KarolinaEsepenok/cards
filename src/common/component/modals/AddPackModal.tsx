@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 
-import { addNewPackTC } from '../../../features/packs/packsReducer'
-import { useAppDispatch } from '../../hooks/useAppDispatch'
-import { Checkbox } from '../Checkbox/Checkbox'
-import { Input } from '../Input/Input'
-
 import { Modal } from './Modal'
+
+import { Checkbox } from 'common/component/checkbox/Checkbox'
+import { Input } from 'common/component/Input/Input'
+import { useAppDispatch } from 'common/hooks/useAppDispatch'
+import { addNewPackTC } from 'features/packs/packsReducer'
 
 export const AddPackModal = () => {
   const dispatch = useAppDispatch()

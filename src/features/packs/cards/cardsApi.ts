@@ -1,3 +1,5 @@
+import { AxiosResponse } from 'axios'
+
 import { instance } from 'common/axiosInstance/axiosInstance'
 import { sortingCardsMethods } from 'common/constants/sortingPacksMethods/sortingPacksMethods'
 
