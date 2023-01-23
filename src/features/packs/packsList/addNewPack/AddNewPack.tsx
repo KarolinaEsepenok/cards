@@ -2,12 +2,13 @@ import React from 'react'
 
 import { useFormik } from 'formik'
 
-import { Button } from '../../../../common/component/button/Button'
-import { Checkbox } from '../../../../common/component/checkbox/Checkbox'
-import { Input } from '../../../../common/component/Input/Input'
-import { useAppDispatch } from '../../../../common/hooks/useAppDispatch'
-import { addNewPackTC } from '../../packsReducer'
 import s from '../PackList.module.scss'
+
+import { Button } from 'common/component/button/Button'
+import { Checkbox } from 'common/component/checkbox/Checkbox'
+import { Input } from 'common/component/Input/Input'
+import { useAppDispatch } from 'common/hooks/useAppDispatch'
+import { addNewPackTC } from 'features/packs/packsReducer'
 
 export const AddNewPack = () => {
   const dispatch = useAppDispatch()

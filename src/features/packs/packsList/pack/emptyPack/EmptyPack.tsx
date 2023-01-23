@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { Button } from '../../../../../common/component/button/Button'
-import { useAppSelector } from '../../../../../common/hooks/useAppSelector'
+import { Button } from 'common/component/button/Button'
+import { useAppSelector } from 'common/hooks/useAppSelector'
 
 export const EmptyPack = () => {
   const cards = useAppSelector(state => state.cards.cards)

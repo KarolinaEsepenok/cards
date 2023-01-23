@@ -1,14 +1,14 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-import { setError, setIsLoading } from '../../app/appReducer'
-import { RootStateType } from '../../app/store'
-import { emptyQueryParams } from '../../common/constants/emptyQueryParams/emptyQueryParams'
-import { sortingPacksMethods } from '../../common/constants/sortingPacksMethods/sortingPacksMethods'
-import { AppThunk } from '../../common/hooks/AppThunk'
-import { AppDispatchType } from '../../common/hooks/useAppDispatch'
-
 import { AddPackType, packsApi, PackType } from './packsApi'
+
+import { setError, setIsLoading } from 'app/appReducer'
+import { RootStateType } from 'app/store'
+import { emptyQueryParams } from 'common/constants/emptyQueryParams/emptyQueryParams'
+import { sortingPacksMethods } from 'common/constants/sortingPacksMethods/sortingPacksMethods'
+import { AppThunk } from 'common/hooks/AppThunk'
+import { AppDispatchType } from 'common/hooks/useAppDispatch'
 
 const initialState = {
   cardPacks: [] as PackType[],
@@ -17,8 +17,8 @@ const initialState = {
   maxCardsCount: 110,
   resetRange: false,
   queryParams: {
-    pageCount: localStorage.getItem('row') ? Number(localStorage.getItem('row')) : 5,
-    page: localStorage.getItem('page') ? Number(localStorage.getItem('page')) : 1,
+    pageCount: sessionStorage.getItem('row') ? Number(sessionStorage.getItem('row')) : 5,
+    page: sessionStorage.getItem('page') ? Number(sessionStorage.getItem('page')) : 1,
     min: 0,
     max: 110,
     user_id: '',
@@ -164,6 +164,9 @@ const slice = createSlice({
     setSearchName: (state, action: PayloadAction<string>) => {
       state.queryParams.packName = action.payload
     },
+    setSort: (state, action: PayloadAction<sortingPacksMethods>) => {
+      state.queryParams.sortPacks = action.payload
+    },
   },
 })
 
@@ -178,4 +181,5 @@ export const {
   updateNamePack,
   resetAllFilters,
   setSearchName,
+  setSort,
 } = slice.actions

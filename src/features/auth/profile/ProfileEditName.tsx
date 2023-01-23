@@ -2,14 +2,15 @@ import React, { useEffect } from 'react'
 
 import { useFormik } from 'formik'
 
-import { Input } from '../../../common/component/Input/Input'
-import style from '../../../common/component/Input/Input.module.scss'
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
-import { useAppSelector } from '../../../common/hooks/useAppSelector'
 import { updateProfileNameTC } from '../authReducer'
 import reg from '../register/registration.module.scss'
 
 import s from './Profile.module.scss'
+
+import { Input } from 'common/component/Input/Input'
+import style from 'common/component/Input/Input.module.scss'
+import { useAppDispatch } from 'common/hooks/useAppDispatch'
+import { useAppSelector } from 'common/hooks/useAppSelector'
 
 type ProfileEditNamePropsType = {
   setEditMode: (value: boolean) => void

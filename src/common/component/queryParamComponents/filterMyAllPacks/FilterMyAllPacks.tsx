@@ -1,13 +1,13 @@
 import React from 'react'
 
-import { setMyPacks } from '../../../../features/packs/packsReducer'
-import { useAppDispatch } from '../../../hooks/useAppDispatch'
-import { useAppSelector } from '../../../hooks/useAppSelector'
-import { Button } from '../../button/Button'
-
 import s from './FilterMyAllPacks.module.scss'
 
-export const FilterMyAllPacks: React.FC = React.memo(props => {
+import { Button } from 'common/component/button/Button'
+import { useAppDispatch } from 'common/hooks/useAppDispatch'
+import { useAppSelector } from 'common/hooks/useAppSelector'
+import { setMyPacks } from 'features/packs/packsReducer'
+
+export const FilterMyAllPacks = () => {
   const dispatch = useAppDispatch()
   const isLoading = useAppSelector(state => state.app.isLoading)
   const queryUserId = useAppSelector(state => state.packs.queryParams.user_id)
@@ -41,4 +41,4 @@ export const FilterMyAllPacks: React.FC = React.memo(props => {
       </Button>
     </div>
   )
-})
+}

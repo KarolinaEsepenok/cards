@@ -1,12 +1,12 @@
-@import "../../common/style/mixins";
+@import 'src/common/style/mixins';
 
-@import "../../common/style/variables";
+@import 'src/common/style/variables';
 
 .headerContainer {
   display: flex;
   align-items: center;
 
-box-sizing: border-box;
+  box-sizing: border-box;
   width: 100%;
   height: 64px;
   padding: 8px 20px;
