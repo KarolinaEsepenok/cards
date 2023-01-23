@@ -5,9 +5,10 @@ import { PacksList } from './packsList/PacksList'
 
 import { toggleModal } from 'app/appSlice'
 import { Button } from 'common/components/button/Button'
-import { AddCardModal } from 'common/components/modals/AddCardModal'
 import { AddPackModal } from 'common/components/modals/AddPackModal'
+import { DeletePackModal } from 'common/components/modals/DeletePackModal'
 import { EditPackNameModal } from 'common/components/modals/EditPackNameModal'
+import { Modal } from 'common/components/modals/Modal'
 import { Paginator } from 'common/components/paginator/Paginator'
 import { Subtitle } from 'common/components/typography/subtitle/Subtitle'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
@@ -26,7 +27,7 @@ import {
   sortPacksSelector,
   userIdSelector,
 } from 'common/selectors/Selectors'
-import { getPacksTC, setPacksCurrentPage, setRowPage } from 'pages/packs/packsSlice'
+import { getPacksTC, setModalContent, setPacksCurrentPage, setRowPage } from 'pages/packs/packsSlice'
 
 export const Packs = () => {
   const page = useAppSelector(pageSelector)
@@ -37,19 +38,21 @@ export const Packs = () => {
   const max = useAppSelector(maxValueRangeSelector)
   const sortPacks = useAppSelector(sortPacksSelector)
   const totalCount = useAppSelector(cardPacksTotalCountSelector)
-  const toggle = useAppSelector(state => state.app.toggleModal)
-  // const [togglePopup, setTogglePopup] = useState(false)
+
+  const modalContent = useAppSelector(state => state.packs.modalСontent)
 
   const dispatch = useAppDispatch()
+
   const changePageHandle = (page: number) => {
     dispatch(setPacksCurrentPage(page))
   }
   const changeRowPageHandle = (pageCount: number) => {
     dispatch(setRowPage(pageCount))
   }
-  const Obj = {
-    addPack: <AddPackModal show={false} />,
-    // updatePack: <EditPackNameModal />,
+
+  const handleOpenPopup = () => {
+    dispatch(setModalContent('addPack'))
+    dispatch(toggleModal(true))
   }
 
   useEffect(() => {
@@ -61,14 +64,16 @@ export const Packs = () => {
       <h2>Packs list</h2>
 
       <div className={s.addPackButton}>
-        <Button styleType="primary" onClick={() => dispatch(toggleModal(true))}>
-          {/*<Button styleType="primary" onClick={() => setTogglePopup(!togglePopup)}>*/}
+        <Button styleType="primary" onClick={handleOpenPopup}>
           Add new pack
         </Button>
       </div>
 
-      <AddPackModal show={toggle} />
-      {/*{togglePopup && <AddPackModal />}*/}
+      <Modal>
+        {modalContent === 'editPackName' && <EditPackNameModal />}
+        {modalContent === 'addPack' && <AddPackModal />}
+        {modalContent === 'deletePack' && <DeletePackModal />}
+      </Modal>
 
       <div className={s.filtersContainer}>
         <div>

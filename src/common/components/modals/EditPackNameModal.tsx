@@ -10,24 +10,26 @@ import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { updateNamePackTC } from 'pages/packs/packsSlice'
 
 type EditPackNameModalType = {
-  packId: string
-  setTogglePopup: (v: any) => void
-  togglePopup: boolean
-  name: string
+  // packId: string
+  // setTogglePopup: (v: any) => void
+  // togglePopup: boolean
+  // name: string
 }
-export const EditPackNameModal: React.FC<EditPackNameModalType> = ({ packId, name }) => {
+// export const EditPackNameModal: React.FC<EditPackNameModalType> = ({ packId, name }) => {
+export const EditPackNameModal: React.FC<EditPackNameModalType> = () => {
   const dispatch = useAppDispatch()
-  const [nameValue, setNameValue] = useState<string>(name)
+  // const [nameValue, setNameValue] = useState<string>(name)
 
-  const handleAddPack = () => dispatch(updateNamePackTC(packId, nameValue))
+  // const handleAddPack = () => dispatch(updateNamePackTC(packId, nameValue))
 
   return (
-    <Modal title={'Edit pack'} onClickSave={handleAddPack} show={false}>
-      <>
-        <Input value={nameValue} onChange={e => setNameValue(e.currentTarget.value)} type="text" label="Name pack" />
-        <Checkbox />
-      </>
-    </Modal>
+    <h2>EditModal Pack</h2>
+    // <Modal title={'Edit pack'} onClickSave={handleAddPack}>
+    //   <>
+    //     <Input value={nameValue} onChange={e => setNameValue(e.currentTarget.value)} type="text" label="Name pack" />
+    //     <Checkbox />
+    //   </>
+    // </Modal>
 
     // <div className={s.modalContent}>
     //   <h2>Edit pack</h2>

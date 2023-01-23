@@ -11,13 +11,13 @@ import { toggleModal } from 'app/appSlice'
 
 type BasicModalType = {
   children: ReactNode
-  title: string
-  onClickSave: () => void
-  show: boolean
+  // title: string
+  // onClickSave: () => void
 }
 
-export const Modal: React.FC<BasicModalType> = ({ children, title, onClickSave, show }) => {
-  // const toggle = useAppSelector(state => state.app.toggleModal)
+// export const Modal: React.FC<BasicModalType> = ({ children, title, onClickSave }) => {
+export const Modal: React.FC<BasicModalType> = ({ children }) => {
+  const toggle = useAppSelector(state => state.app.toggleModal)
   const dispatch = useDispatch()
 
   const handleClose = () => {
@@ -25,16 +25,14 @@ export const Modal: React.FC<BasicModalType> = ({ children, title, onClickSave, 
   }
 
   const handleDispatch = () => {
-    onClickSave()
     dispatch(toggleModal(false))
   }
 
   return (
     <>
-      {show && (
+      {toggle && (
         <div onClick={handleClose} className={s.modal}>
           <div onClick={e => e.stopPropagation()} className={s.modalContent}>
-            <h2>{title}</h2>
             <div onClick={handleClose}>X</div>
 
             {children}

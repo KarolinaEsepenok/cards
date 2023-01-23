@@ -1,12 +1,13 @@
 import React, { FC, useState } from 'react'
 
+import { toggleModal } from 'app/appSlice'
 import edit from 'assets/img/icons/edit.svg'
 import teacher from 'assets/img/icons/teacher.svg'
 import trash from 'assets/img/icons/trash.svg'
 import { Button } from 'common/components/button/Button'
 import { EditPackNameModal } from 'common/components/modals/EditPackNameModal'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
-import { deletePackTC } from 'pages/packs/packsSlice'
+import { deletePackTC, setModalContent } from 'pages/packs/packsSlice'
 
 type ActionsType = {
   myPack: boolean
@@ -15,13 +16,15 @@ type ActionsType = {
 }
 export const PackActions: FC<ActionsType> = ({ myPack, packId, name }) => {
   const dispatch = useAppDispatch()
-  const [togglePopup, setTogglePopup] = useState(false)
 
   const handlerTogglePopup = () => {
-    setTogglePopup(!togglePopup)
+    dispatch(setModalContent('editPackName'))
+    dispatch(toggleModal(true))
   }
   const handlerDeletePack = () => {
-    dispatch(deletePackTC(packId))
+    // dispatch(deletePackTC(packId))
+    dispatch(setModalContent('deletePack'))
+    dispatch(toggleModal(true))
   }
 
   return (
@@ -38,10 +41,6 @@ export const PackActions: FC<ActionsType> = ({ myPack, packId, name }) => {
             <img src={trash} alt="icon trash" />
           </Button>
         </>
-      )}
-
-      {togglePopup && (
-        <EditPackNameModal packId={packId} setTogglePopup={setTogglePopup} togglePopup={togglePopup} name={name} />
       )}
     </div>
   )

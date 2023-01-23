@@ -11,6 +11,7 @@ import { formatDate } from 'common/utils/formatDate'
 import { CardType } from 'pages/cards/cardsApi'
 import { CardActions } from 'pages/cards/cardsList/card/actions/CardActions'
 import { Card } from 'pages/cards/cardsList/card/Card'
+import { setModalContent } from 'pages/packs/packsSlice'
 
 type CardsListType = {
   cards: CardType[]
@@ -23,15 +24,18 @@ export const CardsList: FC<CardsListType> = ({ cards }) => {
 
   const dispatch = useDispatch()
 
+  const handleAddCard = () => {
+    dispatch(setModalContent('addCard'))
+    dispatch(toggleModal(true))
+  }
+
   return (
     <>
       {myPack && (
-        <Button onClick={() => dispatch(toggleModal(true))} styleType={'primary'}>
+        <Button onClick={handleAddCard} styleType={'primary'}>
           Add New Card
         </Button>
       )}
-
-      <AddCardModal />
 
       <table className={list.table}>
         <thead>

@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 
+import { toggleModal } from 'app/appSlice'
 import edit from 'assets/img/icons/edit.svg'
 import trash from 'assets/img/icons/trash.svg'
 import { Button } from 'common/components/button/Button'
-import { EditCardModal } from 'common/components/modals/EditCardModal'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
-import { deleteCardTC } from 'pages/cards/cardsSlice'
+import { setModalContent } from 'pages/packs/packsSlice'
 
 type CardActionsType = {
   cardId: string
@@ -15,25 +15,25 @@ type CardActionsType = {
 export const CardActions: React.FC<CardActionsType> = ({ cardId, question, answer }) => {
   const dispatch = useAppDispatch()
 
-  const [toggle, setToggle] = useState(false)
-
+  const handleEditCard = () => {
+    dispatch(setModalContent('editCard'))
+    dispatch(toggleModal(true))
+  }
   const handlerDeletePack = () => {
-    dispatch(deleteCardTC(cardId))
+    // dispatch(deleteCardTC(cardId))
+    dispatch(setModalContent('deleteCard'))
+    dispatch(toggleModal(true))
   }
 
   return (
     <>
-      <Button styleType="icon" onClick={() => setToggle(true)}>
+      <Button styleType="icon" onClick={handleEditCard}>
         <img src={edit} alt="icon edit" />
       </Button>
 
       <Button styleType="icon" onClick={handlerDeletePack}>
         <img src={trash} alt="icon trash" />
       </Button>
-
-      {toggle && (
-        <EditCardModal setToggle={setToggle} toggle={toggle} cardId={cardId} question={question} answer={answer} />
-      )}
     </>
   )
 }
