@@ -1,17 +1,17 @@
 import React, { FC } from 'react'
-
 import { useDispatch } from 'react-redux'
 
 import { toggleModal } from '../../../../app/appReducer'
 import { Button } from '../../../../common/component/button/Button'
 import { AddCardModal } from '../../../../common/component/modals/AddCardModal'
-import { useAppSelector } from '../../../../common/hooks/useAppSelector'
-import list from '../../../../common/style/List.module.scss'
-import { formatDate } from '../../../../common/utils/formatDate'
 import { CardType } from '../cardsApi'
 
 import { CardActions } from './card/actions/CardActions'
 import { Card } from './card/Card'
+
+import { useAppSelector } from 'common/hooks/useAppSelector'
+import list from 'common/style/List.module.scss'
+import { formatDate } from 'common/utils/formatDate'
 
 type CardsListType = {
   cards: CardType[]

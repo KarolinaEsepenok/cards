@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 
 import Slider from '@mui/material/Slider'
 
-import { setRangeValues } from '../../../../features/packs/packsReducer'
-import { useAppDispatch } from '../../../hooks/useAppDispatch'
-import { useAppSelector } from '../../../hooks/useAppSelector'
+import s from './Range.module.scss'
+
+import { useAppDispatch } from 'common/hooks/useAppDispatch'
+import { useAppSelector } from 'common/hooks/useAppSelector'
 import {
   isLoadingSelector,
   maxCardsCountSelector,
@@ -12,9 +13,8 @@ import {
   minCardsCountSelector,
   minValueRangeSelector,
   resetRange,
-} from '../../../selectors/Selectors'
-
-import s from './Range.module.scss'
+} from 'common/selectors/Selectors'
+import { setRangeValues } from 'features/packs/packsReducer'
 
 export const RangeSlider = () => {
   const minCardsCountValue = useAppSelector(minCardsCountSelector)

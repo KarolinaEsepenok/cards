@@ -3,10 +3,11 @@ import React, { FC, ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { setIsLoading } from '../../../../app/appReducer'
-import { useAppDispatch } from '../../../../common/hooks/useAppDispatch'
 import { setPackId } from '../../cards/cardsReducer'
 
 import s from './Pack.module.scss'
+
+import { useAppDispatch } from 'common/hooks/useAppDispatch'
 
 type PackType = {
   name: string

@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-import { setError, setIsLoading } from '../../../app/appReducer'
-import { sortingCardsMethods } from '../../../common/constants/sortingPacksMethods/sortingPacksMethods'
-import { AppThunk } from '../../../common/hooks/AppThunk'
-
 import { AddNewCardParamType, cardsAPI, CardType } from './cardsApi'
+
+import { setError, setIsLoading } from 'app/appReducer'
+import { sortingCardsMethods } from 'common/constants/sortingPacksMethods/sortingPacksMethods'
+import { AppThunk } from 'common/hooks/AppThunk'
 
 const initialState = {
   cards: [] as CardType[],

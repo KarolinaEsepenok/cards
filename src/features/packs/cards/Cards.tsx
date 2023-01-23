@@ -3,12 +3,13 @@ import React, { useEffect } from 'react'
 import { CircularProgress } from '@mui/material'
 import { useParams } from 'react-router-dom'
 
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
-import { useAppSelector } from '../../../common/hooks/useAppSelector'
 import { EmptyPack } from '../packsList/pack/emptyPack/EmptyPack'
 
 import { CardsList } from './cardsList/CardsList'
 import { getCardsTC } from './cardsReducer'
+
+import { useAppDispatch } from 'common/hooks/useAppDispatch'
+import { useAppSelector } from 'common/hooks/useAppSelector'
 
 export const Cards = () => {
   const dispatch = useAppDispatch()

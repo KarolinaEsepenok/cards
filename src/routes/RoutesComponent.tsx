@@ -2,18 +2,18 @@ import React from 'react'
 
 import { Navigate, Route, Routes } from 'react-router-dom'
 
-import { CheckEmail } from '../features/auth/forgotPassword/checkEmail/CheckEmail'
-import { ForgotPassword } from '../features/auth/forgotPassword/ForgotPassword'
-import { SetNewPassword } from '../features/auth/forgotPassword/setNewPassword/SetNewPassword'
-import { Profile } from '../features/auth/profile/Profile'
-import { Register } from '../features/auth/register/Register'
-import { SignIn } from '../features/auth/signIn/signIn'
-import { Cards } from '../features/packs/cards/Cards'
-import { Packs } from '../features/packs/Packs'
-import { EmptyPack } from '../features/packs/packsList/pack/emptyPack/EmptyPack'
-
 import { PrivateRoutes } from './PrivateRoutes'
 import { PATH } from './routes'
+
+import { CheckEmail } from 'features/auth/forgotPassword/checkEmail/CheckEmail'
+import { ForgotPassword } from 'features/auth/forgotPassword/ForgotPassword'
+import { SetNewPassword } from 'features/auth/forgotPassword/setNewPassword/SetNewPassword'
+import { Profile } from 'features/auth/profile/Profile'
+import { Register } from 'features/auth/register/Register'
+import { SignIn } from 'features/auth/signIn/signIn'
+import { Cards } from 'features/packs/cards/Cards'
+import { Packs } from 'features/packs/Packs'
+import { EmptyPack } from 'features/packs/packsList/pack/emptyPack/EmptyPack'
 
 export const RoutesComponent = () => {
   return (

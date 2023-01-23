@@ -1,16 +1,21 @@
 import React, { useEffect } from 'react'
 
+import s from './Packs.module.scss'
+import { PackType } from './packsApi'
+import { PacksList } from './packsList/PacksList'
+import { addNewPackTC, getPacksTC, setPacksCurrentPage, setRowPage } from './packsReducer'
+
+import { Button } from 'common/component/button/Button'
+import { Paginator } from 'common/component/paginator/Paginator'
+import { FilterMyAllPacks } from 'common/component/queryParamComponents/filterMyAllPacks/FilterMyAllPacks'
+import { RangeSlider } from 'common/component/queryParamComponents/range/Range'
+import { ResetAllFilters } from 'common/component/queryParamComponents/resetAllFilters/ResetAllFilters'
+import { Search } from 'common/component/queryParamComponents/search/Search'
+import { Subtitle } from 'common/component/typography/subtitle/Subtitle'
+import { useAppDispatch } from 'common/hooks/useAppDispatch'
+import { useAppSelector } from 'common/hooks/useAppSelector'
 import { toggleModal } from '../../app/appReducer'
-import { Button } from '../../common/component/button/Button'
 import { AddPackModal } from '../../common/component/modals/AddPackModal'
-import { Paginator } from '../../common/component/paginator/Paginator'
-import { FilterMyAllPacks } from '../../common/component/queryParamComponents/filterMyAllPacks/FilterMyAllPacks'
-import { RangeSlider } from '../../common/component/queryParamComponents/range/Range'
-import { ResetAllFilters } from '../../common/component/queryParamComponents/resetAllFilters/ResetAllFilters'
-import { Search } from '../../common/component/queryParamComponents/search/Search'
-import { Subtitle } from '../../common/component/typography/subtitle/Subtitle'
-import { useAppDispatch } from '../../common/hooks/useAppDispatch'
-import { useAppSelector } from '../../common/hooks/useAppSelector'
 import {
   cardPacks,
   cardPacksTotalCountSelector,
@@ -21,12 +26,7 @@ import {
   pageSelector,
   sortPacksSelector,
   userIdSelector,
-} from '../../common/selectors/Selectors'
-
-import s from './Packs.module.scss'
-import { PackType } from './packsApi'
-import { PacksList } from './packsList/PacksList'
-import { getPacksTC, setPacksCurrentPage, setRowPage } from './packsReducer'
+} from 'common/selectors/Selectors'
 
 export const Packs = () => {
   const packs: PackType[] = useAppSelector(cardPacks)

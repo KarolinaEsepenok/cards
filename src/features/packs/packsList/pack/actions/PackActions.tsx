@@ -1,12 +1,14 @@
 import React, { FC, useState } from 'react'
 
-import edit from '../../../../../assets/img/icons/edit.svg'
-import teacher from '../../../../../assets/img/icons/teacher.svg'
-import trash from '../../../../../assets/img/icons/trash.svg'
-import { Button } from '../../../../../common/component/button/Button'
 import { EditPackNameModal } from '../../../../../common/component/modals/EditPackNameModal'
-import { useAppDispatch } from '../../../../../common/hooks/useAppDispatch'
-import { deletePackTC } from '../../../packsReducer'
+
+
+import edit from 'assets/img/icons/edit.svg'
+import teacher from 'assets/img/icons/teacher.svg'
+import trash from 'assets/img/icons/trash.svg'
+import { Button } from 'common/component/button/Button'
+import { useAppDispatch } from 'common/hooks/useAppDispatch'
+import { deletePackTC } from 'features/packs/packsReducer'
 
 type ActionsType = {
   myPack: boolean

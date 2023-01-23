@@ -1,11 +1,12 @@
 import React from 'react'
 
-import defaultFilters from '../../../../assets/img/icons/resetAllFilters.svg'
-import { resetAllFilters } from '../../../../features/packs/packsReducer'
-import { useAppDispatch } from '../../../hooks/useAppDispatch'
-import { Button } from '../../button/Button'
-
 import s from './ResetAllFilters.module.scss'
+
+import defaultFilters from 'assets/img/icons/resetAllFilters.svg'
+import { Button } from 'common/component/button/Button'
+import { useAppDispatch } from 'common/hooks/useAppDispatch'
+import { resetAllFilters } from 'features/packs/packsReducer'
+
 export const ResetAllFilters = () => {
   const dispatch = useAppDispatch()
   const resetFiltersHandler = () => {

@@ -1,11 +1,11 @@
 import React, { ChangeEvent, FC, useEffect, useState } from 'react'
 
-import { setSearchName } from '../../../../features/packs/packsReducer'
-import { useAppDispatch } from '../../../hooks/useAppDispatch'
-import { useAppSelector } from '../../../hooks/useAppSelector'
-import { packNameSelector } from '../../../selectors/Selectors'
-import { useDebounce } from '../../../utils/useDebounce'
-import { Input } from '../../Input/Input'
+import { Input } from 'common/component/Input/Input'
+import { useAppDispatch } from 'common/hooks/useAppDispatch'
+import { useAppSelector } from 'common/hooks/useAppSelector'
+import { packNameSelector } from 'common/selectors/Selectors'
+import { useDebounce } from 'common/utils/useDebounce'
+import { setSearchName } from 'features/packs/packsReducer'
 
 type SearchType = {
   class?: string

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
-import edit from '../../../../../../assets/img/icons/edit.svg'
-import trash from '../../../../../../assets/img/icons/trash.svg'
+import edit from 'assets/img/icons/edit.svg'
+import trash from 'assets/img/icons/trash.svg'
 import { Button } from '../../../../../../common/component/button/Button'
 import { EditCardModal } from '../../../../../../common/component/modals/EditCardModal'
 import { useAppDispatch } from '../../../../../../common/hooks/useAppDispatch'
