@@ -1,0 +1,33 @@
+@import 'src/common/style/variables';
+
+@import 'src/common/style/mixins';
+
+.packs {
+  display: flex;
+  flex-direction: column;
+
+  width: $main-width;
+  margin: 0 auto;
+}
+
+.packsList {
+  margin-bottom: 36px;
+}
+
+.addPackButton {
+  align-self: end;
+
+  margin-bottom: 34px;
+}
+
+.filtersContainer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  margin-bottom: 30px;
+}
+
+.search {
+  width: $popup-m-width;
+}

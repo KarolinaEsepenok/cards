@@ -5,15 +5,15 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { PrivateRoutes } from './PrivateRoutes'
 import { PATH } from './routes'
 
-import { CheckEmail } from 'features/auth/forgotPassword/checkEmail/CheckEmail'
-import { ForgotPassword } from 'features/auth/forgotPassword/ForgotPassword'
-import { SetNewPassword } from 'features/auth/forgotPassword/setNewPassword/SetNewPassword'
-import { Profile } from 'features/auth/profile/Profile'
-import { Register } from 'features/auth/register/Register'
-import { SignIn } from 'features/auth/signIn/signIn'
-import { Cards } from 'features/packs/cards/Cards'
-import { Packs } from 'features/packs/Packs'
-import { EmptyPack } from 'features/packs/packsList/pack/emptyPack/EmptyPack'
+import { CheckEmail } from 'pages/auth/forgotPassword/checkEmail/CheckEmail'
+import { ForgotPassword } from 'pages/auth/forgotPassword/ForgotPassword'
+import { SetNewPassword } from 'pages/auth/forgotPassword/setNewPassword/SetNewPassword'
+import { Profile } from 'pages/auth/profile/Profile'
+import { Register } from 'pages/auth/register/Register'
+import { SignIn } from 'pages/auth/signIn/signIn'
+import { Cards } from 'pages/cards/Cards'
+import { Packs } from 'pages/packs/Packs'
+import { EmptyPack } from 'pages/packs/packsList/pack/emptyPack/EmptyPack'
 
 export const RoutesComponent = () => {
   return (
@@ -30,10 +30,8 @@ export const RoutesComponent = () => {
       <Route path={PATH.PASS_RECOVERY} element={<ForgotPassword />} />
       <Route path={PATH.CHECK_EMAIL} element={<CheckEmail />} />
       <Route path={PATH.SET_NEW_PASS} element={<SetNewPassword />} />
-      <Route path={PATH.ERROR404} element={<div>404: Page not found</div>} />
-      <Route path={PATH.NOT_FOUND} element={<Navigate to="404" />} />
-
-      <Route path={PATH.CARDS_PACK_ID} element={<Cards />} />
+      <Route path={PATH.ERROR_404} element={<div>404: Page not found</div>} />
+      <Route path={PATH.NOT_FOUND} element={<Navigate to={PATH.ERROR_404} />} />
     </Routes>
   )
 }
