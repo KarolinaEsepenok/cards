@@ -1,0 +1,30 @@
+@import 'src/common/style/variables';
+
+//btn_signup
+.btn {
+  &_signup {
+    width: 100%;
+    margin-top: 50px;
+    margin-bottom: 30px;
+  }
+}
+
+//input_box
+.input_box {
+  position: relative;
+}
+
+//have_acc
+.have_acc {
+  margin-bottom: 11px;
+}
+
+.input {
+  width: $popup-input-width;
+}
+
+.link {
+  color: #000000;
+
+  opacity: 0.7;
+}

@@ -1,12 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 
-import { appReducer } from './appReducer'
-
-import { authReducer } from 'features/auth/authReducer'
-import { passwordReducer } from 'features/auth/forgotPassword/forgotPasswordReducer'
-import { registerReducer } from 'features/auth/register/registerReducer'
-import { cardsReducer } from 'features/packs/cards/cardsReducer'
-import { packsReducer } from 'features/packs/packsReducer'
+import { appReducer } from 'app/appSlice'
+import { authReducer } from 'pages/auth/authSlice'
+import { passwordReducer } from 'pages/auth/forgotPassword/forgotPasswordReducer'
+import { registerReducer } from 'pages/auth/register/registerReducer'
+import { cardsReducer } from 'pages/cards/cardsSlice'
+import { packsReducer } from 'pages/packs/packsSlice'
 
 export const store = configureStore({
   reducer: {
