@@ -2,11 +2,11 @@ import React from 'react'
 
 import s from './Packs.module.scss'
 
-import { FilterMyAllPacks } from 'common/component/queryParamComponents/filterMyAllPacks/FilterMyAllPacks'
-import { RangeSlider } from 'common/component/queryParamComponents/range/Range'
-import { ResetAllFilters } from 'common/component/queryParamComponents/resetAllFilters/ResetAllFilters'
-import { Search } from 'common/component/queryParamComponents/search/Search'
-import { Subtitle } from 'common/component/typography/subtitle/Subtitle'
+import { Subtitle } from 'common/components/typography/subtitle/Subtitle'
+import { FilterMyAllPacks } from 'common/modules/filterMyAllPacks/FilterMyAllPacks'
+import { RangeSlider } from 'common/modules/range/Range'
+import { ResetAllFilters } from 'common/modules/resetAllFilters/ResetAllFilters'
+import { Search } from 'common/modules/search/Search'
 
 export const PacksFilters = () => {
   return (

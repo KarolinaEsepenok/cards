@@ -6,6 +6,9 @@ import Select, { SelectChangeEvent } from '@mui/material/Select'
 
 import s from './Paginator.module.scss'
 
+import { useAppSelector } from 'common/hooks/useAppSelector'
+import { isLoadingSelector } from 'common/selectors/Selectors'
+
 type PaginationPropsType = {
   pageCount: number
   totalCount: number
@@ -20,6 +23,7 @@ export const Paginator: FC<PaginationPropsType> = ({
   setRowCallback,
   currentPage,
 }) => {
+  const disabled = useAppSelector(isLoadingSelector)
   const pages = Math.ceil(totalCount / pageCount)
   const pageValue = pageCount.toString()
   const handleChangePage = (event: ChangeEvent<unknown>, value: number) => {
@@ -40,6 +44,7 @@ export const Paginator: FC<PaginationPropsType> = ({
         onChange={handleChangePage}
         count={pages}
         page={currentPage}
+        disabled={disabled}
         size="small"
         shape="rounded"
         sx={{
@@ -61,6 +66,7 @@ export const Paginator: FC<PaginationPropsType> = ({
           sx={{ fontFamily: 'inherit', fontSize: 'inherit' }}
           value={pageValue}
           onChange={handleChangeRowsPerPage}
+          disabled={disabled}
         >
           <MenuItem value={5}>5</MenuItem>
           <MenuItem value={10}>10</MenuItem>

@@ -3,7 +3,7 @@ import React, { ChangeEvent, FC, useEffect, useState } from 'react'
 import { Input } from 'common/components/Input/Input'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
-import { packNameSelector } from 'common/selectors/Selectors'
+import { isLoadingSelector, packNameSelector } from 'common/selectors/Selectors'
 import { useDebounce } from 'common/utils/useDebounce'
 import { setSearchName } from 'pages/packs/packsSlice'
 
@@ -12,6 +12,7 @@ type SearchType = {
 }
 export const Search: FC<SearchType> = props => {
   const dispatch = useAppDispatch()
+  const disabled = useAppSelector(isLoadingSelector)
   const packName = useAppSelector(packNameSelector)
   const [value, setValue] = useState<string>('')
   const debouncedValue = useDebounce<string>(value)
@@ -35,6 +36,7 @@ export const Search: FC<SearchType> = props => {
       value={value}
       placeholder="Provide your text"
       className={props.class}
+      disabled={disabled}
     />
   )
 }
