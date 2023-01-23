@@ -1,8 +1,6 @@
 import React, { FC } from 'react'
 
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
-import { PackType } from '../packsApi'
-import { setSort } from '../packsReducer'
+import { sortHelper } from '../../../common/utils/sortHelper'
 
 import { PackActions } from './pack/actions/PackActions'
 import { Pack } from './pack/Pack'
@@ -11,10 +9,12 @@ import s from './PackList.module.scss'
 import arrowDown from 'assets/img/icons/arrowDown.png'
 import arrowUp from 'assets/img/icons/arrowUp.png'
 import { sortingPacksMethods } from 'common/constants/sortingPacksMethods/sortingPacksMethods'
+import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import { myIdSelector } from 'common/selectors/Selectors'
 import list from 'common/style/List.module.scss'
 import { formatDate } from 'common/utils/formatDate'
+import { PackType } from 'features/packs/packsApi'
 
 type PacksTableType = {
   packs: PackType[]
@@ -23,6 +23,7 @@ type PacksTableType = {
 export const PacksList: FC<PacksTableType> = ({ packs }) => {
   const myId = useAppSelector(myIdSelector)
   const dispatch = useAppDispatch()
+
   const sortMethod = useAppSelector(state => state.packs.queryParams.sortPacks)
   const arrowDirectionName =
     sortMethod === sortingPacksMethods.ascName ? <img src={arrowUp} /> : <img src={arrowDown} />
@@ -33,28 +34,8 @@ export const PacksList: FC<PacksTableType> = ({ packs }) => {
   const arrowDirectionCreated =
     sortMethod === sortingPacksMethods.ascUserName ? <img src={arrowUp} /> : <img src={arrowDown} />
 
-  const sortByNameHandler = () => {
-    sortMethod === sortingPacksMethods.desName
-      ? dispatch(setSort(sortingPacksMethods.ascName))
-      : dispatch(setSort(sortingPacksMethods.desName))
-  }
-
-  const sortByDateHandler = () => {
-    sortMethod === sortingPacksMethods.desUpdate
-      ? dispatch(setSort(sortingPacksMethods.ascUpdate))
-      : dispatch(setSort(sortingPacksMethods.desUpdate))
-  }
-
-  const sortByCardsHandler = () => {
-    sortMethod === sortingPacksMethods.desCardsCount
-      ? dispatch(setSort(sortingPacksMethods.ascCardsCount))
-      : dispatch(setSort(sortingPacksMethods.desCardsCount))
-  }
-
-  const sortByCreateHandler = () => {
-    sortMethod === sortingPacksMethods.desUserName
-      ? dispatch(setSort(sortingPacksMethods.ascUserName))
-      : dispatch(setSort(sortingPacksMethods.desUserName))
+  const universalSort = (m1: sortingPacksMethods, m2: sortingPacksMethods) => {
+    sortHelper(dispatch, sortMethod, m1, m2)
   }
 
   return (
@@ -62,22 +43,34 @@ export const PacksList: FC<PacksTableType> = ({ packs }) => {
       <thead>
         <tr>
           <th className={list.tableTitle}>
-            <span onClick={sortByNameHandler} className={s.cursor}>
+            <span
+              onClick={() => universalSort(sortingPacksMethods.desName, sortingPacksMethods.ascName)}
+              className={s.cursor}
+            >
               Name {arrowDirectionName}
             </span>
           </th>
           <th className={list.tableTitle}>
-            <span onClick={sortByCardsHandler} className={s.cursor}>
+            <span
+              onClick={() => universalSort(sortingPacksMethods.desCardsCount, sortingPacksMethods.ascCardsCount)}
+              className={s.cursor}
+            >
               Cards {arrowDirectionCards}
             </span>
           </th>
           <th className={list.tableTitle}>
-            <span onClick={sortByDateHandler} className={s.cursor}>
+            <span
+              onClick={() => universalSort(sortingPacksMethods.desUpdate, sortingPacksMethods.ascUpdate)}
+              className={s.cursor}
+            >
               Last Updated {arrowDirectionDate}
             </span>
           </th>
           <th className={list.tableTitle}>
-            <span onClick={sortByCreateHandler} className={s.cursor}>
+            <span
+              onClick={() => universalSort(sortingPacksMethods.desUserName, sortingPacksMethods.ascUserName)}
+              className={s.cursor}
+            >
               Created by {arrowDirectionCreated}
             </span>
           </th>

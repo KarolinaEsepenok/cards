@@ -1,13 +1,9 @@
-import { AxiosResponse } from 'axios'
-
 import { instance } from 'common/axiosInstance/axiosInstance'
 import { sortingCardsMethods } from 'common/constants/sortingPacksMethods/sortingPacksMethods'
 
 export const cardsAPI = {
   getCards(params: GetParamsCardType) {
-    return instance.get<'', AxiosResponse<ResponseGetType>, RequestCardsType>('cards/card', {
-      params: { ...params },
-    })
+    return instance.get<ResponseGetType>('cards/card', { params })
   },
   addNewCard(packId: string, newCard: AddNewCardParamType) {
     return instance.post<'', AxiosResponse<ResponseNewCardType>, RequestNewCardType>('cards/card', {
