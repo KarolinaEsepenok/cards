@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 
 import { useParams } from 'react-router-dom'
 
-import { updateCardTC } from '../../../features/packs/cards/cardsReducer'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { Button } from '../button/Button'
 import { Input } from '../Input/Input'
 
 import s from './Modals.module.scss'
+
+import { updateCardTC } from 'features/packs/cards/cardsReducer'
 
 type EditCardModalType = {
   setToggle: (v: any) => void
@@ -23,7 +24,8 @@ export const EditCardModal: React.FC<EditCardModalType> = ({ setToggle, toggle, 
   const [questionValue, setQuestionValue] = useState<string>(question)
   const [answerValue, setAnswerValue] = useState<string>(answer)
 
-  const handleAddPack = () => dispatch(updateCardTC(id ? id : '', cardId, { question, answer }))
+  const handleAddPack = () =>
+    dispatch(updateCardTC(id ? id : '', cardId, { question: questionValue, answer: answerValue }))
 
   const handleChangeQuestion = (e: React.ChangeEvent<HTMLInputElement>) => setQuestionValue(e.currentTarget.value)
   const handleChangeAnswer = (e: React.ChangeEvent<HTMLInputElement>) => setAnswerValue(e.currentTarget.value)

@@ -18,7 +18,7 @@ export const EditPackNameModal: React.FC<EditPackNameModalType> = ({ packId, set
   const dispatch = useAppDispatch()
   const [nameValue, setNameValue] = useState<string>(name)
 
-  const handleAddPack = () => dispatch(updateNamePackTC(packId, name))
+  const handleAddPack = () => dispatch(updateNamePackTC(packId, nameValue))
 
   return (
     // <Modal title={'Edit pack'} onClickSave={handleAddPack}>

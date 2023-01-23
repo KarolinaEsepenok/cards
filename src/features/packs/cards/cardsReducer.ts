@@ -86,8 +86,6 @@ export const deleteCardTC =
 
         dispatch(setError(error))
       }
-    } finally {
-      dispatch(setIsLoading(false))
     }
   }
 
