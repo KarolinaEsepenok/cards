@@ -41,17 +41,13 @@ export const Paginator: FC<PaginationPropsType> = ({
         onChange={handleChangePage}
         count={pages}
         page={currentPage}
+        size="small"
+        shape="rounded"
         sx={{
-          '.MuiPaginationItem-root': {
-            width: '24px',
-            height: '24px',
-            size: '12px',
-            borderRadius: '4px',
+          '.MuiPagination-ul': {
+            columnGap: '10px',
           },
-          '.MuiPaginationItem-root:hover': {
-            backgroundColor: '#dadada',
-          },
-          '.css-yuzg60-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected': {
+          '.css-w05zow-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected': {
             backgroundColor: '#366eff',
             color: '#ffffff',
             pointerEvents: 'none',
