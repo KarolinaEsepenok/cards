@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios'
 
-import { instance } from '../../common/axiosInstance/axiosInstance'
+import { instance } from 'common/axiosInstance/axiosInstance'
 
 const payload = {
   form: 'test-front-admin <ai73a@yandex.by>',

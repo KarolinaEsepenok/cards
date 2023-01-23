@@ -1,8 +1,8 @@
 import React from 'react'
 
-import edit from '../../../../../../assets/img/icons/edit.svg'
-import trash from '../../../../../../assets/img/icons/trash.svg'
-import { Button } from '../../../../../../common/component/button/Button'
+import edit from 'assets/img/icons/edit.svg'
+import trash from 'assets/img/icons/trash.svg'
+import { Button } from 'common/component/button/Button'
 
 export const CardActions = () => {
   return (

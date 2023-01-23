@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
-import { useAppSelector } from '../../../common/hooks/useAppSelector'
-
 import { CardsList } from './cardsList/CardsList'
 import { getCardsTC } from './cardsReducer'
+
+import { useAppDispatch } from 'common/hooks/useAppDispatch'
+import { useAppSelector } from 'common/hooks/useAppSelector'
 
 export const Cards = () => {
   const dispatch = useAppDispatch()
