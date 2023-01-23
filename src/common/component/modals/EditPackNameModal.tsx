@@ -3,10 +3,11 @@ import React, { useState } from 'react'
 import { updateNamePackTC } from '../../../features/packs/packsReducer'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { Button } from '../button/Button'
-import { Checkbox } from '../Checkbox/Checkbox'
 import { Input } from '../Input/Input'
 
 import s from './Modals.module.scss'
+
+import { Checkbox } from 'common/component/checkbox/Checkbox'
 
 type EditPackNameModalType = {
   packId: string
