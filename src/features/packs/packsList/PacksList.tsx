@@ -1,20 +1,19 @@
 import React, { FC } from 'react'
 
-import arrowDown from 'assets/img/icons/arrowDown.png'
-import arrowUp from 'assets/img/icons/arrowUp.png'
-import { sortingPacksMethods } from 'common/constants/sortingPacksMethods/sortingPacksMethods'
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
-import { PackType } from '../packsApi'
-import { setSort } from '../packsReducer'
-
 import { PackActions } from './pack/actions/PackActions'
 import { Pack } from './pack/Pack'
 import s from './PackList.module.scss'
 
+import arrowDown from 'assets/img/icons/arrowDown.png'
+import arrowUp from 'assets/img/icons/arrowUp.png'
+import { sortingPacksMethods } from 'common/constants/sortingPacksMethods/sortingPacksMethods'
+import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import { myIdSelector } from 'common/selectors/Selectors'
 import list from 'common/style/List.module.scss'
 import { formatDate } from 'common/utils/formatDate'
+import { PackType } from 'features/packs/packsApi'
+import { setSort } from 'features/packs/packsReducer'
 
 type PacksTableType = {
   packs: PackType[]
