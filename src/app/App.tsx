@@ -4,13 +4,13 @@ import CircularProgress from '@mui/material/CircularProgress'
 import LinearProgress from '@mui/material/LinearProgress'
 
 import s from './App.module.scss'
-import { initializeAppTC } from './appReducer'
 
-import { ErrorSnackbar } from 'common/component/errorSnackbar/ErrorSnackbar'
+import { initializeAppTC } from 'app/appSlice'
+import { ErrorSnackbar } from 'common/components/errorSnackbar/ErrorSnackbar'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
+import { Header } from 'common/modules/header/Header'
 import { isAppInitialize, isLoadingSelector } from 'common/selectors/Selectors'
-import { Header } from 'features/header/Header'
 import { RoutesComponent } from 'routes/RoutesComponent'
 
 export const App = () => {
