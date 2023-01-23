@@ -28,15 +28,15 @@ export const PackActions: FC<ActionsType> = ({ myPack, packId, packName }) => {
   return (
     <div>
       <Button styleType="icon">
-        <img src={teacher} alt="icon teacher" title="learn" />
+        <img src={teacher} alt="icon teacher" />
       </Button>
       {myPack && (
         <>
-          <Button styleType="icon" onClick={handlerTogglePopup} data-tooltip="edit">
-            <img src={edit} alt="icon edit" title="edit" />
+          <Button styleType="icon" onClick={handlerTogglePopup}>
+            <img src={edit} alt="icon edit" />
           </Button>
           <Button styleType="icon">
-            <img src={trash} alt="icon trash" onClick={handlerDeletePack} title="delete" />
+            <img src={trash} alt="icon trash" onClick={handlerDeletePack} />
           </Button>
         </>
       )}
