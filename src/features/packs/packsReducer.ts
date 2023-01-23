@@ -164,6 +164,9 @@ const slice = createSlice({
     setSearchName: (state, action: PayloadAction<string>) => {
       state.queryParams.packName = action.payload
     },
+    setSort: (state, action: PayloadAction<sortingPacksMethods>) => {
+      state.queryParams.sortPacks = action.payload
+    },
   },
 })
 
@@ -178,4 +181,5 @@ export const {
   updateNamePack,
   resetAllFilters,
   setSearchName,
+  setSort,
 } = slice.actions
