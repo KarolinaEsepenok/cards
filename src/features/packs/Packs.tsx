@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react'
 
+import { toggleModal } from '../../app/appReducer'
+import { AddPackModal } from '../../common/component/modals/AddPackModal'
+
 import s from './Packs.module.scss'
 import { PackType } from './packsApi'
 import { PacksList } from './packsList/PacksList'
@@ -37,6 +40,8 @@ export const Packs = () => {
   const sortPacks = useAppSelector(sortPacksSelector)
   const totalCount = useAppSelector(cardPacksTotalCountSelector)
 
+  // const [togglePopup, setTogglePopup] = useState(false)
+
   const dispatch = useAppDispatch()
   const changePageHandle = (page: number) => {
     dispatch(setPacksCurrentPage(page))
@@ -54,23 +59,14 @@ export const Packs = () => {
       <h2>Packs list</h2>
 
       <div className={s.addPackButton}>
-        <Button
-          styleType="primary"
-          onClick={() =>
-            dispatch(
-              addNewPackTC({
-                cardsPack: {
-                  name: 'NewPack',
-                  deckCover: '',
-                  private: false,
-                },
-              })
-            )
-          }
-        >
+        <Button styleType="primary" onClick={() => dispatch(toggleModal(true))}>
+          {/*<Button styleType="primary" onClick={() => setTogglePopup(!togglePopup)}>*/}
           Add new pack
         </Button>
       </div>
+
+      <AddPackModal />
+      {/*{togglePopup && <AddPackModal />}*/}
 
       <div className={s.filtersContainer}>
         <div>

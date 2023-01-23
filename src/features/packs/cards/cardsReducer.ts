@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-import { cardsAPI, CardType } from './cardsApi'
+import { AddNewCardParamType, cardsAPI, CardType } from './cardsApi'
 
 import { setError, setIsLoading } from 'app/appReducer'
 import { sortingCardsMethods } from 'common/constants/sortingPacksMethods/sortingPacksMethods'
@@ -13,7 +13,7 @@ const initialState = {
   packName: '',
   isCardsFetched: false,
   queryParams: {
-    pageCount: 5,
+    pageCount: 110,
     page: 1,
     cardQuestion: '',
     sortCards: sortingCardsMethods.desUpdate,
@@ -51,6 +51,64 @@ export const getCardsTC =
       dispatch(setIsLoading(false))
     }
   }
+
+export const addNewCardTC =
+  (packId: string, card: AddNewCardParamType): AppThunk =>
+  async dispatch => {
+    dispatch(setIsLoading(true))
+    try {
+      const response = await cardsAPI.addNewCard(packId, card)
+
+      // dispatch(addNewCard({ packId, newCard: response.data.newCard }))
+      dispatch(getCardsTC(response.data.newCard.cardsPack_id))
+    } catch (e) {
+      if (axios.isAxiosError<{ error: string }>(e)) {
+        const error = e.response ? e.response.data.error : 'Something wrong'
+
+        dispatch(setError(error))
+      }
+    } finally {
+      dispatch(setIsLoading(false))
+    }
+  }
+
+export const deleteCardTC =
+  (cardId: string): AppThunk =>
+  async dispatch => {
+    dispatch(setIsLoading(true))
+    try {
+      const response = await cardsAPI.deleteCard(cardId)
+
+      dispatch(getCardsTC(response.data.deletedCard.cardsPack_id))
+    } catch (e) {
+      if (axios.isAxiosError<{ error: string }>(e)) {
+        const error = e.response ? e.response.data.error : 'Something wrong'
+
+        dispatch(setError(error))
+      }
+    }
+  }
+
+export const updateCardTC =
+  (packId: string, cardId: string, editCard: AddNewCardParamType): AppThunk =>
+  async dispatch => {
+    dispatch(setIsLoading(true))
+    try {
+      const response = await cardsAPI.updateCard(cardId, editCard)
+
+      dispatch(updateCard({ cardId, editCard: response.data.updatedCard }))
+      dispatch(getCardsTC(packId))
+    } catch (e) {
+      if (axios.isAxiosError<{ error: string }>(e)) {
+        const error = e.response ? e.response.data.error : 'Something wrong'
+
+        dispatch(setError(error))
+      }
+    } finally {
+      dispatch(setIsLoading(false))
+    }
+  }
+
 const slice = createSlice({
   name: 'cards',
   initialState,
@@ -64,8 +122,26 @@ const slice = createSlice({
     setCreatorId: (state, action: PayloadAction<string>) => {
       state.creatorId = action.payload
     },
+    setPackName: (state, action: PayloadAction<string>) => {
+      state.packName = action.payload
+    },
+    addNewCard: (state, action: PayloadAction<{ packId: string; newCard: CardType }>) => {
+      state.cards.forEach(c => {
+        if (c.cardsPack_id === action.payload.packId) {
+          state.cards.unshift(action.payload.newCard)
+        }
+      })
+    },
+    updateCard: (state, action: PayloadAction<{ cardId: string; editCard: AddNewCardParamType }>) => {
+      state.cards.forEach(c => {
+        if (c._id === action.payload.cardId) {
+          c.question = action.payload.editCard.question
+          c.answer = action.payload.editCard.answer
+        }
+      })
+    },
   },
 })
 
 export const cardsReducer = slice.reducer
-export const { getCards, setPackId, setCreatorId } = slice.actions
+export const { getCards, setPackId, setCreatorId, setPackName, updateCard, addNewCard } = slice.actions

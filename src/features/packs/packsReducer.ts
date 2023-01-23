@@ -111,8 +111,6 @@ export const deletePackTC =
 
         dispatch(setError(error))
       }
-    } finally {
-      dispatch(setIsLoading(false))
     }
   }
 

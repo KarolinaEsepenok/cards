@@ -1,7 +1,5 @@
 import React, { FC } from 'react'
 
-import { sortHelper } from '../../../common/utils/sortHelper'
-
 import { PackActions } from './pack/actions/PackActions'
 import { Pack } from './pack/Pack'
 import s from './PackList.module.scss'
@@ -14,6 +12,7 @@ import { useAppSelector } from 'common/hooks/useAppSelector'
 import { myIdSelector } from 'common/selectors/Selectors'
 import list from 'common/style/List.module.scss'
 import { formatDate } from 'common/utils/formatDate'
+import { sortHelper } from 'common/utils/sortHelper'
 import { PackType } from 'features/packs/packsApi'
 
 type PacksTableType = {
@@ -85,12 +84,12 @@ export const PacksList: FC<PacksTableType> = ({ packs }) => {
           return (
             <Pack
               key={p._id}
-              id={p._id}
+              packId={p._id}
               name={p.name}
               cardsCount={p.cardsCount}
               author={p.user_name}
               updated={dateUpdate}
-              actions={<PackActions myPack={myPack} packId={p._id} packName={p.name} />}
+              actions={<PackActions myPack={myPack} packId={p._id} name={p.name} />}
             />
           )
         })}

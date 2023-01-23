@@ -32,6 +32,8 @@ export const RoutesComponent = () => {
       <Route path={PATH.SET_NEW_PASS} element={<SetNewPassword />} />
       <Route path={PATH.ERROR404} element={<div>404: Page not found</div>} />
       <Route path={PATH.NOT_FOUND} element={<Navigate to="404" />} />
+
+      <Route path={PATH.CARDS_PACK_ID} element={<Cards />} />
     </Routes>
   )
 }
