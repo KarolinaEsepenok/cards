@@ -3,16 +3,17 @@ import React from 'react'
 import { useFormik } from 'formik'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { Button } from '../../../../common/component/button/Button'
-import { Input } from '../../../../common/component/Input/Input'
-import { useAppDispatch } from '../../../../common/hooks/useAppDispatch'
-import { useAppSelector } from '../../../../common/hooks/useAppSelector'
-import { changePasswordSelector } from '../../../../common/selectors/Selectors'
-import { PATH } from '../../../../routes/routes'
 import { ErrorsType } from '../ForgotPassword'
 import { changePasswordSuccess, setNewPasswordTC } from '../forgotPasswordReducer'
 
 import s from './SetNewPassword.module.scss'
+
+import { Button } from 'common/component/button/Button'
+import { Input } from 'common/component/Input/Input'
+import { useAppDispatch } from 'common/hooks/useAppDispatch'
+import { useAppSelector } from 'common/hooks/useAppSelector'
+import { changePasswordSelector } from 'common/selectors/Selectors'
+import { PATH } from 'routes/routes'
 
 export const SetNewPassword = () => {
   const dispatch = useAppDispatch()

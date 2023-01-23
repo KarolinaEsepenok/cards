@@ -2,17 +2,17 @@ import React, { useEffect, useState } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
-import editName from '../../../assets/img/icons/profile_edit_name.png'
-import ava from '../../../assets/img/profile_photo.jpg'
-import { Button } from '../../../common/component/button/Button'
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
-import { useAppSelector } from '../../../common/hooks/useAppSelector'
-import { emailSelector, nameSelector } from '../../../common/selectors/Selectors'
-import { PATH } from '../../../routes/routes'
 import { logoutTC } from '../register/registerReducer'
 
 import s from './Profile.module.scss'
 import { ProfileEditName } from './ProfileEditName'
+
+import editName from 'assets/img/icons/profile_edit_name.png'
+import ava from 'assets/img/profile_photo.jpg'
+import { Button } from 'common/component/button/Button'
+import { useAppDispatch } from 'common/hooks/useAppDispatch'
+import { useAppSelector } from 'common/hooks/useAppSelector'
+import { emailSelector, nameSelector } from 'common/selectors/Selectors'
 
 type ProfileType = {}
 

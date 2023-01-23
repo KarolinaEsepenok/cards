@@ -1,14 +1,14 @@
 import { AxiosResponse } from 'axios'
 
-import { instance } from '../../common/axiosInstance/axiosInstance'
-import { sortingPacksMethods } from '../../common/constants/sortingPacksMethods/sortingPacksMethods'
+import { instance } from 'common/axiosInstance/axiosInstance'
+import { sortingPacksMethods } from 'common/constants/sortingPacksMethods/sortingPacksMethods'
 
 export const packsApi = {
   getPacks(params: GetParamsType) {
-    return instance.get<'', AxiosResponse<ResponseType>, RequestType>(`cards/pack`, { params: { ...params } })
+    return instance.get<ResponseType>(`cards/pack`, { params })
   },
   addNewPack(data: AddPackType) {
-    return instance.post<'', AxiosResponse<ResponseNewPack>, AddPackType>('cards/pack', data)
+    return instance.post<ResponseNewPack>('cards/pack', data)
   },
   updatePack(packId: string, name: string) {
     return instance.put<'', AxiosResponse<ResponseUpdateNamePack>, UpdateNamePackType>('cards/pack', {
@@ -16,7 +16,7 @@ export const packsApi = {
     })
   },
   deletePack(packId: string) {
-    return instance.delete<'', AxiosResponse<ResponseDeletePackType>, string>(`cards/pack?id=${packId}`)
+    return instance.delete<ResponseDeletePackType>(`cards/pack?id=${packId}`)
   },
 }
 

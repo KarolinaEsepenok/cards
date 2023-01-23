@@ -1,15 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-import { AppThunk } from '../common/hooks/AppThunk'
-import { authApi } from '../features/auth/authApi'
-import { setSignIn } from '../features/auth/authReducer'
+import { AppThunk } from 'common/hooks/AppThunk'
+import { authApi } from 'features/auth/authApi'
+import { setSignIn } from 'features/auth/authReducer'
 
 const initialState = {
   isAppInitialized: false,
   error: null as null | string,
   isLoading: false,
   isLoggedIn: false,
+  toggleModal: false,
 }
 
 export const initializeAppTC = (): AppThunk => async dispatch => {
@@ -44,9 +45,12 @@ const appSlice = createSlice({
     setIsLoggedIn: (state, action: PayloadAction<boolean>) => {
       state.isLoggedIn = action.payload
     },
+    toggleModal: (state, action: PayloadAction<boolean>) => {
+      state.toggleModal = action.payload
+    },
   },
 })
 
-export const { setAppInitialized, setError, setIsLoading, setIsLoggedIn } = appSlice.actions
+export const { setAppInitialized, setError, setIsLoading, setIsLoggedIn, toggleModal } = appSlice.actions
 
 export const appReducer = appSlice.reducer

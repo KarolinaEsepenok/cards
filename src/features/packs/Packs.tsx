@@ -1,14 +1,22 @@
 import React, { useEffect } from 'react'
 
-import { Button } from '../../common/component/button/Button'
-import { Paginator } from '../../common/component/paginator/Paginator'
-import { FilterMyAllPacks } from '../../common/component/queryParamComponents/filterMyAllPacks/FilterMyAllPacks'
-import { RangeSlider } from '../../common/component/queryParamComponents/range/Range'
-import { ResetAllFilters } from '../../common/component/queryParamComponents/resetAllFilters/ResetAllFilters'
-import { Search } from '../../common/component/queryParamComponents/search/Search'
-import { Subtitle } from '../../common/component/typography/subtitle/Subtitle'
-import { useAppDispatch } from '../../common/hooks/useAppDispatch'
-import { useAppSelector } from '../../common/hooks/useAppSelector'
+import { toggleModal } from '../../app/appReducer'
+import { AddPackModal } from '../../common/component/modals/AddPackModal'
+
+import s from './Packs.module.scss'
+import { PackType } from './packsApi'
+import { PacksList } from './packsList/PacksList'
+import { addNewPackTC, getPacksTC, setPacksCurrentPage, setRowPage } from './packsReducer'
+
+import { Button } from 'common/component/button/Button'
+import { Paginator } from 'common/component/paginator/Paginator'
+import { FilterMyAllPacks } from 'common/component/queryParamComponents/filterMyAllPacks/FilterMyAllPacks'
+import { RangeSlider } from 'common/component/queryParamComponents/range/Range'
+import { ResetAllFilters } from 'common/component/queryParamComponents/resetAllFilters/ResetAllFilters'
+import { Search } from 'common/component/queryParamComponents/search/Search'
+import { Subtitle } from 'common/component/typography/subtitle/Subtitle'
+import { useAppDispatch } from 'common/hooks/useAppDispatch'
+import { useAppSelector } from 'common/hooks/useAppSelector'
 import {
   cardPacksTotalCountSelector,
   maxValueRangeSelector,
@@ -23,6 +31,7 @@ import {
 import s from './Packs.module.scss'
 import { PacksList } from './packsList/PacksList'
 import { addNewPackTC, getPacksTC, setPacksCurrentPage, setRowPage } from './packsReducer'
+} from 'common/selectors/Selectors'
 
 export const Packs = () => {
   const page = useAppSelector(pageSelector)
@@ -33,6 +42,8 @@ export const Packs = () => {
   const max = useAppSelector(maxValueRangeSelector)
   const sortPacks = useAppSelector(sortPacksSelector)
   const totalCount = useAppSelector(cardPacksTotalCountSelector)
+
+  // const [togglePopup, setTogglePopup] = useState(false)
 
   const dispatch = useAppDispatch()
   const changePageHandle = (page: number) => {
@@ -51,23 +62,14 @@ export const Packs = () => {
       <h2>Packs list</h2>
 
       <div className={s.addPackButton}>
-        <Button
-          styleType="primary"
-          onClick={() =>
-            dispatch(
-              addNewPackTC({
-                cardsPack: {
-                  name: 'NewPack',
-                  deckCover: '',
-                  private: false,
-                },
-              })
-            )
-          }
-        >
+        <Button styleType="primary" onClick={() => dispatch(toggleModal(true))}>
+          {/*<Button styleType="primary" onClick={() => setTogglePopup(!togglePopup)}>*/}
           Add new pack
         </Button>
       </div>
+
+      <AddPackModal />
+      {/*{togglePopup && <AddPackModal />}*/}
 
       <div className={s.filtersContainer}>
         <div>

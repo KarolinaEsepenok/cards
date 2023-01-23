@@ -1,6 +1,6 @@
-@import "../../../../common/style/variables";
+@import 'src/common/style/variables';
 
-@import "../../../../common/style/mixins";
+@import 'src/common/style/mixins';
 
 .container {
   display: flex;
@@ -20,7 +20,7 @@
 
 .subtitle {
 
-  @include subtitle($opacity:0.5);
+  @include subtitle($opacity: 0.5);
 
   margin-bottom: 40px;
 }

@@ -1,19 +1,20 @@
 import React, { FC, useState } from 'react'
 
-import edit from '../../../../../assets/img/icons/edit.svg'
-import teacher from '../../../../../assets/img/icons/teacher.svg'
-import trash from '../../../../../assets/img/icons/trash.svg'
-import { Button } from '../../../../../common/component/button/Button'
-import { useAppDispatch } from '../../../../../common/hooks/useAppDispatch'
-import { deletePackTC } from '../../../packsReducer'
-import { UpdateNamePack } from '../updateNamePack/UpdateNamePack'
+import { EditPackNameModal } from '../../../../../common/component/modals/EditPackNameModal'
+
+import edit from 'assets/img/icons/edit.svg'
+import teacher from 'assets/img/icons/teacher.svg'
+import trash from 'assets/img/icons/trash.svg'
+import { Button } from 'common/component/button/Button'
+import { useAppDispatch } from 'common/hooks/useAppDispatch'
+import { deletePackTC } from 'features/packs/packsReducer'
 
 type ActionsType = {
   myPack: boolean
   packId: string
-  packName: string
+  name: string
 }
-export const PackActions: FC<ActionsType> = ({ myPack, packId, packName }) => {
+export const PackActions: FC<ActionsType> = ({ myPack, packId, name }) => {
   const dispatch = useAppDispatch()
   const [togglePopup, setTogglePopup] = useState(false)
 
@@ -34,12 +35,15 @@ export const PackActions: FC<ActionsType> = ({ myPack, packId, packName }) => {
           <Button styleType="icon" onClick={handlerTogglePopup}>
             <img src={edit} alt="icon edit" />
           </Button>
-          <Button styleType="icon">
-            <img src={trash} alt="icon trash" onClick={handlerDeletePack} />
+          <Button styleType="icon" onClick={handlerDeletePack}>
+            <img src={trash} alt="icon trash" />
           </Button>
         </>
       )}
-      {togglePopup && <UpdateNamePack togglePopup={handlerTogglePopup} packId={packId} packName={packName} />}
+
+      {togglePopup && (
+        <EditPackNameModal packId={packId} setTogglePopup={setTogglePopup} togglePopup={togglePopup} name={name} />
+      )}
     </div>
   )
 }

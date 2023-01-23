@@ -1,6 +1,6 @@
-@import "../../style/mixins";
+@import 'src/common/style/mixins';
 
-@import "../../style/variables";
+@import 'src/common/style/variables';
 
 .inputContainer {
   position: relative;
@@ -112,7 +112,7 @@
 
   &::placeholder {
 
-    @include subtitle($opacity:0.5);
+    @include subtitle($opacity: 0.5);
 
     padding-left: 25px;
 

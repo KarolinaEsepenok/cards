@@ -1,4 +1,4 @@
-@import "../../style/variables";
+@import 'src/common/style/variables';
 
 @mixin defaultButton() {
   cursor: pointer;
@@ -28,7 +28,7 @@
   box-shadow: 0 4px 18px rgba(54, 110, 255, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 
   &:hover {
-    background:$primary-100-color;
+    background: $primary-100-color;
   }
 
   &:active {
@@ -71,6 +71,7 @@
     background: $background-base-color;
   }
 }
+
 .warn:hover {
   background: $warn-100-color;
 }

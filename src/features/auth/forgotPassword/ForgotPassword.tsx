@@ -3,15 +3,15 @@ import React from 'react'
 import { useFormik } from 'formik'
 import { NavLink, useNavigate } from 'react-router-dom'
 
-import { Button } from '../../../common/component/button/Button'
-import { Input } from '../../../common/component/Input/Input'
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
-import { useAppSelector } from '../../../common/hooks/useAppSelector'
-import { forgotPasswordSelector } from '../../../common/selectors/Selectors'
-import { PATH } from '../../../routes/routes'
-
 import s from './ForgotPassword.module.scss'
 import { forgotPasswordTC } from './forgotPasswordReducer'
+
+import { Button } from 'common/component/button/Button'
+import { Input } from 'common/component/Input/Input'
+import { useAppDispatch } from 'common/hooks/useAppDispatch'
+import { useAppSelector } from 'common/hooks/useAppSelector'
+import { forgotPasswordSelector } from 'common/selectors/Selectors'
+import { PATH } from 'routes/routes'
 
 export type ErrorsType = {
   email?: string
