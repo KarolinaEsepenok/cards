@@ -11,7 +11,7 @@ export const packsApi = {
     return instance.post<ResponseNewPack>('cards/pack', data)
   },
   updatePack(packId: string, name: string) {
-    return instance.put<ResponseUpdateNamePack>('cards/pack', {
+    return instance.put<'', AxiosResponse<ResponseUpdateNamePack>, UpdateNamePackType>('cards/pack', {
       cardsPack: { _id: packId, name },
     })
   },

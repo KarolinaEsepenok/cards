@@ -1,10 +1,9 @@
-import { Dispatch } from 'redux'
-
 import { setSort } from '../../features/packs/packsReducer'
 import { sortingPacksMethods } from '../constants/sortingPacksMethods/sortingPacksMethods'
+import { AppDispatchType } from '../hooks/useAppDispatch'
 
 export const sortHelper = (
-  dispatch: Dispatch,
+  dispatch: AppDispatchType,
   sortMethod: sortingPacksMethods,
   m1: sortingPacksMethods,
   m2: sortingPacksMethods
