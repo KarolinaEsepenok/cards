@@ -1,19 +1,14 @@
 import React, { useEffect } from 'react'
 
 import s from './Packs.module.scss'
-import { PacksList } from './packsList/PacksList'
+import { PacksFilters } from './PacksFilters'
 
 import { toggleModal } from 'app/appSlice'
 import { Button } from 'common/components/button/Button'
 import { AddPackModal } from 'common/components/modals/AddPackModal'
 import { Paginator } from 'common/components/paginator/Paginator'
-import { Subtitle } from 'common/components/typography/subtitle/Subtitle'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
-import { FilterMyAllPacks } from 'common/modules/filterMyAllPacks/FilterMyAllPacks'
-import { RangeSlider } from 'common/modules/range/Range'
-import { ResetAllFilters } from 'common/modules/resetAllFilters/ResetAllFilters'
-import { Search } from 'common/modules/search/Search'
 import {
   cardPacksTotalCountSelector,
   maxValueRangeSelector,
@@ -24,6 +19,7 @@ import {
   sortPacksSelector,
   userIdSelector,
 } from 'common/selectors/Selectors'
+import { PacksList } from 'pages/packs/packsList/PacksList'
 import { getPacksTC, setPacksCurrentPage, setRowPage } from 'pages/packs/packsSlice'
 
 export const Packs = () => {
@@ -61,27 +57,10 @@ export const Packs = () => {
         </Button>
       </div>
 
+      <PacksFilters />
+
       <AddPackModal />
       {/*{togglePopup && <AddPackModal />}*/}
-
-      <div className={s.filtersContainer}>
-        <div>
-          <Subtitle>Search</Subtitle>
-          <Search class={s.search} />
-        </div>
-
-        <div>
-          <Subtitle>Show packs cards</Subtitle>
-          <FilterMyAllPacks />
-        </div>
-
-        <div>
-          <Subtitle>Number of cards</Subtitle>
-          <RangeSlider />
-        </div>
-
-        <ResetAllFilters />
-      </div>
 
       <div className={s.packsList}>
         <PacksList />
