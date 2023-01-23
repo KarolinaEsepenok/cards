@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 
+import { Modal } from './Modal'
 import s from './Modals.module.scss'
 
 import { Button } from 'common/components/button/Button'
@@ -14,27 +15,28 @@ type EditPackNameModalType = {
   togglePopup: boolean
   name: string
 }
-export const EditPackNameModal: React.FC<EditPackNameModalType> = ({ packId, setTogglePopup, togglePopup, name }) => {
+export const EditPackNameModal: React.FC<EditPackNameModalType> = ({ packId, name }) => {
   const dispatch = useAppDispatch()
   const [nameValue, setNameValue] = useState<string>(name)
 
   const handleAddPack = () => dispatch(updateNamePackTC(packId, nameValue))
 
   return (
-    // <Modal title={'Edit pack'} onClickSave={handleAddPack}>
-    //   <>
-    //     <Input value={name} onChange={e => setName(e.currentTarget.value)} type="text" label="Name pack" />
-    //     <Checkbox />
-    //   </>
-    // </Modal>
-    <div className={s.modalContent}>
-      <h2>Edit pack</h2>
-      <Input value={nameValue} onChange={e => setNameValue(e.currentTarget.value)} type="text" label="Name pack" />
-      <Checkbox />
-      <Button onClick={handleAddPack} styleType="primary">
-        Save
-      </Button>
-      <button onClick={() => setTogglePopup(!togglePopup)}>Close</button>
-    </div>
+    <Modal title={'Edit pack'} onClickSave={handleAddPack} show={false}>
+      <>
+        <Input value={nameValue} onChange={e => setNameValue(e.currentTarget.value)} type="text" label="Name pack" />
+        <Checkbox />
+      </>
+    </Modal>
+
+    // <div className={s.modalContent}>
+    //   <h2>Edit pack</h2>
+    //   <Input value={nameValue} onChange={e => setNameValue(e.currentTarget.value)} type="text" label="Name pack" />
+    //   <Checkbox />
+    //   <Button onClick={handleAddPack} styleType="primary">
+    //     Save
+    //   </Button>
+    //   <button onClick={() => setTogglePopup(!togglePopup)}>Close</button>
+    // </div>
   )
 }

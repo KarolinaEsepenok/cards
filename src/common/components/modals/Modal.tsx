@@ -13,10 +13,11 @@ type BasicModalType = {
   children: ReactNode
   title: string
   onClickSave: () => void
+  show: boolean
 }
 
-export const Modal: React.FC<BasicModalType> = ({ children, title, onClickSave }) => {
-  const toggle = useAppSelector(state => state.app.toggleModal)
+export const Modal: React.FC<BasicModalType> = ({ children, title, onClickSave, show }) => {
+  // const toggle = useAppSelector(state => state.app.toggleModal)
   const dispatch = useDispatch()
 
   const handleClose = () => {
@@ -30,7 +31,7 @@ export const Modal: React.FC<BasicModalType> = ({ children, title, onClickSave }
 
   return (
     <>
-      {toggle && (
+      {show && (
         <div onClick={handleClose} className={s.modal}>
           <div onClick={e => e.stopPropagation()} className={s.modalContent}>
             <h2>{title}</h2>

@@ -5,7 +5,9 @@ import { PacksList } from './packsList/PacksList'
 
 import { toggleModal } from 'app/appSlice'
 import { Button } from 'common/components/button/Button'
+import { AddCardModal } from 'common/components/modals/AddCardModal'
 import { AddPackModal } from 'common/components/modals/AddPackModal'
+import { EditPackNameModal } from 'common/components/modals/EditPackNameModal'
 import { Paginator } from 'common/components/paginator/Paginator'
 import { Subtitle } from 'common/components/typography/subtitle/Subtitle'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
@@ -35,7 +37,7 @@ export const Packs = () => {
   const max = useAppSelector(maxValueRangeSelector)
   const sortPacks = useAppSelector(sortPacksSelector)
   const totalCount = useAppSelector(cardPacksTotalCountSelector)
-
+  const toggle = useAppSelector(state => state.app.toggleModal)
   // const [togglePopup, setTogglePopup] = useState(false)
 
   const dispatch = useAppDispatch()
@@ -44,6 +46,10 @@ export const Packs = () => {
   }
   const changeRowPageHandle = (pageCount: number) => {
     dispatch(setRowPage(pageCount))
+  }
+  const Obj = {
+    addPack: <AddPackModal show={false} />,
+    // updatePack: <EditPackNameModal />,
   }
 
   useEffect(() => {
@@ -61,7 +67,7 @@ export const Packs = () => {
         </Button>
       </div>
 
-      <AddPackModal />
+      <AddPackModal show={toggle} />
       {/*{togglePopup && <AddPackModal />}*/}
 
       <div className={s.filtersContainer}>
