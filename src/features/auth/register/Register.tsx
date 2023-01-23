@@ -3,16 +3,17 @@ import React from 'react'
 import { useFormik } from 'formik'
 import { Navigate, NavLink } from 'react-router-dom'
 
-import { Button } from '../../../common/component/button/Button'
-import { Input } from '../../../common/component/Input/Input'
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
-import { useAppSelector } from '../../../common/hooks/useAppSelector'
-import { registerSelector } from '../../../common/selectors/Selectors'
-import { PATH } from '../../../routes/routes'
 import profile from '../profile/Profile.module.scss'
 
 import { registerTC } from './registerReducer'
 import s from './registration.module.scss'
+
+import { Button } from 'common/component/button/Button'
+import { Input } from 'common/component/Input/Input'
+import { useAppDispatch } from 'common/hooks/useAppDispatch'
+import { useAppSelector } from 'common/hooks/useAppSelector'
+import { registerSelector } from 'common/selectors/Selectors'
+import { PATH } from 'routes/routes'
 
 interface RegisterErrorType {
   email?: string

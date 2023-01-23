@@ -3,16 +3,17 @@ import React from 'react'
 import { useFormik } from 'formik'
 import { Navigate, NavLink } from 'react-router-dom'
 
-import { Button } from '../../../common/component/button/Button'
-import { Checkbox } from '../../../common/component/checkbox/Checkbox'
-import { Input } from '../../../common/component/Input/Input'
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
-import { useAppSelector } from '../../../common/hooks/useAppSelector'
-import { isLoggedInSelector } from '../../../common/selectors/Selectors'
-import { PATH } from '../../../routes/routes'
 import { authTC } from '../authReducer'
 
 import s from './signIn.module.scss'
+
+import { Button } from 'common/component/button/Button'
+import { Checkbox } from 'common/component/checkbox/Checkbox'
+import { Input } from 'common/component/Input/Input'
+import { useAppDispatch } from 'common/hooks/useAppDispatch'
+import { useAppSelector } from 'common/hooks/useAppSelector'
+import { isLoggedInSelector } from 'common/selectors/Selectors'
+import { PATH } from 'routes/routes'
 
 interface FormikErrorType {
   email?: string

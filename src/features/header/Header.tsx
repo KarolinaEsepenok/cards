@@ -2,13 +2,13 @@ import React from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
-import logoCards from '../../assets/img/LogoCards.svg'
-import avatarPlug from '../../assets/img/profile_photo.jpg'
-import { Button } from '../../common/component/button/Button'
-import { useAppSelector } from '../../common/hooks/useAppSelector'
-import { avatarSelector, isLoggedInSelector, nameSelector } from '../../common/selectors/Selectors'
-
 import s from './Header.module.scss'
+
+import logoCards from 'assets/img/LogoCards.svg'
+import avatarPlug from 'assets/img/profile_photo.jpg'
+import { Button } from 'common/component/button/Button'
+import { useAppSelector } from 'common/hooks/useAppSelector'
+import { avatarSelector, isLoggedInSelector, nameSelector } from 'common/selectors/Selectors'
 
 export const Header = () => {
   const navigate = useNavigate()

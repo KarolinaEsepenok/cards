@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-import { AppThunk } from '../common/hooks/AppThunk'
-import { authAPI } from '../features/auth/auth-api'
-import { setSignIn } from '../features/auth/authReducer'
+import { AppThunk } from 'common/hooks/AppThunk'
+import { authAPI } from 'features/auth/auth-api'
+import { setSignIn } from 'features/auth/authReducer'
 
 const initialState = {
   isAppInitialized: false,

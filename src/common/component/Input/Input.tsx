@@ -1,10 +1,10 @@
 import React, { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes, useEffect, useState } from 'react'
 
-import visibilityOff from '../../../assets/img/icons/visibility-off.svg'
-import visibilityOn from '../../../assets/img/icons/visibility-on.svg'
-import { Button } from '../button/Button'
-
 import s from './Input.module.scss'
+
+import visibilityOff from 'assets/img/icons/visibility-off.svg'
+import visibilityOn from 'assets/img/icons/visibility-on.svg'
+import { Button } from 'common/component/button/Button'
 
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 type SuperInputTextPropsType = Omit<DefaultInputPropsType, 'type'> & {

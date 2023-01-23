@@ -1,12 +1,13 @@
 import React, { FC } from 'react'
 
-import { useAppSelector } from '../../../../common/hooks/useAppSelector'
-import list from '../../../../common/style/List.module.scss'
-import { formatDate } from '../../../../common/utils/formatDate'
 import { CardType } from '../cardsApi'
 
 import { CardActions } from './card/actions/CardActions'
 import { Card } from './card/Card'
+
+import { useAppSelector } from 'common/hooks/useAppSelector'
+import list from 'common/style/List.module.scss'
+import { formatDate } from 'common/utils/formatDate'
 
 type CardsListType = {
   cards: CardType[]

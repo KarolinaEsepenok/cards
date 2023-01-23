@@ -2,23 +2,26 @@ import React, { useEffect } from 'react'
 
 import { useFormik } from 'formik'
 
-import { Button } from '../../../../../common/component/button/Button'
-import { Checkbox } from '../../../../../common/component/checkbox/Checkbox'
-import { Input } from '../../../../../common/component/Input/Input'
-import style from '../../../../../common/component/Input/Input.module.scss'
-import { useAppDispatch } from '../../../../../common/hooks/useAppDispatch'
-import { updateNamePackTC } from '../../../packsReducer'
 import s from '../../PackList.module.scss'
+
+import { Button } from 'common/component/button/Button'
+import { Checkbox } from 'common/component/checkbox/Checkbox'
+import { Input } from 'common/component/Input/Input'
+import style from 'common/component/Input/Input.module.scss'
+import { useAppDispatch } from 'common/hooks/useAppDispatch'
+import { updateNamePackTC } from 'features/packs/packsReducer'
 
 type UpdateNamePackType = {
   togglePopup: () => void
   packId: string
   packName: string
 }
+
 interface FormikErrorType {
   name?: string
   private?: boolean
 }
+
 export const UpdateNamePack: React.FC<UpdateNamePackType> = ({ togglePopup, packId, packName }) => {
   const dispatch = useAppDispatch()
 

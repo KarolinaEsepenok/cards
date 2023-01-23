@@ -1,4 +1,4 @@
-@import "../common/style/variables";
+@import '../common/style/variables';
 
 .app {
   height: 100%;
@@ -7,9 +7,10 @@
   background-color: $background-200-color;
 }
 
-.linearProgress{
+.linearProgress {
   height: 6px;
 }
+
 .contentContainer {
   max-width: $main-width;
   margin: auto;
