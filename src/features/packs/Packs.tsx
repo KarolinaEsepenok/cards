@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 
 import s from './Packs.module.scss'
 import { PackType } from './packsApi'
+import { PacksFilters } from './PacksFilters'
 import { PacksList } from './packsList/PacksList'
 import { addNewPackTC, getPacksTC, setPacksCurrentPage, setRowPage } from './packsReducer'
 
@@ -72,24 +73,7 @@ export const Packs = () => {
         </Button>
       </div>
 
-      <div className={s.filtersContainer}>
-        <div>
-          <Subtitle>Search</Subtitle>
-          <Search class={s.search} />
-        </div>
-
-        <div>
-          <Subtitle>Show packs cards</Subtitle>
-          <FilterMyAllPacks />
-        </div>
-
-        <div>
-          <Subtitle>Number of cards</Subtitle>
-          <RangeSlider />
-        </div>
-
-        <ResetAllFilters />
-      </div>
+      <PacksFilters />
 
       <div className={s.table}>
         <PacksList packs={packs} />
