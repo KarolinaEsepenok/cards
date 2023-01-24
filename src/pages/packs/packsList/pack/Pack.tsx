@@ -15,9 +15,10 @@ type PackType = {
   updated: string
   actions: ReactNode
   packId: string
+  myPack: boolean
 }
 
-export const Pack: FC<PackType> = ({ name, cardsCount, author, updated, actions, packId }) => {
+export const Pack: FC<PackType> = ({ name, cardsCount, author, updated, actions, packId, myPack }) => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
@@ -30,9 +31,13 @@ export const Pack: FC<PackType> = ({ name, cardsCount, author, updated, actions,
 
   return (
     <tr>
-      <td onClick={cardsGetHandler} className={s.name}>
-        {name}
-      </td>
+      {!myPack && cardsCount === 0 ? (
+        <td className={s.disabledName}>{name}</td>
+      ) : (
+        <td onClick={cardsGetHandler} className={s.name}>
+          {name}
+        </td>
+      )}
       <td>{cardsCount}</td>
       <td>{updated}</td>
       <td>{author}</td>
