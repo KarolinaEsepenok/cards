@@ -6,9 +6,6 @@ import { PacksList } from './packsList/PacksList'
 import { toggleModal } from 'app/appSlice'
 import { Button } from 'common/components/button/Button'
 import { AddPackModal } from 'common/components/modals/AddPackModal'
-import { DeletePackModal } from 'common/components/modals/DeletePackModal'
-import { EditPackNameModal } from 'common/components/modals/EditPackNameModal'
-import { Modal } from 'common/components/modals/Modal'
 import { Paginator } from 'common/components/paginator/Paginator'
 import { Subtitle } from 'common/components/typography/subtitle/Subtitle'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
@@ -40,6 +37,7 @@ export const Packs = () => {
   const totalCount = useAppSelector(cardPacksTotalCountSelector)
 
   const modalContent = useAppSelector(state => state.packs.modalСontent)
+  const toggleModalFromState = useAppSelector(state => state.app.toggleModal)
 
   const dispatch = useAppDispatch()
 
@@ -69,11 +67,13 @@ export const Packs = () => {
         </Button>
       </div>
 
-      <Modal>
-        {modalContent === 'editPackName' && <EditPackNameModal />}
-        {modalContent === 'addPack' && <AddPackModal />}
-        {modalContent === 'deletePack' && <DeletePackModal />}
-      </Modal>
+      {toggleModalFromState && modalContent === 'addPack' && <AddPackModal />}
+
+      {/*<Modal>*/}
+      {/*  {modalContent === 'editPackName' && <EditPackNameModal packId={''} name={''} />}*/}
+      {/*  {modalContent === 'addPack' && <AddPackModal />}*/}
+      {/*  {modalContent === 'deletePack' && <DeletePackModal />}*/}
+      {/*</Modal>*/}
 
       <div className={s.filtersContainer}>
         <div>

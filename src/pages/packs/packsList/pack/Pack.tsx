@@ -23,7 +23,6 @@ export const Pack: FC<PackType> = ({ name, cardsCount, author, updated, actions,
 
   const cardsGetHandler = () => {
     dispatch(setPackId(packId))
-    // dispatch(setPackName(name))
     dispatch(setIsLoading(true))
     navigate(`/cards/${packId}`)
   }

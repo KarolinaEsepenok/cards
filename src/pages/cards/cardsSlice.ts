@@ -122,9 +122,6 @@ const slice = createSlice({
     setCreatorId: (state, action: PayloadAction<string>) => {
       state.creatorId = action.payload
     },
-    setPackName: (state, action: PayloadAction<string>) => {
-      state.packName = action.payload
-    },
     addNewCard: (state, action: PayloadAction<{ packId: string; newCard: CardType }>) => {
       state.cards.forEach(c => {
         if (c.cardsPack_id === action.payload.packId) {
@@ -140,8 +137,11 @@ const slice = createSlice({
         }
       })
     },
+    setPackName: (state, action: PayloadAction<string>) => {
+      state.packName = action.payload
+    },
   },
 })
 
 export const cardsReducer = slice.reducer
-export const { getCards, setPackId, setCreatorId, setPackName, updateCard, addNewCard } = slice.actions
+export const { getCards, setCreatorId, updateCard, addNewCard, setPackId, setPackName } = slice.actions
