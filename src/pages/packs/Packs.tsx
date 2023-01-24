@@ -11,6 +11,7 @@ import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import {
   cardPacksTotalCountSelector,
+  isLoadingSelector,
   maxValueRangeSelector,
   minValueRangeSelector,
   packNameSelector,
@@ -21,6 +22,7 @@ import {
 } from 'common/selectors/Selectors'
 import { PacksList } from 'pages/packs/packsList/PacksList'
 import { getPacksTC, setPacksCurrentPage, setRowPage } from 'pages/packs/packsSlice'
+import { ResultsNotFound } from 'pages/packs/ResultsNotFound'
 
 export const Packs = () => {
   const page = useAppSelector(pageSelector)
@@ -31,6 +33,7 @@ export const Packs = () => {
   const max = useAppSelector(maxValueRangeSelector)
   const sortPacks = useAppSelector(sortPacksSelector)
   const totalCount = useAppSelector(cardPacksTotalCountSelector)
+  const isLoading = useAppSelector(isLoadingSelector)
 
   // const [togglePopup, setTogglePopup] = useState(false)
 
@@ -60,21 +63,26 @@ export const Packs = () => {
       <PacksFilters />
 
       <AddPackModal />
-      {/*{togglePopup && <AddPackModal />}*/}
 
-      <div className={s.packsList}>
-        <PacksList />
-      </div>
+      {totalCount > 0 ? (
+        <div>
+          <div className={s.packsList}>
+            <PacksList />
+          </div>
 
-      <div>
-        <Paginator
-          setRowCallback={changeRowPageHandle}
-          setPageCallback={changePageHandle}
-          pageCount={pageCount}
-          totalCount={totalCount}
-          currentPage={page}
-        />
-      </div>
+          <div>
+            <Paginator
+              setRowCallback={changeRowPageHandle}
+              setPageCallback={changePageHandle}
+              pageCount={pageCount}
+              totalCount={totalCount}
+              currentPage={page}
+            />
+          </div>
+        </div>
+      ) : (
+        !isLoading && <ResultsNotFound />
+      )}
     </div>
   )
 }
