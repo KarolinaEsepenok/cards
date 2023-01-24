@@ -20,6 +20,8 @@ type CardsListType = {
 export const CardsList: FC<CardsListType> = ({ cards }) => {
   const myId = useAppSelector(state => state.auth.id)
   const packCreatorId = useAppSelector(state => state.cards.creatorId)
+  const modalContent = useAppSelector(state => state.packs.modalNode)
+  const toggleModalFromState = useAppSelector(state => state.app.toggleModal)
   const myPack = myId === packCreatorId
 
   const dispatch = useDispatch()
@@ -36,6 +38,7 @@ export const CardsList: FC<CardsListType> = ({ cards }) => {
           Add New Card
         </Button>
       )}
+      {toggleModalFromState && modalContent === 'addCard' && <AddCardModal />}
 
       <table className={list.table}>
         <thead>

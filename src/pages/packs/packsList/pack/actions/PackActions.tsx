@@ -19,7 +19,7 @@ type ActionsType = {
 }
 export const PackActions: FC<ActionsType> = ({ myPack, packId, name }) => {
   const dispatch = useAppDispatch()
-  const modalContent = useAppSelector(state => state.packs.modalСontent)
+  const modalContent = useAppSelector(state => state.packs.modalNode)
   const toggleModalFromState = useAppSelector(state => state.app.toggleModal)
 
   const handlerTogglePopup = () => {
@@ -33,6 +33,7 @@ export const PackActions: FC<ActionsType> = ({ myPack, packId, name }) => {
     dispatch(setModalContent('deletePack'))
     dispatch(toggleModal(true))
     dispatch(setPackId(packId))
+    dispatch(setPackName(name))
   }
 
   return (
@@ -46,13 +47,6 @@ export const PackActions: FC<ActionsType> = ({ myPack, packId, name }) => {
             <img src={edit} alt="icon edit" />
           </Button>
           {toggleModalFromState && modalContent === 'editPackName' && <EditPackNameModal />}
-
-          {/*<Modal isOpen={modalOpenEP} close={setModalOpenEP}>*/}
-          {/*  <EditPackNameModal packId={packId} name={'заглушка'} />*/}
-          {/*  {modalContent === 'editPackName' && <EditPackNameModal />}*/}
-          {/*  {modalContent === 'addPack' && <AddPackModal />}*/}
-          {/*  {modalContent === 'deletePack' && <DeletePackModal />}*/}
-          {/*</Modal>*/}
 
           <Button styleType="icon" onClick={handlerDeletePack}>
             <img src={trash} alt="icon trash" />

@@ -8,39 +8,47 @@ import { Input } from '../Input/Input'
 
 import s from './Modals.module.scss'
 
+import { toggleModal } from 'app/appSlice'
+import { useAppSelector } from 'common/hooks/useAppSelector'
 import { updateCardTC } from 'pages/cards/cardsSlice'
 
-type EditCardModalType = {
-  // setToggle: (v: any) => void
-  // toggle: boolean
-  // cardId: string
-  // question: string
-  // answer: string
-}
-// export const EditCardModal: React.FC<EditCardModalType> = ({ setToggle, toggle, cardId, question, answer }) => {
-export const EditCardModal: React.FC<EditCardModalType> = () => {
+export const EditCardModal = () => {
   const dispatch = useAppDispatch()
   let { id } = useParams()
+  const cardId = useAppSelector(state => state.cards.cards[0]._id)
+  const question = useAppSelector(state => state.cards.cards[0].question)
+  const answer = useAppSelector(state => state.cards.cards[0].answer)
 
-  // const [questionValue, setQuestionValue] = useState<string>(question)
-  // const [answerValue, setAnswerValue] = useState<string>(answer)
+  const [questionValue, setQuestionValue] = useState<string>(question)
+  const [answerValue, setAnswerValue] = useState<string>(answer)
 
-  // const handleAddPack = () =>
-  //   dispatch(updateCardTC(id ? id : '', cardId, { question: questionValue, answer: answerValue }))
-  //
-  // const handleChangeQuestion = (e: React.ChangeEvent<HTMLInputElement>) => setQuestionValue(e.currentTarget.value)
-  // const handleChangeAnswer = (e: React.ChangeEvent<HTMLInputElement>) => setAnswerValue(e.currentTarget.value)
+  const handleEditPack = () => {
+    dispatch(updateCardTC(id ? id : '', cardId, { question: questionValue, answer: answerValue }))
+    dispatch(toggleModal(false))
+  }
+
+  const handleChangeQuestion = (e: React.ChangeEvent<HTMLInputElement>) => setQuestionValue(e.currentTarget.value)
+  const handleChangeAnswer = (e: React.ChangeEvent<HTMLInputElement>) => setAnswerValue(e.currentTarget.value)
+
+  const handleClose = () => {
+    dispatch(toggleModal(false))
+  }
 
   return (
-    <div className={s.modalContent}>
-      <h2>Edit card</h2>
-      {/*<Input value={questionValue} onChange={handleChangeQuestion} type="text" label="Question" />*/}
-      {/*<Input value={answerValue} onChange={handleChangeAnswer} type="text" label="Answer" />*/}
+    <div onClick={handleClose} className={s.modal}>
+      <div onClick={e => e.stopPropagation()} className={s.modalContent}>
+        <span onClick={handleClose}>X</span>
+        <h2>Edit card</h2>
+        <Input autoFocus value={questionValue} onChange={handleChangeQuestion} type="text" label="Question" />
+        <Input value={answerValue} onChange={handleChangeAnswer} type="text" label="Answer" />
 
-      {/*<Button onClick={handleAddPack} styleType="primary">*/}
-      {/*  Save*/}
-      {/*</Button>*/}
-      {/*<button onClick={() => setToggle(!toggle)}>Close</button>*/}
+        <Button onClick={handleClose} styleType="secondary">
+          Cancel
+        </Button>
+        <Button onClick={handleEditPack} styleType="primary">
+          Save
+        </Button>
+      </div>
     </div>
   )
 }

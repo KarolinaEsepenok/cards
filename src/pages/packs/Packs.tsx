@@ -36,7 +36,7 @@ export const Packs = () => {
   const sortPacks = useAppSelector(sortPacksSelector)
   const totalCount = useAppSelector(cardPacksTotalCountSelector)
 
-  const modalContent = useAppSelector(state => state.packs.modalСontent)
+  const modalContent = useAppSelector(state => state.packs.modalNode)
   const toggleModalFromState = useAppSelector(state => state.app.toggleModal)
 
   const dispatch = useAppDispatch()

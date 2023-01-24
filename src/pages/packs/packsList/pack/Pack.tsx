@@ -6,7 +6,7 @@ import s from './Pack.module.scss'
 
 import { setIsLoading } from 'app/appSlice'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
-import { setPackId } from 'pages/cards/cardsSlice'
+import { setPackId, setPackName } from 'pages/cards/cardsSlice'
 
 type PackType = {
   name: string
@@ -23,6 +23,7 @@ export const Pack: FC<PackType> = ({ name, cardsCount, author, updated, actions,
 
   const cardsGetHandler = () => {
     dispatch(setPackId(packId))
+    dispatch(setPackName(name))
     dispatch(setIsLoading(true))
     navigate(`/cards/${packId}`)
   }

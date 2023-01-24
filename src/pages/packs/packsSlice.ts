@@ -25,7 +25,7 @@ const initialState = {
     packName: '',
     sortPacks: sortingPacksMethods.desUpdate,
   },
-  modalСontent: '',
+  modalNode: '',
 }
 
 export const getPacksTC = createAsyncThunk<void, undefined, { state: RootStateType; dispatch: AppDispatchType }>(
@@ -166,7 +166,7 @@ const slice = createSlice({
       state.queryParams.sortPacks = action.payload
     },
     setModalContent: (state, action: PayloadAction<ModalsContentType>) => {
-      state.modalСontent = action.payload
+      state.modalNode = action.payload
     },
   },
 })

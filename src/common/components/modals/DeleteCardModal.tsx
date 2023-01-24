@@ -5,16 +5,15 @@ import { Button } from 'common/components/button/Button'
 import s from 'common/components/modals/Modals.module.scss'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
-import { deletePackTC } from 'pages/packs/packsSlice'
+import { deleteCardTC } from 'pages/cards/cardsSlice'
 
-export const DeletePackModal = () => {
+export const DeleteCardModal = () => {
   const dispatch = useAppDispatch()
+  const cardId = useAppSelector(state => state.cards.cards[0]._id)
+  const question = useAppSelector(state => state.cards.cards[0].question)
 
-  const packIdFromState = useAppSelector(state => state.cards.packId)
-  const packName = useAppSelector(state => state.cards.packName)
-
-  const handleDeletePack = () => {
-    dispatch(deletePackTC(packIdFromState))
+  const handleDeleteCard = () => {
+    dispatch(deleteCardTC(cardId))
     dispatch(toggleModal(false))
   }
 
@@ -26,12 +25,12 @@ export const DeletePackModal = () => {
     <div onClick={handleClose} className={s.modal}>
       <div onClick={e => e.stopPropagation()} className={s.modalContent}>
         <span onClick={handleClose}>X</span>
-        <h2>delete Pack</h2>
-        <p>Do you really want to remove {packName}? All cards will be deleted.</p>
+        <h2>Delete Card</h2>
+        <p>Do you really want to remove question: {question}? This card will be deleted.</p>
         <Button onClick={handleClose} styleType="secondary">
           Cancel
         </Button>
-        <Button onClick={handleDeletePack} styleType="warn">
+        <Button onClick={handleDeleteCard} styleType="warn">
           Delete
         </Button>
       </div>
