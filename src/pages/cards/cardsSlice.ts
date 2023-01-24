@@ -61,6 +61,7 @@ export const getCardsTC =
       const { cards } = response.data
 
       dispatch(getCards({ cards: cards }))
+      dispatch(setPackName(response.data.packName))
       dispatch(setCardsForLearn({ cards: cards }))
       dispatch(setCreatorId(response.data.packUserId))
     } catch (e) {

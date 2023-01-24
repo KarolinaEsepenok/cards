@@ -61,6 +61,7 @@ export type ResponseGetType = {
   page: number
   pageCount: number
   packUserId: string
+  packName: string
 }
 
 export type RequestCardsType = {

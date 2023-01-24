@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { CircularProgress } from '@mui/material'
+import { CircularProgress, Skeleton } from '@mui/material'
 import { NavLink, useParams } from 'react-router-dom'
 
 import s from './LearnCard.module.scss'
@@ -20,6 +20,7 @@ export const LearnCard = () => {
   const dispatch = useAppDispatch()
   const [arr, setArr] = useState<CardType[]>([])
   const [showAnswer, setShowAnswer] = useState(false)
+
   const { id } = useParams()
 
   console.log(cards)
@@ -44,12 +45,14 @@ export const LearnCard = () => {
     return <CircularProgress sx={{ position: 'absolute', top: '50%', left: '50%' }} />
   }
 
-  return arr.length > 1 ? (
+  return arr.length > 0 ? (
     <div className={s.learnCard}>
       <NavLink to={PATH.PACKS} className={s.link}>
         <p>&lArr; Back to Packs List</p>
       </NavLink>
-      <h2 className={s.title}>Learn &quot;{packName}&quot;</h2>
+      <h2 className={s.title}>
+        {packName ? `Learn '${packName}'` : <Skeleton sx={{ width: '300px', height: '40px' }} animation="wave" />}
+      </h2>
       <div className={s.cardContainer}>
         {showAnswer ? (
           <CardAnswer cardId={arr[0]._id} answer={arr[0].answer} handelNextCard={nextCard} />
