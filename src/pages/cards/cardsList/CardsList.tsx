@@ -47,10 +47,13 @@ export const CardsList: FC<CardsListType> = ({ cards }) => {
           </Button>
         )}
       </div>
+
       <AddCardModal />
+
       <div className={s.searchContainer}>
         <Search class={s.search} />
       </div>
+
       <table className={list.table}>
         <thead>
           <tr>

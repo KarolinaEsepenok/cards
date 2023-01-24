@@ -22,7 +22,7 @@ export const RoutesComponent = () => {
     <Routes>
       <Route element={<PrivateRoutes />}>
         <Route path={PATH.PROFILE} element={<Profile />} />
-          <Route path={PATH.PACKS} element={<Packs />} />
+        <Route path={PATH.PACKS} element={<Packs />} />
         <Route path={PATH.CARDS} element={<Cards />} />
         <Route path={PATH.CARD} element={<LearnCard />} />
         <Route path={PATH.EMPTY_PACK} element={<EmptyPack />} />
