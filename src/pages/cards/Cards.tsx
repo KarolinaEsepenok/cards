@@ -26,5 +26,11 @@ export const Cards = () => {
     return <CircularProgress sx={{ position: 'absolute', top: '50%', left: '50%' }} />
   }
 
-  return <div>{cards.length ? <CardsList cards={cards} /> : <EmptyPack />}</div>
+  return cards.length ? (
+    <>
+      <CardsList cards={cards} />
+    </>
+  ) : (
+    <EmptyPack />
+  )
 }

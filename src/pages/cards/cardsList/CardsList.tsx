@@ -1,16 +1,17 @@
 import React, { FC } from 'react'
 
 import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
-import { toggleModal } from 'app/appSlice'
+import { setIsLoading, toggleModal } from 'app/appSlice'
 import { Button } from 'common/components/button/Button'
 import { AddCardModal } from 'common/components/modals/AddCardModal'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import list from 'common/style/List.module.scss'
 import { formatDate } from 'common/utils/formatDate'
 import { CardType } from 'pages/cards/cardsApi'
-import { CardActions } from 'pages/cards/cardsList/card/actions/CardActions'
-import { Card } from 'pages/cards/cardsList/card/Card'
+import { CardRowActions } from 'pages/cards/cardsList/cardRow/actions/CardRowActions'
+import { CardRow } from 'pages/cards/cardsList/cardRow/CardRow'
 
 type CardsListType = {
   cards: CardType[]
@@ -20,8 +21,15 @@ export const CardsList: FC<CardsListType> = ({ cards }) => {
   const myId = useAppSelector(state => state.auth.id)
   const packCreatorId = useAppSelector(state => state.cards.creatorId)
   const myPack = myId === packCreatorId
+  const packId = useAppSelector(state => state.cards.packId)
 
+  const navigate = useNavigate()
   const dispatch = useDispatch()
+
+  const handelLearnPack = () => {
+    dispatch(setIsLoading(true))
+    navigate(`/cards/${packId}/learn`)
+  }
 
   return (
     <>
@@ -30,6 +38,10 @@ export const CardsList: FC<CardsListType> = ({ cards }) => {
           Add New Card
         </Button>
       )}
+
+      <Button styleType="primary" onClick={handelLearnPack}>
+        learn pack
+      </Button>
 
       <AddCardModal />
 
@@ -48,13 +60,13 @@ export const CardsList: FC<CardsListType> = ({ cards }) => {
             const dateUpdate = formatDate(c.updated)
 
             return (
-              <Card
+              <CardRow
                 key={c._id}
                 question={c.question}
                 answer={c.answer}
                 update={dateUpdate}
                 grade={c.grade}
-                actions={myPack && <CardActions cardId={c._id} question={c.question} answer={c.answer} />}
+                actions={myPack && <CardRowActions cardId={c._id} question={c.question} answer={c.answer} />}
               />
             )
           })}

@@ -12,7 +12,7 @@ type CardActionsType = {
   question: string
   answer: string
 }
-export const CardActions: React.FC<CardActionsType> = ({ cardId, question, answer }) => {
+export const CardRowActions: React.FC<CardActionsType> = ({ cardId, question, answer }) => {
   const dispatch = useAppDispatch()
 
   const [toggle, setToggle] = useState(false)

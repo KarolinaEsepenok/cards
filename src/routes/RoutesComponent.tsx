@@ -12,6 +12,7 @@ import { Profile } from 'pages/auth/profile/Profile'
 import { Register } from 'pages/auth/register/Register'
 import { SignIn } from 'pages/auth/signIn/signIn'
 import { Cards } from 'pages/cards/Cards'
+import { Card } from 'pages/cards/cardsList/card/Card'
 import { Packs } from 'pages/packs/Packs'
 import { EmptyPack } from 'pages/packs/packsList/pack/emptyPack/EmptyPack'
 
@@ -22,6 +23,7 @@ export const RoutesComponent = () => {
         <Route path={PATH.PROFILE} element={<Profile />} />
         <Route path={PATH.PACKS} element={<Packs />} />
         <Route path={PATH.CARDS} element={<Cards />} />
+        <Route path={PATH.CARD} element={<Card />} />
         <Route path={PATH.EMPTY_PACK} element={<EmptyPack />} />
       </Route>
       <Route path={PATH.MAIN} element={<Navigate to={PATH.SIGN_IN} />} />
