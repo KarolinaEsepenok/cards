@@ -74,7 +74,6 @@ export const Paginator: FC<PaginationPropsType> = ({
           <MenuItem value={15}>15</MenuItem>
           <MenuItem value={20}>20</MenuItem>
         </Select>
-
         <p className={s.nameShowPerPage}>packs per page</p>
       </div>
     </div>
