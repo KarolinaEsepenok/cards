@@ -17,13 +17,11 @@ import { PATH } from 'routes/routes'
 export const LearnCard = () => {
   const cards = useAppSelector(cardsSelector)
   const packName = useAppSelector(state => state.cards.packName)
-  const dispatch = useAppDispatch()
   const [arr, setArr] = useState<CardType[]>([])
   const [showAnswer, setShowAnswer] = useState(false)
 
   const { id } = useParams()
-
-  console.log(cards)
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     if (cards && !arr.length) setArr([...cards])
@@ -50,9 +48,11 @@ export const LearnCard = () => {
       <NavLink to={PATH.PACKS} className={s.link}>
         <p>&lArr; Back to Packs List</p>
       </NavLink>
+
       <h2 className={s.title}>
         {packName ? `Learn '${packName}'` : <Skeleton sx={{ width: '300px', height: '40px' }} animation="wave" />}
       </h2>
+
       <div className={s.cardContainer}>
         {showAnswer ? (
           <CardAnswer cardId={arr[0]._id} answer={arr[0].answer} handelNextCard={nextCard} />
