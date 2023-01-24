@@ -33,6 +33,6 @@ export const minValueRangeSelector = (state: RootStateType) => state.packs.query
 export const maxValueRangeSelector = (state: RootStateType) => state.packs.queryParams.max
 export const cardPacksTotalCountSelector = (state: RootStateType) => state.packs.cardPacksTotalCount
 export const resetRange = (state: RootStateType) => state.packs.resetRange
-
+export const queryParamsSelector = (state: RootStateType) => state.packs.queryParams
 //cards
 export const cardsSelector = (state: RootStateType) => state.cards.cards
