@@ -1,9 +1,10 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 import { setError, setIsLoading } from 'app/appSlice'
 import { sortingCardsMethods } from 'common/constants/sortingPacksMethods/sortingPacksMethods'
 import { AppThunk } from 'common/hooks/AppThunk'
+import { AppDispatchType } from 'common/hooks/useAppDispatch'
 import { AddNewCardParamType, cardsAPI, CardType } from 'pages/cards/cardsApi'
 
 const initialState = {
@@ -19,7 +20,28 @@ const initialState = {
   },
   packId: '',
   creatorId: '',
+
+  cardsForLearn: [] as CardType[],
 }
+
+export const setCardGradeTC = createAsyncThunk<void, { cardId: string; grade: number }, { dispatch: AppDispatchType }>(
+  'cards/setCardGradeTC',
+  async ({ cardId, grade }, { dispatch }) => {
+    dispatch(setIsLoading(true))
+
+    try {
+      await cardsAPI.updateCardGrade(cardId, grade)
+    } catch (e) {
+      if (axios.isAxiosError<{ error: string }>(e)) {
+        const error = e.response ? e.response.data.error : 'Something wrong'
+
+        dispatch(setError(error))
+      }
+    } finally {
+      dispatch(setIsLoading(false))
+    }
+  }
+)
 
 export const getCardsTC =
   (cardsPack_id: string): AppThunk =>
@@ -39,6 +61,7 @@ export const getCardsTC =
       const { cards } = response.data
 
       dispatch(getCards({ cards: cards }))
+      dispatch(setCardsForLearn({ cards: cards }))
       dispatch(setCreatorId(response.data.packUserId))
     } catch (e) {
       if (axios.isAxiosError<{ error: string }>(e)) {
@@ -139,8 +162,12 @@ const slice = createSlice({
         }
       })
     },
+    setCardsForLearn: (state, action: PayloadAction<{ cards: CardType[] }>) => {
+      state.cardsForLearn = action.payload.cards
+    },
   },
 })
 
 export const cardsReducer = slice.reducer
-export const { getCards, setPackId, setCreatorId, setPackName, updateCard, addNewCard } = slice.actions
+export const { getCards, setPackId, setCreatorId, setPackName, updateCard, addNewCard, setCardsForLearn } =
+  slice.actions
