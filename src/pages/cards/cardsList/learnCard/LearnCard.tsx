@@ -3,18 +3,19 @@ import React, { useEffect, useState } from 'react'
 import { CircularProgress } from '@mui/material'
 import { useParams } from 'react-router-dom'
 
-import { Button } from 'common/components/button/Button'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import { cardsSelector } from 'common/selectors/Selectors'
 import { CardType } from 'pages/cards/cardsApi'
+import { CardAnswer } from 'pages/cards/cardsList/learnCard/cardAnswer/cardAnswer'
+import { CardQuestion } from 'pages/cards/cardsList/learnCard/cardQuestion/cardQuestion'
 import { getCardsTC } from 'pages/cards/cardsSlice'
 
-export const Card = () => {
+export const LearnCard = () => {
   const cards = useAppSelector(cardsSelector)
   const dispatch = useAppDispatch()
   const [arr, setArr] = useState<CardType[]>([])
-
+  const [showAnswer, setShowAnswer] = useState(false)
   const { id } = useParams()
 
   useEffect(() => {
@@ -30,6 +31,7 @@ export const Card = () => {
 
     copyArr.shift()
     setArr(copyArr)
+    setShowAnswer(false)
   }
 
   if (!arr.length) {
@@ -38,15 +40,8 @@ export const Card = () => {
 
   return arr.length > 1 ? (
     <div>
-      <h2>Question: </h2>
-      <p>{arr[0].question ? arr[0].question : 'loading'}</p>
-
-      <h2>Answer: </h2>
-      <p>{arr[0].answer ? arr[0].answer : 'loading'}</p>
-
-      <Button styleType="primary" onClick={nextCard}>
-        Next
-      </Button>
+      {!showAnswer && <CardQuestion question={arr[0].question} handelShowAnswer={setShowAnswer} />}
+      {showAnswer && <CardAnswer answer={arr[0].answer} handelNextCard={nextCard} />}
     </div>
   ) : (
     <h2>вы прошлись по всей колоде, хотите учить еще раз?</h2>
