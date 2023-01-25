@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import s from './CardsList.module.scss'
 
@@ -24,14 +24,14 @@ export const CardsList: FC<CardsListType> = ({ cards }) => {
   const myId = useAppSelector(state => state.auth.id)
   const packCreatorId = useAppSelector(state => state.cards.creatorId)
   const myPack = myId === packCreatorId
-  const packId = useAppSelector(state => state.cards.packId)
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const { id } = useParams()
 
   const handelLearnPack = () => {
     dispatch(setIsLoading(true))
-    navigate(`/cards/${packId}/learn`)
+    navigate(`/cards/${id}/learn`)
   }
 
   return (

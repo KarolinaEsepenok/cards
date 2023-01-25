@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 
-import { CircularProgress, Skeleton } from '@mui/material'
+import CircularProgress from '@mui/material/CircularProgress'
+import Skeleton from '@mui/material/Skeleton'
 import { NavLink, useParams } from 'react-router-dom'
 
+import { Answer } from './answer/Answer'
 import s from './LearnCard.module.scss'
 
 import { Button } from 'common/components/button/Button'
@@ -10,15 +12,13 @@ import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import { cardsSelector } from 'common/selectors/Selectors'
 import { CardType } from 'pages/cards/cardsApi'
-import { CardAnswer } from 'pages/cards/cardsList/learnCard/cardAnswer/cardAnswer'
 import { getCardsTC } from 'pages/cards/cardsSlice'
-import { PATH } from 'routes/routes'
 
 export const LearnCard = () => {
   const cards = useAppSelector(cardsSelector)
   const packName = useAppSelector(state => state.cards.packName)
   const [showAnswer, setShowAnswer] = useState(false)
-  const [card, setCard] = useState<any>({})
+  const [card, setCard] = useState<CardType>()
   const [first, setFirst] = useState(true)
 
   const { id } = useParams()
@@ -33,8 +33,10 @@ export const LearnCard = () => {
   useEffect(() => {
     if (first && cards.length) {
       setCard(getCard(cards))
+      setFirst(false)
     }
   }, [cards])
+
   const nextCard = () => {
     setShowAnswer(false)
     setCard(getCard(cards))
@@ -52,22 +54,16 @@ export const LearnCard = () => {
       { sum: 0, id: -1 }
     )
 
-    console.log('test: ', sum, rand, res)
-
     return cards[res.id + 1]
   }
 
-  console.log(getCard(cards))
-  console.log(getCard(cards))
-  console.log(getCard(cards))
-
-  if (!card._id) {
+  if (!card) {
     return <CircularProgress sx={{ position: 'absolute', top: '50%', left: '50%' }} />
   }
 
   return (
     <div className={s.learnCard}>
-      <NavLink to={PATH.PACKS} className={s.link}>
+      <NavLink to={`/cards/${id}`} className={s.link}>
         <p>&lArr; Back to Pack List</p>
       </NavLink>
 
@@ -78,11 +74,11 @@ export const LearnCard = () => {
       <div className={s.cardContainer}>
         <h3 className={s.subtitle}>
           Question:
-          {card.question ? <span className={s.text}> {card.question}</span> : <Skeleton animation="wave" />}
+          <span className={s.text}> {card.question}</span>
         </h3>
 
         {showAnswer ? (
-          <CardAnswer cardId={card._id} answer={card.answer} handelNextCard={nextCard} />
+          <Answer cardId={card._id} answer={card.answer} handelNextCard={nextCard} />
         ) : (
           <Button styleType="primary" onClick={() => setShowAnswer(true)}>
             Show answer

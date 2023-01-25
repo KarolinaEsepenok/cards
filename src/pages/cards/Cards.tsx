@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import { CircularProgress } from '@mui/material'
+import CircularProgress from '@mui/material/CircularProgress'
 import { useParams } from 'react-router-dom'
 
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
@@ -19,7 +19,7 @@ export const Cards = () => {
   let { id } = useParams()
 
   useEffect(() => {
-    dispatch(getCardsTC(id ? id : ''))
+    if (id) dispatch(getCardsTC(id))
   }, [])
 
   if (isLoading) {
