@@ -11,4 +11,5 @@ export const PATH = {
   EMPTY_PACK: '/empty-pack',
   ERROR_404: '/404',
   CARDS: '/cards/:id',
+  CARD: '/cards/:id/learn',
 } as const

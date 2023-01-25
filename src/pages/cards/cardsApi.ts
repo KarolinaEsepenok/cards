@@ -21,6 +21,12 @@ export const cardsAPI = {
       },
     })
   },
+  updateCardGrade(cardId: string, grade: number) {
+    return instance.put<'', AxiosResponse<ResponseUpdateCardGrade>, RequestUpdateCardGrade>('cards/grade', {
+      card_id: cardId,
+      grade,
+    })
+  },
   deleteCard(cardId: string) {
     return instance.delete<DeleteCardType>(`cards/card?id=${cardId}`)
   },
@@ -55,6 +61,7 @@ export type ResponseGetType = {
   page: number
   pageCount: number
   packUserId: string
+  packName: string
 }
 
 export type RequestCardsType = {
@@ -97,6 +104,22 @@ export type DeleteCardType = {
 
 export type ResponseUpdateCardType = {
   updatedCard: CardType
+}
+
+export type RequestUpdateCardGrade = {
+  grade: number
+  card_id: string
+}
+
+export type ResponseUpdateCardGrade = {
+  updatedGrade: {
+    _id: string
+    cardsPack_id: string
+    card_id: string
+    user_id: string
+    grade: number
+    shots: number
+  }
 }
 
 export type RequestUpdateCardType = {

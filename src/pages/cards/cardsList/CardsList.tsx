@@ -1,11 +1,15 @@
 import React, { FC } from 'react'
 
 import { useDispatch } from 'react-redux'
+import { useNavigate, useParams } from 'react-router-dom'
 
-import { toggleModal } from 'app/appSlice'
+import s from './CardsList.module.scss'
+
+import { setIsLoading, toggleModal } from 'app/appSlice'
 import { Button } from 'common/components/button/Button'
 import { AddCardModal } from 'common/components/modals/AddCardModal'
 import { useAppSelector } from 'common/hooks/useAppSelector'
+import { Search } from 'common/modules/search/Search'
 import list from 'common/style/List.module.scss'
 import { formatDate } from 'common/utils/formatDate'
 import { CardType } from 'pages/cards/cardsApi'
@@ -21,17 +25,34 @@ export const CardsList: FC<CardsListType> = ({ cards }) => {
   const packCreatorId = useAppSelector(state => state.cards.creatorId)
   const myPack = myId === packCreatorId
 
+  const navigate = useNavigate()
   const dispatch = useDispatch()
+  const { id } = useParams()
+
+  const handelLearnPack = () => {
+    dispatch(setIsLoading(true))
+    navigate(`/cards/${id}/learn`)
+  }
 
   return (
     <>
-      {myPack && (
-        <Button onClick={() => dispatch(toggleModal(true))} styleType={'primary'}>
-          Add New Card
+      <div className={s.buttonsContainer}>
+        <Button styleType="primary" onClick={handelLearnPack}>
+          learn pack
         </Button>
-      )}
+
+        {myPack && (
+          <Button onClick={() => dispatch(toggleModal(true))} styleType={'primary'}>
+            Add New Card
+          </Button>
+        )}
+      </div>
 
       <AddCardModal />
+
+      <div className={s.searchContainer}>
+        <Search class={s.search} />
+      </div>
 
       <table className={list.table}>
         <thead>
@@ -53,7 +74,7 @@ export const CardsList: FC<CardsListType> = ({ cards }) => {
                 question={c.question}
                 answer={c.answer}
                 update={dateUpdate}
-                grade={c.grade}
+                grade={Number(c.grade.toFixed(1))}
                 actions={myPack && <CardActions cardId={c._id} question={c.question} answer={c.answer} />}
               />
             )
