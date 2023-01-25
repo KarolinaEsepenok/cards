@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 
-import CircularProgress from '@mui/material/CircularProgress'
 import { NavLink, useParams } from 'react-router-dom'
 
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
@@ -24,9 +23,7 @@ export const Cards = () => {
     if (id) dispatch(getCardsTC(id))
   }, [])
 
-  if (isLoading) {
-    return <CircularProgress sx={{ position: 'absolute', top: '50%', left: '50%' }} />
-  }
+  if (isLoading) return <></>
 
   return cards.length ? (
     <>
