@@ -28,6 +28,18 @@
   margin:  0  0 18px 0;
 }
 
+.subtitle {
+
+  @include title(600);
+
+  margin: 0;
+}
+
+.text {
+
+  @include title();
+}
+
 .link {
 
   @include subtitle(500);
