@@ -22,7 +22,7 @@ export const AddCardModal = () => {
   const handleChangeAnswer = (e: React.ChangeEvent<HTMLInputElement>) => setAnswer(e.currentTarget.value)
 
   return (
-    <Modal title={'Add new cardRow'} onClickSave={handleAddCard}>
+    <Modal title={'Add new card'} onClickSave={handleAddCard}>
       <>
         <select>
           <option value="0">Select1</option>
