@@ -37,3 +37,4 @@ export const queryParamsSelector = (state: RootStateType) => state.packs.queryPa
 //cards
 export const cardsSelector = (state: RootStateType) => state.cards.cards
 export const cardsPackName = (state: RootStateType) => state.cards.packName
+export const cardCreatorId = (state: RootStateType) => state.cards.creatorId
