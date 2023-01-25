@@ -13,6 +13,12 @@ import { Header } from 'common/modules/header/Header'
 import { isAppInitialize, isLoadingSelector } from 'common/selectors/Selectors'
 import { RoutesComponent } from 'routes/RoutesComponent'
 
+const circularProgressStyle = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+}
+
 export const App = () => {
   const dispatch = useAppDispatch()
   const isAppInitialized = useAppSelector(isAppInitialize)
@@ -25,7 +31,7 @@ export const App = () => {
   }, [])
 
   if (!isAppInitialized) {
-    return <CircularProgress sx={{ position: 'absolute', top: '50%', left: '50%' }} />
+    return <CircularProgress sx={circularProgressStyle} />
   }
 
   return (

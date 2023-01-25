@@ -1,0 +1,22 @@
+@import 'src/common/style/mixins';
+
+@import 'src/common/style/variables';
+
+.link {
+
+  @include navigateLink();
+}
+
+.buttonsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between
+}
+
+.searchContainer {
+  margin: 20px 0;
+}
+
+.search {
+  width: 100%;
+}

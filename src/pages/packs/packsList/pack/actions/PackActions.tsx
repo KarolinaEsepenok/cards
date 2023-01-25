@@ -1,5 +1,7 @@
 import React, { FC } from 'react'
 
+import s from '../Pack.module.scss'
+
 import { toggleModal } from 'app/appSlice'
 import edit from 'assets/img/icons/edit.svg'
 import teacher from 'assets/img/icons/teacher.svg'
@@ -16,8 +18,9 @@ type ActionsType = {
   myPack: boolean
   packId: string
   name: string
+  cardsCount: number
 }
-export const PackActions: FC<ActionsType> = ({ myPack, packId, name }) => {
+export const PackActions: FC<ActionsType> = ({ myPack, packId, name, cardsCount }) => {
   const dispatch = useAppDispatch()
   const modalContent = useAppSelector(state => state.packs.modalNode)
   const toggleModalFromState = useAppSelector(state => state.app.toggleModal)
@@ -38,9 +41,10 @@ export const PackActions: FC<ActionsType> = ({ myPack, packId, name }) => {
 
   return (
     <div>
-      <Button styleType="icon">
+      <Button styleType="icon" disabled={!myPack && cardsCount === 0}>
         <img src={teacher} alt="icon teacher" />
       </Button>
+
       {myPack && (
         <>
           <Button styleType="icon" onClick={handlerTogglePopup}>

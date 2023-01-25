@@ -1,0 +1,47 @@
+.errorContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 60vh;
+
+  .errorInfo {
+    margin-top: -15px;
+    margin-right: 62px;
+
+    font-size: 50px;
+    font-weight: 600;
+
+    .descrError {
+      margin-top: -20px;
+      margin-bottom: 36px;
+
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    @media screen and (max-width: 500px) {
+      font-size: 32px;
+    }
+
+    @media screen and (max-width: 800px) {
+      margin-right: 0px;
+      margin-bottom: 20px;
+
+      text-align: center;
+    }
+  }
+
+  .error404Img {
+
+    @media screen and (max-width: 500px) {
+      width: 95%;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+  }
+
+
+}

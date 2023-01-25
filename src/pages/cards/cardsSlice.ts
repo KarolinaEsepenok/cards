@@ -1,9 +1,10 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 import { setError, setIsLoading } from 'app/appSlice'
 import { sortingCardsMethods } from 'common/constants/sortingPacksMethods/sortingPacksMethods'
 import { AppThunk } from 'common/hooks/AppThunk'
+import { AppDispatchType } from 'common/hooks/useAppDispatch'
 import { AddNewCardParamType, cardsAPI, CardType } from 'pages/cards/cardsApi'
 
 const initialState = {
@@ -20,6 +21,7 @@ const initialState = {
   },
   packId: '',
   creatorId: '',
+  isLoading: false,
   toggleCardModal: false,
 }
 
@@ -41,6 +43,7 @@ export const getCardsTC =
       const { cards } = response.data
 
       dispatch(getCards({ cards: cards }))
+      dispatch(setPackName(response.data.packName))
       dispatch(setCreatorId(response.data.packUserId))
     } catch (e) {
       if (axios.isAxiosError<{ error: string }>(e)) {
@@ -52,6 +55,25 @@ export const getCardsTC =
       dispatch(setIsLoading(false))
     }
   }
+
+export const setCardGradeTC = createAsyncThunk<void, { cardId: string; grade: number }, { dispatch: AppDispatchType }>(
+  'cards/setCardGradeTC',
+  async ({ cardId, grade }, { dispatch }) => {
+    dispatch(setCardsIsLoading(true))
+
+    try {
+      await cardsAPI.updateCardGrade(cardId, grade)
+    } catch (e) {
+      if (axios.isAxiosError<{ error: string }>(e)) {
+        const error = e.response ? e.response.data.error : 'Something wrong'
+
+        dispatch(setError(error))
+      }
+    } finally {
+      dispatch(setCardsIsLoading(false))
+    }
+  }
+)
 
 export const addNewCardTC =
   (packId: string, card: AddNewCardParamType): AppThunk =>
@@ -139,6 +161,9 @@ const slice = createSlice({
         }
       })
     },
+    setCardsIsLoading(state, action: PayloadAction<boolean>) {
+      state.isLoading = action.payload
+    },
     setPackName: (state, action: PayloadAction<string>) => {
       state.packName = action.payload
     },
@@ -154,13 +179,6 @@ const slice = createSlice({
 })
 
 export const cardsReducer = slice.reducer
-export const {
-  getCards,
-  setCreatorId,
-  updateCard,
-  addNewCard,
-  setPackId,
-  setPackName,
-  setEditCardData,
-  toggleCardModal,
-} = slice.actions
+export const { getCards, setPackId, setCreatorId, setPackName, updateCard, addNewCard, setCardsIsLoading, toggleCardModal } =
+  slice.actions
+
