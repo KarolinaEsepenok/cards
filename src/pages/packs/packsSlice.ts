@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-import { AddPackType, packsApi, PackType } from './packsApi'
+import { AddPackType, GetParamsType, packsApi, PackType } from './packsApi'
 
 import { setError, setIsLoading } from 'app/appSlice'
 import { RootStateType } from 'app/store'
@@ -17,8 +17,10 @@ const initialState = {
   maxCardsCount: 110,
   resetRange: false,
   queryParams: {
-    pageCount: sessionStorage.getItem('row') ? Number(sessionStorage.getItem('row')) : 5,
-    page: sessionStorage.getItem('page') ? Number(sessionStorage.getItem('page')) : 1,
+    // pageCount: sessionStorage.getItem('row') ? Number(sessionStorage.getItem('row')) : 5,
+    // page: sessionStorage.getItem('page') ? Number(sessionStorage.getItem('page')) : 1,
+    pageCount: 5,
+    page: 1,
     min: 0,
     max: 110,
     user_id: '',
@@ -165,6 +167,9 @@ const slice = createSlice({
     setSort: (state, action: PayloadAction<sortingPacksMethods>) => {
       state.queryParams.sortPacks = action.payload
     },
+    setQueryParams: (state, action: PayloadAction<GetParamsType>) => {
+      state.queryParams = action.payload
+    },
   },
 })
 
@@ -180,4 +185,5 @@ export const {
   resetAllFilters,
   setSearchName,
   setSort,
+  setQueryParams,
 } = slice.actions

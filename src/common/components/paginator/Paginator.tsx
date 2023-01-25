@@ -28,14 +28,14 @@ export const Paginator: FC<PaginationPropsType> = ({
   const isLoading = useAppSelector(isLoadingSelector)
 
   const handleChangePage = (event: ChangeEvent<unknown>, value: number) => {
-    sessionStorage.setItem('page', JSON.stringify(value))
+    // sessionStorage.setItem('page', JSON.stringify(value))
     setPageCallback(value)
   }
 
   const handleChangeRowsPerPage = (event: SelectChangeEvent) => {
     const pageCount = +event.target.value
 
-    sessionStorage.setItem('row', JSON.stringify(pageCount))
+    //sessionStorage.setItem('row', JSON.stringify(pageCount))
     setRowCallback(pageCount)
   }
 

@@ -1,49 +1,48 @@
 import React, { useEffect } from 'react'
 
-import { useLocation, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 
 import s from './Packs.module.scss'
 
 import { Subtitle } from 'common/components/typography/subtitle/Subtitle'
+import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import { FilterMyAllPacks } from 'common/modules/filterMyAllPacks/FilterMyAllPacks'
 import { RangeSlider } from 'common/modules/range/Range'
 import { ResetAllFilters } from 'common/modules/resetAllFilters/ResetAllFilters'
 import { Search } from 'common/modules/search/Search'
 import { queryParamsSelector } from 'common/selectors/Selectors'
+import { GetParamsType } from 'pages/packs/packsApi'
+import { setQueryParams } from 'pages/packs/packsSlice'
 
+{
+  /*pageCount: 5,
+                                  page: 1,
+                                  min: 0,
+                                  max: 110,
+                                  user_id: '',
+                                  packName: '',
+                                  sortPacks: sortingPacksMethods.desUpdate*/
+}
 export const PacksFilters = () => {
   const queryParams = useAppSelector(queryParamsSelector)
-  const location = useLocation()
-  const [searchParams, setSearchParams] = useSearchParams()
+  const [searchParams, setSearchParams] = useSearchParams(window.location.search)
+  const dispatch = useAppDispatch()
 
-  const convertToStringParams = () => {
-    const keys = Object.keys(queryParams)
-
-    let result = {}
-
-    keys.forEach((key: any) => {
-      //@ts-ignore
-      result = { ...result, [key]: queryParams[key] }
-    })
-    setSearchParams(result)
-    // for (let p in queryParams) {
-    //     setSearchParams({p: queryParams[`${p}`] + ''})
-    // }
-  }
-
+  //const param = searchParams.get('param')
   useEffect(() => {
-    convertToStringParams()
-
-    //const searchParams = new URLSearchParams()
-    // console.log('location', location)
-    // console.log('params', searchParams)
-    // console.log('query', queryParams)
+    //pageCount=5&page=2&min=0&max=110&user_id=&packName=&sortPacks=0updated
+    // @ts-ignore
+    setSearchParams(queryParams)
   }, [queryParams])
+  useEffect(() => {
+    const newParams = Object.fromEntries(searchParams)
 
-  searchParams.forEach((val, key) => {
-    console.log(key + ' ' + val)
-  })
+    Object.keys(newParams).forEach(key => {
+      if (!newParams[key]) delete newParams[key]
+    })
+    dispatch(setQueryParams({ ...queryParams, ...newParams } as unknown as GetParamsType))
+  }, [searchParams])
 
   return (
     <div className={s.filtersContainer}>
