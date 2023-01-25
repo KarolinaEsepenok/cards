@@ -5,19 +5,29 @@ import { useDispatch } from 'react-redux'
 import { toggleModal } from 'app/appSlice'
 import { Button } from 'common/components/button/Button'
 import { AddCardModal } from 'common/components/modals/AddCardModal'
+import { useAppSelector } from 'common/hooks/useAppSelector'
+import { setModalContent } from 'pages/packs/packsSlice'
 
 export const EmptyPack = () => {
   const dispatch = useDispatch()
 
+  const modalContent = useAppSelector(state => state.packs.modalNode)
+  const toggleModalFromState = useAppSelector(state => state.app.toggleModal)
+  const packName = useAppSelector(state => state.cards.packName)
+
+  const handleAddCard = () => {
+    dispatch(setModalContent('addCard'))
+    dispatch(toggleModal(true))
+  }
+
   return (
     <div>
-      <h2>{'Need render names pack'}</h2>
+      <h2>{packName}</h2>
       <p>This pack is empty. Click add new card to fill this pack</p>
-      <Button onClick={() => dispatch(toggleModal(true))} styleType={'primary'}>
+      <Button onClick={handleAddCard} styleType={'primary'}>
         Add New Card
       </Button>
-
-      <AddCardModal />
+      {toggleModalFromState && modalContent === 'addCard' && <AddCardModal />}
     </div>
   )
 }

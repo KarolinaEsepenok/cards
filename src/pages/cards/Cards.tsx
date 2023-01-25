@@ -6,6 +6,7 @@ import s from './Cards.module.scss'
 
 import { setIsLoading, toggleModal } from 'app/appSlice'
 import { Button } from 'common/components/button/Button'
+import { AddCardModal } from 'common/components/modals/AddCardModal'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import { Search } from 'common/modules/search/Search'
@@ -19,6 +20,7 @@ import {
 import { CardsList } from 'pages/cards/cardsList/CardsList'
 import { getCardsTC } from 'pages/cards/cardsSlice'
 import { EmptyPack } from 'pages/packs/packsList/pack/emptyPack/EmptyPack'
+import { setModalContent } from 'pages/packs/packsSlice'
 import { PATH } from 'routes/routes'
 
 export const Cards = () => {
@@ -27,6 +29,9 @@ export const Cards = () => {
   const packName = useAppSelector(cardsPackName)
   const myId = useAppSelector(myIdSelector)
   const packCreatorId = useAppSelector(cardCreatorId)
+  const modalContent = useAppSelector(state => state.packs.modalNode)
+  const toggleModalFromState = useAppSelector(state => state.app.toggleModal)
+
   const myPack = myId === packCreatorId
 
   const dispatch = useAppDispatch()
@@ -40,6 +45,11 @@ export const Cards = () => {
   const handelLearnPack = () => {
     dispatch(setIsLoading(true))
     navigate(`/cards/${id}/learn`)
+  }
+
+  const handleAddCard = () => {
+    dispatch(setModalContent('addCard'))
+    dispatch(toggleModal(true))
   }
 
   if (isLoading) return <></>
@@ -58,10 +68,11 @@ export const Cards = () => {
         </Button>
 
         {myPack && (
-          <Button onClick={() => dispatch(toggleModal(true))} styleType={'primary'}>
+          <Button onClick={handleAddCard} styleType={'primary'}>
             Add New Card
           </Button>
         )}
+        {toggleModalFromState && modalContent === 'addCard' && <AddCardModal />}
       </div>
 
       <div className={s.searchContainer}>
