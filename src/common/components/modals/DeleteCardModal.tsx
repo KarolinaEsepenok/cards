@@ -26,7 +26,7 @@ export const DeleteCardModal = () => {
       <div onClick={e => e.stopPropagation()} className={s.modalContent}>
         <span onClick={handleClose}>X</span>
         <h2>Delete Card</h2>
-        <p>Do you really want to remove question: {question}? This card will be deleted.</p>
+        <p>Do you really want to remove {question} card?</p>
         <Button onClick={handleClose} styleType="secondary">
           Cancel
         </Button>

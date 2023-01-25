@@ -2,48 +2,37 @@ import React, { ReactNode } from 'react'
 
 import { useDispatch } from 'react-redux'
 
-import { useAppSelector } from '../../hooks/useAppSelector'
-import { Button } from '../button/Button'
-
 import s from './Modals.module.scss'
 
 import { toggleModal } from 'app/appSlice'
+import { ModalButton } from 'common/components/modals/ModalButton'
 
 type BasicModalType = {
   children: ReactNode
-  // title: string
-  // onClickSave: () => void
+  title: string
+  isSaveDataModal: () => void
+  typeBtn: string
 }
 
-// export const Modal: React.FC<BasicModalType> = ({ children, title, onClickSave }) => {
-export const Modal: React.FC<BasicModalType> = ({ children }) => {
-  const toggle = useAppSelector(state => state.app.toggleModal)
+export const Modal: React.FC<BasicModalType> = ({ children, title, isSaveDataModal }) => {
   const dispatch = useDispatch()
 
-  const handleClose = () => {
-    dispatch(toggleModal(false))
-  }
-
-  const handleDispatch = () => {
+  const handleCloseModal = () => {
     dispatch(toggleModal(false))
   }
 
   return (
     <>
-      {toggle && (
-        <div onClick={handleClose} className={s.modal}>
-          <div onClick={e => e.stopPropagation()} className={s.modalContent}>
-            <div onClick={handleClose}>X</div>
+      <div onClick={handleCloseModal} className={s.modal}>
+        <div onClick={e => e.stopPropagation()} className={s.modalContent}>
+          <span onClick={handleCloseModal}>X</span>
+          <h2>{title}</h2>
 
-            {children}
+          {children}
 
-            <Button onClick={handleClose}>Cancel</Button>
-            <Button onClick={handleDispatch} styleType="primary">
-              save
-            </Button>
-          </div>
+          <ModalButton isCloseModal={handleCloseModal} isSaveDataModal={isSaveDataModal} />
         </div>
-      )}
+      </div>
     </>
   )
 }
