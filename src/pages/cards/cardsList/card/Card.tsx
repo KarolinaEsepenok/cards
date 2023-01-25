@@ -8,7 +8,7 @@ type CardRowType = {
   actions?: ReactNode
 }
 
-export const CardRow: FC<CardRowType> = ({ question, answer, update, grade, actions }) => {
+export const Card: FC<CardRowType> = ({ question, answer, update, grade, actions }) => {
   return (
     <tr>
       <td>{question}</td>

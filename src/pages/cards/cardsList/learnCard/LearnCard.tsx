@@ -10,13 +10,30 @@ import s from './LearnCard.module.scss'
 import { Button } from 'common/components/button/Button'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
-import { cardsSelector } from 'common/selectors/Selectors'
+import { cardsPackName, cardsSelector, isLoadingSelector } from 'common/selectors/Selectors'
 import { CardType } from 'pages/cards/cardsApi'
 import { getCardsTC } from 'pages/cards/cardsSlice'
 
+const circularProgressStyle = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+}
+
+const skeletonTitleStyle = {
+  width: '300px',
+  height: '24x',
+}
+
+const skeletonSubtitleStyle = {
+  width: '300px',
+  height: '40px',
+}
+
 export const LearnCard = () => {
   const cards = useAppSelector(cardsSelector)
-  const packName = useAppSelector(state => state.cards.packName)
+  const packName = useAppSelector(cardsPackName)
+  const isLoading = useAppSelector(isLoadingSelector)
   const [showAnswer, setShowAnswer] = useState(false)
   const [card, setCard] = useState<CardType>()
   const [first, setFirst] = useState(true)
@@ -58,7 +75,7 @@ export const LearnCard = () => {
   }
 
   if (!card) {
-    return <CircularProgress sx={{ position: 'absolute', top: '50%', left: '50%' }} />
+    return <CircularProgress sx={circularProgressStyle} />
   }
 
   return (
@@ -68,13 +85,17 @@ export const LearnCard = () => {
       </NavLink>
 
       <h2 className={s.title}>
-        {packName ? `Learn pack '${packName}'` : <Skeleton sx={{ width: '300px', height: '40px' }} animation="wave" />}
+        {packName ? `Learn pack '${packName}'` : <Skeleton sx={skeletonTitleStyle} animation="wave" />}
       </h2>
 
       <div className={s.cardContainer}>
         <h3 className={s.subtitle}>
           Question:
-          <span className={s.text}> {card.question}</span>
+          {isLoading ? (
+            <Skeleton sx={skeletonSubtitleStyle} animation="wave" />
+          ) : (
+            <span className={s.text}> {card.question}</span>
+          )}
         </h3>
 
         {showAnswer ? (

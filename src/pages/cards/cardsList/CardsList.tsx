@@ -13,8 +13,8 @@ import { Search } from 'common/modules/search/Search'
 import list from 'common/style/List.module.scss'
 import { formatDate } from 'common/utils/formatDate'
 import { CardType } from 'pages/cards/cardsApi'
-import { CardRowActions } from 'pages/cards/cardsList/cardRow/actions/CardRowActions'
-import { CardRow } from 'pages/cards/cardsList/cardRow/CardRow'
+import { CardActions } from 'pages/cards/cardsList/card/actions/CardActions'
+import { Card } from 'pages/cards/cardsList/card/Card'
 
 type CardsListType = {
   cards: CardType[]
@@ -69,13 +69,13 @@ export const CardsList: FC<CardsListType> = ({ cards }) => {
             const dateUpdate = formatDate(c.updated)
 
             return (
-              <CardRow
+              <Card
                 key={c._id}
                 question={c.question}
                 answer={c.answer}
                 update={dateUpdate}
                 grade={Number(c.grade.toFixed(1))}
-                actions={myPack && <CardRowActions cardId={c._id} question={c.question} answer={c.answer} />}
+                actions={myPack && <CardActions cardId={c._id} question={c.question} answer={c.answer} />}
               />
             )
           })}
