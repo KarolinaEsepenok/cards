@@ -20,6 +20,7 @@ const initialState = {
   },
   packId: '',
   creatorId: '',
+  isLoading: false,
 }
 
 export const getCardsTC =
@@ -56,7 +57,7 @@ export const getCardsTC =
 export const setCardGradeTC = createAsyncThunk<void, { cardId: string; grade: number }, { dispatch: AppDispatchType }>(
   'cards/setCardGradeTC',
   async ({ cardId, grade }, { dispatch }) => {
-    dispatch(setIsLoading(true))
+    dispatch(setCardsIsLoading(true))
 
     try {
       await cardsAPI.updateCardGrade(cardId, grade)
@@ -67,7 +68,7 @@ export const setCardGradeTC = createAsyncThunk<void, { cardId: string; grade: nu
         dispatch(setError(error))
       }
     } finally {
-      dispatch(setIsLoading(false))
+      dispatch(setCardsIsLoading(false))
     }
   }
 )
@@ -160,8 +161,12 @@ const slice = createSlice({
         }
       })
     },
+    setCardsIsLoading(state, action: PayloadAction<boolean>) {
+      state.isLoading = action.payload
+    },
   },
 })
 
 export const cardsReducer = slice.reducer
-export const { getCards, setPackId, setCreatorId, setPackName, updateCard, addNewCard } = slice.actions
+export const { getCards, setPackId, setCreatorId, setPackName, updateCard, addNewCard, setCardsIsLoading } =
+  slice.actions

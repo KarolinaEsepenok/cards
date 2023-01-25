@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 
-import CircularProgress from '@mui/material/CircularProgress'
 import Skeleton from '@mui/material/Skeleton'
 import { NavLink, useParams } from 'react-router-dom'
 
@@ -13,12 +12,6 @@ import { useAppSelector } from 'common/hooks/useAppSelector'
 import { cardsPackName, cardsSelector, isLoadingSelector } from 'common/selectors/Selectors'
 import { CardType } from 'pages/cards/cardsApi'
 import { getCardsTC } from 'pages/cards/cardsSlice'
-
-const circularProgressStyle = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-}
 
 const skeletonTitleStyle = {
   width: '300px',
@@ -75,7 +68,7 @@ export const LearnCard = () => {
   }
 
   if (!card) {
-    return <CircularProgress sx={circularProgressStyle} />
+    return <></>
   }
 
   return (
