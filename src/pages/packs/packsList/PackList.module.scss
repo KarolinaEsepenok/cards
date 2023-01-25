@@ -1,17 +1,66 @@
-.newPackInner {
-  position: absolute;
-  left: 50%;
+@import 'src/common/style/variables';
 
-  padding: 20px;
-
-  background-color: #FFFFFF;
-  border: 1px solid #0d4ade;
-}
-
-.rememberContainer {
-  margin-bottom: 20px;
-}
+@import 'src/common/style/mixins';
 
 .cursor {
   cursor: pointer;
+}
+
+.table {
+  border-collapse: collapse;
+
+  width: $main-width;
+
+  box-shadow: 0 0 3px rgb(0 0 0 / 15%);
+}
+
+.table td:last-child {
+  border:none;
+}
+
+.table tr {
+  display: flex;
+
+  border-bottom: 1px solid $background-500-color;
+}
+
+.title, .table td {
+  overflow: hidden;
+  display: inline-block;
+
+  box-sizing: border-box;
+  padding: 15px 10px;
+
+
+}
+
+.name, .table td:nth-child(1){
+  width: 358px;
+  padding-left: 35px;
+}
+
+.cards, .table td:nth-child(2) {
+  width: 100px;
+}
+
+.update, .table td:nth-child(3) {
+  width: 150px;
+}
+
+.creator, .table td:nth-child(4){
+  width: 250px;
+}
+
+.actions, .table td:nth-child(5){
+  width: 150px;
+  margin: 0 auto;
+}
+
+.title {
+
+  @include subtitle(600);
+
+  text-align: start;
+
+  background-color: $primary-color-light;
 }

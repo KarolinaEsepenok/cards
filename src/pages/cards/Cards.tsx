@@ -6,6 +6,7 @@ import s from './Cards.module.scss'
 
 import { setIsLoading, toggleModal } from 'app/appSlice'
 import { Button } from 'common/components/button/Button'
+import { AddCardModal } from 'common/components/modals/AddCardModal'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import { Search } from 'common/modules/search/Search'
@@ -56,6 +57,8 @@ export const Cards = () => {
         <Button styleType="primary" onClick={handelLearnPack}>
           learn pack
         </Button>
+
+        <AddCardModal />
 
         {myPack && (
           <Button onClick={() => dispatch(toggleModal(true))} styleType={'primary'}>

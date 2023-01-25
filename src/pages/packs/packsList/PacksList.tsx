@@ -8,7 +8,6 @@ import { sortingPacksMethods } from 'common/constants/sortingPacksMethods/sortin
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import { cardPacks, myIdSelector } from 'common/selectors/Selectors'
-import list from 'common/style/List.module.scss'
 import { formatDate } from 'common/utils/formatDate'
 import { sortHelper } from 'common/utils/sortHelper'
 
@@ -31,46 +30,54 @@ export const PacksList = () => {
     sortHelper(dispatch, sortMethod, m1, m2)
   }
 
+  const sortByName = () => {
+    universalSort(sortingPacksMethods.desName, sortingPacksMethods.ascName)
+  }
+
+  const sortByCardsCount = () => {
+    universalSort(sortingPacksMethods.desCardsCount, sortingPacksMethods.ascCardsCount)
+  }
+
+  const sortByUpdate = () => {
+    universalSort(sortingPacksMethods.desUpdate, sortingPacksMethods.ascUpdate)
+  }
+
+  const sortByCreatorName = () => {
+    universalSort(sortingPacksMethods.desUserName, sortingPacksMethods.ascUserName)
+  }
+
   return (
-    <table className={list.table}>
+    <table className={s.table}>
       <thead>
         <tr>
-          <th className={list.tableTitle}>
-            <span
-              onClick={() => universalSort(sortingPacksMethods.desName, sortingPacksMethods.ascName)}
-              className={s.cursor}
-            >
+          <th className={`${s.title} ${s.name}`}>
+            <span onClick={sortByName} className={s.cursor}>
               Name {arrowDirectionName}
             </span>
           </th>
-          <th className={list.tableTitle}>
-            <span
-              onClick={() => universalSort(sortingPacksMethods.desCardsCount, sortingPacksMethods.ascCardsCount)}
-              className={s.cursor}
-            >
+
+          <th className={`${s.title} ${s.cards}`}>
+            <span onClick={sortByCardsCount} className={s.cursor}>
               Cards {arrowDirectionCards}
             </span>
           </th>
-          <th className={list.tableTitle}>
-            <span
-              onClick={() => universalSort(sortingPacksMethods.desUpdate, sortingPacksMethods.ascUpdate)}
-              className={s.cursor}
-            >
+
+          <th className={`${s.title} ${s.update}`}>
+            <span onClick={sortByUpdate} className={s.cursor}>
               Last Updated {arrowDirectionDate}
             </span>
           </th>
-          <th className={list.tableTitle}>
-            <span
-              onClick={() => universalSort(sortingPacksMethods.desUserName, sortingPacksMethods.ascUserName)}
-              className={s.cursor}
-            >
+
+          <th className={`${s.title} ${s.creator}`}>
+            <span onClick={sortByCreatorName} className={s.cursor}>
               Created by {arrowDirectionCreated}
             </span>
           </th>
-          <th className={list.tableTitle}>Actions</th>
+
+          <th className={`${s.title} ${s.actions}`}>Actions</th>
         </tr>
       </thead>
-      <tbody className={list.tableBody}>
+      <tbody className={s.tableBody}>
         {packs.map(p => {
           const dateUpdate = formatDate(p.updated)
           const myPack = p.user_id === myId
