@@ -4,21 +4,25 @@ import { useDispatch } from 'react-redux'
 
 import s from './Modals.module.scss'
 
-import { toggleModal } from 'app/appSlice'
-import { ModalButton } from 'common/components/modals/ModalsButton'
+import { Button } from 'common/components/button/Button'
+import { ModalButton, ModalButtonVariantType } from 'common/components/modals/ModalsButton'
+import { toggleCardModal } from 'pages/cards/cardsSlice'
+import { togglePackModal } from 'pages/packs/packsSlice'
 
 type ModalType = {
   children: ReactNode
   title: string
   isSaveDataModal: () => void
-  typeBtn: string
+  typeBtn: ModalButtonVariantType
 }
 
-export const Modal: React.FC<ModalType> = ({ children, title, isSaveDataModal }) => {
+export const Modal: React.FC<ModalType> = ({ children, title, isSaveDataModal, typeBtn }) => {
   const dispatch = useDispatch()
 
   const handleCloseModal = () => {
-    dispatch(toggleModal(false))
+    // dispatch(toggleModal(false))
+    dispatch(togglePackModal(false))
+    dispatch(toggleCardModal(false))
   }
 
   return (
@@ -29,8 +33,12 @@ export const Modal: React.FC<ModalType> = ({ children, title, isSaveDataModal })
           <h2>{title}</h2>
 
           {children}
-
-          <ModalButton isCloseModal={handleCloseModal} isSaveDataModal={isSaveDataModal} />
+          <div>
+            <Button onClick={handleCloseModal} styleType={'secondary'}>
+              Cancel
+            </Button>
+            <ModalButton isSaveDataModal={isSaveDataModal} typeBtn={typeBtn} />
+          </div>
         </div>
       </div>
     </>

@@ -1,6 +1,5 @@
 import React from 'react'
 
-import { toggleModal } from 'app/appSlice'
 import edit from 'assets/img/icons/edit.svg'
 import trash from 'assets/img/icons/trash.svg'
 import { Button } from 'common/components/button/Button'
@@ -8,7 +7,7 @@ import { DeleteCardModal } from 'common/components/modals/DeleteCardModal'
 import { EditCardModal } from 'common/components/modals/EditCardModal'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
-import { setEditCardData } from 'pages/cards/cardsSlice'
+import { setEditCardData, toggleCardModal } from 'pages/cards/cardsSlice'
 import { setModalContent } from 'pages/packs/packsSlice'
 
 type CardActionsType = {
@@ -19,17 +18,20 @@ type CardActionsType = {
 export const CardActions: React.FC<CardActionsType> = ({ cardId, question, answer }) => {
   const dispatch = useAppDispatch()
   const modalContent = useAppSelector(state => state.packs.modalNode)
-  const toggleModalFromState = useAppSelector(state => state.app.toggleModal)
+  // const toggleModalFromState = useAppSelector(state => state.app.toggleModal)
+  const toggleModalFromState = useAppSelector(state => state.cards.toggleCardModal)
 
   const handleEditCard = () => {
     dispatch(setModalContent('editCard'))
-    dispatch(toggleModal(true))
+    // dispatch(toggleModal(true))
+    dispatch(toggleCardModal(true))
     dispatch(setEditCardData({ cardId, question, answer }))
   }
 
   const handlerDeleteCard = () => {
     dispatch(setModalContent('deleteCard'))
-    dispatch(toggleModal(true))
+    // dispatch(toggleModal(true))
+    dispatch(toggleCardModal(true))
     dispatch(setEditCardData({ cardId, question, answer }))
   }
 

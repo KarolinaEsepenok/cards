@@ -1,12 +1,11 @@
 import React from 'react'
 
+import { Modal } from './Modal'
 import s from './Modals.module.scss'
 
-import { toggleModal } from 'app/appSlice'
-import { Button } from 'common/components/button/Button'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
-import { deleteCardTC } from 'pages/cards/cardsSlice'
+import { deleteCardTC, toggleCardModal } from 'pages/cards/cardsSlice'
 
 export const DeleteCardModal = () => {
   const dispatch = useAppDispatch()
@@ -15,26 +14,13 @@ export const DeleteCardModal = () => {
 
   const handleDeleteCard = () => {
     dispatch(deleteCardTC(cardId))
-    dispatch(toggleModal(false))
-  }
-
-  const handleClose = () => {
-    dispatch(toggleModal(false))
+    // dispatch(toggleModal(false))
+    dispatch(toggleCardModal(false))
   }
 
   return (
-    <div onClick={handleClose} className={s.modal}>
-      <div onClick={e => e.stopPropagation()} className={s.modalContent}>
-        <span onClick={handleClose}>X</span>
-        <h2>Delete Card</h2>
-        <p>Do you really want to remove {question} card?</p>
-        <Button onClick={handleClose} styleType="secondary">
-          Cancel
-        </Button>
-        <Button onClick={handleDeleteCard} styleType="warn">
-          Delete
-        </Button>
-      </div>
-    </div>
+    <Modal title={'Delete Card'} isSaveDataModal={handleDeleteCard} typeBtn="delete">
+      <p>Do you really want to remove {question} card?</p>
+    </Modal>
   )
 }

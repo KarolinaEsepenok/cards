@@ -2,7 +2,6 @@ import React, { FC } from 'react'
 
 import s from '../Pack.module.scss'
 
-import { toggleModal } from 'app/appSlice'
 import edit from 'assets/img/icons/edit.svg'
 import teacher from 'assets/img/icons/teacher.svg'
 import trash from 'assets/img/icons/trash.svg'
@@ -12,7 +11,7 @@ import { EditPackNameModal } from 'common/components/modals/EditPackNameModal'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import { setPackId, setPackName } from 'pages/cards/cardsSlice'
-import { setModalContent } from 'pages/packs/packsSlice'
+import { setModalContent, togglePackModal } from 'pages/packs/packsSlice'
 
 type ActionsType = {
   myPack: boolean
@@ -24,17 +23,20 @@ export const PackActions: FC<ActionsType> = ({ myPack, packId, name, cardsCount 
   const dispatch = useAppDispatch()
 
   const modalContent = useAppSelector(state => state.packs.modalNode)
-  const toggleModalFromState = useAppSelector(state => state.app.toggleModal)
+  // const toggleModalFromState = useAppSelector(state => state.app.toggleModal)
+  const toggleModalFromState = useAppSelector(state => state.packs.togglePackModal)
 
   const handlerTogglePopup = () => {
-    dispatch(toggleModal(true))
+    // dispatch(toggleModal(true))
+    dispatch(togglePackModal(true))
     dispatch(setModalContent('editPackName'))
     dispatch(setPackId(packId))
     dispatch(setPackName(name))
   }
   const handlerDeletePack = () => {
     dispatch(setModalContent('deletePack'))
-    dispatch(toggleModal(true))
+    // dispatch(toggleModal(true))
+    dispatch(togglePackModal(true))
     dispatch(setPackId(packId))
     dispatch(setPackName(name))
   }

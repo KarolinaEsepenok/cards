@@ -4,7 +4,7 @@ import { NavLink, useNavigate, useParams } from 'react-router-dom'
 
 import s from './Cards.module.scss'
 
-import { setIsLoading, toggleModal } from 'app/appSlice'
+import { setIsLoading } from 'app/appSlice'
 import { Button } from 'common/components/button/Button'
 import { AddCardModal } from 'common/components/modals/AddCardModal'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
@@ -18,7 +18,7 @@ import {
   myIdSelector,
 } from 'common/selectors/Selectors'
 import { CardsList } from 'pages/cards/cardsList/CardsList'
-import { getCardsTC } from 'pages/cards/cardsSlice'
+import { getCardsTC, toggleCardModal } from 'pages/cards/cardsSlice'
 import { EmptyPack } from 'pages/packs/packsList/pack/emptyPack/EmptyPack'
 import { setModalContent } from 'pages/packs/packsSlice'
 import { PATH } from 'routes/routes'
@@ -30,7 +30,8 @@ export const Cards = () => {
   const myId = useAppSelector(myIdSelector)
   const packCreatorId = useAppSelector(cardCreatorId)
   const modalContent = useAppSelector(state => state.packs.modalNode)
-  const toggleModalFromState = useAppSelector(state => state.app.toggleModal)
+  // const toggleModalFromState = useAppSelector(state => state.app.toggleModal)
+  const toggleModalFromState = useAppSelector(state => state.cards.toggleCardModal)
 
   const myPack = myId === packCreatorId
 
@@ -49,7 +50,8 @@ export const Cards = () => {
 
   const handleAddCard = () => {
     dispatch(setModalContent('addCard'))
-    dispatch(toggleModal(true))
+    // dispatch(toggleModal(true))
+    dispatch(toggleCardModal(true))
   }
 
   if (isLoading) return <></>

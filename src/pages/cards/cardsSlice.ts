@@ -22,6 +22,7 @@ const initialState = {
   packId: '',
   creatorId: '',
   isLoading: false,
+  toggleCardModal: false,
 }
 
 export const getCardsTC =
@@ -170,6 +171,9 @@ const slice = createSlice({
       state.cards[0].question = action.payload.question
       state.cards[0].answer = action.payload.answer
     },
+    toggleCardModal: (state, action: PayloadAction<boolean>) => {
+      state.toggleCardModal = action.payload
+    },
   },
 })
 
@@ -183,4 +187,5 @@ export const {
   addNewCard,
   setCardsIsLoading,
   setEditCardData,
+  toggleCardModal,
 } = slice.actions

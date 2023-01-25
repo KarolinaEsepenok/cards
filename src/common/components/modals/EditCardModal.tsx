@@ -3,14 +3,13 @@ import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { useAppDispatch } from '../../hooks/useAppDispatch'
-import { Button } from '../button/Button'
 import { Input } from '../Input/Input'
 
+import { Modal } from './Modal'
 import s from './Modals.module.scss'
 
-import { toggleModal } from 'app/appSlice'
 import { useAppSelector } from 'common/hooks/useAppSelector'
-import { updateCardTC } from 'pages/cards/cardsSlice'
+import { toggleCardModal, updateCardTC } from 'pages/cards/cardsSlice'
 
 export const EditCardModal = () => {
   const dispatch = useAppDispatch()
@@ -24,31 +23,17 @@ export const EditCardModal = () => {
 
   const handleEditPack = () => {
     dispatch(updateCardTC(id ? id : '', cardId, { question: questionValue, answer: answerValue }))
-    dispatch(toggleModal(false))
+    // dispatch(toggleModal(false))
+    dispatch(toggleCardModal(false))
   }
 
   const handleChangeQuestion = (e: React.ChangeEvent<HTMLInputElement>) => setQuestionValue(e.currentTarget.value)
   const handleChangeAnswer = (e: React.ChangeEvent<HTMLInputElement>) => setAnswerValue(e.currentTarget.value)
 
-  const handleClose = () => {
-    dispatch(toggleModal(false))
-  }
-
   return (
-    <div onClick={handleClose} className={s.modal}>
-      <div onClick={e => e.stopPropagation()} className={s.modalContent}>
-        <span onClick={handleClose}>X</span>
-        <h2>Edit card</h2>
-        <Input autoFocus value={questionValue} onChange={handleChangeQuestion} type="text" label="Question" />
-        <Input value={answerValue} onChange={handleChangeAnswer} type="text" label="Answer" />
-
-        <Button onClick={handleClose} styleType="secondary">
-          Cancel
-        </Button>
-        <Button onClick={handleEditPack} styleType="primary">
-          Save
-        </Button>
-      </div>
-    </div>
+    <Modal title={'Edit card'} isSaveDataModal={handleEditPack} typeBtn="save">
+      <Input autoFocus value={questionValue} onChange={handleChangeQuestion} type="text" label="Question" />
+      <Input value={answerValue} onChange={handleChangeAnswer} type="text" label="Answer" />
+    </Modal>
   )
 }

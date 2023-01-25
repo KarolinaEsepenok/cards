@@ -7,9 +7,8 @@ import { Input } from '../Input/Input'
 
 import s from './Modals.module.scss'
 
-import { toggleModal } from 'app/appSlice'
-import { Button } from 'common/components/button/Button'
-import { addNewCardTC } from 'pages/cards/cardsSlice'
+import { Modal } from 'common/components/modals/Modal'
+import { addNewCardTC, toggleCardModal } from 'pages/cards/cardsSlice'
 
 export const AddCardModal = () => {
   const dispatch = useAppDispatch()
@@ -21,35 +20,21 @@ export const AddCardModal = () => {
 
   const handleAddCard = () => {
     dispatch(addNewCardTC(id ? id : '', { question, answer }))
-    dispatch(toggleModal(false))
+    // dispatch(toggleModal(false))
+    dispatch(toggleCardModal(false))
   }
   const handleChangeQuestion = (e: React.ChangeEvent<HTMLInputElement>) => setQuestion(e.currentTarget.value)
   const handleChangeAnswer = (e: React.ChangeEvent<HTMLInputElement>) => setAnswer(e.currentTarget.value)
-  const handleClose = () => {
-    dispatch(toggleModal(false))
-  }
 
   return (
-    <div onClick={handleClose} className={s.modal}>
-      <div onClick={e => e.stopPropagation()} className={s.modalContent}>
-        <span onClick={handleClose}>X</span>
-        <h2>Add new card</h2>
+    <Modal title={'Add new card'} isSaveDataModal={handleAddCard} typeBtn="save">
+      <select>
+        <option value="0">Text</option>
+        <option value="1">Select2</option>
+      </select>
 
-        <select>
-          <option value="0">Text</option>
-          <option value="1">Select2</option>
-        </select>
-
-        <Input value={question} onChange={handleChangeQuestion} type="text" label="Question" autoFocus />
-        <Input value={answer} onChange={handleChangeAnswer} type="text" label="Answer" />
-
-        <Button onClick={handleClose} styleType="secondary">
-          Cancel
-        </Button>
-        <Button onClick={handleAddCard} styleType="primary">
-          Save
-        </Button>
-      </div>
-    </div>
+      <Input value={question} onChange={handleChangeQuestion} type="text" label="Question" autoFocus />
+      <Input value={answer} onChange={handleChangeAnswer} type="text" label="Answer" />
+    </Modal>
   )
 }

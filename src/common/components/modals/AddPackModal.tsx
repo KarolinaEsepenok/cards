@@ -2,11 +2,10 @@ import React, { useState } from 'react'
 
 import { Modal } from './Modal'
 
-import { toggleModal } from 'app/appSlice'
 import { Checkbox } from 'common/components/checkbox/Checkbox'
 import { Input } from 'common/components/Input/Input'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
-import { addNewPackTC } from 'pages/packs/packsSlice'
+import { addNewPackTC, togglePackModal } from 'pages/packs/packsSlice'
 
 export const AddPackModal = () => {
   const dispatch = useAppDispatch()
@@ -14,7 +13,8 @@ export const AddPackModal = () => {
 
   const handleAddPack = () => {
     dispatch(addNewPackTC({ cardsPack: { name, deckCover: '', private: false } }))
-    dispatch(toggleModal(false))
+    // dispatch(toggleModal(false))
+    dispatch(togglePackModal(false))
   }
 
   return (
