@@ -8,7 +8,8 @@ import { AppDispatchType } from 'common/hooks/useAppDispatch'
 import { AddNewCardParamType, cardsAPI, CardType } from 'pages/cards/cardsApi'
 
 const initialState = {
-  cards: [] as CardType[],
+  // cards: [] as CardType[],
+  cards: [{ _id: '', question: '', answer: '' }] as CardType[],
   cardsTotalCount: 0,
   packName: '',
   isCardsFetched: false,
@@ -21,6 +22,7 @@ const initialState = {
   packId: '',
   creatorId: '',
   isLoading: false,
+  toggleCardModal: false,
 }
 
 export const getCardsTC =
@@ -164,9 +166,26 @@ const slice = createSlice({
     setCardsIsLoading(state, action: PayloadAction<boolean>) {
       state.isLoading = action.payload
     },
+    setEditCardData: (state, action: PayloadAction<{ cardId: string; question: string; answer: string }>) => {
+      state.cards[0]._id = action.payload.cardId
+      state.cards[0].question = action.payload.question
+      state.cards[0].answer = action.payload.answer
+    },
+    toggleCardModal: (state, action: PayloadAction<boolean>) => {
+      state.toggleCardModal = action.payload
+    },
   },
 })
 
 export const cardsReducer = slice.reducer
-export const { getCards, setPackId, setCreatorId, setPackName, updateCard, addNewCard, setCardsIsLoading } =
-  slice.actions
+export const {
+  getCards,
+  setPackId,
+  setCreatorId,
+  setPackName,
+  updateCard,
+  addNewCard,
+  setCardsIsLoading,
+  setEditCardData,
+  toggleCardModal,
+} = slice.actions

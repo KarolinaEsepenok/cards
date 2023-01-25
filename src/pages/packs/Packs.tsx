@@ -3,7 +3,6 @@ import React, { useEffect } from 'react'
 import s from './Packs.module.scss'
 import { PacksFilters } from './PacksFilters'
 
-import { toggleModal } from 'app/appSlice'
 import { Button } from 'common/components/button/Button'
 import { AddPackModal } from 'common/components/modals/AddPackModal'
 import { Paginator } from 'common/components/paginator/Paginator'
@@ -21,7 +20,7 @@ import {
   userIdSelector,
 } from 'common/selectors/Selectors'
 import { PacksList } from 'pages/packs/packsList/PacksList'
-import { getPacksTC, setPacksCurrentPage, setRowPage } from 'pages/packs/packsSlice'
+import { getPacksTC, setModalContent, setPacksCurrentPage, setRowPage, togglePackModal } from 'pages/packs/packsSlice'
 import { ResultsNotFound } from 'pages/packs/ResultsNotFound'
 
 export const Packs = () => {
@@ -35,7 +34,9 @@ export const Packs = () => {
   const totalCount = useAppSelector(cardPacksTotalCountSelector)
   const isLoading = useAppSelector(isLoadingSelector)
 
-  // const [togglePopup, setTogglePopup] = useState(false)
+  const modalContent = useAppSelector(state => state.packs.modalNode)
+  // const toggleModalFromState = useAppSelector(state => state.app.toggleModal)
+  const toggleModalFromState = useAppSelector(state => state.packs.togglePackModal)
 
   const dispatch = useAppDispatch()
   const changePageHandle = (page: number) => {
@@ -43,6 +44,12 @@ export const Packs = () => {
   }
   const changeRowPageHandle = (pageCount: number) => {
     dispatch(setRowPage(pageCount))
+  }
+
+  const handleOpenPopup = () => {
+    dispatch(setModalContent('addPack'))
+    // dispatch(toggleModal(true))
+    dispatch(togglePackModal(true))
   }
 
   useEffect(() => {
@@ -54,15 +61,13 @@ export const Packs = () => {
       <h2>Packs list</h2>
 
       <div className={s.addPackButton}>
-        <Button styleType="primary" onClick={() => dispatch(toggleModal(true))}>
-          {/*<Button styleType="primary" onClick={() => setTogglePopup(!togglePopup)}>*/}
+        <Button styleType="primary" onClick={handleOpenPopup}>
           Add new pack
         </Button>
       </div>
+      {toggleModalFromState && modalContent === 'addPack' && <AddPackModal />}
 
       <PacksFilters />
-
-      <AddPackModal />
 
       {totalCount > 0 ? (
         <div>
