@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-import { AddPackType, GetParamsType, packsApi, PackType } from './packsApi'
+import { AddPackType, packsApi, PackType } from './packsApi'
 
 import { setError, setIsLoading } from 'app/appSlice'
 import { RootStateType } from 'app/store'
@@ -167,11 +167,14 @@ const slice = createSlice({
     setSort: (state, action: PayloadAction<sortingPacksMethods>) => {
       state.queryParams.sortPacks = action.payload
     },
-    setQueryParams: (state, action: PayloadAction<GetParamsType>) => {
-      state.queryParams = action.payload
-    },
   },
 })
+
+{
+  /*setQueryParams: (state, action: PayloadAction<GetParamsType>) => {
+        state.queryParams = action.payload
+      },*/
+}
 
 export const packsReducer = slice.reducer
 export const {
@@ -185,5 +188,4 @@ export const {
   resetAllFilters,
   setSearchName,
   setSort,
-  setQueryParams,
 } = slice.actions
