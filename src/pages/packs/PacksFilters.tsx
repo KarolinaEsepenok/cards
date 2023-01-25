@@ -12,16 +12,9 @@ import { RangeSlider } from 'common/modules/range/Range'
 import { ResetAllFilters } from 'common/modules/resetAllFilters/ResetAllFilters'
 import { Search } from 'common/modules/search/Search'
 import { queryParamsSelector } from 'common/selectors/Selectors'
+import { GetParamsType } from 'pages/packs/packsApi'
+import { setQueryParams } from 'pages/packs/packsSlice'
 
-{
-  /*pageCount: 5,
-                                    page: 1,
-                                    min: 0,
-                                    max: 110,
-                                    user_id: '',
-                                    packName: '',
-                                    sortPacks: sortingPacksMethods.desUpdate*/
-}
 export const PacksFilters = () => {
   const queryParams = useAppSelector(queryParamsSelector)
   const [searchParams, setSearchParams] = useSearchParams(window.location.search)
@@ -29,7 +22,6 @@ export const PacksFilters = () => {
 
   //const param = searchParams.get('param')
   useEffect(() => {
-    //pageCount=5&page=2&min=0&max=110&user_id=&packName=&sortPacks=0updated
     // @ts-ignore
     setSearchParams(queryParams)
   }, [queryParams])
@@ -39,8 +31,8 @@ export const PacksFilters = () => {
     Object.keys(newParams).forEach(key => {
       if (!newParams[key]) delete newParams[key]
     })
-    // dispatch(setQueryParams({ ...queryParams, ...newParams } as unknown as GetParamsType))
-  }, [searchParams])
+    dispatch(setQueryParams({ ...queryParams, ...newParams } as unknown as GetParamsType))
+  }, [])
 
   return (
     <div className={s.filtersContainer}>

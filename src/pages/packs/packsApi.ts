@@ -34,7 +34,7 @@ export type PackType = {
 export type GetParamsType = {
   page: number
   pageCount: number
-  packName: string | null
+  packName: string
   user_id: string
   min: number
   max: number
