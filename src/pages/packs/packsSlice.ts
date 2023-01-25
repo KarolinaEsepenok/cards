@@ -27,6 +27,8 @@ const initialState = {
     packName: '',
     sortPacks: sortingPacksMethods.desUpdate,
   },
+  modalNode: '',
+  togglePackModal: false,
 }
 
 export const getPacksTC = createAsyncThunk<void, undefined, { state: RootStateType; dispatch: AppDispatchType }>(
@@ -167,6 +169,12 @@ const slice = createSlice({
     setSort: (state, action: PayloadAction<sortingPacksMethods>) => {
       state.queryParams.sortPacks = action.payload
     },
+    setModalContent: (state, action: PayloadAction<ModalsContentType>) => {
+      state.modalNode = action.payload
+    },
+    togglePackModal: (state, action: PayloadAction<boolean>) => {
+      state.togglePackModal = action.payload
+    },
   },
 })
 
@@ -188,4 +196,9 @@ export const {
   resetAllFilters,
   setSearchName,
   setSort,
+  setModalContent,
+  togglePackModal,
 } = slice.actions
+
+//type
+type ModalsContentType = 'editPackName' | 'addPack' | 'deletePack' | 'editCard' | 'addCard' | 'deleteCard'

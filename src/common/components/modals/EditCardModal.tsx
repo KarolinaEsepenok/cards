@@ -3,43 +3,37 @@ import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { useAppDispatch } from '../../hooks/useAppDispatch'
-import { Button } from '../button/Button'
 import { Input } from '../Input/Input'
 
+import { Modal } from './Modal'
 import s from './Modals.module.scss'
 
-import { updateCardTC } from 'pages/cards/cardsSlice'
+import { useAppSelector } from 'common/hooks/useAppSelector'
+import { toggleCardModal, updateCardTC } from 'pages/cards/cardsSlice'
 
-type EditCardModalType = {
-  setToggle: (v: any) => void
-  toggle: boolean
-  cardId: string
-  question: string
-  answer: string
-}
-export const EditCardModal: React.FC<EditCardModalType> = ({ setToggle, toggle, cardId, question, answer }) => {
+export const EditCardModal = () => {
   const dispatch = useAppDispatch()
   let { id } = useParams()
+  const cardId = useAppSelector(state => state.cards.cards[0]._id)
+  const question = useAppSelector(state => state.cards.cards[0].question)
+  const answer = useAppSelector(state => state.cards.cards[0].answer)
 
   const [questionValue, setQuestionValue] = useState<string>(question)
   const [answerValue, setAnswerValue] = useState<string>(answer)
 
-  const handleAddPack = () =>
+  const handleEditPack = () => {
     dispatch(updateCardTC(id ? id : '', cardId, { question: questionValue, answer: answerValue }))
+    // dispatch(toggleModal(false))
+    dispatch(toggleCardModal(false))
+  }
 
   const handleChangeQuestion = (e: React.ChangeEvent<HTMLInputElement>) => setQuestionValue(e.currentTarget.value)
   const handleChangeAnswer = (e: React.ChangeEvent<HTMLInputElement>) => setAnswerValue(e.currentTarget.value)
 
   return (
-    <div className={s.modalContent}>
-      <h2>Edit card</h2>
-      <Input value={questionValue} onChange={handleChangeQuestion} type="text" label="Question" />
+    <Modal title={'Edit card'} isSaveDataModal={handleEditPack} typeBtn="save">
+      <Input autoFocus value={questionValue} onChange={handleChangeQuestion} type="text" label="Question" />
       <Input value={answerValue} onChange={handleChangeAnswer} type="text" label="Answer" />
-
-      <Button onClick={handleAddPack} styleType="primary">
-        Save
-      </Button>
-      <button onClick={() => setToggle(!toggle)}>Close</button>
-    </div>
+    </Modal>
   )
 }
