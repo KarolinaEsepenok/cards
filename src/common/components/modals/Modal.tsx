@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useEffect } from 'react'
 
 import { useDispatch } from 'react-redux'
 
@@ -24,6 +24,19 @@ export const Modal: React.FC<ModalType> = ({ children, title, isSaveDataModal, t
     dispatch(togglePackModal(false))
     dispatch(toggleCardModal(false))
   }
+  const onKeydown = ({ key }: KeyboardEvent) => {
+    switch (key) {
+      case 'Escape':
+        handleCloseModal()
+        break
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('keydown', onKeydown)
+
+    return () => document.removeEventListener('keydown', onKeydown)
+  })
 
   return (
     <>
