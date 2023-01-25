@@ -1,9 +1,10 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 import { setError, setIsLoading } from 'app/appSlice'
 import { sortingCardsMethods } from 'common/constants/sortingPacksMethods/sortingPacksMethods'
 import { AppThunk } from 'common/hooks/AppThunk'
+import { AppDispatchType } from 'common/hooks/useAppDispatch'
 import { AddNewCardParamType, cardsAPI, CardType } from 'pages/cards/cardsApi'
 
 const initialState = {
@@ -39,6 +40,7 @@ export const getCardsTC =
       const { cards } = response.data
 
       dispatch(getCards({ cards: cards }))
+      dispatch(setPackName(response.data.packName))
       dispatch(setCreatorId(response.data.packUserId))
     } catch (e) {
       if (axios.isAxiosError<{ error: string }>(e)) {
@@ -50,6 +52,25 @@ export const getCardsTC =
       dispatch(setIsLoading(false))
     }
   }
+
+export const setCardGradeTC = createAsyncThunk<void, { cardId: string; grade: number }, { dispatch: AppDispatchType }>(
+  'cards/setCardGradeTC',
+  async ({ cardId, grade }, { dispatch }) => {
+    dispatch(setIsLoading(true))
+
+    try {
+      await cardsAPI.updateCardGrade(cardId, grade)
+    } catch (e) {
+      if (axios.isAxiosError<{ error: string }>(e)) {
+        const error = e.response ? e.response.data.error : 'Something wrong'
+
+        dispatch(setError(error))
+      }
+    } finally {
+      dispatch(setIsLoading(false))
+    }
+  }
+)
 
 export const addNewCardTC =
   (packId: string, card: AddNewCardParamType): AppThunk =>

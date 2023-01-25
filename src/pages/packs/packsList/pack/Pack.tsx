@@ -6,7 +6,7 @@ import s from './Pack.module.scss'
 
 import { setIsLoading } from 'app/appSlice'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
-import { setPackId } from 'pages/cards/cardsSlice'
+import { setPackId, setPackName } from 'pages/cards/cardsSlice'
 
 type PackType = {
   name: string
@@ -15,24 +15,29 @@ type PackType = {
   updated: string
   actions: ReactNode
   packId: string
+  myPack: boolean
 }
 
-export const Pack: FC<PackType> = ({ name, cardsCount, author, updated, actions, packId }) => {
+export const Pack: FC<PackType> = ({ name, cardsCount, author, updated, actions, packId, myPack }) => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
   const cardsGetHandler = () => {
     dispatch(setPackId(packId))
-    // dispatch(setPackName(name))
+    dispatch(setPackName(name))
     dispatch(setIsLoading(true))
     navigate(`/cards/${packId}`)
   }
 
   return (
     <tr>
-      <td onClick={cardsGetHandler} className={s.name}>
-        {name}
-      </td>
+      {!myPack && cardsCount === 0 ? (
+        <td className={s.disabledName}>{name}</td>
+      ) : (
+        <td onClick={cardsGetHandler} className={s.name}>
+          {name}
+        </td>
+      )}
       <td>{cardsCount}</td>
       <td>{updated}</td>
       <td>{author}</td>

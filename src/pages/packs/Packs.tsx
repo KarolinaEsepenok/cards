@@ -11,6 +11,7 @@ import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import {
   cardPacksTotalCountSelector,
+  isLoadingSelector,
   maxValueRangeSelector,
   minValueRangeSelector,
   packNameSelector,
@@ -32,6 +33,7 @@ export const Packs = () => {
   const max = useAppSelector(maxValueRangeSelector)
   const sortPacks = useAppSelector(sortPacksSelector)
   const totalCount = useAppSelector(cardPacksTotalCountSelector)
+  const isLoading = useAppSelector(isLoadingSelector)
 
   // const [togglePopup, setTogglePopup] = useState(false)
 
@@ -79,7 +81,7 @@ export const Packs = () => {
           </div>
         </div>
       ) : (
-        <ResultsNotFound />
+        !isLoading && <ResultsNotFound />
       )}
     </div>
   )

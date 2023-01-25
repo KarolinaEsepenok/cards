@@ -1,0 +1,21 @@
+@import 'src/common/style/variables';
+
+@import 'src/common/style/mixins';
+
+.cardAnswer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+}
+
+.title {
+
+  @include title(600);
+
+  margin: 0;
+}
+
+.subtitle {
+
+  @include title();
+}

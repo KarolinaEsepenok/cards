@@ -36,3 +36,4 @@ export const resetRange = (state: RootStateType) => state.packs.resetRange
 export const queryParamsSelector = (state: RootStateType) => state.packs.queryParams
 //cards
 export const cardsSelector = (state: RootStateType) => state.cards.cards
+export const cardsPackName = (state: RootStateType) => state.cards.packName
