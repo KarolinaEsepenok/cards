@@ -179,6 +179,14 @@ const slice = createSlice({
 })
 
 export const cardsReducer = slice.reducer
-export const { getCards, setPackId, setCreatorId, setPackName, updateCard, addNewCard, setCardsIsLoading, toggleCardModal } =
-  slice.actions
-
+export const {
+  getCards,
+  setPackId,
+  setCreatorId,
+  setPackName,
+  updateCard,
+  addNewCard,
+  setCardsIsLoading,
+  toggleCardModal,
+  setEditCardData,
+} = slice.actions

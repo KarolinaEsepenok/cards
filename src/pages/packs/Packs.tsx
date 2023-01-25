@@ -7,8 +7,10 @@ import { toggleModal } from 'app/appSlice'
 import { Button } from 'common/components/button/Button'
 import { AddPackModal } from 'common/components/modals/AddPackModal'
 import { Paginator } from 'common/components/paginator/Paginator'
+import { Subtitle } from 'common/components/typography/subtitle/Subtitle'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
+import { Search } from 'common/modules/search/Search'
 import {
   cardPacksTotalCountSelector,
   isLoadingSelector,
@@ -21,8 +23,8 @@ import {
   userIdSelector,
 } from 'common/selectors/Selectors'
 import { PacksList } from 'pages/packs/packsList/PacksList'
-import { ResultsNotFound } from 'pages/packs/ResultsNotFound'
 import { getPacksTC, setModalContent, setPacksCurrentPage, setRowPage } from 'pages/packs/packsSlice'
+import { ResultsNotFound } from 'pages/packs/ResultsNotFound'
 
 export const Packs = () => {
   const page = useAppSelector(pageSelector)
@@ -79,29 +81,30 @@ export const Packs = () => {
           <Subtitle>Search</Subtitle>
           <Search class={s.search} />
         </div>
-      <PacksFilters />
+        <PacksFilters />
 
-      <AddPackModal />
+        <AddPackModal />
 
-      {totalCount > 0 ? (
-        <div>
-          <div className={s.packsList}>
-            <PacksList />
-          </div>
-
+        {totalCount > 0 ? (
           <div>
-            <Paginator
-              setRowCallback={changeRowPageHandle}
-              setPageCallback={changePageHandle}
-              pageCount={pageCount}
-              totalCount={totalCount}
-              currentPage={page}
-            />
+            <div className={s.packsList}>
+              <PacksList />
+            </div>
+
+            <div>
+              <Paginator
+                setRowCallback={changeRowPageHandle}
+                setPageCallback={changePageHandle}
+                pageCount={pageCount}
+                totalCount={totalCount}
+                currentPage={page}
+              />
+            </div>
           </div>
-        </div>
-      ) : (
-        !isLoading && <ResultsNotFound />
-      )}
+        ) : (
+          !isLoading && <ResultsNotFound />
+        )}
+      </div>
     </div>
   )
 }
