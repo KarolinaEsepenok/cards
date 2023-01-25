@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from 'react'
 
-type CardRowType = {
+type CardType = {
   question: string
   answer: string
   update: string
@@ -8,7 +8,7 @@ type CardRowType = {
   actions?: ReactNode
 }
 
-export const Card: FC<CardRowType> = ({ question, answer, update, grade, actions }) => {
+export const Card: FC<CardType> = ({ question, answer, update, grade, actions }) => {
   return (
     <tr>
       <td>{question}</td>
