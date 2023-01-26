@@ -20,6 +20,7 @@ import {
 } from 'common/selectors/Selectors'
 import { CardsList } from 'pages/cards/cardsList/CardsList'
 import { getCardsTC, toggleCardModal } from 'pages/cards/cardsSlice'
+import { LongMenu } from 'pages/cards/MenuMyCard'
 import { EmptyPack } from 'pages/packs/packsList/pack/emptyPack/EmptyPack'
 import { setModalContent } from 'pages/packs/packsSlice'
 import { PATH } from 'routes/routes'
@@ -64,6 +65,7 @@ export const Cards = () => {
       </NavLink>
 
       <h2 className={s.title}>{packName}</h2>
+      <LongMenu />
 
       <div className={s.buttonsContainer}>
         <Button styleType="primary" onClick={handelLearnPack}>
