@@ -1,8 +1,9 @@
 import React, { FC } from 'react'
 
+import s from './CardsList.module.scss'
+
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import { cardCreatorId, myIdSelector } from 'common/selectors/Selectors'
-import list from 'common/style/List.module.scss'
 import { formatDate } from 'common/utils/formatDate'
 import { CardType } from 'pages/cards/cardsApi'
 import { CardActions } from 'pages/cards/cardsList/card/actions/CardActions'
@@ -18,17 +19,17 @@ export const CardsList: FC<CardsListType> = ({ cards }) => {
   const myPack = myId === packCreatorId
 
   return (
-    <table className={list.table}>
+    <table className={s.table}>
       <thead>
         <tr>
-          <th className={list.tableTitle}>Question</th>
-          <th className={list.tableTitle}>Answer</th>
-          <th className={list.tableTitle}>Last Updated</th>
-          <th className={list.tableTitle}>Grade</th>
-          {myPack && <th className={list.tableTitle}>Actions</th>}
+          <th className={`${s.title} ${s.question}`}>Question</th>
+          <th className={`${s.title} ${s.answer}`}>Answer</th>
+          <th className={`${s.title} ${s.update}`}>Last Updated</th>
+          <th className={`${s.title} ${s.grade}`}>Grade</th>
+          {myPack && <th className={`${s.title} ${s.actions}`}>Actions</th>}
         </tr>
       </thead>
-      <tbody className={list.tableBody}>
+      <tbody>
         {cards.map(c => {
           const dateUpdate = formatDate(c.updated)
 

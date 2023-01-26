@@ -77,7 +77,7 @@ export const PacksList = () => {
           <th className={`${s.title} ${s.actions}`}>Actions</th>
         </tr>
       </thead>
-      <tbody className={s.tableBody}>
+      <tbody>
         {packs.map(p => {
           const dateUpdate = formatDate(p.updated)
           const myPack = p.user_id === myId
