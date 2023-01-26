@@ -1,50 +1,64 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useEffect } from 'react'
 
 import { useDispatch } from 'react-redux'
 
-import { useAppSelector } from '../../hooks/useAppSelector'
-import { Button } from '../button/Button'
+import closeBtn from 'assets/img/icons/closeBtn.svg'
+import { Button } from 'common/components/button/Button'
+import s from 'common/components/modals/Modals.module.scss'
+import { ModalButton, ModalButtonVariantType } from 'common/components/modals/ModalsButton'
+import { toggleCardModal } from 'pages/cards/cardsSlice'
+import { togglePackModal } from 'pages/packs/packsSlice'
 
-import s from './Modals.module.scss'
-
-import { toggleModal } from 'app/appSlice'
-
-type BasicModalType = {
+type ModalType = {
   children: ReactNode
   title: string
-  onClickSave: () => void
+  isSaveDataModal: () => void
+  typeBtn: ModalButtonVariantType
 }
 
-export const Modal: React.FC<BasicModalType> = ({ children, title, onClickSave }) => {
-  const toggle = useAppSelector(state => state.app.toggleModal)
+export const Modal: React.FC<ModalType> = ({ children, title, isSaveDataModal, typeBtn }) => {
   const dispatch = useDispatch()
 
-  const handleClose = () => {
-    dispatch(toggleModal(false))
+  const handleCloseModal = () => {
+    dispatch(togglePackModal(false))
+    dispatch(toggleCardModal(false))
   }
 
-  const handleDispatch = () => {
-    onClickSave()
-    dispatch(toggleModal(false))
+  const onKeydown = ({ key }: KeyboardEvent) => {
+    switch (key) {
+      case 'Escape':
+        handleCloseModal()
+        break
+    }
   }
+
+  useEffect(() => {
+    document.addEventListener('keydown', onKeydown)
+
+    return () => document.removeEventListener('keydown', onKeydown)
+  })
 
   return (
     <>
-      {toggle && (
-        <div onClick={handleClose} className={s.modal}>
-          <div onClick={e => e.stopPropagation()} className={s.modalContent}>
-            <h2>{title}</h2>
-            <div onClick={handleClose}>X</div>
+      <div onClick={handleCloseModal} className={s.modal}>
+        <div onClick={e => e.stopPropagation()} className={s.modalContent}>
+          <div className={s.modalTitleContainer}>
+            <h2 className={s.modalTitle}>{title}</h2>
+            <div>
+              <img src={closeBtn} onClick={handleCloseModal} alt="closeButton" />
+            </div>
+          </div>
 
-            {children}
+          {children}
 
-            <Button onClick={handleClose}>Cancel</Button>
-            <Button onClick={handleDispatch} styleType="primary">
-              save
+          <div className={s.modalButtons}>
+            <Button className={s.modalBtn} onClick={handleCloseModal} styleType={'secondary'}>
+              Cancel
             </Button>
+            <ModalButton isSaveDataModal={isSaveDataModal} typeBtn={typeBtn} />
           </div>
         </div>
-      )}
+      </div>
     </>
   )
 }

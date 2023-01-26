@@ -1,14 +1,16 @@
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
 
-import s from '../Pack.module.scss'
+import { useNavigate } from 'react-router-dom'
+
+import s from './PackActions.module.scss'
 
 import edit from 'assets/img/icons/edit.svg'
 import teacher from 'assets/img/icons/teacher.svg'
 import trash from 'assets/img/icons/trash.svg'
 import { Button } from 'common/components/button/Button'
-import { EditPackNameModal } from 'common/components/modals/EditPackNameModal'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
-import { deletePackTC } from 'pages/packs/packsSlice'
+import { setPackId, setPackName } from 'pages/cards/cardsSlice'
+import { setModalContent, togglePackModal } from 'pages/packs/packsSlice'
 
 type ActionsType = {
   myPack: boolean
@@ -16,36 +18,51 @@ type ActionsType = {
   name: string
   cardsCount: number
 }
+
 export const PackActions: FC<ActionsType> = ({ myPack, packId, name, cardsCount }) => {
   const dispatch = useAppDispatch()
-  const [togglePopup, setTogglePopup] = useState(false)
+  const navigate = useNavigate()
 
-  const handlerTogglePopup = () => {
-    setTogglePopup(!togglePopup)
+  const handelLearnPack = () => {
+    dispatch(setPackId(packId))
+    navigate(`/cards/${packId}/learn`)
   }
-  const handlerDeletePack = () => {
-    dispatch(deletePackTC(packId))
+
+  const handelEditPack = () => {
+    dispatch(togglePackModal(true))
+    dispatch(setModalContent('editPackName'))
+    dispatch(setPackId(packId))
+    dispatch(setPackName(name))
+  }
+  const handelDeletePack = () => {
+    dispatch(setModalContent('deletePack'))
+    dispatch(togglePackModal(true))
+    dispatch(setPackId(packId))
+    dispatch(setPackName(name))
   }
 
   return (
     <div>
-      <Button styleType="icon" disabled={!myPack && cardsCount === 0}>
-        <img src={teacher} alt="icon teacher" />
+      <Button styleType="icon" disabled={!myPack && cardsCount === 0} onClick={handelLearnPack}>
+        <div className={s.tooltip} data-tooltip="learn pack">
+          <img src={teacher} alt="icon teacher" />
+        </div>
       </Button>
 
       {myPack && (
         <>
-          <Button styleType="icon" onClick={handlerTogglePopup}>
-            <img src={edit} alt="icon edit" />
+          <Button styleType="icon" onClick={handelEditPack}>
+            <div className={s.tooltip} data-tooltip="edit name pack">
+              <img src={edit} alt="icon edit" />
+            </div>
           </Button>
-          <Button styleType="icon" onClick={handlerDeletePack}>
-            <img src={trash} alt="icon trash" />
+
+          <Button styleType="icon" onClick={handelDeletePack}>
+            <div className={s.tooltip} data-tooltip="delete pack">
+              <img src={trash} alt="icon trash" />
+            </div>
           </Button>
         </>
-      )}
-
-      {togglePopup && (
-        <EditPackNameModal packId={packId} setTogglePopup={setTogglePopup} togglePopup={togglePopup} name={name} />
       )}
     </div>
   )

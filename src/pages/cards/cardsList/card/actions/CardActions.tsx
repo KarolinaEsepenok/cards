@@ -1,39 +1,47 @@
-import React, { useState } from 'react'
+import React from 'react'
+
+import s from './CardActions.module.scss'
 
 import edit from 'assets/img/icons/edit.svg'
 import trash from 'assets/img/icons/trash.svg'
 import { Button } from 'common/components/button/Button'
-import { EditCardModal } from 'common/components/modals/EditCardModal'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
-import { deleteCardTC } from 'pages/cards/cardsSlice'
+import { setEditCardData, toggleCardModal } from 'pages/cards/cardsSlice'
+import { setModalContent } from 'pages/packs/packsSlice'
 
 type CardActionsType = {
   cardId: string
   question: string
   answer: string
 }
+
 export const CardActions: React.FC<CardActionsType> = ({ cardId, question, answer }) => {
   const dispatch = useAppDispatch()
 
-  const [toggle, setToggle] = useState(false)
+  const handleEditCard = () => {
+    dispatch(setModalContent('editCard'))
+    dispatch(toggleCardModal(true))
+    dispatch(setEditCardData({ cardId, question, answer }))
+  }
 
-  const handlerDeletePack = () => {
-    dispatch(deleteCardTC(cardId))
+  const handlerDeleteCard = () => {
+    dispatch(setModalContent('deleteCard'))
+    dispatch(toggleCardModal(true))
+    dispatch(setEditCardData({ cardId, question, answer }))
   }
 
   return (
     <>
-      <Button styleType="icon" onClick={() => setToggle(true)}>
+      <Button styleType="icon" onClick={handleEditCard}>
+        <div className={s.tooltip} data-tooltip="edit question/answer"></div>
         <img src={edit} alt="icon edit" />
       </Button>
 
-      <Button styleType="icon" onClick={handlerDeletePack}>
-        <img src={trash} alt="icon trash" />
+      <Button styleType="icon" onClick={handlerDeleteCard}>
+        <div className={s.tooltip} data-tooltip="delete this card">
+          <img src={trash} alt="icon trash" />
+        </div>
       </Button>
-
-      {toggle && (
-        <EditCardModal setToggle={setToggle} toggle={toggle} cardId={cardId} question={question} answer={answer} />
-      )}
     </>
   )
 }
