@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 
 import s from './Packs.module.scss'
-import { PacksFilters } from './PacksFilters'
 
 import { Button } from 'common/components/button/Button'
 import { AddPackModal } from 'common/components/modals/AddPackModal'
@@ -20,9 +19,10 @@ import {
   sortPacksSelector,
   userIdSelector,
 } from 'common/selectors/Selectors'
+import { EmptyPacksList } from 'pages/packs/emptyPacksList/EmptyPacksList'
+import { PacksFilters } from 'pages/packs/packsFilters/PacksFilters'
 import { PacksList } from 'pages/packs/packsList/PacksList'
 import { getPacksTC, setModalContent, setPacksCurrentPage, setRowPage, togglePackModal } from 'pages/packs/packsSlice'
-import { ResultsNotFound } from 'pages/packs/ResultsNotFound'
 
 export const Packs = () => {
   const page = useAppSelector(pageSelector)
@@ -87,7 +87,7 @@ export const Packs = () => {
           </div>
         </div>
       ) : (
-        !isLoading && <ResultsNotFound />
+        !isLoading && <EmptyPacksList />
       )}
     </div>
   )

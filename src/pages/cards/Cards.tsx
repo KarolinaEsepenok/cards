@@ -70,8 +70,6 @@ export const Cards = () => {
           learn pack
         </Button>
 
-        <AddCardModal />
-
         {myPack && (
           <Button onClick={handleAddCard} styleType={'primary'}>
             Add New Card
