@@ -5,12 +5,13 @@ import s from './Modals.module.scss'
 
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
+import { cardIdSelector, questionSelector } from 'common/selectors/Selectors'
 import { deleteCardTC, toggleCardModal } from 'pages/cards/cardsSlice'
 
 export const DeleteCardModal = () => {
   const dispatch = useAppDispatch()
-  const cardId = useAppSelector(state => state.cards.cards[0]._id)
-  const question = useAppSelector(state => state.cards.cards[0].question)
+  const cardId = useAppSelector(cardIdSelector)
+  const question = useAppSelector(questionSelector)
 
   const handleDeleteCard = () => {
     dispatch(deleteCardTC(cardId))

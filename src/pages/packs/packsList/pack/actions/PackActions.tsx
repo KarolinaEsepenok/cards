@@ -10,6 +10,7 @@ import { DeletePackModal } from 'common/components/modals/DeletePackModal'
 import { EditPackNameModal } from 'common/components/modals/EditPackNameModal'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
+import { modalContentSelector } from 'common/selectors/Selectors'
 import { setPackId, setPackName } from 'pages/cards/cardsSlice'
 import { setModalContent, togglePackModal } from 'pages/packs/packsSlice'
 
@@ -22,7 +23,7 @@ type ActionsType = {
 export const PackActions: FC<ActionsType> = ({ myPack, packId, name, cardsCount }) => {
   const dispatch = useAppDispatch()
 
-  const modalContent = useAppSelector(state => state.packs.modalNode)
+  const modalContent = useAppSelector(modalContentSelector)
   // const toggleModalFromState = useAppSelector(state => state.app.toggleModal)
   const toggleModalFromState = useAppSelector(state => state.packs.togglePackModal)
 

@@ -10,6 +10,7 @@ import { Input } from 'common/components/Input/Input'
 import style from 'common/components/Input/Input.module.scss'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
+import { nameSelector } from 'common/selectors/Selectors'
 import { updateProfileNameTC } from 'pages/auth/authSlice'
 
 type ProfileEditNamePropsType = {
@@ -22,7 +23,7 @@ interface FormikErrorType {
 }
 
 export const ProfileEditName: React.FC<ProfileEditNamePropsType> = ({ setEditMode }) => {
-  const profileName = useAppSelector(state => state.auth.name)
+  const profileName = useAppSelector(nameSelector)
   const dispatch = useAppDispatch()
 
   const formik = useFormik({

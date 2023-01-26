@@ -7,12 +7,13 @@ import { Input } from 'common/components/Input/Input'
 import { Modal } from 'common/components/modals/Modal'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
+import { cardsPackName, packIdSelector } from 'common/selectors/Selectors'
 import { togglePackModal, updateNamePackTC } from 'pages/packs/packsSlice'
 
 export const EditPackNameModal = () => {
   const dispatch = useAppDispatch()
-  const packIdFromState = useAppSelector(state => state.cards.packId)
-  const packNameFromState = useAppSelector(state => state.cards.packName)
+  const packIdFromState = useAppSelector(packIdSelector)
+  const packNameFromState = useAppSelector(cardsPackName)
 
   const [nameValue, setNameValue] = useState<string>(packNameFromState)
 

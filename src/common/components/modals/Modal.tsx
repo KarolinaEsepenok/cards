@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 
 import s from './Modals.module.scss'
 
+import closeBtn from 'assets/img/icons/closeBtn.svg'
 import { Button } from 'common/components/button/Button'
 import { ModalButton, ModalButtonVariantType } from 'common/components/modals/ModalsButton'
 import { toggleCardModal } from 'pages/cards/cardsSlice'
@@ -42,12 +43,17 @@ export const Modal: React.FC<ModalType> = ({ children, title, isSaveDataModal, t
     <>
       <div onClick={handleCloseModal} className={s.modal}>
         <div onClick={e => e.stopPropagation()} className={s.modalContent}>
-          <span onClick={handleCloseModal}>X</span>
-          <h2>{title}</h2>
+          <div className={s.modalTitleContainer}>
+            <h2 className={s.modalTitle}>{title}</h2>
+            <div>
+              <img src={closeBtn} onClick={handleCloseModal} alt="closeButton" />
+            </div>
+          </div>
 
           {children}
-          <div>
-            <Button onClick={handleCloseModal} styleType={'secondary'}>
+
+          <div className={s.modalButtons}>
+            <Button className={s.modalBtn} onClick={handleCloseModal} styleType={'secondary'}>
               Cancel
             </Button>
             <ModalButton isSaveDataModal={isSaveDataModal} typeBtn={typeBtn} />

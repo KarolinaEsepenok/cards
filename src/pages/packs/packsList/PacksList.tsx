@@ -7,7 +7,7 @@ import arrowUp from 'assets/img/icons/arrowUp.png'
 import { sortingPacksMethods } from 'common/constants/sortingPacksMethods/sortingPacksMethods'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
-import { cardPacks, myIdSelector } from 'common/selectors/Selectors'
+import { cardPacks, myIdSelector, sortPacksSelector } from 'common/selectors/Selectors'
 import list from 'common/style/List.module.scss'
 import { formatDate } from 'common/utils/formatDate'
 import { sortHelper } from 'common/utils/sortHelper'
@@ -17,7 +17,7 @@ export const PacksList = () => {
   const myId = useAppSelector(myIdSelector)
   const dispatch = useAppDispatch()
 
-  const sortMethod = useAppSelector(state => state.packs.queryParams.sortPacks)
+  const sortMethod = useAppSelector(sortPacksSelector)
   const arrowDirectionName =
     sortMethod === sortingPacksMethods.ascName ? <img src={arrowUp} /> : <img src={arrowDown} />
   const arrowDirectionCards =
