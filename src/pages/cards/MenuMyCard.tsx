@@ -2,10 +2,12 @@ import React from 'react'
 
 import { Menu } from '@mui/material'
 import MenuItem from '@mui/material/MenuItem'
+import { NavLink } from 'react-router-dom'
 
+import dropDownMenu from 'assets/img/icons/DropDownMenu.svg'
 import { Button } from 'common/components/button/Button'
 
-const options = ['None', 'Atria', 'Callisto']
+const options = ['Edit']
 
 const ITEM_HEIGHT = 48
 
@@ -24,7 +26,7 @@ export const LongMenu = () => {
   return (
     <div>
       <Button aria-label="more" aria-controls="shot-menu" aria-haspopup="true" onClick={handleClick}>
-        fdh;kjf
+        <img src={dropDownMenu} />
       </Button>
       <Menu
         id="shot-menu"
@@ -40,9 +42,14 @@ export const LongMenu = () => {
         }}
       >
         {options.map(option => (
-          <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
-            {option}
-          </MenuItem>
+          <>
+            <MenuItem key={option} selected={option === ''} onClick={handleClose}>
+              <NavLink to={'/profile'}>Edit</NavLink>
+            </MenuItem>
+            <MenuItem key={option} selected={option === ''} onClick={handleClose}>
+              <NavLink to={'/profile'}>Delete</NavLink>
+            </MenuItem>
+          </>
         ))}
       </Menu>
     </div>
