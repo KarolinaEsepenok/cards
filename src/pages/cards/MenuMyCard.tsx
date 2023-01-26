@@ -4,6 +4,8 @@ import { Menu } from '@mui/material'
 import MenuItem from '@mui/material/MenuItem'
 import { NavLink } from 'react-router-dom'
 
+import s from './cardsList/MenuMyCard.module.scss'
+
 import dropDownMenu from 'assets/img/icons/DropDownMenu.svg'
 import { Button } from 'common/components/button/Button'
 
@@ -25,7 +27,13 @@ export const LongMenu = () => {
 
   return (
     <div>
-      <Button aria-label="more" aria-controls="shot-menu" aria-haspopup="true" onClick={handleClick}>
+      <Button
+        className={s.button}
+        aria-label="more"
+        aria-controls="shot-menu"
+        aria-haspopup="true"
+        onClick={handleClick}
+      >
         <img src={dropDownMenu} />
       </Button>
       <Menu
