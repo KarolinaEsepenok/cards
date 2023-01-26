@@ -28,23 +28,35 @@ export const LearnCard = () => {
   const packName = useAppSelector(cardsPackName)
   const isLoading = useAppSelector(isLoadingSelector)
   const [showAnswer, setShowAnswer] = useState(false)
-  const [card, setCard] = useState<CardType>()
-  const [first, setFirst] = useState(true)
+  const [card, setCard] = useState<CardType | null>(null)
+  //const [first, setFirst] = useState(true)
 
   const { id } = useParams()
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    if (id) {
-      dispatch(getCardsTC(id))
+    dispatch(getCardsTC(id ? id : ''))
+
+    return () => {
+      setCard(null)
+      //setFirst(true)
     }
   }, [])
 
+  // useEffect(() => {
+  //   if (JSON.stringify(cards) !== JSON.stringify(cards)) {
+  //
+  //   }
+  // }, [])
+
   useEffect(() => {
-    if (first && cards.length) {
-      setCard(getCard(cards))
-      setFirst(false)
-    }
+    // console.log('inside first useEffect')
+    //  console.log(cards)
+    // console.log(first)
+    //
+    // console.log('inside first2 useEffect')
+    setCard(getCard(cards))
+    //setFirst(false)
   }, [cards])
 
   const nextCard = () => {
@@ -53,6 +65,7 @@ export const LearnCard = () => {
   }
 
   const getCard = (cards: CardType[]) => {
+    console.log(cards)
     const sum = cards.reduce((acc, card) => acc + (6 - card.grade) * (6 - card.grade), 0)
     const rand = Math.random() * sum
     const res = cards.reduce(

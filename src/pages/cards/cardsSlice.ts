@@ -8,19 +8,18 @@ import { AppDispatchType } from 'common/hooks/useAppDispatch'
 import { AddNewCardParamType, cardsAPI, CardType } from 'pages/cards/cardsApi'
 
 const initialState = {
-  // cards: [] as CardType[],
-  cards: [{ _id: '', question: '', answer: '' }] as CardType[],
-  cardsTotalCount: 0,
-  packName: '',
-  isCardsFetched: false,
+  cards: [] as CardType[],
   queryParams: {
     pageCount: 110,
     page: 1,
     cardQuestion: '',
     sortCards: sortingCardsMethods.desUpdate,
+    cardsPack_id: '',
   },
-  packId: '',
+  cardsTotalCount: 0,
+  packName: '',
   creatorId: '',
+  isCardsFetched: false,
   isLoading: false,
   toggleCardModal: false,
 }
@@ -29,6 +28,7 @@ export const getCardsTC =
   (cardsPack_id: string): AppThunk =>
   async (dispatch, getState) => {
     dispatch(setIsLoading(true))
+    dispatch(setPackId(cardsPack_id))
 
     try {
       const { pageCount, cardQuestion, page, sortCards } = getState().cards.queryParams
@@ -42,7 +42,7 @@ export const getCardsTC =
 
       const { cards } = response.data
 
-      dispatch(getCards({ cards: cards }))
+      dispatch(setCards(cards))
       dispatch(setPackName(response.data.packName))
       dispatch(setCreatorId(response.data.packUserId))
     } catch (e) {
@@ -136,11 +136,11 @@ const slice = createSlice({
   name: 'cards',
   initialState,
   reducers: {
-    getCards: (state, action: PayloadAction<{ cards: CardType[] }>) => {
-      state.cards = action.payload.cards
+    setCards: (state, action: PayloadAction<CardType[]>) => {
+      state.cards = action.payload
     },
     setPackId: (state, action: PayloadAction<string>) => {
-      state.packId = action.payload
+      state.queryParams.cardsPack_id = action.payload
     },
     setCreatorId: (state, action: PayloadAction<string>) => {
       state.creatorId = action.payload
@@ -179,8 +179,7 @@ const slice = createSlice({
 
 export const cardsReducer = slice.reducer
 export const {
-  getCards,
-  setPackId,
+  setCards,
   setCreatorId,
   setPackName,
   updateCard,
@@ -188,4 +187,5 @@ export const {
   setCardsIsLoading,
   setEditCardData,
   toggleCardModal,
+  setPackId,
 } = slice.actions
