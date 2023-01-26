@@ -1,0 +1,16 @@
+@import 'src/common/style/mixins';
+
+@import 'src/common/style/variables';
+
+
+.tooltip::after {
+
+  @include tooltipAfter();
+
+  letter-spacing: 1px;
+}
+
+.tooltip:hover::after {
+
+  @include tooltipHover();
+}

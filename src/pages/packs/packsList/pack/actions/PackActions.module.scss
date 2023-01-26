@@ -2,14 +2,6 @@
 
 @import 'src/common/style/mixins';
 
-.button {
-  padding: 7px 7px 5px 7px;
-
-  background-color: $background-300-color;
-  border: 1px solid $background-500-color;
-  border-radius: 4px;
-}
-
 .tooltip::after {
 
   @include tooltipAfter();

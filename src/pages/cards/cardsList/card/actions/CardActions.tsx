@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 
+import s from './CardActions.module.scss'
+
 import edit from 'assets/img/icons/edit.svg'
 import trash from 'assets/img/icons/trash.svg'
 import { Button } from 'common/components/button/Button'
@@ -24,11 +26,15 @@ export const CardActions: React.FC<CardActionsType> = ({ cardId, question, answe
   return (
     <>
       <Button styleType="icon" onClick={() => setToggle(true)}>
-        <img src={edit} alt="icon edit" />
+        <div className={s.tooltip} data-tooltip="edit question/answer">
+          <img src={edit} alt="icon edit" />
+        </div>
       </Button>
 
       <Button styleType="icon" onClick={handlerDeletePack}>
-        <img src={trash} alt="icon trash" />
+        <div className={s.tooltip} data-tooltip="delete this card">
+          <img src={trash} alt="icon trash" className={s.tooltip} />
+        </div>
       </Button>
 
       {toggle && (

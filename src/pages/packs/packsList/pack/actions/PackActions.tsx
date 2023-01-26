@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react'
 
-import s from '../Pack.module.scss'
+import s from './PackActions.module.scss'
 
 import edit from 'assets/img/icons/edit.svg'
 import teacher from 'assets/img/icons/teacher.svg'
@@ -30,16 +30,22 @@ export const PackActions: FC<ActionsType> = ({ myPack, packId, name, cardsCount 
   return (
     <div>
       <Button styleType="icon" disabled={!myPack && cardsCount === 0}>
-        <img src={teacher} alt="icon teacher" />
+        <div className={s.tooltip} data-tooltip="learn this card">
+          <img src={teacher} alt="icon teacher" />
+        </div>
       </Button>
 
       {myPack && (
         <>
           <Button styleType="icon" onClick={handlerTogglePopup}>
-            <img src={edit} alt="icon edit" />
+            <div className={s.tooltip} data-tooltip="edit name this card">
+              <img src={edit} alt="icon edit" />
+            </div>
           </Button>
           <Button styleType="icon" onClick={handlerDeletePack}>
-            <img src={trash} alt="icon trash" />
+            <div className={s.tooltip} data-tooltip="delete this card">
+              <img src={trash} alt="icon trash" />
+            </div>
           </Button>
         </>
       )}
