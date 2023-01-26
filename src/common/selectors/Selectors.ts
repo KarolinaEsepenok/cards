@@ -43,5 +43,5 @@ export const cardCreatorId = (state: RootStateType) => state.cards.creatorId
 export const cardIdSelector = (state: RootStateType) => state.cards.cards[0]._id
 export const questionSelector = (state: RootStateType) => state.cards.cards[0].question
 export const answerSelector = (state: RootStateType) => state.cards.cards[0].answer
-export const packIdSelector = (state: RootStateType) => state.cards.packId
+export const packIdSelector = (state: RootStateType) => state.cards.queryParams.cardsPack_id
 export const toggleCardModalSelector = (state: RootStateType) => state.cards.toggleCardModal
