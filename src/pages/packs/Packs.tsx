@@ -13,6 +13,7 @@ import {
   isLoadingSelector,
   maxValueRangeSelector,
   minValueRangeSelector,
+  modalContentSelector,
   packNameSelector,
   pageCountSelector,
   pageSelector,
@@ -34,7 +35,7 @@ export const Packs = () => {
   const totalCount = useAppSelector(cardPacksTotalCountSelector)
   const isLoading = useAppSelector(isLoadingSelector)
 
-  const modalContent = useAppSelector(state => state.packs.modalNode)
+  const modalContent = useAppSelector(modalContentSelector)
   // const toggleModalFromState = useAppSelector(state => state.app.toggleModal)
   const toggleModalFromState = useAppSelector(state => state.packs.togglePackModal)
 

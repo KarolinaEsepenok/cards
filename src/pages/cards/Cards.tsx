@@ -15,6 +15,7 @@ import {
   cardsPackName,
   cardsSelector,
   isLoadingSelector,
+  modalContentSelector,
   myIdSelector,
 } from 'common/selectors/Selectors'
 import { CardsList } from 'pages/cards/cardsList/CardsList'
@@ -29,7 +30,7 @@ export const Cards = () => {
   const packName = useAppSelector(cardsPackName)
   const myId = useAppSelector(myIdSelector)
   const packCreatorId = useAppSelector(cardCreatorId)
-  const modalContent = useAppSelector(state => state.packs.modalNode)
+  const modalContent = useAppSelector(modalContentSelector)
   // const toggleModalFromState = useAppSelector(state => state.app.toggleModal)
   const toggleModalFromState = useAppSelector(state => state.cards.toggleCardModal)
 

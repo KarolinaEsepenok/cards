@@ -5,13 +5,14 @@ import s from './Modals.module.scss'
 
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
+import { cardsPackName, packIdSelector } from 'common/selectors/Selectors'
 import { deletePackTC, togglePackModal } from 'pages/packs/packsSlice'
 
 export const DeletePackModal = () => {
   const dispatch = useAppDispatch()
 
-  const packIdFromState = useAppSelector(state => state.cards.packId)
-  const packName = useAppSelector(state => state.cards.packName)
+  const packIdFromState = useAppSelector(packIdSelector)
+  const packName = useAppSelector(cardsPackName)
 
   const handleDeletePack = () => {
     dispatch(deletePackTC(packIdFromState))
@@ -21,7 +22,10 @@ export const DeletePackModal = () => {
 
   return (
     <Modal title={'Delete Pack'} isSaveDataModal={handleDeletePack} typeBtn="delete">
-      <p>Do you really want to remove {packName}? All cards will be deleted.</p>
+      <p className={s.modalSubtitle}>
+        Do you really want to remove <span className={s.modalSubtitleColor}>{packName}</span>? All cards will be
+        deleted.
+      </p>
     </Modal>
   )
 }

@@ -9,14 +9,15 @@ import { Modal } from './Modal'
 import s from './Modals.module.scss'
 
 import { useAppSelector } from 'common/hooks/useAppSelector'
+import { answerSelector, cardIdSelector, questionSelector } from 'common/selectors/Selectors'
 import { toggleCardModal, updateCardTC } from 'pages/cards/cardsSlice'
 
 export const EditCardModal = () => {
   const dispatch = useAppDispatch()
   let { id } = useParams()
-  const cardId = useAppSelector(state => state.cards.cards[0]._id)
-  const question = useAppSelector(state => state.cards.cards[0].question)
-  const answer = useAppSelector(state => state.cards.cards[0].answer)
+  const cardId = useAppSelector(cardIdSelector)
+  const question = useAppSelector(questionSelector)
+  const answer = useAppSelector(answerSelector)
 
   const [questionValue, setQuestionValue] = useState<string>(question)
   const [answerValue, setAnswerValue] = useState<string>(answer)
