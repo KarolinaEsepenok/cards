@@ -12,7 +12,7 @@ export const PacksFilters = () => {
     <div className={s.filtersContainer}>
       <div>
         <Subtitle>Search</Subtitle>
-        <Search class={s.search} />
+        <Search class={s.search} selector={'Packs'} />
       </div>
 
       <div>
