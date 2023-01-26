@@ -35,6 +35,7 @@
   margin-top: 35px;
 
 }
+
 .modalBtn {
   width: 127px;
 }
@@ -52,7 +53,6 @@
   @include headline3;
 
 
-
   margin: 0;
 
   &::after {
@@ -68,19 +68,42 @@
     background-color: #aeaeae;
   }
 }
+
 .modalSubtitle {
 
   @include subtitle;
 }
+
 .modalSubtitleColor {
   font-weight: 600;
 }
 
 .input {
   width: 100%;
+
+  //margin-bottom: 10px;
 }
+
 .modalClose {
   cursor: pointer;
 
   padding: 7px;
+}
+
+.inputError {
+  position: relative;
+
+  width: 100%;
+
+  border-bottom: 2px solid red;
+
+  //&::after {
+  //  content: 'Write some value';
+  //
+  //  position: absolute;
+  //  top: 0;
+  //  left: 0;
+  //
+  //  border: 10px solid red;
+  //}
 }

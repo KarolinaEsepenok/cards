@@ -18,7 +18,7 @@ export const DeleteCardModal = () => {
   }
 
   return (
-    <Modal title={'Delete Card'} isSaveDataModal={handleDeleteCard} typeBtn="delete">
+    <Modal title={'Delete Card'} isSaveDataModal={handleDeleteCard} typeBtn="delete" value={''}>
       <p className={s.modalSubtitle}>
         Do you really want to remove <span className={s.modalSubtitleColor}>{question}</span> card?
       </p>

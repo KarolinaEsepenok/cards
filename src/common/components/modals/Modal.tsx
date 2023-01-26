@@ -14,9 +14,10 @@ type ModalType = {
   title: string
   isSaveDataModal: () => void
   typeBtn: ModalButtonVariantType
+  value: string
 }
 
-export const Modal: React.FC<ModalType> = ({ children, title, isSaveDataModal, typeBtn }) => {
+export const Modal: React.FC<ModalType> = ({ children, title, isSaveDataModal, typeBtn, value }) => {
   const dispatch = useDispatch()
 
   const handleCloseModal = () => {
@@ -55,7 +56,7 @@ export const Modal: React.FC<ModalType> = ({ children, title, isSaveDataModal, t
             <Button className={s.modalBtn} onClick={handleCloseModal} styleType={'secondary'}>
               Cancel
             </Button>
-            <ModalButton isSaveDataModal={isSaveDataModal} typeBtn={typeBtn} />
+            <ModalButton isSaveDataModal={isSaveDataModal} typeBtn={typeBtn} value={value} />
           </div>
         </div>
       </div>

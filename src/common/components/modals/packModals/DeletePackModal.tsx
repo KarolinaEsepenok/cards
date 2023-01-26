@@ -19,7 +19,7 @@ export const DeletePackModal = () => {
   }
 
   return (
-    <Modal title={'Delete Pack'} isSaveDataModal={handleDeletePack} typeBtn="delete">
+    <Modal title={'Delete Pack'} isSaveDataModal={handleDeletePack} typeBtn="delete" value={''}>
       <p className={s.modalSubtitle}>
         Do you really want to remove <span className={s.modalSubtitleColor}>{packName}</span>? All cards will be
         deleted.

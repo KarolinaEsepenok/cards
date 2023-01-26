@@ -6,8 +6,9 @@ import s from 'common/components/modals/Modals.module.scss'
 type ModalButtonType = {
   isSaveDataModal: () => void
   typeBtn: ModalButtonVariantType
+  value: string
 }
-export const ModalButton: React.FC<ModalButtonType> = ({ isSaveDataModal, typeBtn }) => {
+export const ModalButton: React.FC<ModalButtonType> = ({ isSaveDataModal, typeBtn, value }) => {
   if (typeBtn === 'save') {
     const onKeydown = ({ key }: KeyboardEvent) => {
       switch (key) {
@@ -27,7 +28,7 @@ export const ModalButton: React.FC<ModalButtonType> = ({ isSaveDataModal, typeBt
   return (
     <div>
       {typeBtn === 'save' && (
-        <Button className={s.modalBtn} onClick={isSaveDataModal} styleType="primary">
+        <Button disabled={!value.length} className={s.modalBtn} onClick={isSaveDataModal} styleType="primary">
           Save
         </Button>
       )}

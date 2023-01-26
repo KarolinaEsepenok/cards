@@ -29,14 +29,14 @@ export const EditCardModal = () => {
   const handleChangeAnswer = (e: React.ChangeEvent<HTMLInputElement>) => setAnswerValue(e.currentTarget.value)
 
   return (
-    <Modal title={'Edit card'} isSaveDataModal={handleEditPack} typeBtn="save">
+    <Modal title={'Edit card'} isSaveDataModal={handleEditPack} typeBtn="save" value={questionValue}>
       <Input
         autoFocus
         value={questionValue}
         onChange={handleChangeQuestion}
         type="text"
         label="Question"
-        className={s.input}
+        className={!questionValue.length ? s.inputError : s.input}
       />
       <Input value={answerValue} onChange={handleChangeAnswer} type="text" label="Answer" className={s.input} />
     </Modal>
