@@ -7,7 +7,6 @@ import { Input } from '../Input/Input'
 
 import { Modal } from './Modal'
 
-import s from 'common/components/modals/Modals.module.scss'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import { answerSelector, cardIdSelector, questionSelector } from 'common/selectors/Selectors'
 import { toggleCardModal, updateCardTC } from 'pages/cards/cardsSlice'

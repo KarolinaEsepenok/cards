@@ -6,7 +6,6 @@ import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { Input } from '../Input/Input'
 
 import { Modal } from 'common/components/modals/Modal'
-import s from 'common/components/modals/Modals.module.scss'
 import { addNewCardTC, toggleCardModal } from 'pages/cards/cardsSlice'
 
 export const AddCardModal = () => {
@@ -19,7 +18,6 @@ export const AddCardModal = () => {
 
   const handleAddCard = () => {
     dispatch(addNewCardTC(id ? id : '', { question, answer }))
-    // dispatch(toggleModal(false))
     dispatch(toggleCardModal(false))
   }
   const handleChangeQuestion = (e: React.ChangeEvent<HTMLInputElement>) => setQuestion(e.currentTarget.value)

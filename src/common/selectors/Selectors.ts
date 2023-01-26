@@ -1,5 +1,4 @@
 import { RootStateType } from 'app/store'
-import { useAppSelector } from 'common/hooks/useAppSelector'
 
 //app
 export const isLoggedInSelector = (state: RootStateType) => state.app.isLoggedIn
@@ -35,6 +34,7 @@ export const maxValueRangeSelector = (state: RootStateType) => state.packs.query
 export const cardPacksTotalCountSelector = (state: RootStateType) => state.packs.cardPacksTotalCount
 export const resetRange = (state: RootStateType) => state.packs.resetRange
 export const modalContentSelector = (state: RootStateType) => state.packs.modalNode
+export const togglePackModalSelector = (state: RootStateType) => state.packs.togglePackModal
 
 //cards
 export const cardsSelector = (state: RootStateType) => state.cards.cards
@@ -44,3 +44,4 @@ export const cardIdSelector = (state: RootStateType) => state.cards.cards[0]._id
 export const questionSelector = (state: RootStateType) => state.cards.cards[0].question
 export const answerSelector = (state: RootStateType) => state.cards.cards[0].answer
 export const packIdSelector = (state: RootStateType) => state.cards.packId
+export const toggleCardModalSelector = (state: RootStateType) => state.cards.toggleCardModal
