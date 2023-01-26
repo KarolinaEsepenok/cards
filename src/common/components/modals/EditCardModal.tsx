@@ -6,8 +6,8 @@ import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { Input } from '../Input/Input'
 
 import { Modal } from './Modal'
-import s from './Modals.module.scss'
 
+import s from 'common/components/modals/Modals.module.scss'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import { answerSelector, cardIdSelector, questionSelector } from 'common/selectors/Selectors'
 import { toggleCardModal, updateCardTC } from 'pages/cards/cardsSlice'

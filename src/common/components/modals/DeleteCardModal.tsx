@@ -1,8 +1,8 @@
 import React from 'react'
 
 import { Modal } from './Modal'
-import s from './Modals.module.scss'
 
+import s from 'common/components/modals/Modals.module.scss'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import { cardIdSelector, questionSelector } from 'common/selectors/Selectors'

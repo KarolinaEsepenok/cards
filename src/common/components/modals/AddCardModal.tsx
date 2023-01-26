@@ -5,9 +5,8 @@ import { useParams } from 'react-router-dom'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { Input } from '../Input/Input'
 
-import s from './Modals.module.scss'
-
 import { Modal } from 'common/components/modals/Modal'
+import s from 'common/components/modals/Modals.module.scss'
 import { addNewCardTC, toggleCardModal } from 'pages/cards/cardsSlice'
 
 export const AddCardModal = () => {

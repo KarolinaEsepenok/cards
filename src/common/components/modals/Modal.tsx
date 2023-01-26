@@ -2,10 +2,10 @@ import React, { ReactNode, useEffect } from 'react'
 
 import { useDispatch } from 'react-redux'
 
-import s from './Modals.module.scss'
-
 import closeBtn from 'assets/img/icons/closeBtn.svg'
 import { Button } from 'common/components/button/Button'
+import s from 'common/components/modals/Modals.module.scss'
+// @ts-ignore
 import { ModalButton, ModalButtonVariantType } from 'common/components/modals/ModalsButton'
 import { toggleCardModal } from 'pages/cards/cardsSlice'
 import { togglePackModal } from 'pages/packs/packsSlice'

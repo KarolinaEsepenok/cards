@@ -18,6 +18,7 @@ type CardActionsType = {
   question: string
   answer: string
 }
+
 export const CardActions: React.FC<CardActionsType> = ({ cardId, question, answer }) => {
   const dispatch = useAppDispatch()
   const modalContent = useAppSelector(modalContentSelector)
@@ -41,16 +42,15 @@ export const CardActions: React.FC<CardActionsType> = ({ cardId, question, answe
   return (
     <>
       <Button styleType="icon" onClick={handleEditCard}>
-          <div className={s.tooltip} data-tooltip="edit question/answer">
-          </div>
+        <div className={s.tooltip} data-tooltip="edit question/answer"></div>
         <img src={edit} alt="icon edit" />
       </Button>
       {toggleModalFromState && modalContent === 'editCard' && <EditCardModal />}
 
       <Button styleType="icon" onClick={handlerDeleteCard}>
-          <div className={s.tooltip} data-tooltip="delete this card">
-        <img src={trash} alt="icon trash" />
-      </div>
+        <div className={s.tooltip} data-tooltip="delete this card">
+          <img src={trash} alt="icon trash" />
+        </div>
       </Button>
       {toggleModalFromState && modalContent === 'deleteCard' && <DeleteCardModal />}
     </>
