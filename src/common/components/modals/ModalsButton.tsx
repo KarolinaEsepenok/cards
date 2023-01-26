@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 
 import { Button } from 'common/components/button/Button'
-// @ts-ignore
 import s from 'common/components/modals/Modals.module.scss'
 
 type ModalButtonType = {
@@ -9,19 +8,21 @@ type ModalButtonType = {
   typeBtn: ModalButtonVariantType
 }
 export const ModalButton: React.FC<ModalButtonType> = ({ isSaveDataModal, typeBtn }) => {
-  const onKeydown = ({ key }: KeyboardEvent) => {
-    switch (key) {
-      case 'Enter':
-        isSaveDataModal()
-        break
+  if (typeBtn === 'save') {
+    const onKeydown = ({ key }: KeyboardEvent) => {
+      switch (key) {
+        case 'Enter':
+          isSaveDataModal()
+          break
+      }
     }
+
+    useEffect(() => {
+      document.addEventListener('keydown', onKeydown)
+
+      return () => document.removeEventListener('keydown', onKeydown)
+    })
   }
-
-  useEffect(() => {
-    document.addEventListener('keydown', onKeydown)
-
-    return () => document.removeEventListener('keydown', onKeydown)
-  })
 
   return (
     <div>
