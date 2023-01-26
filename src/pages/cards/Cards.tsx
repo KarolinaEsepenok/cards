@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 
+import CircularProgress from '@mui/material/CircularProgress'
 import { NavLink, useNavigate, useParams } from 'react-router-dom'
 
 import s from './Cards.module.scss'
@@ -22,6 +23,7 @@ import {
 } from 'common/selectors/Selectors'
 import { CardsList } from 'pages/cards/cardsList/CardsList'
 import { getCardsTC, toggleCardModal } from 'pages/cards/cardsSlice'
+import { EmptyPacksList } from 'pages/packs/emptyPacksList/EmptyPacksList'
 import { EmptyPack } from 'pages/packs/packsList/pack/emptyPack/EmptyPack'
 import { setModalContent } from 'pages/packs/packsSlice'
 import { PATH } from 'routes/routes'
@@ -33,13 +35,14 @@ export const Cards = () => {
   const packCreatorId = useAppSelector(cardCreatorId)
   const modalContent = useAppSelector(modalContentSelector)
   const toggleModalFromState = useAppSelector(toggleCardModalSelector)
+  const loading = useAppSelector(state => state.cards.isLoading)
 
   const myPack = myId === packCreatorId
   const pageCount = useAppSelector(state => state.cards.queryParams.pageCount)
   const page = useAppSelector(state => state.cards.queryParams.page)
   const cardQuestion = useAppSelector(state => state.cards.queryParams.cardQuestion)
   const sortCards = useAppSelector(state => state.cards.queryParams.sortCards)
-  const packId = useAppSelector(state => state.cards.packId)
+  const packId = useAppSelector(state => state.cards.queryParams.cardsPack_id)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   let { id } = useParams()
@@ -58,7 +61,7 @@ export const Cards = () => {
     dispatch(toggleCardModal(true))
   }
 
-  return cards.length ? (
+  return (
     <>
       <NavLink to={PATH.PACKS} className={s.link}>
         <p>&lArr; Back to Packs List</p>
@@ -85,10 +88,15 @@ export const Cards = () => {
       <div className={s.searchContainer}>
         <Search class={s.search} selector={'Cards'} />
       </div>
-
-      <CardsList cards={cards} />
+      {loading ? (
+        <CircularProgress />
+      ) : (
+        <>
+          <CardsList cards={cards} />
+          {!myPack && !cards.length && <EmptyPacksList />}
+          {myPack && !cards.length && <EmptyPack />}
+        </>
+      )}
     </>
-  ) : (
-    <EmptyPack />
   )
 }
