@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { Button } from 'common/components/button/Button'
 // @ts-ignore
@@ -9,6 +9,20 @@ type ModalButtonType = {
   typeBtn: ModalButtonVariantType
 }
 export const ModalButton: React.FC<ModalButtonType> = ({ isSaveDataModal, typeBtn }) => {
+  const onKeydown = ({ key }: KeyboardEvent) => {
+    switch (key) {
+      case 'Enter':
+        isSaveDataModal()
+        break
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('keydown', onKeydown)
+
+    return () => document.removeEventListener('keydown', onKeydown)
+  })
+
   return (
     <div>
       {typeBtn === 'save' && (

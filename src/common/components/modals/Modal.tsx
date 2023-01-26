@@ -44,7 +44,7 @@ export const Modal: React.FC<ModalType> = ({ children, title, isSaveDataModal, t
         <div onClick={e => e.stopPropagation()} className={s.modalContent}>
           <div className={s.modalTitleContainer}>
             <h2 className={s.modalTitle}>{title}</h2>
-            <div>
+            <div className={s.modalClose}>
               <img src={closeBtn} onClick={handleCloseModal} alt="closeButton" />
             </div>
           </div>

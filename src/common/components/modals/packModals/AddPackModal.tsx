@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 
-import { Modal } from './Modal'
-import s from './Modals.module.scss'
-
 import { Checkbox } from 'common/components/checkbox/Checkbox'
 import { Input } from 'common/components/Input/Input'
+import { Modal } from 'common/components/modals/Modal'
+import s from 'common/components/modals/Modals.module.scss'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { addNewPackTC, togglePackModal } from 'pages/packs/packsSlice'
 

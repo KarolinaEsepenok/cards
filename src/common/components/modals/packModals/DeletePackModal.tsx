@@ -1,7 +1,6 @@
 import React from 'react'
 
-import { Modal } from './Modal'
-
+import { Modal } from 'common/components/modals/Modal'
 import s from 'common/components/modals/Modals.module.scss'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'

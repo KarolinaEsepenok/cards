@@ -2,12 +2,10 @@ import React, { useState } from 'react'
 
 import { useParams } from 'react-router-dom'
 
-import { useAppDispatch } from '../../hooks/useAppDispatch'
-import { Input } from '../Input/Input'
-
-import { Modal } from './Modal'
-
+import { Input } from 'common/components/Input/Input'
+import { Modal } from 'common/components/modals/Modal'
 import s from 'common/components/modals/Modals.module.scss'
+import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import { answerSelector, cardIdSelector, questionSelector } from 'common/selectors/Selectors'
 import { toggleCardModal, updateCardTC } from 'pages/cards/cardsSlice'
