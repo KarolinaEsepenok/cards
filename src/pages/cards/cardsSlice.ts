@@ -27,11 +27,12 @@ const initialState = {
 export const getCardsTC =
   (cardsPack_id: string): AppThunk =>
   async (dispatch, getState) => {
-    dispatch(setIsLoading(true))
+    dispatch(setCardsIsLoading(true))
+    const { pageCount, cardQuestion, page, sortCards } = getState().cards.queryParams
+
     dispatch(setPackId(cardsPack_id))
 
     try {
-      const { pageCount, cardQuestion, page, sortCards } = getState().cards.queryParams
       const response = await cardsAPI.getCards({
         cardsPack_id,
         pageCount,
@@ -52,6 +53,7 @@ export const getCardsTC =
         dispatch(setError(error))
       }
     } finally {
+      dispatch(setCardsIsLoading(false))
       dispatch(setIsLoading(false))
     }
   }
@@ -166,6 +168,9 @@ const slice = createSlice({
     setCardsIsLoading(state, action: PayloadAction<boolean>) {
       state.isLoading = action.payload
     },
+    setCardQuestion(state, action: PayloadAction<string>) {
+      state.queryParams.cardQuestion = action.payload
+    },
     setEditCardData: (state, action: PayloadAction<{ cardId: string; question: string; answer: string }>) => {
       state.cards[0]._id = action.payload.cardId
       state.cards[0].question = action.payload.question
@@ -188,4 +193,5 @@ export const {
   setEditCardData,
   toggleCardModal,
   setPackId,
+  setCardQuestion,
 } = slice.actions

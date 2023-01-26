@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 
 import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
@@ -12,7 +12,10 @@ import { toggleCardModal } from 'pages/cards/cardsSlice'
 import { setModalContent } from 'pages/packs/packsSlice'
 import { PATH } from 'routes/routes'
 
-export const EmptyPack = () => {
+type EmptyPackType = {
+  myPack?: boolean
+}
+export const EmptyPack: FC<EmptyPackType> = ({ myPack }) => {
   const dispatch = useDispatch()
 
   const packName = useAppSelector(cardsPackName)
@@ -32,6 +35,7 @@ export const EmptyPack = () => {
 
       <h2>{packName}</h2>
       <p>This pack is empty. Click add new card to fill this pack</p>
+
       <Button onClick={handleAddCard} styleType={'primary'}>
         Add New Card
       </Button>
