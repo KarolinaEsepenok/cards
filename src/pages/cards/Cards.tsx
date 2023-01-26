@@ -28,14 +28,17 @@ export const Cards = () => {
   const myId = useAppSelector(myIdSelector)
   const packCreatorId = useAppSelector(cardCreatorId)
   const myPack = myId === packCreatorId
-
+  const pageCount = useAppSelector(state => state.cards.queryParams.pageCount)
+  const page = useAppSelector(state => state.cards.queryParams.page)
+  const cardQuestion = useAppSelector(state => state.cards.queryParams.cardQuestion)
+  const sortCards = useAppSelector(state => state.cards.queryParams.sortCards)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   let { id } = useParams()
 
   useEffect(() => {
     if (id) dispatch(getCardsTC(id))
-  }, [])
+  }, [page, pageCount, cardQuestion, sortCards])
 
   const handelLearnPack = () => {
     dispatch(setIsLoading(true))
@@ -65,7 +68,7 @@ export const Cards = () => {
       </div>
 
       <div className={s.searchContainer}>
-        <Search class={s.search} />
+        <Search class={s.search} selector={'Cards'} />
       </div>
 
       <CardsList cards={cards} />

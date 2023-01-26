@@ -164,9 +164,20 @@ const slice = createSlice({
     setCardsIsLoading(state, action: PayloadAction<boolean>) {
       state.isLoading = action.payload
     },
+    setCardQuestion(state, action: PayloadAction<string>) {
+      state.queryParams.cardQuestion = action.payload
+    },
   },
 })
 
 export const cardsReducer = slice.reducer
-export const { getCards, setPackId, setCreatorId, setPackName, updateCard, addNewCard, setCardsIsLoading } =
-  slice.actions
+export const {
+  getCards,
+  setPackId,
+  setCreatorId,
+  setPackName,
+  updateCard,
+  addNewCard,
+  setCardsIsLoading,
+  setCardQuestion,
+} = slice.actions
