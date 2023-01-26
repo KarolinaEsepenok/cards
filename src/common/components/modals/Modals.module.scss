@@ -19,7 +19,7 @@
 }
 
 .modalContent {
-position: relative;
+  position: relative;
 
   width: 100%;
   max-width: 395px;
@@ -74,4 +74,8 @@ position: relative;
 }
 .modalSubtitleColor {
   font-weight: 600;
+}
+
+.input {
+  width: 100%;
 }

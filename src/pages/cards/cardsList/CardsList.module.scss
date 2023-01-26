@@ -1,0 +1,54 @@
+@import 'src/common/style/variables';
+
+@import 'src/common/style/mixins';
+
+.table {
+  border-collapse: collapse;
+
+  width: $main-width;
+
+  box-shadow: 0 0 3px rgb(0 0 0 / 15%);
+}
+
+.table tr {
+  border-bottom: 1px solid $background-500-color;
+}
+
+.title, .table td {
+  overflow: hidden;
+
+  box-sizing: border-box;
+  padding: 15px 10px;
+
+  word-wrap: break-word;
+}
+
+.title {
+
+  @include subtitle(600);
+
+  text-align: start;
+
+  background-color: $primary-color-light;
+}
+
+.question, .table td:nth-child(1){
+  max-width: 250px;
+  padding-left: 35px;
+}
+
+.answer, .table td:nth-child(2) {
+  max-width: 350px;
+}
+
+.update, .table td:nth-child(3) {
+  max-width: 120px;
+}
+
+.grade, .table td:nth-child(4) {
+  max-width: 150px;
+}
+
+.actions, .table td:nth-child(5) {
+  width: 138px;
+}

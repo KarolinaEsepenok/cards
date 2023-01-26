@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { Modal } from './Modal'
-import s from './Modals.module.scss'
 
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
@@ -15,7 +14,6 @@ export const DeleteCardModal = () => {
 
   const handleDeleteCard = () => {
     dispatch(deleteCardTC(cardId))
-    // dispatch(toggleModal(false))
     dispatch(toggleCardModal(false))
   }
 
