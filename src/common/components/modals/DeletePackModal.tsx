@@ -16,7 +16,6 @@ export const DeletePackModal = () => {
 
   const handleDeletePack = () => {
     dispatch(deletePackTC(packIdFromState))
-    // dispatch(toggleModal(false))
     dispatch(togglePackModal(false))
   }
 

@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux'
 import closeBtn from 'assets/img/icons/closeBtn.svg'
 import { Button } from 'common/components/button/Button'
 import s from 'common/components/modals/Modals.module.scss'
-// @ts-ignore
 import { ModalButton, ModalButtonVariantType } from 'common/components/modals/ModalsButton'
 import { toggleCardModal } from 'pages/cards/cardsSlice'
 import { togglePackModal } from 'pages/packs/packsSlice'
@@ -21,10 +20,10 @@ export const Modal: React.FC<ModalType> = ({ children, title, isSaveDataModal, t
   const dispatch = useDispatch()
 
   const handleCloseModal = () => {
-    // dispatch(toggleModal(false))
     dispatch(togglePackModal(false))
     dispatch(toggleCardModal(false))
   }
+
   const onKeydown = ({ key }: KeyboardEvent) => {
     switch (key) {
       case 'Escape':

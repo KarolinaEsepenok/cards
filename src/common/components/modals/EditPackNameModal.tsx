@@ -18,7 +18,6 @@ export const EditPackNameModal = () => {
 
   const handleAddPack = () => {
     dispatch(updateNamePackTC(packIdFromState, nameValue))
-    // dispatch(toggleModal(false))
     dispatch(togglePackModal(false))
   }
 
@@ -28,6 +27,7 @@ export const EditPackNameModal = () => {
         autoFocus
         value={nameValue}
         onChange={e => setNameValue(e.currentTarget.value)}
+        className={s.input}
         type="text"
         label="Name pack"
       />

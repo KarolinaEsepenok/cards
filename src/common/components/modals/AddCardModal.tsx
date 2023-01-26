@@ -6,6 +6,7 @@ import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { Input } from '../Input/Input'
 
 import { Modal } from 'common/components/modals/Modal'
+import s from 'common/components/modals/Modals.module.scss'
 import { addNewCardTC, toggleCardModal } from 'pages/cards/cardsSlice'
 
 export const AddCardModal = () => {
@@ -30,8 +31,15 @@ export const AddCardModal = () => {
         <option value="1">Select2</option>
       </select>
 
-      <Input value={question} onChange={handleChangeQuestion} type="text" label="Question" autoFocus />
-      <Input value={answer} onChange={handleChangeAnswer} type="text" label="Answer" />
+      <Input
+        value={question}
+        onChange={handleChangeQuestion}
+        type="text"
+        label="Question"
+        autoFocus
+        className={s.input}
+      />
+      <Input value={answer} onChange={handleChangeAnswer} type="text" label="Answer" className={s.input} />
     </Modal>
   )
 }
