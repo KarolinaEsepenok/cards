@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-import { AddPackType, packsApi, PackType } from './packsApi'
+import { AddPackType, GetParamsType, packsApi, PackType } from './packsApi'
 
 import { setError, setIsLoading } from 'app/appSlice'
 import { RootStateType } from 'app/store'
@@ -19,8 +19,8 @@ const initialState = {
   queryParams: {
     // pageCount: localStorage.getItem('row') ? Number(localStorage.getItem('row')) : 5,
     // page: localStorage.getItem('page') ? Number(localStorage.getItem('page')) : 1,
-    pageCount: 5,
-    page: 1,
+    pageCount: 1,
+    page: 5,
     min: 0,
     max: 110,
     user_id: '',
@@ -29,6 +29,7 @@ const initialState = {
   },
   modalNode: '',
   togglePackModal: false,
+  isQueryParamsSet: false,
 }
 
 export const getPacksTC = createAsyncThunk<void, undefined, { state: RootStateType; dispatch: AppDispatchType }>(
@@ -175,14 +176,12 @@ const slice = createSlice({
     togglePackModal: (state, action: PayloadAction<boolean>) => {
       state.togglePackModal = action.payload
     },
+    setQueryParams: (state, action: PayloadAction<GetParamsType>) => {
+      state.queryParams = action.payload
+      state.isQueryParamsSet = true
+    },
   },
 })
-
-{
-  /*setQueryParams: (state, action: PayloadAction<GetParamsType>) => {
-        state.queryParams = action.payload
-      },*/
-}
 
 export const packsReducer = slice.reducer
 export const {
@@ -198,6 +197,7 @@ export const {
   setSort,
   setModalContent,
   togglePackModal,
+  setQueryParams,
 } = slice.actions
 
 //type

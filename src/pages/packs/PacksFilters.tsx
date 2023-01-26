@@ -12,13 +12,14 @@ import { RangeSlider } from 'common/modules/range/Range'
 import { ResetAllFilters } from 'common/modules/resetAllFilters/ResetAllFilters'
 import { Search } from 'common/modules/search/Search'
 import { queryParamsSelector } from 'common/selectors/Selectors'
+import { GetParamsType } from 'pages/packs/packsApi'
+import { setQueryParams } from 'pages/packs/packsSlice'
 
 export const PacksFilters = () => {
   const queryParams = useAppSelector(queryParamsSelector)
   const [searchParams, setSearchParams] = useSearchParams(window.location.search)
   const dispatch = useAppDispatch()
 
-  //const param = searchParams.get('param')
   useEffect(() => {
     // @ts-ignore
     setSearchParams(queryParams)
@@ -29,7 +30,9 @@ export const PacksFilters = () => {
     Object.keys(newParams).forEach(key => {
       if (!newParams[key]) delete newParams[key]
     })
-    //  dispatch(setQueryParams({ ...queryParams, ...newParams } as unknown as GetParamsType))
+    let a = { ...queryParams, ...newParams } as unknown as GetParamsType
+
+    dispatch(setQueryParams(a))
   }, [])
 
   return (

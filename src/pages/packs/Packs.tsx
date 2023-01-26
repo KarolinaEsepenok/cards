@@ -11,6 +11,7 @@ import { useAppSelector } from 'common/hooks/useAppSelector'
 import {
   cardPacksTotalCountSelector,
   isLoadingSelector,
+  isQueryParamsSelector,
   maxValueRangeSelector,
   minValueRangeSelector,
   packNameSelector,
@@ -33,6 +34,7 @@ export const Packs = () => {
   const sortPacks = useAppSelector(sortPacksSelector)
   const totalCount = useAppSelector(cardPacksTotalCountSelector)
   const isLoading = useAppSelector(isLoadingSelector)
+  const isQueryParams = useAppSelector(isQueryParamsSelector)
 
   const modalContent = useAppSelector(state => state.packs.modalNode)
   // const toggleModalFromState = useAppSelector(state => state.app.toggleModal)
@@ -53,7 +55,11 @@ export const Packs = () => {
   }
 
   useEffect(() => {
-    dispatch(getPacksTC())
+    console.log(page, packName, pageCount, userId, min, max, sortPacks)
+
+    if (isQueryParams) {
+      dispatch(getPacksTC())
+    }
   }, [page, packName, pageCount, userId, min, max, sortPacks])
 
   return (

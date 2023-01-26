@@ -33,8 +33,12 @@ export const RangeSlider = () => {
   }
 
   useEffect(() => {
-    setValue([minCardsCountValue, maxCardsCountValue])
-  }, [minCardsCountValue, maxCardsCountValue, resetRangeValues])
+    setValue([minValue, maxValue])
+  }, [minValue, maxValue, resetRangeValues])
+
+  //useEffect(() => {
+  //  setValue([minCardsCountValue, maxCardsCountValue])
+  // }, [minCardsCountValue, maxCardsCountValue, resetRangeValues])
 
   return (
     <div className={s.container}>
