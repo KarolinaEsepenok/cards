@@ -2,39 +2,37 @@ import React, { useState } from 'react'
 
 import s from './Modals.module.scss'
 
-import { Button } from 'common/components/button/Button'
 import { Checkbox } from 'common/components/checkbox/Checkbox'
 import { Input } from 'common/components/Input/Input'
+import { Modal } from 'common/components/modals/Modal'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
-import { updateNamePackTC } from 'pages/packs/packsSlice'
+import { useAppSelector } from 'common/hooks/useAppSelector'
+import { cardsPackName, packIdSelector } from 'common/selectors/Selectors'
+import { togglePackModal, updateNamePackTC } from 'pages/packs/packsSlice'
 
-type EditPackNameModalType = {
-  packId: string
-  setTogglePopup: (v: any) => void
-  togglePopup: boolean
-  name: string
-}
-export const EditPackNameModal: React.FC<EditPackNameModalType> = ({ packId, setTogglePopup, togglePopup, name }) => {
+export const EditPackNameModal = () => {
   const dispatch = useAppDispatch()
-  const [nameValue, setNameValue] = useState<string>(name)
+  const packIdFromState = useAppSelector(packIdSelector)
+  const packNameFromState = useAppSelector(cardsPackName)
 
-  const handleAddPack = () => dispatch(updateNamePackTC(packId, nameValue))
+  const [nameValue, setNameValue] = useState<string>(packNameFromState)
+
+  const handleAddPack = () => {
+    dispatch(updateNamePackTC(packIdFromState, nameValue))
+    // dispatch(toggleModal(false))
+    dispatch(togglePackModal(false))
+  }
 
   return (
-    // <Modal title={'Edit pack'} onClickSave={handleAddPack}>
-    //   <>
-    //     <Input value={name} onChange={e => setName(e.currentTarget.value)} type="text" label="Name pack" />
-    //     <Checkbox />
-    //   </>
-    // </Modal>
-    <div className={s.modalContent}>
-      <h2>Edit pack</h2>
-      <Input value={nameValue} onChange={e => setNameValue(e.currentTarget.value)} type="text" label="Name pack" />
+    <Modal title={'Edit pack'} isSaveDataModal={handleAddPack} typeBtn="save">
+      <Input
+        autoFocus
+        value={nameValue}
+        onChange={e => setNameValue(e.currentTarget.value)}
+        type="text"
+        label="Name pack"
+      />
       <Checkbox />
-      <Button onClick={handleAddPack} styleType="primary">
-        Save
-      </Button>
-      <button onClick={() => setTogglePopup(!togglePopup)}>Close</button>
-    </div>
+    </Modal>
   )
 }

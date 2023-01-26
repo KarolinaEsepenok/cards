@@ -23,7 +23,7 @@ export const Card: FC<CardType> = ({ question, answer, update, grade, actions })
       <td>{update}</td>
       <td>
         <span className={s.tooltip} data-tooltip={`I know the answer to ${gradePercent}%`}>
-          <Rating name="read-only" value={grade} readOnly precision={0.2} />
+          <Rating name="read-only" value={+grade.toFixed(2)} readOnly precision={0.2} />
         </span>
       </td>
 
