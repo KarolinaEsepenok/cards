@@ -30,7 +30,7 @@ export const PackActions: FC<ActionsType> = ({ myPack, packId, name, cardsCount 
   return (
     <div>
       <Button styleType="icon" disabled={!myPack && cardsCount === 0}>
-        <div className={s.tooltip} data-tooltip="learn this card">
+        <div className={s.tooltip} data-tooltip="learn pack">
           <img src={teacher} alt="icon teacher" />
         </div>
       </Button>
@@ -38,12 +38,12 @@ export const PackActions: FC<ActionsType> = ({ myPack, packId, name, cardsCount 
       {myPack && (
         <>
           <Button styleType="icon" onClick={handlerTogglePopup}>
-            <div className={s.tooltip} data-tooltip="edit name this card">
+            <div className={s.tooltip} data-tooltip="edit name pack">
               <img src={edit} alt="icon edit" />
             </div>
           </Button>
           <Button styleType="icon" onClick={handlerDeletePack}>
-            <div className={s.tooltip} data-tooltip="delete this card">
+            <div className={s.tooltip} data-tooltip="delete pack">
               <img src={trash} alt="icon trash" />
             </div>
           </Button>
