@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
 import { Modal } from './Modal'
+import s from './Modals.module.scss'
 
 import { Checkbox } from 'common/components/checkbox/Checkbox'
 import { Input } from 'common/components/Input/Input'
@@ -13,13 +14,19 @@ export const AddPackModal = () => {
 
   const handleAddPack = () => {
     dispatch(addNewPackTC({ cardsPack: { name, deckCover: '', private: false } }))
-    // dispatch(toggleModal(false))
     dispatch(togglePackModal(false))
   }
 
   return (
     <Modal title={'Add new Pack'} isSaveDataModal={handleAddPack} typeBtn="save">
-      <Input value={name} onChange={e => setName(e.currentTarget.value)} type="text" label="Name pack" autoFocus />
+      <Input
+        value={name}
+        onChange={e => setName(e.currentTarget.value)}
+        type="text"
+        label="Name pack"
+        autoFocus
+        className={s.input}
+      />
       <Checkbox />
     </Modal>
   )

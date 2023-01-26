@@ -17,7 +17,9 @@ export const ResetAllFilters = () => {
 
   return (
     <Button className={s.button} styleType="icon" onClick={handelResetFilters} disabled={disabled}>
-      <img src={defaultFilters} alt="reset all filters icon" />
+      <div className={s.tooltip} data-tooltip="reset all filters">
+        <img src={defaultFilters} alt="reset all filters icon" />
+      </div>
     </Button>
   )
 }

@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 
-import s from './Modals.module.scss'
-
 import { Checkbox } from 'common/components/checkbox/Checkbox'
 import { Input } from 'common/components/Input/Input'
 import { Modal } from 'common/components/modals/Modal'
+import s from 'common/components/modals/Modals.module.scss'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import { cardsPackName, packIdSelector } from 'common/selectors/Selectors'
@@ -19,7 +18,6 @@ export const EditPackNameModal = () => {
 
   const handleAddPack = () => {
     dispatch(updateNamePackTC(packIdFromState, nameValue))
-    // dispatch(toggleModal(false))
     dispatch(togglePackModal(false))
   }
 
@@ -29,6 +27,7 @@ export const EditPackNameModal = () => {
         autoFocus
         value={nameValue}
         onChange={e => setNameValue(e.currentTarget.value)}
+        className={s.input}
         type="text"
         label="Name pack"
       />

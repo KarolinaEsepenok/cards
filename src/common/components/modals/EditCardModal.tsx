@@ -6,8 +6,8 @@ import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { Input } from '../Input/Input'
 
 import { Modal } from './Modal'
-import s from './Modals.module.scss'
 
+import s from 'common/components/modals/Modals.module.scss'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import { answerSelector, cardIdSelector, questionSelector } from 'common/selectors/Selectors'
 import { toggleCardModal, updateCardTC } from 'pages/cards/cardsSlice'
@@ -24,7 +24,6 @@ export const EditCardModal = () => {
 
   const handleEditPack = () => {
     dispatch(updateCardTC(id ? id : '', cardId, { question: questionValue, answer: answerValue }))
-    // dispatch(toggleModal(false))
     dispatch(toggleCardModal(false))
   }
 
@@ -33,8 +32,15 @@ export const EditCardModal = () => {
 
   return (
     <Modal title={'Edit card'} isSaveDataModal={handleEditPack} typeBtn="save">
-      <Input autoFocus value={questionValue} onChange={handleChangeQuestion} type="text" label="Question" />
-      <Input value={answerValue} onChange={handleChangeAnswer} type="text" label="Answer" />
+      <Input
+        autoFocus
+        value={questionValue}
+        onChange={handleChangeQuestion}
+        type="text"
+        label="Question"
+        className={s.input}
+      />
+      <Input value={answerValue} onChange={handleChangeAnswer} type="text" label="Answer" className={s.input} />
     </Modal>
   )
 }
