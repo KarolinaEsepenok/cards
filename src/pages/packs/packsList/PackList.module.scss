@@ -2,10 +2,6 @@
 
 @import 'src/common/style/mixins';
 
-.cursor {
-  cursor: pointer;
-}
-
 .table {
   border-collapse: collapse;
 
@@ -30,6 +26,7 @@
 
   box-sizing: border-box;
   padding: 15px 10px;
+
   word-wrap: break-word;
 }
 
@@ -62,4 +59,11 @@
   text-align: start;
 
   background-color: $primary-color-light;
+}
+
+.sort {
+  cursor: pointer;
+
+  display: flex;
+  column-gap: 5px;
 }
