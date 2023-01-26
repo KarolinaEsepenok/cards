@@ -8,7 +8,6 @@ import { sortingPacksMethods } from 'common/constants/sortingPacksMethods/sortin
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import { cardPacks, myIdSelector, sortPacksSelector } from 'common/selectors/Selectors'
-
 import { formatDate } from 'common/utils/formatDate'
 import { sortHelper } from 'common/utils/sortHelper'
 
