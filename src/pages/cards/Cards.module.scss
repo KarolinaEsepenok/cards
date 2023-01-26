@@ -20,3 +20,9 @@
 .search {
   width: 100%;
 }
+
+.linkDisabled {
+  pointer-events: none;
+
+  opacity: 0.6;
+}

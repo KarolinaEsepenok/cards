@@ -8,7 +8,6 @@ export const PATH = {
   SET_NEW_PASS: '/set-new-password/:token',
   CHECK_EMAIL: '/checkEmail',
   PACKS: '/packs',
-  EMPTY_PACK: '/empty-pack',
   ERROR_404: '/404',
   CARDS: '/cards/:id',
   CARD: '/cards/:id/learn',
