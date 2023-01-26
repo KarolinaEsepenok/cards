@@ -5,10 +5,12 @@ import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import { isLoadingSelector, packNameSelector } from 'common/selectors/Selectors'
 import { useDebounce } from 'common/utils/useDebounce'
+import { setCardQuestion } from 'pages/cards/cardsSlice'
 import { setSearchName } from 'pages/packs/packsSlice'
 
 type SearchType = {
   class?: string
+  selector: string
 }
 export const Search: FC<SearchType> = props => {
   const dispatch = useAppDispatch()
@@ -22,7 +24,11 @@ export const Search: FC<SearchType> = props => {
   }
 
   useEffect(() => {
-    dispatch(setSearchName(value))
+    if (props.selector === 'Packs') {
+      dispatch(setSearchName(value))
+    } else {
+      dispatch(setCardQuestion(value))
+    }
   }, [debouncedValue])
 
   useEffect(() => {
