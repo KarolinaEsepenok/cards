@@ -16,7 +16,6 @@ import {
   cardCreatorId,
   cardsPackName,
   cardsSelector,
-  isLoadingSelector,
   modalContentSelector,
   myIdSelector,
   toggleCardModalSelector,
@@ -28,7 +27,6 @@ import { setModalContent } from 'pages/packs/packsSlice'
 import { PATH } from 'routes/routes'
 
 export const Cards = () => {
-  const isLoading = useAppSelector(isLoadingSelector)
   const cards = useAppSelector(cardsSelector)
   const packName = useAppSelector(cardsPackName)
   const myId = useAppSelector(myIdSelector)
@@ -55,8 +53,6 @@ export const Cards = () => {
     dispatch(setModalContent('addCard'))
     dispatch(toggleCardModal(true))
   }
-
-  if (isLoading) return <></>
 
   return cards.length ? (
     <>

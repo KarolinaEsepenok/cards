@@ -75,7 +75,7 @@ export const Packs = () => {
       <PacksFilters />
 
       {totalCount > 0 ? (
-        <div>
+        <>
           <div className={s.packsList}>
             <PacksList />
           </div>
@@ -89,7 +89,7 @@ export const Packs = () => {
               currentPage={page}
             />
           </div>
-        </div>
+        </>
       ) : (
         !isLoading && <EmptyPacksList />
       )}
