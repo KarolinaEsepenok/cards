@@ -27,9 +27,9 @@ export const getCardsTC =
   (cardsPack_id: string): AppThunk =>
   async (dispatch, getState) => {
     dispatch(setIsLoading(true))
+    const { pageCount, cardQuestion, page, sortCards } = getState().cards.queryParams
 
     try {
-      const { pageCount, cardQuestion, page, sortCards } = getState().cards.queryParams
       const response = await cardsAPI.getCards({
         cardsPack_id,
         pageCount,

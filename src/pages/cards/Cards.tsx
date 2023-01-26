@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 
+import LinearProgress from '@mui/material/LinearProgress'
 import { NavLink, useNavigate, useParams } from 'react-router-dom'
 
 import s from './Cards.module.scss'
@@ -32,20 +33,19 @@ export const Cards = () => {
   const page = useAppSelector(state => state.cards.queryParams.page)
   const cardQuestion = useAppSelector(state => state.cards.queryParams.cardQuestion)
   const sortCards = useAppSelector(state => state.cards.queryParams.sortCards)
+  const packId = useAppSelector(state => state.cards.packId)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   let { id } = useParams()
 
   useEffect(() => {
-    if (id) dispatch(getCardsTC(id))
+    dispatch(getCardsTC(packId))
   }, [page, pageCount, cardQuestion, sortCards])
 
   const handelLearnPack = () => {
     dispatch(setIsLoading(true))
     navigate(`/cards/${id}/learn`)
   }
-
-  if (isLoading) return <></>
 
   return cards.length ? (
     <>
