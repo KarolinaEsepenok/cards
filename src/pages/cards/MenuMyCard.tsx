@@ -11,8 +11,6 @@ import teacher from 'assets/img/icons/teacher.svg'
 import trash from 'assets/img/icons/trash.svg'
 import { Button } from 'common/components/button/Button'
 
-//const options = ['Edit']
-
 const ITEM_HEIGHT = 48
 
 export const MenuMyCard = () => {
@@ -74,12 +72,12 @@ export const MenuMyCard = () => {
 }
 {
   /*
-<MenuItem onClick={handleClose}>
-  <Button styleType="icon">
-    <div className={s.tooltip} data-tooltip="delete this card">
-      <img className={s.iconDropDown} src={teacher} alt="icon trash" />
-      <span className={s.descrDropDown}>Learn</span>
-    </div>
-  </Button>
-</MenuItem>*/
+  <MenuItem onClick={handleClose}>
+    <Button styleType="icon">
+      <div className={s.tooltip} data-tooltip="delete this card">
+        <img className={s.iconDropDown} src={teacher} alt="icon trash" />
+        <span className={s.descrDropDown}>Learn</span>
+      </div>
+    </Button>
+  </MenuItem>*/
 }
