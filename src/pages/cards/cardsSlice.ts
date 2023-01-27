@@ -27,7 +27,7 @@ const initialState = {
 export const getCardsTC =
   (cardsPack_id: string): AppThunk =>
   async (dispatch, getState) => {
-    dispatch(setCardsIsLoading(true))
+    dispatch(setIsLoading(true))
     const { pageCount, cardQuestion, page, sortCards } = getState().cards.queryParams
 
     dispatch(setPackId(cardsPack_id))
@@ -53,7 +53,6 @@ export const getCardsTC =
         dispatch(setError(error))
       }
     } finally {
-      dispatch(setCardsIsLoading(false))
       dispatch(setIsLoading(false))
     }
   }
