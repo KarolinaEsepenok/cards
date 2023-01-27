@@ -17,14 +17,13 @@ import {
   cardCreatorId,
   cardsPackName,
   cardsSelector,
-  isLoadingSelector,
   modalContentSelector,
   myIdSelector,
   toggleCardModalSelector,
 } from 'common/selectors/Selectors'
 import { CardsList } from 'pages/cards/cardsList/CardsList'
 import { getCardsTC, toggleCardModal } from 'pages/cards/cardsSlice'
-import { LongMenu } from 'pages/cards/MenuMyCard'
+import { MenuMyCard } from 'pages/cards/MenuMyCard'
 import { EmptyPacksList } from 'pages/packs/emptyPacksList/EmptyPacksList'
 import { EmptyPack } from 'pages/packs/packsList/pack/emptyPack/EmptyPack'
 import { setModalContent } from 'pages/packs/packsSlice'
@@ -69,8 +68,11 @@ export const Cards = () => {
         <p>&lArr; Back to Packs List</p>
       </NavLink>
 
-      <h2 className={s.title}>{packName}</h2>
-      <LongMenu />
+      <h2 className={s.title}>
+        {packName}
+        <MenuMyCard />
+      </h2>
+      <span className={s.iconDropDown}></span>
 
       <div className={s.buttonsContainer}>
         <Button styleType="primary" onClick={handelLearnPack}>

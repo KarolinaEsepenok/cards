@@ -2,18 +2,20 @@ import React from 'react'
 
 import { Menu } from '@mui/material'
 import MenuItem from '@mui/material/MenuItem'
-import { NavLink } from 'react-router-dom'
 
 import s from './cardsList/MenuMyCard.module.scss'
 
 import dropDownMenu from 'assets/img/icons/DropDownMenu.svg'
+import edit from 'assets/img/icons/edit.svg'
+import teacher from 'assets/img/icons/teacher.svg'
+import trash from 'assets/img/icons/trash.svg'
 import { Button } from 'common/components/button/Button'
 
-const options = ['Edit']
+//const options = ['Edit']
 
 const ITEM_HEIGHT = 48
 
-export const LongMenu = () => {
+export const MenuMyCard = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
 
@@ -27,13 +29,7 @@ export const LongMenu = () => {
 
   return (
     <div>
-      <Button
-        className={s.button}
-        aria-label="more"
-        aria-controls="shot-menu"
-        aria-haspopup="true"
-        onClick={handleClick}
-      >
+      <Button className={s.button} aria-haspopup="true" onClick={handleClick}>
         <img src={dropDownMenu} />
       </Button>
       <Menu
@@ -49,17 +45,41 @@ export const LongMenu = () => {
           },
         }}
       >
-        {options.map(option => (
-          <>
-            <MenuItem key={option} selected={option === ''} onClick={handleClose}>
-              <NavLink to={'/profile'}>Edit</NavLink>
-            </MenuItem>
-            <MenuItem key={option} selected={option === ''} onClick={handleClose}>
-              <NavLink to={'/profile'}>Delete</NavLink>
-            </MenuItem>
-          </>
-        ))}
+        <MenuItem onClick={handleClose}>
+          <Button styleType="icon">
+            <div className={s.tooltip} data-tooltip="edit question/answer"></div>
+            <img className={s.iconDropDown} src={edit} alt="icon edit" />
+            <span className={s.descrDropDown}>Edit</span>
+          </Button>
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Button styleType="icon">
+            <div className={s.tooltip} data-tooltip="delete this card">
+              <img className={s.iconDropDown} src={trash} alt="icon trash" />
+              <span className={s.descrDropDown}>Delete</span>
+            </div>
+          </Button>
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Button styleType="icon">
+            <div className={s.tooltip} data-tooltip="delete this card">
+              <img className={s.iconDropDown} src={teacher} alt="icon trash" />
+              <span className={s.descrDropDown}>Learn</span>
+            </div>
+          </Button>
+        </MenuItem>
       </Menu>
     </div>
   )
+}
+{
+  /*
+<MenuItem onClick={handleClose}>
+  <Button styleType="icon">
+    <div className={s.tooltip} data-tooltip="delete this card">
+      <img className={s.iconDropDown} src={teacher} alt="icon trash" />
+      <span className={s.descrDropDown}>Learn</span>
+    </div>
+  </Button>
+</MenuItem>*/
 }

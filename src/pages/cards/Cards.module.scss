@@ -13,6 +13,11 @@
   justify-content: space-between
 }
 
+.title {
+  display: flex;
+  align-items: center;
+}
+
 .searchContainer {
   margin: 20px 0;
 }
