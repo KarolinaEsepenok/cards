@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 import { setError, setIsLoading } from 'app/appSlice'
-import { sortingCardsMethods } from 'common/constants/sortingPacksMethods/sortingPacksMethods'
+import { sortingCardsMethods } from 'common/constants/sortingPacksMethods/sortingMethods'
 import { AppThunk } from 'common/hooks/AppThunk'
 import { AppDispatchType } from 'common/hooks/useAppDispatch'
 import { AddNewCardParamType, cardsAPI, CardType } from 'pages/cards/cardsApi'
@@ -179,11 +179,15 @@ const slice = createSlice({
     toggleCardModal: (state, action: PayloadAction<boolean>) => {
       state.toggleCardModal = action.payload
     },
+    setCardsSort: (state, action: PayloadAction<sortingCardsMethods>) => {
+      state.queryParams.sortCards = action.payload
+    },
   },
 })
 
 export const cardsReducer = slice.reducer
 export const {
+  setCardsSort,
   setCards,
   setCreatorId,
   setPackName,

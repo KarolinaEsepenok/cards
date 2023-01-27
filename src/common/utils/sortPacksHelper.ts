@@ -1,9 +1,9 @@
-import { sortingPacksMethods } from '../constants/sortingPacksMethods/sortingPacksMethods'
 import { AppDispatchType } from '../hooks/useAppDispatch'
 
+import { sortingPacksMethods } from 'common/constants/sortingPacksMethods/sortingMethods'
 import { setSort } from 'pages/packs/packsSlice'
 
-export const sortHelper = (
+export const sortPacksHelper = (
   dispatch: AppDispatchType,
   sortMethod: sortingPacksMethods,
   m1: sortingPacksMethods,

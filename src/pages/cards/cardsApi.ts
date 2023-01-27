@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios'
 
 import { instance } from 'common/axiosInstance/axiosInstance'
-import { sortingCardsMethods } from 'common/constants/sortingPacksMethods/sortingPacksMethods'
+import { sortingCardsMethods } from 'common/constants/sortingPacksMethods/sortingMethods'
 
 export const cardsAPI = {
   getCards(params: GetParamsCardType) {
