@@ -45,3 +45,8 @@ export const questionSelector = (state: RootStateType) => state.cards.cards[0].q
 export const answerSelector = (state: RootStateType) => state.cards.cards[0].answer
 export const packIdSelector = (state: RootStateType) => state.cards.queryParams.cardsPack_id
 export const toggleCardModalSelector = (state: RootStateType) => state.cards.toggleCardModal
+export const loadingCardsSelector = (state: RootStateType) => state.cards.isLoading
+export const pageCountCardsSelector = (state: RootStateType) => state.cards.queryParams.pageCount
+export const pageCardsSelector = (state: RootStateType) => state.cards.queryParams.page
+export const cardQuestionSelector = (state: RootStateType) => state.cards.queryParams.cardQuestion
+export const sortCardsSelector = (state: RootStateType) => state.cards.queryParams.sortCards

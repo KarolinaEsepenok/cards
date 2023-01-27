@@ -7,17 +7,12 @@ import s from './App.module.scss'
 
 import { initializeAppTC } from 'app/appSlice'
 import { ErrorSnackbar } from 'common/components/errorSnackbar/ErrorSnackbar'
+import { circularProgressStyle } from 'common/constants/circularProgressStyle'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import { Header } from 'common/modules/header/Header'
 import { isAppInitialize, isLoadingSelector } from 'common/selectors/Selectors'
 import { RoutesComponent } from 'routes/RoutesComponent'
-
-const circularProgressStyle = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-}
 
 export const App = () => {
   const dispatch = useAppDispatch()

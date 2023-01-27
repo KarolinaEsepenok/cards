@@ -15,7 +15,6 @@ import { SignIn } from 'pages/auth/signIn/signIn'
 import { Cards } from 'pages/cards/Cards'
 import { LearnCard } from 'pages/cards/cardsList/learnCard/LearnCard'
 import { Packs } from 'pages/packs/Packs'
-import { EmptyPack } from 'pages/packs/packsList/pack/emptyPack/EmptyPack'
 
 export const RoutesComponent = () => {
   return (
@@ -25,7 +24,6 @@ export const RoutesComponent = () => {
         <Route path={PATH.PACKS} element={<Packs />} />
         <Route path={PATH.CARDS} element={<Cards />} />
         <Route path={PATH.CARD} element={<LearnCard />} />
-        <Route path={PATH.EMPTY_PACK} element={<EmptyPack />} />
       </Route>
 
       <Route path={PATH.MAIN} element={<Navigate to={PATH.SIGN_IN} />} />

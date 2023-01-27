@@ -33,8 +33,9 @@ export const CardActions: React.FC<CardActionsType> = ({ cardId, question, answe
   return (
     <>
       <Button styleType="icon" onClick={handleEditCard}>
-        <div className={s.tooltip} data-tooltip="edit question/answer"></div>
-        <img src={edit} alt="icon edit" />
+        <div className={s.tooltip} data-tooltip="edit question/answer">
+          <img src={edit} alt="icon edit" />
+        </div>
       </Button>
 
       <Button styleType="icon" onClick={handlerDeleteCard}>
