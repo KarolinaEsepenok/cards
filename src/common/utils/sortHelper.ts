@@ -9,5 +9,5 @@ export const sortHelper = (
   m1: sortingPacksMethods,
   m2: sortingPacksMethods
 ) => {
-  sortMethod === m1 ? dispatch(setSort(m2)) : dispatch(setSort(m1))
+  sortMethod === m2 ? dispatch(setSort(m1)) : dispatch(setSort(m2))
 }
