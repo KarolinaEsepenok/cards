@@ -91,7 +91,9 @@ export const PacksList = () => {
               author={p.user_name}
               updated={dateUpdate}
               myPack={myPack}
-              actions={<PackActions myPack={myPack} packId={p._id} name={p.name} cardsCount={p.cardsCount} />}
+              actions={
+                <PackActions key={p._id} myPack={myPack} packId={p._id} name={p.name} cardsCount={p.cardsCount} />
+              }
             />
           )
         })}

@@ -7,9 +7,9 @@ import s from './Cards.module.scss'
 
 import { setIsLoading } from 'app/appSlice'
 import { Button } from 'common/components/button/Button'
-import { AddCardModal } from 'common/components/modals/AddCardModal'
-import { DeleteCardModal } from 'common/components/modals/DeleteCardModal'
-import { EditCardModal } from 'common/components/modals/EditCardModal'
+import { AddCardModal } from 'common/components/modals/cardModals/AddCardModal'
+import { DeleteCardModal } from 'common/components/modals/cardModals/DeleteCardModal'
+import { EditCardModal } from 'common/components/modals/cardModals/EditCardModal'
 import { circularProgressStyle } from 'common/constants/circularProgressStyle'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
@@ -30,6 +30,7 @@ import {
 } from 'common/selectors/Selectors'
 import { CardsList } from 'pages/cards/cardsList/CardsList'
 import { getCardsTC, toggleCardModal } from 'pages/cards/cardsSlice'
+import { MenuMyCard } from 'pages/cards/menuMyCard/MenuMyCard'
 import { setModalContent } from 'pages/packs/packsSlice'
 import { PATH } from 'routes/routes'
 
@@ -72,7 +73,10 @@ export const Cards = () => {
         <p>&lArr; Back to Packs List</p>
       </Link>
 
-      <h2 className={s.title}>{packName}</h2>
+      <h2 className={s.title}>
+        {packName}
+        <MenuMyCard />
+      </h2>
 
       <div className={s.buttonsContainer}>
         <Button styleType="primary" onClick={handelLearnPack}>

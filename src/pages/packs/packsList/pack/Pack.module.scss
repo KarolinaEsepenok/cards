@@ -1,3 +1,5 @@
+@import "src/common/style/mixins";
+
 .name {
   &:hover {
     cursor: pointer;
@@ -6,4 +8,19 @@
 
 .disabledName {
   color: rgb(50 50 50 / 31%);
+}
+.emptyPack {
+ display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.title {
+
+  @include headline2;
+
+  margin-bottom: 86px;
+}
+.text {
+
+  @include title;
 }
