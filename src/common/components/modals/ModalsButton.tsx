@@ -1,8 +1,8 @@
 import React from 'react'
 
-import s from './Modals.module.scss'
-
 import { Button } from 'common/components/button/Button'
+// @ts-ignore
+import s from 'common/components/modals/Modals.module.scss'
 
 type ModalButtonType = {
   isSaveDataModal: () => void

@@ -5,5 +5,7 @@ export const formatDate = (date: string): string => {
     return num > 10 ? num : `0${num}`
   }
 
-  return `${fullDate.getDate()}.${convertFormat(fullDate.getMonth() + 1)}.${convertFormat(fullDate.getFullYear())}`
+  return `${convertFormat(fullDate.getDate())}.${convertFormat(fullDate.getMonth() + 1)}.${convertFormat(
+    fullDate.getFullYear()
+  )}`
 }

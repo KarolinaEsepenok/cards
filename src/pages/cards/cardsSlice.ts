@@ -8,19 +8,18 @@ import { AppDispatchType } from 'common/hooks/useAppDispatch'
 import { AddNewCardParamType, cardsAPI, CardType } from 'pages/cards/cardsApi'
 
 const initialState = {
-  // cards: [] as CardType[],
-  cards: [{ _id: '', question: '', answer: '' }] as CardType[],
-  cardsTotalCount: 0,
-  packName: '',
-  isCardsFetched: false,
+  cards: [] as CardType[],
   queryParams: {
     pageCount: 110,
     page: 1,
     cardQuestion: '',
     sortCards: sortingCardsMethods.desUpdate,
+    cardsPack_id: '',
   },
-  packId: '',
+  cardsTotalCount: 0,
+  packName: '',
   creatorId: '',
+  isCardsFetched: false,
   isLoading: false,
   toggleCardModal: false,
 }
@@ -28,10 +27,12 @@ const initialState = {
 export const getCardsTC =
   (cardsPack_id: string): AppThunk =>
   async (dispatch, getState) => {
-    dispatch(setIsLoading(true))
+    dispatch(setCardsIsLoading(true))
+    const { pageCount, cardQuestion, page, sortCards } = getState().cards.queryParams
+
+    dispatch(setPackId(cardsPack_id))
 
     try {
-      const { pageCount, cardQuestion, page, sortCards } = getState().cards.queryParams
       const response = await cardsAPI.getCards({
         cardsPack_id,
         pageCount,
@@ -42,7 +43,7 @@ export const getCardsTC =
 
       const { cards } = response.data
 
-      dispatch(getCards({ cards: cards }))
+      dispatch(setCards(cards))
       dispatch(setPackName(response.data.packName))
       dispatch(setCreatorId(response.data.packUserId))
     } catch (e) {
@@ -52,6 +53,7 @@ export const getCardsTC =
         dispatch(setError(error))
       }
     } finally {
+      dispatch(setCardsIsLoading(false))
       dispatch(setIsLoading(false))
     }
   }
@@ -136,11 +138,11 @@ const slice = createSlice({
   name: 'cards',
   initialState,
   reducers: {
-    getCards: (state, action: PayloadAction<{ cards: CardType[] }>) => {
-      state.cards = action.payload.cards
+    setCards: (state, action: PayloadAction<CardType[]>) => {
+      state.cards = action.payload
     },
     setPackId: (state, action: PayloadAction<string>) => {
-      state.packId = action.payload
+      state.queryParams.cardsPack_id = action.payload
     },
     setCreatorId: (state, action: PayloadAction<string>) => {
       state.creatorId = action.payload
@@ -166,6 +168,9 @@ const slice = createSlice({
     setCardsIsLoading(state, action: PayloadAction<boolean>) {
       state.isLoading = action.payload
     },
+    setCardQuestion(state, action: PayloadAction<string>) {
+      state.queryParams.cardQuestion = action.payload
+    },
     setEditCardData: (state, action: PayloadAction<{ cardId: string; question: string; answer: string }>) => {
       state.cards[0]._id = action.payload.cardId
       state.cards[0].question = action.payload.question
@@ -179,8 +184,7 @@ const slice = createSlice({
 
 export const cardsReducer = slice.reducer
 export const {
-  getCards,
-  setPackId,
+  setCards,
   setCreatorId,
   setPackName,
   updateCard,
@@ -188,4 +192,6 @@ export const {
   setCardsIsLoading,
   setEditCardData,
   toggleCardModal,
+  setPackId,
+  setCardQuestion,
 } = slice.actions

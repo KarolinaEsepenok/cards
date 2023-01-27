@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
 
 import s from './Packs.module.scss'
-import { PacksFilters } from './PacksFilters'
 
 import { Button } from 'common/components/button/Button'
 import { AddPackModal } from 'common/components/modals/AddPackModal'
+import { DeletePackModal } from 'common/components/modals/DeletePackModal'
+import { EditPackNameModal } from 'common/components/modals/EditPackNameModal'
 import { Paginator } from 'common/components/paginator/Paginator'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
@@ -18,11 +19,13 @@ import {
   pageCountSelector,
   pageSelector,
   sortPacksSelector,
+  togglePackModalSelector,
   userIdSelector,
 } from 'common/selectors/Selectors'
+import { EmptyPacksList } from 'pages/packs/emptyPacksList/EmptyPacksList'
+import { PacksFilters } from 'pages/packs/packsFilters/PacksFilters'
 import { PacksList } from 'pages/packs/packsList/PacksList'
 import { getPacksTC, setModalContent, setPacksCurrentPage, setRowPage, togglePackModal } from 'pages/packs/packsSlice'
-import { ResultsNotFound } from 'pages/packs/ResultsNotFound'
 
 export const Packs = () => {
   const page = useAppSelector(pageSelector)
@@ -34,12 +37,11 @@ export const Packs = () => {
   const sortPacks = useAppSelector(sortPacksSelector)
   const totalCount = useAppSelector(cardPacksTotalCountSelector)
   const isLoading = useAppSelector(isLoadingSelector)
-
   const modalContent = useAppSelector(modalContentSelector)
-  // const toggleModalFromState = useAppSelector(state => state.app.toggleModal)
-  const toggleModalFromState = useAppSelector(state => state.packs.togglePackModal)
+  const toggleModalFromState = useAppSelector(togglePackModalSelector)
 
   const dispatch = useAppDispatch()
+
   const changePageHandle = (page: number) => {
     dispatch(setPacksCurrentPage(page))
   }
@@ -49,7 +51,6 @@ export const Packs = () => {
 
   const handleOpenPopup = () => {
     dispatch(setModalContent('addPack'))
-    // dispatch(toggleModal(true))
     dispatch(togglePackModal(true))
   }
 
@@ -66,12 +67,15 @@ export const Packs = () => {
           Add new pack
         </Button>
       </div>
+
       {toggleModalFromState && modalContent === 'addPack' && <AddPackModal />}
+      {toggleModalFromState && modalContent === 'editPackName' && <EditPackNameModal />}
+      {toggleModalFromState && modalContent === 'deletePack' && <DeletePackModal />}
 
       <PacksFilters />
 
       {totalCount > 0 ? (
-        <div>
+        <>
           <div className={s.packsList}>
             <PacksList />
           </div>
@@ -85,9 +89,9 @@ export const Packs = () => {
               currentPage={page}
             />
           </div>
-        </div>
+        </>
       ) : (
-        !isLoading && <ResultsNotFound />
+        !isLoading && <EmptyPacksList />
       )}
     </div>
   )
