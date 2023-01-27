@@ -7,7 +7,7 @@
   @include navigateLink();
 }
 
-.buttonsContainer {
+.headerContainer {
   display: flex;
   align-items: center;
   justify-content: space-between
@@ -16,6 +16,8 @@
 .title {
   display: flex;
   align-items: center;
+
+  max-width: 50%;
 }
 
 .searchContainer {

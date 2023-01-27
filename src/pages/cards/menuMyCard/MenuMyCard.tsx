@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, MouseEvent, FC } from 'react'
 
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
@@ -12,11 +12,15 @@ import s from 'pages/cards/menuMyCard/MenuMyCard.module.scss'
 
 const ITEM_HEIGHT = 48
 
-export const MenuMyCard = () => {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+type MenuMyCardType = {
+  learnPackCallback: () => void
+}
+
+export const MenuMyCard: FC<MenuMyCardType> = ({ learnPackCallback }) => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
 
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+  const handleClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
   }
 
@@ -27,8 +31,9 @@ export const MenuMyCard = () => {
   return (
     <div>
       <Button className={s.button} aria-haspopup="true" onClick={handleClick}>
-        <img src={dropDownMenu} />
+        <img src={dropDownMenu} alt="" />
       </Button>
+
       <Menu
         id="shot-menu"
         anchorEl={anchorEl}
@@ -39,29 +44,34 @@ export const MenuMyCard = () => {
           style: {
             maxHeight: ITEM_HEIGHT * 4.5,
             width: '20ch',
+            top: '208px',
+            left: '480px',
           },
         }}
       >
         <MenuItem onClick={handleClose}>
           <Button styleType="icon">
-            <div className={s.tooltip} data-tooltip="edit question/answer"></div>
-            <img className={s.iconDropDown} src={edit} alt="icon edit" />
-            <span className={s.descrDropDown}>Edit</span>
-          </Button>
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Button styleType="icon">
-            <div className={s.tooltip} data-tooltip="delete this card">
-              <img className={s.iconDropDown} src={trash} alt="icon trash" />
-              <span className={s.descrDropDown}>Delete</span>
+            <div className={s.menuItem}>
+              <img className={s.iconDropDown} src={edit} alt="icon edit" />
+              <span className={s.descrDropDown}>Edit pack name</span>
             </div>
           </Button>
         </MenuItem>
+
         <MenuItem onClick={handleClose}>
           <Button styleType="icon">
-            <div className={s.tooltip} data-tooltip="delete this card">
-              <img className={s.iconDropDown} src={teacher} alt="icon trash" />
-              <span className={s.descrDropDown}>Learn</span>
+            <div className={s.menuItem}>
+              <img className={s.iconDropDown} src={trash} alt="icon trash" />
+              <span className={s.descrDropDown}>Delete pack</span>
+            </div>
+          </Button>
+        </MenuItem>
+
+        <MenuItem onClick={handleClose}>
+          <Button styleType="icon" onClick={learnPackCallback}>
+            <div className={s.menuItem}>
+              <img className={s.iconDropDown} src={teacher} alt="icon learn" />
+              <span className={s.descrDropDown}>Learn pack</span>
             </div>
           </Button>
         </MenuItem>

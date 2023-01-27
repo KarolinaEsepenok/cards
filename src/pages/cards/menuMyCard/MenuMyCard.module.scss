@@ -1,6 +1,6 @@
-@import '../../../common/style/mixins';
+@import 'src/common/style/mixins';
 
-@import '../../../common/style/variables';
+@import 'src/common/style/variables';
 
 .button {
   cursor: pointer;
@@ -14,13 +14,15 @@
 .iconDropDown {
   width: 24px;
   height: 24px;
-  margin-right: 15px;
-
-
+  margin-right: 10px;
 }
 
 .descrDropDown {
   font-size: 16px;
   line-height: 24px;
+}
 
+.menuItem {
+  display: flex;
+  align-items: center;
 }
