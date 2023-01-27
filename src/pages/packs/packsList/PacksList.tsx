@@ -4,12 +4,12 @@ import s from './PackList.module.scss'
 
 import arrowDown from 'assets/img/icons/table-sort-arrow-down.svg'
 import arrowUp from 'assets/img/icons/table-sort-arrow-up.svg'
-import { sortingPacksMethods } from 'common/constants/sortingPacksMethods/sortingPacksMethods'
+import { sortingPacksMethods } from 'common/constants/sortingPacksMethods/sortingMethods'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import { cardPacks, myIdSelector, sortPacksSelector } from 'common/selectors/Selectors'
 import { formatDate } from 'common/utils/formatDate'
-import { sortHelper } from 'common/utils/sortHelper'
+import { sortPacksHelper } from 'common/utils/sortPacksHelper'
 
 export const PacksList = () => {
   const packs = useAppSelector(cardPacks)
@@ -27,7 +27,7 @@ export const PacksList = () => {
     sortMethod === sortingPacksMethods.ascUserName ? <img src={arrowUp} alt="" /> : <img src={arrowDown} alt="" />
 
   const universalSort = (m1: sortingPacksMethods, m2: sortingPacksMethods) => {
-    sortHelper(dispatch, sortMethod, m1, m2)
+    sortPacksHelper(dispatch, sortMethod, m1, m2)
   }
 
   const sortByName = () => {

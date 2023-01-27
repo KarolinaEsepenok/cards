@@ -1,4 +1,4 @@
-import { sortingPacksMethods } from '../sortingPacksMethods/sortingPacksMethods'
+import { sortingPacksMethods } from 'common/constants/sortingPacksMethods/sortingMethods'
 
 export const emptyQueryParams = {
   pageCount: 5,
