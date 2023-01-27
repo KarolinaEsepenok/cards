@@ -1,15 +1,14 @@
 import React from 'react'
 
-import { Menu } from '@mui/material'
+import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
-
-import s from './cardsList/MenuMyCard.module.scss'
 
 import dropDownMenu from 'assets/img/icons/DropDownMenu.svg'
 import edit from 'assets/img/icons/edit.svg'
 import teacher from 'assets/img/icons/teacher.svg'
 import trash from 'assets/img/icons/trash.svg'
 import { Button } from 'common/components/button/Button'
+import s from 'pages/cards/menuMyCard/MenuMyCard.module.scss'
 
 const ITEM_HEIGHT = 48
 
@@ -69,15 +68,4 @@ export const MenuMyCard = () => {
       </Menu>
     </div>
   )
-}
-{
-  /*
-  <MenuItem onClick={handleClose}>
-    <Button styleType="icon">
-      <div className={s.tooltip} data-tooltip="delete this card">
-        <img className={s.iconDropDown} src={teacher} alt="icon trash" />
-        <span className={s.descrDropDown}>Learn</span>
-      </div>
-    </Button>
-  </MenuItem>*/
 }

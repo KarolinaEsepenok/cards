@@ -30,7 +30,7 @@ import {
 } from 'common/selectors/Selectors'
 import { CardsList } from 'pages/cards/cardsList/CardsList'
 import { getCardsTC, toggleCardModal } from 'pages/cards/cardsSlice'
-import { MenuMyCard } from 'pages/cards/MenuMyCard'
+import { MenuMyCard } from 'pages/cards/menuMyCard/MenuMyCard'
 import { setModalContent } from 'pages/packs/packsSlice'
 import { PATH } from 'routes/routes'
 
