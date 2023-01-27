@@ -31,8 +31,6 @@ import {
 import { CardsList } from 'pages/cards/cardsList/CardsList'
 import { getCardsTC, toggleCardModal } from 'pages/cards/cardsSlice'
 import { MenuMyCard } from 'pages/cards/MenuMyCard'
-import { EmptyPacksList } from 'pages/packs/emptyPacksList/EmptyPacksList'
-import { EmptyPack } from 'pages/packs/packsList/pack/emptyPack/EmptyPack'
 import { setModalContent } from 'pages/packs/packsSlice'
 import { PATH } from 'routes/routes'
 
@@ -79,7 +77,6 @@ export const Cards = () => {
         {packName}
         <MenuMyCard />
       </h2>
-      <span className={s.iconDropDown}></span>
 
       <div className={s.buttonsContainer}>
         <Button styleType="primary" onClick={handelLearnPack}>
