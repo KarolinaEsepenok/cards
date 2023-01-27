@@ -10,6 +10,8 @@ import { Button } from 'common/components/button/Button'
 import { AddCardModal } from 'common/components/modals/cardModals/AddCardModal'
 import { DeleteCardModal } from 'common/components/modals/cardModals/DeleteCardModal'
 import { EditCardModal } from 'common/components/modals/cardModals/EditCardModal'
+import { DeletePackModal } from 'common/components/modals/packModals/DeletePackModal'
+import { EditPackNameModal } from 'common/components/modals/packModals/EditPackNameModal'
 import { circularProgressStyle } from 'common/constants/circularProgressStyle'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
@@ -20,6 +22,7 @@ import {
   cardQuestionSelector,
   cardsPackName,
   cardsSelector,
+  deletePackSelector,
   loadingCardsSelector,
   modalContentSelector,
   myIdSelector,
@@ -27,11 +30,12 @@ import {
   pageCountCardsSelector,
   sortCardsSelector,
   toggleCardModalSelector,
+  togglePackModalSelector,
 } from 'common/selectors/Selectors'
 import { CardsList } from 'pages/cards/cardsList/CardsList'
 import { getCardsTC, toggleCardModal } from 'pages/cards/cardsSlice'
 import { MenuMyCard } from 'pages/cards/menuMyCard/MenuMyCard'
-import { setModalContent } from 'pages/packs/packsSlice'
+import { setDeleteInPacks, setModalContent, togglePackModal } from 'pages/packs/packsSlice'
 import { PATH } from 'routes/routes'
 
 export const Cards = () => {
@@ -40,12 +44,14 @@ export const Cards = () => {
   const myId = useAppSelector(myIdSelector)
   const packCreatorId = useAppSelector(cardCreatorId)
   const modalContent = useAppSelector(modalContentSelector)
-  const toggleModalFromState = useAppSelector(toggleCardModalSelector)
+  const toggleModalCardFromState = useAppSelector(toggleCardModalSelector)
+  const toggleModalPackFromState = useAppSelector(togglePackModalSelector)
   const loading = useAppSelector(loadingCardsSelector)
   const pageCount = useAppSelector(pageCountCardsSelector)
   const page = useAppSelector(pageCardsSelector)
   const cardQuestion = useAppSelector(cardQuestionSelector)
   const sortCards = useAppSelector(sortCardsSelector)
+  const deletePack = useAppSelector(deletePackSelector)
   const myPack = myId === packCreatorId
   const cardsList = cards.length ? <CardsList cards={cards} /> : <EmptyList />
 
@@ -57,6 +63,10 @@ export const Cards = () => {
     dispatch(getCardsTC(id ? id : ''))
   }, [page, pageCount, cardQuestion, sortCards])
 
+  useEffect(() => {
+    if (deletePack) navigate('/packs')
+  }, [deletePack])
+
   const handelLearnPack = () => {
     dispatch(setIsLoading(true))
     navigate(`/cards/${id}/learn`)
@@ -65,6 +75,16 @@ export const Cards = () => {
   const handleAddCard = () => {
     dispatch(setModalContent('addCard'))
     dispatch(toggleCardModal(true))
+  }
+
+  const handelEditPack = () => {
+    dispatch(togglePackModal(true))
+    dispatch(setModalContent('editPackName'))
+  }
+  const handelDeletePack = () => {
+    dispatch(setDeleteInPacks(false))
+    dispatch(setModalContent('deletePack'))
+    dispatch(togglePackModal(true))
   }
 
   return (
@@ -76,7 +96,11 @@ export const Cards = () => {
       <div className={s.headerContainer}>
         <h2 className={s.title}>
           {packName}
-          <MenuMyCard learnPackCallback={handelLearnPack} />
+          <MenuMyCard
+            learnPackCallback={handelLearnPack}
+            deletePackCallback={handelDeletePack}
+            editPackCallback={handelEditPack}
+          />
         </h2>
 
         {myPack && (
@@ -85,9 +109,12 @@ export const Cards = () => {
           </Button>
         )}
 
-        {toggleModalFromState && modalContent === 'addCard' && <AddCardModal />}
-        {toggleModalFromState && modalContent === 'editCard' && <EditCardModal />}
-        {toggleModalFromState && modalContent === 'deleteCard' && <DeleteCardModal />}
+        {toggleModalCardFromState && modalContent === 'addCard' && <AddCardModal />}
+        {toggleModalCardFromState && modalContent === 'editCard' && <EditCardModal />}
+        {toggleModalCardFromState && modalContent === 'deleteCard' && <DeleteCardModal />}
+
+        {toggleModalPackFromState && modalContent === 'editPackName' && <EditPackNameModal />}
+        {toggleModalPackFromState && modalContent === 'deletePack' && <DeletePackModal />}
       </div>
 
       <div className={s.searchContainer}>

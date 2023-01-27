@@ -22,6 +22,7 @@ const initialState = {
   isCardsFetched: false,
   isLoading: false,
   toggleCardModal: false,
+  deletePack: false,
 }
 
 export const getCardsTC =
@@ -179,6 +180,9 @@ const slice = createSlice({
     toggleCardModal: (state, action: PayloadAction<boolean>) => {
       state.toggleCardModal = action.payload
     },
+    deletePack: (state, action: PayloadAction<boolean>) => {
+      state.deletePack = action.payload
+    },
   },
 })
 
@@ -194,4 +198,5 @@ export const {
   toggleCardModal,
   setPackId,
   setCardQuestion,
+  deletePack,
 } = slice.actions

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 import { AddPackType, packsApi, PackType } from './packsApi'
 
@@ -9,6 +10,7 @@ import { emptyQueryParams } from 'common/constants/emptyQueryParams/emptyQueryPa
 import { sortingPacksMethods } from 'common/constants/sortingPacksMethods/sortingPacksMethods'
 import { AppThunk } from 'common/hooks/AppThunk'
 import { AppDispatchType } from 'common/hooks/useAppDispatch'
+import { deletePack, setPackName } from 'pages/cards/cardsSlice'
 
 const initialState = {
   cardPacks: [] as PackType[],
@@ -27,6 +29,7 @@ const initialState = {
   },
   modalNode: '',
   togglePackModal: false,
+  deleteInPacks: true,
 }
 
 export const getPacksTC = createAsyncThunk<void, undefined, { state: RootStateType; dispatch: AppDispatchType }>(
@@ -88,6 +91,7 @@ export const updateNamePackTC =
       const response = await packsApi.updatePack(packId, packName)
 
       dispatch(updateNamePack({ id: packId, packName: response.data.updatedCardsPack.name }))
+      dispatch(setPackName(response.data.updatedCardsPack.name))
       dispatch(getPacksTC())
     } catch (e) {
       if (axios.isAxiosError<{ error: string }>(e)) {
@@ -102,11 +106,14 @@ export const updateNamePackTC =
 
 export const deletePackTC =
   (packId: string): AppThunk =>
-  async dispatch => {
+  async (dispatch, getState) => {
+    const deleteInPack = getState().packs.deleteInPacks
+
     dispatch(setIsLoading(true))
     try {
       await packsApi.deletePack(packId)
-      dispatch(getPacksTC())
+      deleteInPack && dispatch(getPacksTC())
+      dispatch(deletePack(true))
     } catch (e) {
       if (axios.isAxiosError<{ error: string }>(e)) {
         const error = e.response ? e.response.data.error : 'Something wrong'
@@ -173,6 +180,9 @@ const slice = createSlice({
     togglePackModal: (state, action: PayloadAction<boolean>) => {
       state.togglePackModal = action.payload
     },
+    setDeleteInPacks: (state, action: PayloadAction<boolean>) => {
+      state.deleteInPacks = action.payload
+    },
   },
 })
 
@@ -190,6 +200,7 @@ export const {
   setSort,
   setModalContent,
   togglePackModal,
+  setDeleteInPacks,
 } = slice.actions
 
 //type

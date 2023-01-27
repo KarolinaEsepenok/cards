@@ -1,4 +1,5 @@
 import { RootStateType } from 'app/store'
+import { useAppSelector } from 'common/hooks/useAppSelector'
 
 //app
 export const isLoggedInSelector = (state: RootStateType) => state.app.isLoggedIn
@@ -50,3 +51,4 @@ export const pageCountCardsSelector = (state: RootStateType) => state.cards.quer
 export const pageCardsSelector = (state: RootStateType) => state.cards.queryParams.page
 export const cardQuestionSelector = (state: RootStateType) => state.cards.queryParams.cardQuestion
 export const sortCardsSelector = (state: RootStateType) => state.cards.queryParams.sortCards
+export const deletePackSelector = (state: RootStateType) => state.cards.deletePack
