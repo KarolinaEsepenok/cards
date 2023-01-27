@@ -3,8 +3,7 @@
 @import '../../style/variables';
 
 .headerContainer {
-  position: fixed;
-z-index: 5;
+  position: relative;
 
   display: flex;
   align-items: center;

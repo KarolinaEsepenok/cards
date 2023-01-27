@@ -14,11 +14,11 @@ export const Header = () => {
   const navigate = useNavigate()
   const isLoggedIn = useAppSelector(isLoggedInSelector)
   const userName = useAppSelector(nameSelector)
-
   const userAvatar = useAppSelector(avatarSelector)
   const avatar = userAvatar ? userAvatar : avatarPlug
+
   const openSignIn = () => {
-    navigate('/signIn')
+    navigate(`${PATH.SIGN_IN}`)
   }
 
   return (
