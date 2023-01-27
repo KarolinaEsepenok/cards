@@ -22,16 +22,19 @@ export const EditPackNameModal = () => {
   }
 
   return (
-    <Modal title={'Edit pack'} isSaveDataModal={handleAddPack} typeBtn="save">
+    <Modal title={'Edit pack'} isSaveDataModal={handleAddPack} typeBtn="save" value={nameValue}>
       <Input
         autoFocus
         value={nameValue}
         onChange={e => setNameValue(e.currentTarget.value)}
-        className={s.input}
+        className={!nameValue.length ? s.inputError : s.input}
         type="text"
         label="Name pack"
+        error={!nameValue.length ? 'write name pack' : ''}
       />
-      <Checkbox />
+      <div className={s.checkbox}>
+        <Checkbox />
+      </div>
     </Modal>
   )
 }
