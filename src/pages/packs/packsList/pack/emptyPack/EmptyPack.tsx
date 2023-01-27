@@ -1,10 +1,12 @@
-import React, { FC } from 'react'
+import React from 'react'
 
 import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
+import empty from '../Pack.module.scss'
+
 import { Button } from 'common/components/button/Button'
-import { AddCardModal } from 'common/components/modals/AddCardModal'
+import { AddCardModal } from 'common/components/modals/cardModals/AddCardModal'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import { cardsPackName, modalContentSelector, toggleCardModalSelector } from 'common/selectors/Selectors'
 import s from 'pages/cards/Cards.module.scss'
@@ -12,10 +14,7 @@ import { toggleCardModal } from 'pages/cards/cardsSlice'
 import { setModalContent } from 'pages/packs/packsSlice'
 import { PATH } from 'routes/routes'
 
-type EmptyPackType = {
-  myPack?: boolean
-}
-export const EmptyPack: FC<EmptyPackType> = ({ myPack }) => {
+export const EmptyPack = () => {
   const dispatch = useDispatch()
 
   const packName = useAppSelector(cardsPackName)
@@ -33,12 +32,13 @@ export const EmptyPack: FC<EmptyPackType> = ({ myPack }) => {
         <p>&lArr; Back to Packs List</p>
       </NavLink>
 
-      <h2>{packName}</h2>
-      <p>This pack is empty. Click add new card to fill this pack</p>
-
-      <Button onClick={handleAddCard} styleType={'primary'}>
-        Add New Card
-      </Button>
+      <h2 className={empty.title}>{packName}</h2>
+      <div className={empty.emptyPack}>
+        <p className={empty.text}>This pack is empty. Click add new card to fill this pack</p>
+        <Button onClick={handleAddCard} styleType={'primary'}>
+          Add New Card
+        </Button>
+      </div>
 
       {toggleModalFromState && modalContent === 'addCard' && <AddCardModal />}
     </div>

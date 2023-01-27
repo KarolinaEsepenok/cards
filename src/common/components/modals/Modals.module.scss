@@ -18,7 +18,7 @@
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modalContent {
+.content {
   position: relative;
 
   width: 100%;
@@ -28,18 +28,19 @@
   background-color: $background-base-color;
 }
 
-.modalButtons {
+.buttons {
   display: flex;
   justify-content: space-between;
 
   margin-top: 35px;
 
 }
-.modalBtn {
+
+.button {
   width: 127px;
 }
 
-.modalTitleContainer {
+.titleContainer {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -47,10 +48,9 @@
   margin-bottom: 54px;
 }
 
-.modalTitle {
+.title {
 
   @include headline3;
-
 
 
   margin: 0;
@@ -68,14 +68,31 @@
     background-color: #aeaeae;
   }
 }
+
 .modalSubtitle {
 
   @include subtitle;
 }
+
 .modalSubtitleColor {
   font-weight: 600;
 }
 
 .input {
   width: 100%;
+}
+
+.close {
+  cursor: pointer;
+
+  padding: 7px;
+}
+
+.inputError {
+  width: 100%;
+
+  border-bottom: 2px solid red;
+}
+.checkbox {
+  margin-top: 15px;
 }

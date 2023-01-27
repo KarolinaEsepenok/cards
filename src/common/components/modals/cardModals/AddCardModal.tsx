@@ -2,17 +2,16 @@ import React, { useState } from 'react'
 
 import { useParams } from 'react-router-dom'
 
-import { useAppDispatch } from '../../hooks/useAppDispatch'
-import { Input } from '../Input/Input'
-
+import { Input } from 'common/components/Input/Input'
 import { Modal } from 'common/components/modals/Modal'
 import s from 'common/components/modals/Modals.module.scss'
+import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { addNewCardTC, toggleCardModal } from 'pages/cards/cardsSlice'
 
 export const AddCardModal = () => {
   const dispatch = useAppDispatch()
 
-  const [question, setQuestion] = useState<string>('')
+  const [question, setQuestion] = useState<string>('My question')
   const [answer, setAnswer] = useState<string>('')
 
   let { id } = useParams()
@@ -25,7 +24,7 @@ export const AddCardModal = () => {
   const handleChangeAnswer = (e: React.ChangeEvent<HTMLInputElement>) => setAnswer(e.currentTarget.value)
 
   return (
-    <Modal title={'Add new card'} isSaveDataModal={handleAddCard} typeBtn="save">
+    <Modal title={'Add new card'} isSaveDataModal={handleAddCard} typeBtn="save" value={question}>
       <select>
         <option value="0">Text</option>
         <option value="1">Select2</option>
@@ -37,7 +36,8 @@ export const AddCardModal = () => {
         type="text"
         label="Question"
         autoFocus
-        className={s.input}
+        className={!question.length ? s.inputError : s.input}
+        error={!question.length ? 'write your question' : ''}
       />
       <Input value={answer} onChange={handleChangeAnswer} type="text" label="Answer" className={s.input} />
     </Modal>

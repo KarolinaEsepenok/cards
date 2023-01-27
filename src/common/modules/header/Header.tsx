@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import logoCards from 'assets/img/LogoCards.svg'
 import avatarPlug from 'assets/img/profile_photo.jpg'
@@ -8,6 +8,7 @@ import { Button } from 'common/components/button/Button'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import s from 'common/modules/header/Header.module.scss'
 import { avatarSelector, isLoggedInSelector, nameSelector } from 'common/selectors/Selectors'
+import { PATH } from 'routes/routes'
 
 export const Header = () => {
   const navigate = useNavigate()
@@ -23,7 +24,9 @@ export const Header = () => {
   return (
     <header className={s.headerContainer}>
       <nav className={s.headerContent}>
-        <img src={logoCards} alt="logo" />
+        <Link to={PATH.PACKS}>
+          <img src={logoCards} alt="logo" />
+        </Link>
 
         {isLoggedIn ? (
           <div className={s.userInfoContainer}>

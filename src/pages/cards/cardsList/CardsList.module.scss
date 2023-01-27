@@ -11,7 +11,12 @@
 }
 
 .table tr {
+  background-color: $background-base-color;
   border-bottom: 1px solid $background-500-color;
+
+  &:nth-child(even) {
+        background-color: $background-200-color;
+  }
 }
 
 .title, .table td {

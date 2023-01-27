@@ -1,24 +1,31 @@
 import React, { useEffect } from 'react'
 
 import CircularProgress from '@mui/material/CircularProgress'
-import { NavLink, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
 import s from './Cards.module.scss'
 
 import { setIsLoading } from 'app/appSlice'
 import { Button } from 'common/components/button/Button'
-import { AddCardModal } from 'common/components/modals/AddCardModal'
-import { DeleteCardModal } from 'common/components/modals/DeleteCardModal'
-import { EditCardModal } from 'common/components/modals/EditCardModal'
+import { AddCardModal } from 'common/components/modals/cardModals/AddCardModal'
+import { DeleteCardModal } from 'common/components/modals/cardModals/DeleteCardModal'
+import { EditCardModal } from 'common/components/modals/cardModals/EditCardModal'
+import { circularProgressStyle } from 'common/constants/circularProgressStyle'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
+import { EmptyList } from 'common/modules/emptyList/EmptyList'
 import { Search } from 'common/modules/search/Search'
 import {
   cardCreatorId,
+  cardQuestionSelector,
   cardsPackName,
   cardsSelector,
+  loadingCardsSelector,
   modalContentSelector,
   myIdSelector,
+  pageCardsSelector,
+  pageCountCardsSelector,
+  sortCardsSelector,
   toggleCardModalSelector,
 } from 'common/selectors/Selectors'
 import { CardsList } from 'pages/cards/cardsList/CardsList'
@@ -36,20 +43,20 @@ export const Cards = () => {
   const packCreatorId = useAppSelector(cardCreatorId)
   const modalContent = useAppSelector(modalContentSelector)
   const toggleModalFromState = useAppSelector(toggleCardModalSelector)
-  const loading = useAppSelector(state => state.cards.isLoading)
-
+  const loading = useAppSelector(loadingCardsSelector)
+  const pageCount = useAppSelector(pageCountCardsSelector)
+  const page = useAppSelector(pageCardsSelector)
+  const cardQuestion = useAppSelector(cardQuestionSelector)
+  const sortCards = useAppSelector(sortCardsSelector)
   const myPack = myId === packCreatorId
-  const pageCount = useAppSelector(state => state.cards.queryParams.pageCount)
-  const page = useAppSelector(state => state.cards.queryParams.page)
-  const cardQuestion = useAppSelector(state => state.cards.queryParams.cardQuestion)
-  const sortCards = useAppSelector(state => state.cards.queryParams.sortCards)
-  const packId = useAppSelector(state => state.cards.queryParams.cardsPack_id)
+  const cardsList = cards.length ? <CardsList cards={cards} /> : <EmptyList />
+
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   let { id } = useParams()
 
   useEffect(() => {
-    dispatch(getCardsTC(packId))
+    dispatch(getCardsTC(id ? id : ''))
   }, [page, pageCount, cardQuestion, sortCards])
 
   const handelLearnPack = () => {
@@ -64,9 +71,9 @@ export const Cards = () => {
 
   return (
     <>
-      <NavLink to={PATH.PACKS} className={s.link}>
+      <Link to={PATH.PACKS} className={`${s.link} ${loading ? s.linkDisabled : ''}`}>
         <p>&lArr; Back to Packs List</p>
-      </NavLink>
+      </Link>
 
       <h2 className={s.title}>
         {packName}
@@ -93,15 +100,8 @@ export const Cards = () => {
       <div className={s.searchContainer}>
         <Search class={s.search} selector={'Cards'} />
       </div>
-      {loading ? (
-        <CircularProgress />
-      ) : (
-        <>
-          <CardsList cards={cards} />
-          {!myPack && !cards.length && <EmptyPacksList />}
-          {myPack && !cards.length && <EmptyPack />}
-        </>
-      )}
+
+      {loading ? <CircularProgress sx={circularProgressStyle} /> : cardsList}
     </>
   )
 }

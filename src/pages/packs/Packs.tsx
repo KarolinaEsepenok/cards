@@ -3,12 +3,13 @@ import React, { useEffect } from 'react'
 import s from './Packs.module.scss'
 
 import { Button } from 'common/components/button/Button'
-import { AddPackModal } from 'common/components/modals/AddPackModal'
-import { DeletePackModal } from 'common/components/modals/DeletePackModal'
-import { EditPackNameModal } from 'common/components/modals/EditPackNameModal'
+import { AddPackModal } from 'common/components/modals/packModals/AddPackModal'
+import { DeletePackModal } from 'common/components/modals/packModals/DeletePackModal'
+import { EditPackNameModal } from 'common/components/modals/packModals/EditPackNameModal'
 import { Paginator } from 'common/components/paginator/Paginator'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
+import { EmptyList } from 'common/modules/emptyList/EmptyList'
 import {
   cardPacksTotalCountSelector,
   isLoadingSelector,
@@ -22,7 +23,6 @@ import {
   togglePackModalSelector,
   userIdSelector,
 } from 'common/selectors/Selectors'
-import { EmptyPacksList } from 'pages/packs/emptyPacksList/EmptyPacksList'
 import { PacksFilters } from 'pages/packs/packsFilters/PacksFilters'
 import { PacksList } from 'pages/packs/packsList/PacksList'
 import { getPacksTC, setModalContent, setPacksCurrentPage, setRowPage, togglePackModal } from 'pages/packs/packsSlice'
@@ -91,7 +91,7 @@ export const Packs = () => {
           </div>
         </>
       ) : (
-        !isLoading && <EmptyPacksList />
+        !isLoading && <EmptyList />
       )}
     </div>
   )
