@@ -18,7 +18,7 @@
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modalContent {
+.content {
   position: relative;
 
   width: 100%;
@@ -28,7 +28,7 @@
   background-color: $background-base-color;
 }
 
-.modalButtons {
+.buttons {
   display: flex;
   justify-content: space-between;
 
@@ -36,11 +36,11 @@
 
 }
 
-.modalBtn {
+.button {
   width: 127px;
 }
 
-.modalTitleContainer {
+.titleContainer {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -48,7 +48,7 @@
   margin-bottom: 54px;
 }
 
-.modalTitle {
+.title {
 
   @include headline3;
 
@@ -82,7 +82,7 @@
   width: 100%;
 }
 
-.modalClose {
+.close {
   cursor: pointer;
 
   padding: 7px;

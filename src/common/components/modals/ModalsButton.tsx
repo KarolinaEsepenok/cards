@@ -28,12 +28,12 @@ export const ModalButton: React.FC<ModalButtonType> = ({ isSaveDataModal, typeBt
   return (
     <div>
       {typeBtn === 'save' && (
-        <Button disabled={!value.length} className={s.modalBtn} onClick={isSaveDataModal} styleType="primary">
+        <Button disabled={!value.length} className={s.button} onClick={isSaveDataModal} styleType="primary">
           Save
         </Button>
       )}
       {typeBtn === 'delete' && (
-        <Button className={s.modalBtn} onClick={isSaveDataModal} styleType="warn">
+        <Button className={s.button} onClick={isSaveDataModal} styleType="warn">
           Delete
         </Button>
       )}

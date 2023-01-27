@@ -42,18 +42,18 @@ export const Modal: React.FC<ModalType> = ({ children, title, isSaveDataModal, t
   return (
     <>
       <div onClick={handleCloseModal} className={s.modal}>
-        <div onClick={e => e.stopPropagation()} className={s.modalContent}>
-          <div className={s.modalTitleContainer}>
-            <h2 className={s.modalTitle}>{title}</h2>
-            <div className={s.modalClose}>
+        <div onClick={e => e.stopPropagation()} className={s.content}>
+          <div className={s.titleContainer}>
+            <h2 className={s.title}>{title}</h2>
+            <div className={s.close}>
               <img src={closeBtn} onClick={handleCloseModal} alt="closeButton" />
             </div>
           </div>
 
           {children}
 
-          <div className={s.modalButtons}>
-            <Button className={s.modalBtn} onClick={handleCloseModal} styleType={'secondary'}>
+          <div className={s.buttons}>
+            <Button className={s.button} onClick={handleCloseModal} styleType={'secondary'}>
               Cancel
             </Button>
             <ModalButton isSaveDataModal={isSaveDataModal} typeBtn={typeBtn} value={value} />
