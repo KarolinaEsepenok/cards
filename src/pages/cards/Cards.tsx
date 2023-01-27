@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 
+import CircularProgress from '@mui/material/CircularProgress'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 
 import s from './Cards.module.scss'
@@ -9,6 +10,7 @@ import { Button } from 'common/components/button/Button'
 import { AddCardModal } from 'common/components/modals/cardModals/AddCardModal'
 import { DeleteCardModal } from 'common/components/modals/cardModals/DeleteCardModal'
 import { EditCardModal } from 'common/components/modals/cardModals/EditCardModal'
+import { circularProgressStyle } from 'common/constants/circularProgressStyle'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import { EmptyList } from 'common/modules/emptyList/EmptyList'
@@ -18,7 +20,7 @@ import {
   cardQuestionSelector,
   cardsPackName,
   cardsSelector,
-  isLoadingSelector,
+  loadingCardsSelector,
   modalContentSelector,
   myIdSelector,
   pageCardsSelector,
@@ -27,7 +29,7 @@ import {
   toggleCardModalSelector,
 } from 'common/selectors/Selectors'
 import { CardsList } from 'pages/cards/cardsList/CardsList'
-import { getCardsTC, setCards, toggleCardModal } from 'pages/cards/cardsSlice'
+import { getCardsTC, toggleCardModal } from 'pages/cards/cardsSlice'
 import { MenuMyCard } from 'pages/cards/menuMyCard/MenuMyCard'
 import { setModalContent } from 'pages/packs/packsSlice'
 import { PATH } from 'routes/routes'
@@ -39,12 +41,13 @@ export const Cards = () => {
   const packCreatorId = useAppSelector(cardCreatorId)
   const modalContent = useAppSelector(modalContentSelector)
   const toggleModalFromState = useAppSelector(toggleCardModalSelector)
-  const loading = useAppSelector(isLoadingSelector)
+  const loading = useAppSelector(loadingCardsSelector)
   const pageCount = useAppSelector(pageCountCardsSelector)
   const page = useAppSelector(pageCardsSelector)
   const cardQuestion = useAppSelector(cardQuestionSelector)
   const sortCards = useAppSelector(sortCardsSelector)
   const myPack = myId === packCreatorId
+  const cardsList = cards.length ? <CardsList cards={cards} /> : <EmptyList />
 
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -63,13 +66,10 @@ export const Cards = () => {
     dispatch(setModalContent('addCard'))
     dispatch(toggleCardModal(true))
   }
-  const handleResetCards = () => {
-    dispatch(setCards([]))
-  }
 
   return (
     <>
-      <Link to={PATH.PACKS} className={`${s.link} ${loading ? s.linkDisabled : ''}`} onClick={handleResetCards}>
+      <Link to={PATH.PACKS} className={`${s.link} ${loading ? s.linkDisabled : ''}`}>
         <p>&lArr; Back to Packs List</p>
       </Link>
 
@@ -98,7 +98,7 @@ export const Cards = () => {
         <Search class={s.search} selector={'Cards'} />
       </div>
 
-      {cards.length ? <CardsList cards={cards} /> : !loading && <EmptyList />}
+      {loading ? <CircularProgress sx={circularProgressStyle} /> : cardsList}
     </>
   )
 }
