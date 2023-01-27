@@ -9,7 +9,7 @@ import s from './LearnCard.module.scss'
 import { Button } from 'common/components/button/Button'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
-import { cardsPackName, cardsSelector, isLoadingSelector } from 'common/selectors/Selectors'
+import { cardsPackName, cardsSelector, loadingCardsSelector } from 'common/selectors/Selectors'
 import { CardType } from 'pages/cards/cardsApi'
 import { getCardsTC } from 'pages/cards/cardsSlice'
 
@@ -26,10 +26,9 @@ const skeletonSubtitleStyle = {
 export const LearnCard = () => {
   const cards = useAppSelector(cardsSelector)
   const packName = useAppSelector(cardsPackName)
-  const isLoading = useAppSelector(isLoadingSelector)
+  const loading = useAppSelector(loadingCardsSelector)
   const [showAnswer, setShowAnswer] = useState(false)
   const [card, setCard] = useState<CardType | null>(null)
-  //const [first, setFirst] = useState(true)
 
   const { id } = useParams()
   const dispatch = useAppDispatch()
@@ -39,24 +38,11 @@ export const LearnCard = () => {
 
     return () => {
       setCard(null)
-      //setFirst(true)
     }
   }, [])
 
-  // useEffect(() => {
-  //   if (JSON.stringify(cards) !== JSON.stringify(cards)) {
-  //
-  //   }
-  // }, [])
-
   useEffect(() => {
-    // console.log('inside first useEffect')
-    //  console.log(cards)
-    // console.log(first)
-    //
-    // console.log('inside first2 useEffect')
     setCard(getCard(cards))
-    //setFirst(false)
   }, [cards])
 
   const nextCard = () => {
@@ -65,7 +51,6 @@ export const LearnCard = () => {
   }
 
   const getCard = (cards: CardType[]) => {
-    console.log(cards)
     const sum = cards.reduce((acc, card) => acc + (6 - card.grade) * (6 - card.grade), 0)
     const rand = Math.random() * sum
     const res = cards.reduce(
@@ -86,7 +71,7 @@ export const LearnCard = () => {
 
   return (
     <div className={s.learnCard}>
-      <NavLink to={`/cards/${id}`} className={s.link}>
+      <NavLink to={`/cards/${id}`} className={`${s.link} ${loading ? s.linkDisabled : ''}`}>
         <p>&lArr; Back to Pack List</p>
       </NavLink>
 
@@ -97,7 +82,7 @@ export const LearnCard = () => {
       <div className={s.cardContainer}>
         <h3 className={s.subtitle}>
           Question:
-          {isLoading ? (
+          {loading ? (
             <Skeleton sx={skeletonSubtitleStyle} animation="wave" />
           ) : (
             <span className={s.text}> {card.question}</span>
