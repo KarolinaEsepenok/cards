@@ -37,6 +37,7 @@ export const EditCardModal = () => {
         type="text"
         label="Question"
         className={!questionValue.length ? s.inputError : s.input}
+        error={!questionValue.length ? 'write your question' : ''}
       />
       <Input value={answerValue} onChange={handleChangeAnswer} type="text" label="Answer" className={s.input} />
     </Modal>

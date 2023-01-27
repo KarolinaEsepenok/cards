@@ -80,8 +80,6 @@
 
 .input {
   width: 100%;
-
-  //margin-bottom: 10px;
 }
 
 .modalClose {
@@ -91,19 +89,10 @@
 }
 
 .inputError {
-  position: relative;
-
   width: 100%;
 
   border-bottom: 2px solid red;
-
-  //&::after {
-  //  content: 'Write some value';
-  //
-  //  position: absolute;
-  //  top: 0;
-  //  left: 0;
-  //
-  //  border: 10px solid red;
-  //}
+}
+.checkbox {
+  margin-top: 15px;
 }

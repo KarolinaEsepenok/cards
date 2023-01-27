@@ -30,8 +30,11 @@ export const EditPackNameModal = () => {
         className={!nameValue.length ? s.inputError : s.input}
         type="text"
         label="Name pack"
+        error={!nameValue.length ? 'write name pack' : ''}
       />
-      <Checkbox />
+      <div className={s.checkbox}>
+        <Checkbox />
+      </div>
     </Modal>
   )
 }

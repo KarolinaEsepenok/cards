@@ -25,8 +25,11 @@ export const AddPackModal = () => {
         label="Name pack"
         autoFocus
         className={!name.length ? s.inputError : s.input}
+        error={!name.length ? 'write name pack' : ''}
       />
-      <Checkbox />
+      <div className={s.checkbox}>
+        <Checkbox />
+      </div>
     </Modal>
   )
 }

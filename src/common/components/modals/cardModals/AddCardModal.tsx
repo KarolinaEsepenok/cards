@@ -37,6 +37,7 @@ export const AddCardModal = () => {
         label="Question"
         autoFocus
         className={!question.length ? s.inputError : s.input}
+        error={!question.length ? 'write your question' : ''}
       />
       <Input value={answer} onChange={handleChangeAnswer} type="text" label="Answer" className={s.input} />
     </Modal>
