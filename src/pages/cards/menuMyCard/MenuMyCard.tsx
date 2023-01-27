@@ -14,11 +14,11 @@ const ITEM_HEIGHT = 48
 
 type MenuMyCardType = {
   learnPackCallback: () => void
-  deletePackCallback: () => void
+
   editPackCallback: () => void
 }
 
-export const MenuMyCard: FC<MenuMyCardType> = ({ learnPackCallback, deletePackCallback, editPackCallback }) => {
+export const MenuMyCard: FC<MenuMyCardType> = ({ learnPackCallback, editPackCallback }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
 
@@ -59,7 +59,7 @@ export const MenuMyCard: FC<MenuMyCardType> = ({ learnPackCallback, deletePackCa
         </MenuItem>
 
         <MenuItem onClick={handleClose}>
-          <Button styleType="icon" onClick={deletePackCallback}>
+          <Button styleType="icon">
             <div className={s.menuItem}>
               <img className={s.iconDropDown} src={trash} alt="icon trash" />
               <span className={s.descrDropDown}>Delete pack</span>

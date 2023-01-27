@@ -22,7 +22,6 @@ import {
   cardQuestionSelector,
   cardsPackName,
   cardsSelector,
-  deletePackSelector,
   loadingCardsSelector,
   modalContentSelector,
   myIdSelector,
@@ -35,7 +34,7 @@ import {
 import { CardsList } from 'pages/cards/cardsList/CardsList'
 import { getCardsTC, toggleCardModal } from 'pages/cards/cardsSlice'
 import { MenuMyCard } from 'pages/cards/menuMyCard/MenuMyCard'
-import { setDeleteInPacks, setModalContent, togglePackModal } from 'pages/packs/packsSlice'
+import { setModalContent, togglePackModal } from 'pages/packs/packsSlice'
 import { PATH } from 'routes/routes'
 
 export const Cards = () => {
@@ -51,7 +50,6 @@ export const Cards = () => {
   const page = useAppSelector(pageCardsSelector)
   const cardQuestion = useAppSelector(cardQuestionSelector)
   const sortCards = useAppSelector(sortCardsSelector)
-  const deletePack = useAppSelector(deletePackSelector)
   const myPack = myId === packCreatorId
   const cardsList = cards.length ? <CardsList cards={cards} /> : <EmptyList />
 
@@ -62,10 +60,6 @@ export const Cards = () => {
   useEffect(() => {
     dispatch(getCardsTC(id ? id : ''))
   }, [page, pageCount, cardQuestion, sortCards])
-
-  useEffect(() => {
-    if (deletePack) navigate('/packs')
-  }, [deletePack])
 
   const handelLearnPack = () => {
     dispatch(setIsLoading(true))
@@ -81,11 +75,6 @@ export const Cards = () => {
     dispatch(togglePackModal(true))
     dispatch(setModalContent('editPackName'))
   }
-  const handelDeletePack = () => {
-    dispatch(setDeleteInPacks(false))
-    dispatch(setModalContent('deletePack'))
-    dispatch(togglePackModal(true))
-  }
 
   return (
     <>
@@ -96,11 +85,7 @@ export const Cards = () => {
       <div className={s.headerContainer}>
         <h2 className={s.title}>
           {packName}
-          <MenuMyCard
-            learnPackCallback={handelLearnPack}
-            deletePackCallback={handelDeletePack}
-            editPackCallback={handelEditPack}
-          />
+          {myPack && <MenuMyCard learnPackCallback={handelLearnPack} editPackCallback={handelEditPack} />}
         </h2>
 
         {myPack && (

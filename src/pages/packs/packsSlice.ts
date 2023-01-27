@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
 
 import { AddPackType, packsApi, PackType } from './packsApi'
 
@@ -106,13 +105,11 @@ export const updateNamePackTC =
 
 export const deletePackTC =
   (packId: string): AppThunk =>
-  async (dispatch, getState) => {
-    const deleteInPack = getState().packs.deleteInPacks
-
+  async dispatch => {
     dispatch(setIsLoading(true))
     try {
       await packsApi.deletePack(packId)
-      deleteInPack && dispatch(getPacksTC())
+      dispatch(getPacksTC())
       dispatch(deletePack(true))
     } catch (e) {
       if (axios.isAxiosError<{ error: string }>(e)) {
