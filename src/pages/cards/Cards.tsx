@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 
-import CircularProgress from '@mui/material/CircularProgress'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 
 import s from './Cards.module.scss'
@@ -22,7 +21,7 @@ import {
   cardQuestionSelector,
   cardsPackName,
   cardsSelector,
-  loadingCardsSelector,
+  isLoadingSelector,
   modalContentSelector,
   myIdSelector,
   pageCardsSelector,
@@ -32,7 +31,7 @@ import {
   togglePackModalSelector,
 } from 'common/selectors/Selectors'
 import { CardsList } from 'pages/cards/cardsList/CardsList'
-import { getCardsTC, toggleCardModal } from 'pages/cards/cardsSlice'
+import { getCardsTC, setCards, toggleCardModal } from 'pages/cards/cardsSlice'
 import { MenuMyCard } from 'pages/cards/menuMyCard/MenuMyCard'
 import { setModalContent, togglePackModal } from 'pages/packs/packsSlice'
 import { PATH } from 'routes/routes'

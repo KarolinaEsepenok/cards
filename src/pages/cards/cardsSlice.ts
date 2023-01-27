@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 import { setError, setIsLoading } from 'app/appSlice'
-import { sortingCardsMethods } from 'common/constants/sortingPacksMethods/sortingPacksMethods'
+import { sortingCardsMethods } from 'common/constants/sortingPacksMethods/sortingMethods'
 import { AppThunk } from 'common/hooks/AppThunk'
 import { AppDispatchType } from 'common/hooks/useAppDispatch'
 import { AddNewCardParamType, cardsAPI, CardType } from 'pages/cards/cardsApi'
@@ -28,7 +28,7 @@ const initialState = {
 export const getCardsTC =
   (cardsPack_id: string): AppThunk =>
   async (dispatch, getState) => {
-    dispatch(setCardsIsLoading(true))
+    dispatch(setIsLoading(true))
     const { pageCount, cardQuestion, page, sortCards } = getState().cards.queryParams
 
     dispatch(setPackId(cardsPack_id))
@@ -54,7 +54,6 @@ export const getCardsTC =
         dispatch(setError(error))
       }
     } finally {
-      dispatch(setCardsIsLoading(false))
       dispatch(setIsLoading(false))
     }
   }
@@ -180,6 +179,9 @@ const slice = createSlice({
     toggleCardModal: (state, action: PayloadAction<boolean>) => {
       state.toggleCardModal = action.payload
     },
+    setCardsSort: (state, action: PayloadAction<sortingCardsMethods>) => {
+      state.queryParams.sortCards = action.payload
+    },
     deletePack: (state, action: PayloadAction<boolean>) => {
       state.deletePack = action.payload
     },
@@ -188,6 +190,7 @@ const slice = createSlice({
 
 export const cardsReducer = slice.reducer
 export const {
+  setCardsSort,
   setCards,
   setCreatorId,
   setPackName,
