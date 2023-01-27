@@ -1,46 +1,51 @@
-# Getting Started with Create React App
+# Project:
+Cards for learn
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Description:
+Learn the information you need with question-and-answer cards.  
 
-## Available Scripts
+The basis of the project is a pack of cards. The card contains a question and an answer. In tutorial mode, you see a card with a question, mentally answer it, click "see answer" and rate how correctly you answered it.  
 
-In the project directory, you can run:
+Then your score is taken into account when you show the cards. You will rarely be shown a question that you know the answer. You will be shown a card with the question you need to learn.  Showing cards in tutorial mode is endless.  
 
-### `yarn start`
+You can create your own card packs or learn from public packs. You can edit, delete, and make your packs private.  
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# How to use our project:
+- you must register => [Sign in](https://karolinaesepenok.github.io/cards/#/signIn)
+- you can learn cards from other people's packs
+- create your own packs with cards, filling them with the information you want. For example, you can create a deck with words in different languages and their translation
+- learn the cards until you remember them
+- manage your packs and cards (make packs private, edit titles/questions/answers, delete packs/cards)
+- to start learning the cards, open the menu and click learn
+  
+# Authors:
+[Karolina Esepenok](https://github.com/KarolinaEsepenok)  
+[Morozova Anastasiya](https://github.com/MorozovaAN)  
+[Svetlana Mysliatska]( https://github.com/lily1215z)  
+[Oleg Kozikov](https://github.com/Oldeg)  
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# Stack:
+- React
+- TypeScript
+- Redux toolkit
+- SCSS
+- CSS Modules
+- MUI
+- axios
+- react-router-dom
+- formik
 
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+# What was implemented on the project:
+- registration
+- logout
+- display packs and cards in the form of tables
+- filters by packs:
+  * search by deck name
+  * filter by number of cards in a pack (minimum and maximum)
+  * sorting into my and other people's packs
+  * page switching
+  * choosing the number of packs to display
+  * reset all filters
+- CRUD operations with packs and cards
+- modal windows for CRUD operations
+- clever randomness when displaying cards in tutorial mode: the card will be shown more often if it has a low rating.
