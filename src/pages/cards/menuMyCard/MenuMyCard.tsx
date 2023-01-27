@@ -43,9 +43,7 @@ export const MenuMyCard: FC<MenuMyCardType> = ({ learnPackCallback }) => {
         PaperProps={{
           style: {
             maxHeight: ITEM_HEIGHT * 4.5,
-            width: '20ch',
-            top: '208px',
-            left: '480px',
+            width: '23ch',
           },
         }}
       >
