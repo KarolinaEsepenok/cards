@@ -20,6 +20,9 @@ export const Header = () => {
   const openSignIn = () => {
     navigate(`${PATH.SIGN_IN}`)
   }
+  const openProfile = () => {
+    navigate(`${PATH.PROFILE}`)
+  }
 
   return (
     <header className={s.headerContainer}>
@@ -31,7 +34,7 @@ export const Header = () => {
         {isLoggedIn ? (
           <div className={s.userInfoContainer}>
             <p className={s.name}>{userName}</p>
-            <img src={avatar} alt="user avatar" className={s.avatar} />
+            <img src={avatar} alt="user avatar" className={s.avatar} onClick={openProfile} />
           </div>
         ) : (
           <Button styleType="primary" onClick={openSignIn}>

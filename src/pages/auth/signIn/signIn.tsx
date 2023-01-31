@@ -59,6 +59,11 @@ export const SignIn = () => {
 
   return (
     <div className={s.signIn}>
+      <div className={s.descrPassword}>
+        Use common test account credentials:
+        <p>Email: freeCards@samuraijs.com</p>
+        <p>Password: 123456789</p>
+      </div>
       <div className={s.popupContainer}>
         <h1 className={s.title}>Sign In</h1>
         <form onSubmit={formik.handleSubmit} className={s.form}>
