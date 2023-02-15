@@ -60,7 +60,7 @@ export const Packs = () => {
 
   return (
     <div className={s.packs}>
-      <h2>Packs list</h2>
+      <h2 className={s.packsName}>Packs list</h2>
 
       <div className={s.addPackButton}>
         <Button styleType="primary" onClick={handleOpenPopup}>

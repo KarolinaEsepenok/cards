@@ -8,6 +8,13 @@
 
   width: $main-width;
   margin: 0 auto;
+
+  .packsName {
+
+    @media screen and (max-width: 1000px) {
+      margin-left: 20px;
+    }
+  }
 }
 
 .packsList {
@@ -18,6 +25,12 @@
   align-self: end;
 
   margin-bottom: 34px;
+
+  @media screen and (max-width: 1000px) {
+    align-self: start;
+
+    margin-left: 20px;
+  }
 }
 
 .filtersContainer {
@@ -26,6 +39,14 @@
   justify-content: space-between;
 
   margin-bottom: 30px;
+
+  @media screen and (max-width: 1000px) {
+    flex-direction: column;
+    align-items: start;
+
+    width: fit-content;
+    margin-left: 20px;
+  }
 }
 
 .search {

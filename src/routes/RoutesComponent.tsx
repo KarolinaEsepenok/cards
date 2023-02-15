@@ -2,6 +2,10 @@ import React from 'react'
 
 import { Navigate, Route, Routes } from 'react-router-dom'
 
+import { Profile } from '../pages/auth/profile/Profile'
+import { Register } from '../pages/auth/register/Register'
+import { Cards } from '../pages/cards/Cards'
+
 import { PrivateRoutes } from './PrivateRoutes'
 import { PATH } from './routes'
 
@@ -9,10 +13,7 @@ import { Error404 } from 'common/components/error404/Error404'
 import { CheckEmail } from 'pages/auth/forgotPassword/checkEmail/CheckEmail'
 import { ForgotPassword } from 'pages/auth/forgotPassword/ForgotPassword'
 import { SetNewPassword } from 'pages/auth/forgotPassword/setNewPassword/SetNewPassword'
-import { Profile } from 'pages/auth/profile/Profile'
-import { Register } from 'pages/auth/register/Register'
 import { SignIn } from 'pages/auth/signIn/signIn'
-import { Cards } from 'pages/cards/Cards'
 import { LearnCard } from 'pages/cards/cardsList/learnCard/LearnCard'
 import { Packs } from 'pages/packs/Packs'
 
